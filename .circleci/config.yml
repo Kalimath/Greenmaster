@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/<language>:<version TAG>
+      - image: cimg/base:stable
         auth:
           username: Kalimath
           password: ?-MZk-xAiRr3TBD  # context / project UI env-var reference
@@ -13,7 +13,7 @@ jobs:
       - run: echo "this is the build job"
   test:
     docker:
-      - image: cimg/<language>:<version TAG>
+      - image: cimg/base:stable
         auth:
           username: Kalimath
           password: ?-MZk-xAiRr3TBD  # context / project UI env-var reference
