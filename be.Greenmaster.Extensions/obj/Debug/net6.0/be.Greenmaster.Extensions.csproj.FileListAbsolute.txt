@@ -1,0 +1,12 @@
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\bin\Debug\net6.0\be.Greenmaster.Extensions.deps.json
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\bin\Debug\net6.0\be.Greenmaster.Extensions.dll
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\bin\Debug\net6.0\be.Greenmaster.Extensions.pdb
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\be.Greenmaster.Extensions.csproj.AssemblyReference.cache
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\be.Greenmaster.Extensions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\be.Greenmaster.Extensions.AssemblyInfoInputs.cache
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\be.Greenmaster.Extensions.AssemblyInfo.cs
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\be.Greenmaster.Extensions.csproj.CoreCompileInputs.cache
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\be.Greenmaster.Extensions.dll
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\refint\be.Greenmaster.Extensions.dll
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\be.Greenmaster.Extensions.pdb
+C:\Users\mathi\RiderProjects\Greenmaster\be.Greenmaster.Extensions\obj\Debug\net6.0\ref\be.Greenmaster.Extensions.dll
