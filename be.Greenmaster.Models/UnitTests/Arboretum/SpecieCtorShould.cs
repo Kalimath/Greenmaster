@@ -2,6 +2,7 @@
 using be.Greenmaster.Extensions.SubTypes;
 using be.Greenmaster.Models.Arboretum;
 using be.Greenmaster.Models.StaticData;
+using be.Greenmaster.Models.StaticData.PlantProperties;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -23,7 +24,7 @@ public class SpecieCtorShould
         _validScientificName = "Strelitzia reginae";
         _validCommonNameNl = "Paradijsvogelbloem";
         _validCommonNames = new DictionaryEnum<Language, string>();
-        _validPlantProperties = new PlantProperties(false);
+        _validPlantProperties = new PlantProperties(false, Lifecycle.Annual);
     }
 
     [Fact]
@@ -57,7 +58,7 @@ public class SpecieCtorShould
     {
         Assert.Throws<ArgumentNullException>(() =>
         {
-            var badSpecie = new Specie(_validScientificName, _validCommonNames, new PlantProperties(false));
+            var badSpecie = new Specie(_validScientificName, _validCommonNames, _validPlantProperties);
             _testOutputHelper.WriteLine(_validCommonNames[_language.ToString()]);
         });
     }
