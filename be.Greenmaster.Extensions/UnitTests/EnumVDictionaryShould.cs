@@ -38,6 +38,30 @@ public class EnumDirectoryShould
         Assert.Equal(_testValue, createdDir[TestEnum.Tester.ToString()]);
         Assert.Null(createdDir[TestEnum.Testing.ToString()]);
     }
+    
+    [Fact]
+    public void ReturnTrueWhenContainsKey()
+    {
+        throw new NotImplementedException();
+    }
+    
+    [Fact]
+    public void ReturnFalseWhenNotContainsKey()
+    {
+        throw new NotImplementedException();
+    }
+    
+    [Fact]
+    public void ReturnTrueWhenContainsValue()
+    {
+        throw new NotImplementedException();
+    }
+    
+    [Fact]
+    public void ReturnFalseWhenNotContainsValue()
+    {
+        throw new NotImplementedException();
+    }
 
     private enum TestEnum
     {
