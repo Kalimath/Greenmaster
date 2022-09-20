@@ -1794,6 +1794,11 @@
       "be.Greenmaster.Extensions/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.NET.Test.Sdk": "17.3.1",
+          "xunit": "2.4.2",
+          "xunit.extensibility.core": "2.4.2"
+        },
         "compile": {
           "bin/placeholder/be.Greenmaster.Extensions.dll": {}
         },
