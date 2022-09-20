@@ -7,12 +7,9 @@ public class DictionaryEnum<TEnum,TValue>:Dictionary<string, TValue> where TEnum
         this.InitiateEnumKeys();
     }
 
-    public void InitiateEnumKeys(){
-        if (!typeof(TEnum).IsEnum) 
-        {
-            throw new ArgumentException("TEnum must be an enumerated type");
-        }
-        else
+    public void InitiateEnumKeys()
+    {
+        if (typeof(TEnum).IsEnum)
         {
             var enumNames = Enum.GetNames(typeof(TEnum));
             foreach (var name in enumNames.AsQueryable())
@@ -20,6 +17,9 @@ public class DictionaryEnum<TEnum,TValue>:Dictionary<string, TValue> where TEnum
                 this[name] = default(TValue)!;
             }
         }
-            
+        else
+        {
+            throw new ArgumentException("TEnum must be an enumerated type");
+        }
     }
 }
