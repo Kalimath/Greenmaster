@@ -41,4 +41,13 @@ public class EnumVDictionary<TEnum, TValue> : Dictionary<string, TValue> where T
             this[stringifiedEnumKey] = value;
         }
     }
+
+    public void Remove(TEnum eKey)
+    {
+        var key = eKey.ToString();
+        if (!string.IsNullOrWhiteSpace(key))
+        {
+            this[key] = default!;
+        }
+    }
 }

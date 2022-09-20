@@ -23,6 +23,14 @@ public class EnumDirectoryShould
     }
 
     [Fact]
+    public void SetValueToNullWhenRemoveIsCalled()
+    {
+        var createdDir = new EnumVDictionary<TestEnum, string> { { TestEnum.Tester, _testValue } };
+        createdDir.Remove(eKey: TestEnum.Tester);
+        Assert.Null(createdDir[TestEnum.Tester.ToString()]);
+    }
+
+    [Fact]
     public void AddWhenKeyIsTypeEnumAndAlreadyExists()
     {
         var createdDir = new EnumVDictionary<TestEnum, string> { { TestEnum.Tester, _testValue } };
@@ -34,5 +42,10 @@ public class EnumDirectoryShould
     private enum TestEnum
     {
         Test1,Tester,Testing
+    }
+    
+    private enum TestEnum2
+    {
+        Test2,Testr,Testingen
     }
 }
