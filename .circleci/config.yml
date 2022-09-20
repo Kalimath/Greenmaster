@@ -6,8 +6,8 @@ jobs:
     docker:
       - image: cimg/<language>:<version TAG>
         auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          username: Kalimath
+          password: ?-MZk-xAiRr3TBD  # context / project UI env-var reference
     steps:
       - checkout
       - run: echo "this is the build job"
@@ -15,8 +15,8 @@ jobs:
     docker:
       - image: cimg/<language>:<version TAG>
         auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          username: Kalimath
+          password: ?-MZk-xAiRr3TBD  # context / project UI env-var reference
     steps:
       - checkout
       - run: echo "this is the test job"
