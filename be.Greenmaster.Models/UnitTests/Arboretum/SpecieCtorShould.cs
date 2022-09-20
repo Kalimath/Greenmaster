@@ -14,7 +14,7 @@ public class SpecieCtorShould
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly string _validCommonNameNl;
     private readonly string _validScientificName;
-    private readonly DictionaryEnum<Language, string> _validCommonNames;
+    private readonly EnumVDictionary<Language, string> _validCommonNames;
     private readonly PlantProperties _validPlantProperties;
     private readonly Language _language = Language.Nl;
     
@@ -23,7 +23,7 @@ public class SpecieCtorShould
         _testOutputHelper = testOutputHelper;
         _validScientificName = "Strelitzia reginae";
         _validCommonNameNl = "Paradijsvogelbloem";
-        _validCommonNames = new DictionaryEnum<Language, string>();
+        _validCommonNames = new EnumVDictionary<Language, string>();
         _validPlantProperties = new PlantProperties(false, Lifecycle.Annual);
     }
 
