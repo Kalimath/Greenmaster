@@ -1,0 +1,32 @@
+Index: .circleci/config.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>version: 2.1\r\n\r\n# Define the jobs we want to run for this project\r\njobs:\r\n  build:\r\n    docker:\r\n      - image: cimg/<language>:<version TAG>\r\n        auth:\r\n          username: mydockerhub-user\r\n          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference\r\n    steps:\r\n      - checkout\r\n      - run: echo \"this is the build job\"\r\n  test:\r\n    docker:\r\n      - image: cimg/<language>:<version TAG>\r\n        auth:\r\n          username: mydockerhub-user\r\n          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference\r\n    steps:\r\n      - checkout\r\n      - run: echo \"this is the test job\"\r\n\r\n# Orchestrate our job run sequence\r\nworkflows:\r\n  build_and_test:\r\n    jobs:\r\n      - build\r\n      - test\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.circleci/config.yml b/.circleci/config.yml
+--- a/.circleci/config.yml	(revision 3fbcc19e498fc09fb80511dd23984b6305c7f7c4)
++++ b/.circleci/config.yml	(date 1663320721604)
+@@ -6,8 +6,8 @@
+     docker:
+       - image: cimg/<language>:<version TAG>
+         auth:
+-          username: mydockerhub-user
+-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
++          username: Kalimath
++          password: ?-MZk-xAiRr3TBD  # context / project UI env-var reference
+     steps:
+       - checkout
+       - run: echo "this is the build job"
+@@ -15,8 +15,8 @@
+     docker:
+       - image: cimg/<language>:<version TAG>
+         auth:
+-          username: mydockerhub-user
+-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
++          username: Kalimath
++          password: ?-MZk-xAiRr3TBD  # context / project UI env-var reference
+     steps:
+       - checkout
+       - run: echo "this is the test job"
