@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "toRpLUwtJffaagougaMQd8LwDnejqi+94JIWKwvTx4085Ewa3Qv0W3lbVY6pHMNZIYs50sZ02JRaJsKdnlD5lQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster\\Greenmaster.Extensions\\Greenmaster.Extensions.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mathi\\.nuget\\packages\\jetbrains.annotations\\2022.1.0\\jetbrains.annotations.2022.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
