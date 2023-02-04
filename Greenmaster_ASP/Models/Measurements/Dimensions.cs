@@ -2,11 +2,16 @@
 
 namespace Greenmaster_ASP.Models.Measurements;
 
-public class PlantDimensions
+public class Dimensions
 {
-    [ForeignKey(nameof(Plant))]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int PlantDimensionsId { get; set; }
+    public int DimensionsId { get; set; }
     public double Height { get; set; }
     public double Width { get; set; }
+    
+    public int? SpecieId { get; set; }
+    public Specie Specie { get; set; }
+    
+    public int? PlantId { get; set; }
+    public Plant Plant { get; set; }
 }

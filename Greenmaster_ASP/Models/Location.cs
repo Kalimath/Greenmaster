@@ -4,7 +4,6 @@ namespace Greenmaster_ASP.Models;
 
 public class Location
 {
-    [ForeignKey(nameof(Placeable))]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int LocationId { get; set; }
 

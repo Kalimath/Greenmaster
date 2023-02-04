@@ -7,14 +7,16 @@ namespace Greenmaster_ASP.Models;
 
 public class PlantRequirements
 {
-    [ForeignKey(nameof(Specie))]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
-    public int RequirementsId { get; set; }
+    public int PlantRequirementsId { get; set; }
 
     public Amount Sunlight { get; set; }
     public Amount Water { get; set; }
     public ClimateType Climate { get; set; }
     public SoilType Soil { get; set; }
-    public virtual FertiliserData FertiliserInfo { get; set; }
+    
+    
+    public int FertiliserInfoId { get; set; }
+    public FertiliserData FertiliserInfo { get; set; }
 }

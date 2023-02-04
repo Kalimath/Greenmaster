@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Greenmaster_ASP.Models.Arboretum;
 using Greenmaster_ASP.Models.StaticData;
 
 namespace Greenmaster_ASP.Models;
 
 public class FlowerData
 {
-    [ForeignKey(nameof(Specie))]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int FlowerDataId { get; set; }
     public Color Color { get; set; } = Color.Green;
