@@ -23,4 +23,21 @@
       <PackageReference Include="xunit" Version="2.4.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Folder.DotSettings.user" />
+      <Content Include="obj\Debug\net6.0\apphost.exe" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.csproj.CopyComplete" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.csproj.CoreCompileInputs.cache" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.csproj.FileListAbsolute.txt" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.dll" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.genruntimeconfig.cache" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.MvcApplicationPartsAssemblyInfo.cache" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.pdb" />
+      <Content Include="obj\Debug\net6.0\staticwebassets.build.json" />
+      <Content Include="obj\Debug\net6.0\staticwebassets.development.json" />
+      <Content Include="obj\Debug\net6.0\staticwebassets.pack.json" />
+      <Content Include="obj\dotnet-aspnet-codegenerator.exe" />
+      <Content Include="obj\Greenmaster_ASP.csproj.codegeneration.targets" />
+    </ItemGroup>
+
 </Project>
