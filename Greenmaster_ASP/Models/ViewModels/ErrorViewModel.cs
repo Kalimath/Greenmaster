@@ -1,4 +1,4 @@
-namespace Greenmaster_ASP.Models;
+namespace Greenmaster_ASP.Models.ViewModels;
 
 public class ErrorViewModel
 {
