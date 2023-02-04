@@ -1,4 +1,4 @@
-﻿namespace Greenmaster_ASP.Models.StaticData.PlantProperties;
+﻿namespace Greenmaster_ASP.Models.Static.PlantProperties;
 
 public enum Lifecycle
 {

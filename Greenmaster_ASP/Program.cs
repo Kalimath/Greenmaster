@@ -1,4 +1,7 @@
+using Greenmaster_ASP.Controllers;
+using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Arboretum;
+using Greenmaster_ASP.Models.Factories;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +16,7 @@ services.AddDbContext<ArboretumContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("localDb"));
 });
+services.AddSingleton<SpecieFactory>();
 
 
 var app = builder.Build();
