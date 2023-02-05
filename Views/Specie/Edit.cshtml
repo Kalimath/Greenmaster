@@ -1,0 +1,52 @@
+@model Greenmaster_ASP.Models.Specie
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Specie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SpecieId" />
+            <div class="form-group">
+                <label asp-for="ScientificName" class="control-label"></label>
+                <input asp-for="ScientificName" class="form-control" />
+                <span asp-validation-for="ScientificName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlantRequirementsId" class="control-label"></label>
+                <select asp-for="PlantRequirementsId" class="form-control" asp-items="ViewBag.PlantRequirementsId"></select>
+                <span asp-validation-for="PlantRequirementsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FlowerDataId" class="control-label"></label>
+                <select asp-for="FlowerDataId" class="form-control" asp-items="ViewBag.FlowerDataId"></select>
+                <span asp-validation-for="FlowerDataId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxDimensionsId" class="control-label"></label>
+                <input asp-for="MaxDimensionsId" class="form-control" />
+                <span asp-validation-for="MaxDimensionsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lifecycle" class="control-label"></label>
+                <select asp-for="Lifecycle" class="form-control"></select>
+                <span asp-validation-for="Lifecycle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
