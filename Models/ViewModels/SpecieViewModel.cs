@@ -1,27 +1,34 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using Greenmaster_ASP.Models.Static;
-using Greenmaster_ASP.Models.Static.Geographic;
-using Greenmaster_ASP.Models.Static.Gradation;
+﻿using System.ComponentModel.DataAnnotations;
 using Greenmaster_ASP.Models.Static.Object.Organic;
-using Greenmaster_ASP.Models.StaticData;
-using Greenmaster_ASP.Models.StaticData.Time.Durations;
 
 namespace Greenmaster_ASP.Models.ViewModels;
 
 public class SpecieViewModel
 {
-    public int SpecieId { get; set; }
-    [Required(ErrorMessage = "Specie must have a scientific name.")]
-    [DisplayName("Scientific name")]
-    [MinLength(4, ErrorMessage = "Scientific name is too short.")]
-    public string ScientificName { get; set; }
-
-    public string PlantType { get; set; }
-    [Required]
+    
+    public int Id { get; set; }
+    
+    [Required(ErrorMessage = "Specie must have a genus.")]
+    public string Genus { get; set; }
+    
+    [Required(ErrorMessage = "Specie must have a species.")]
+    public string Species { get; set; }
+    
+    public string? Cultivar { get; set; }
+    
+    [Required(ErrorMessage = "Specie must have a Type")]
+    public string Type { get; set; }
+    
+    [Required(ErrorMessage = "Specie must have a Lifecycle")]
     public Lifecycle Lifecycle { get; set; }
     
-    //PlantRequirements
+    public string ScientificName => $"{Genus} {Species}" + (string.IsNullOrEmpty(Cultivar) ? "" : $" '{Cultivar}'");
+    
+    public string CommonNames { get; set; }
+    
+    public string Description { get; set; }
+    
+    /*//PlantRequirements
     [Required]
     [DisplayName("Sunlight requirement")]
     public Amount Sunlight { get; set; }
@@ -66,5 +73,5 @@ public class SpecieViewModel
     [Required(ErrorMessage = "Specie must have a max. width.")]
     [DisplayName("Max. width in metres")]
     [Range(0.1, 10, ErrorMessage = "Max. width is invalid.")]
-    public double MaxWidth { get; set; }
+    public double MaxWidth { get; set; }*/
 }

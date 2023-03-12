@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Arboretum;
+using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Static.Object.Organic;
+using Greenmaster_ASP.Models.ViewModels;
 
 namespace Greenmaster_ASP.Controllers
 {
@@ -28,14 +30,19 @@ namespace Greenmaster_ASP.Controllers
         // GET: Specie/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Species == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var specie = await _specieService.GetSpecieById((int)id);
-            if (specie == null)
+            Specie specie;
+            try
             {
+                specie = await _specieService.GetSpecieById((int)id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
                 return NotFound();
             }
 
@@ -54,16 +61,17 @@ namespace Greenmaster_ASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Specie specie)
+        public async Task<IActionResult> Create(SpecieViewModel specieViewModel)
         {
             if (ModelState.IsValid)
             {
+                var specie = SpecieFactory.Create(specieViewModel);
                 await _specieService.AddSpecie(specie);
                 return await Details(specie.Id);
             }
 
             DefineViewData();
-            return View(specie);
+            return View(specieViewModel);
         }
 
         private void DefineViewData()
@@ -91,7 +99,7 @@ namespace Greenmaster_ASP.Controllers
             }
 
             DefineViewData();
-            return View(specie);
+            return View(SpecieFactory.ToViewModel(specie));
         }
 
         // POST: Specie/Edit/5
@@ -99,12 +107,13 @@ namespace Greenmaster_ASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Specie specie)
+        public async Task<IActionResult> Edit(int id, SpecieViewModel specieViewModel)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var specie = SpecieFactory.Create(specieViewModel);
                     await _specieService.UpdateSpecie(specie);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -120,24 +129,26 @@ namespace Greenmaster_ASP.Controllers
 
 
             DefineViewData();
-            return View(specie);
+            return View(specieViewModel);
         }
 
         // GET: Specie/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id==null||!await _specieService.SpecieWithIdExists((int)id))
             {
                 return NotFound();
             }
 
-            var specieById = (await _specieService.GetSpecieById((int)id));
-            if (specieById == null)
+            try
             {
+                return View(await _specieService.GetSpecieById((int)id));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
                 return NotFound();
             }
-
-            return View(specieById);
         }
 
         // POST: Specie/Delete/5
@@ -145,9 +156,9 @@ namespace Greenmaster_ASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Species == null)
+            if (!await _specieService.SpecieWithIdExists(id))
             {
-                return Problem("Entity set 'ArboretumContext.Species' is null.");
+                return NotFound();
             }
 
             await _specieService.DeleteSpecieById(id);

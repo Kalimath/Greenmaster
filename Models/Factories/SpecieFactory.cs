@@ -1,7 +1,4 @@
-﻿using Greenmaster_ASP.Models.Extensions;
-using Greenmaster_ASP.Models.Measurements;
-using Greenmaster_ASP.Models.ViewModels;
-using NotImplementedException = System.NotImplementedException;
+﻿using Greenmaster_ASP.Models.ViewModels;
 
 namespace Greenmaster_ASP.Models.Factories;
 
@@ -12,24 +9,24 @@ public class SpecieFactory
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));
 
-        var maxDimensions = CreateDimensions(specieViewModel);
-
+        /*var maxDimensions = CreateDimensions(specieViewModel);
         var fertiliserData = CreateFertiliserInfo(specieViewModel);
         var flowerInfo = CreateFlowerInfo(specieViewModel);
-        var requirements = CreatePlantRequirements(specieViewModel, fertiliserData);
-        return new Specie()
+        var requirements = CreatePlantRequirements(specieViewModel, fertiliserData);*/
+        return new Specie
         {
-            /*ScientificName = specieViewModel.ScientificName,
+            Id = specieViewModel.Id,
+            Genus = specieViewModel.Genus,
+            Species = specieViewModel.Species,
+            Cultivar = specieViewModel.Cultivar,
+            CommonNames = specieViewModel.CommonNames,
+            Description = specieViewModel.Description,
             Type = specieViewModel.Type,
-            Lifecycle = specieViewModel.Lifecycle,
-            Requirements = requirements,
-            FlowerInfo = flowerInfo,
-            MaxDimensions = maxDimensions,*/
-
+            Cycle = specieViewModel.Lifecycle
         };
     }
 
-    private static Dimensions CreateDimensions(SpecieViewModel specieViewModel)
+    /*private static Dimensions CreateDimensions(SpecieViewModel specieViewModel)
     {
         if (specieViewModel.MaxHeight > 50 || specieViewModel.MaxHeight < 0.1)
             throw new ArgumentOutOfRangeException(nameof(specieViewModel.MaxHeight));
@@ -82,10 +79,20 @@ public class SpecieFactory
             PhosphorLevel = specieViewModel.PhosphorLevel,
             PotassiumLevel = specieViewModel.PotassiumLevel
         };
-    }
+    }*/
 
     public static SpecieViewModel ToViewModel(Specie specie)
     {
-        throw new NotImplementedException();
+        return new SpecieViewModel()
+        {
+            Id = specie.Id,
+            Genus = specie.Genus,
+            Species = specie.Species,
+            Cultivar = specie.Cultivar,
+            CommonNames = specie.CommonNames,
+            Description = specie.Description,
+            Type = specie.Type,
+            Lifecycle = specie.Cycle
+        };
     }
 }
