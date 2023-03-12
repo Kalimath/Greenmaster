@@ -24,13 +24,10 @@ public class SpecieService : ISpecieService
                ?? throw new ArgumentException($"No Specie found with scientific name={scientificName}");
     }
 
-    public async Task<Specie> GetSpecieById(int specieId)
+    public async Task<Specie> GetSpecieById(int id)
     {
-        return (await (_context.Species
-                    .Include(s => s.FlowerInfo)
-                    .Include(s => s.Requirements)
-                    .FirstOrDefaultAsync(m => m.SpecieId == specieId))
-                ?? throw new ArgumentException($"No Specie found with {nameof(specieId)}={specieId}"));
+        return (await _context.Species.FirstOrDefaultAsync(m => m.Id == id))
+                ?? throw new ArgumentException($"No Specie found with {nameof(id)}={id}");
     }
 
     public async Task AddSpecie(Specie specie)
@@ -41,6 +38,7 @@ public class SpecieService : ISpecieService
 
     public async Task UpdateSpecie(Specie specie)
     {
+        Console.WriteLine($"Updating specie with id ={specie.Id}");
         _context.Update(specie);
         await _context.SaveChangesAsync();
     }

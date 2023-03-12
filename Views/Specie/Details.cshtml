@@ -1,0 +1,61 @@
+@model Greenmaster_ASP.Models.Specie
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.ScientificName)</h4>
+    <hr/>
+    <dl>
+        <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.Genus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Genus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Species)
+        </dt>
+        <dd class="col-sm-2">
+            @Html.DisplayFor(model => model.Species)
+        </dd>
+        <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.Cultivar)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cultivar)
+        </dd>
+        <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.CommonNames)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CommonNames)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-2">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-2">
+            Planttype description
+        </dt>
+        <dd class="col-sm-2">
+            @Html.DisplayFor(model => model.GetPlantType.Description)
+        </dd>
+        <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.Cycle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cycle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
