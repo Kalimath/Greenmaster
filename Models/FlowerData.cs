@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.StaticData;
 
 namespace Greenmaster_ASP.Models;

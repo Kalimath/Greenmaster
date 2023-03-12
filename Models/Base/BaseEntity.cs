@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace be.MbDevelompent.Greenmaster.Statics.Base;
+namespace Greenmaster_ASP.Models.Base;
 
 public abstract class BaseEntity
 {

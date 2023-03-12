@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace be.MbDevelompent.Greenmaster.Statics.Base;
+namespace Greenmaster_ASP.Models.Base;
 
 public abstract class BaseAuditableEntity : BaseEntity
 {

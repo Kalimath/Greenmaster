@@ -1,4 +1,4 @@
-﻿namespace Greenmaster_ASP.Models.StaticData.Time.Durations;
+﻿namespace Greenmaster_ASP.Models.Static.Time.Durations;
 
 public enum Period
 {

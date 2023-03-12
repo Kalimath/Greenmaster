@@ -1,4 +1,4 @@
-﻿namespace Greenmaster_ASP.Models.StaticData.Time;
+﻿namespace Greenmaster_ASP.Models.Static.Time;
 
 public enum Frequency
 {

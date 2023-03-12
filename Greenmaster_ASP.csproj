@@ -47,6 +47,14 @@
       <_ContentIncludedByDefault Remove="Views\Specie\Details.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Specie\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Specie\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Greenmaster_ASP\Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Greenmaster_ASP\Views\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="Greenmaster_ASP\Views\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Greenmaster_ASP\Views\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Greenmaster_ASP\Views\_ViewStart.cshtml" />
+      <_ContentIncludedByDefault Remove="Greenmaster_ASP\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="Greenmaster_ASP\appsettings.json" />
+      <_ContentIncludedByDefault Remove="Greenmaster_ASP\Properties\launchSettings.json" />
     </ItemGroup>
 
     <ItemGroup>

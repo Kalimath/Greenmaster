@@ -1,4 +1,4 @@
-﻿namespace Greenmaster_ASP.Models.StaticData;
+﻿namespace Greenmaster_ASP.Models.Static;
 
 public enum Color
 {
