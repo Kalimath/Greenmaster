@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.13">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="6.0.11" />
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
+      <PackageReference Include="xunit" Version="2.4.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Folder.DotSettings.user" />
+      <Content Include="obj\Debug\net6.0\apphost.exe" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.csproj.CopyComplete" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.csproj.CoreCompileInputs.cache" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.csproj.FileListAbsolute.txt" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.dll" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.genruntimeconfig.cache" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.MvcApplicationPartsAssemblyInfo.cache" />
+      <Content Include="obj\Debug\net6.0\Greenmaster_ASP.pdb" />
+      <Content Include="obj\Debug\net6.0\staticwebassets.build.json" />
+      <Content Include="obj\Debug\net6.0\staticwebassets.development.json" />
+      <Content Include="obj\Debug\net6.0\staticwebassets.pack.json" />
+      <Content Include="obj\dotnet-aspnet-codegenerator.exe" />
+      <Content Include="obj\Greenmaster_ASP.csproj.codegeneration.targets" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Specie\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Specie\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Specie\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Specie\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Specie\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\Static\PlantProperties" />
+    </ItemGroup>
+
+</Project>
