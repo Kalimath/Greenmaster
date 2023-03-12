@@ -12,19 +12,21 @@ namespace Greenmaster_ASP.Controllers
 {
     public class SpecieController : Controller
     {
-        private readonly ArboretumContext _context;
+        
         private readonly ISpecieService _specieService;
 
-        public SpecieController(ArboretumContext context, ISpecieService specieService)
+        public SpecieController(ISpecieService specieService)
         {
-            _context = context;
             _specieService = specieService;
         }
 
         // GET: Specie
         public async Task<IActionResult> Index()
         {
-            return View(await _specieService.GetSpecies());
+            var species = (await _specieService.GetSpecies());
+            var specieViewModels = new List<SpecieViewModel>();
+            foreach (var specie in species) specieViewModels.Add(SpecieFactory.ToViewModel(specie));
+            return View(specieViewModels);
         }
 
         // GET: Specie/Details/5

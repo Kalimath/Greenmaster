@@ -36,10 +36,10 @@
             @Html.DisplayFor(model => model.CommonNames)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.PlantType)
         </dt>
         <dd class="col-sm-2">
-            @Html.DisplayFor(model => model.Type)
+            @Html.DisplayFor(model => model.PlantType)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
@@ -58,6 +58,18 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Cycle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaxHeight)
+        </dt>
+        <dd class="col-sm-2">
+            @Html.DisplayFor(model => model.MaxHeight) m
+        </dd>
+        <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.MaxWidth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaxWidth) m
         </dd>
     </dl>
 </div>

@@ -1,4 +1,4 @@
-@model IEnumerable<Greenmaster_ASP.Models.Specie>
+@model IEnumerable<Greenmaster_ASP.Models.ViewModels.SpecieViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -20,7 +20,10 @@
             @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cycle)
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxHeight)
         </th>
         <th></th>
     </tr>
@@ -36,7 +39,10 @@
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cycle)
+                @Html.DisplayFor(modelItem => item.Lifecycle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxHeight) m
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -49,6 +49,16 @@
                 <select asp-for="Lifecycle" class="form-control" asp-items="ViewBag.LifeCycle"></select>
                 <span asp-validation-for="Lifecycle" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="MaxHeight" class="control-label"></label>
+                <input asp-for="MaxHeight" class="form-control" type="number" step="0.1"/>
+                <span asp-validation-for="MaxHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxWidth" class="control-label"></label>
+                <input asp-for="MaxWidth" class="form-control" type="number" step="0.1"/>
+                <span asp-validation-for="MaxWidth" class="text-danger"></span>
+            </div>
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary"/>

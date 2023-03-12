@@ -50,6 +50,16 @@
                 <span asp-validation-for="Lifecycle" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MaxHeight" class="control-label"></label>
+                <input asp-for="MaxHeight" class="form-control" type="double"/>
+                <span asp-validation-for="MaxHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxWidth" class="control-label"></label>
+                <input asp-for="MaxWidth" class="form-control" type="double"/>
+                <span asp-validation-for="MaxWidth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary"/>
             </div>
         </form>

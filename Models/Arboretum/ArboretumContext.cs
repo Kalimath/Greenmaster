@@ -17,9 +17,7 @@ public class ArboretumContext : DbContext
 
     public IEnumerable<Specie> GetAllSpecies()
     {
-        return Species/*.Include(specie => specie.Requirements)
-            .Include(specie => specie.MaxDimensions)
-            .Include(specie => specie.FlowerInfo)*/;
+        return Species;
     }
 
     public ArboretumContext(DbContextOptions<ArboretumContext> options) : base(options)

@@ -8,11 +8,8 @@ public class SpecieFactory
     {
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));
-
-        /*var maxDimensions = CreateDimensions(specieViewModel);
-        var fertiliserData = CreateFertiliserInfo(specieViewModel);
-        var flowerInfo = CreateFlowerInfo(specieViewModel);
-        var requirements = CreatePlantRequirements(specieViewModel, fertiliserData);*/
+        ValidateDimensions(specieViewModel.MaxHeight, specieViewModel.MaxWidth);
+        
         return new Specie
         {
             Id = specieViewModel.Id,
@@ -21,25 +18,22 @@ public class SpecieFactory
             Cultivar = specieViewModel.Cultivar,
             CommonNames = specieViewModel.CommonNames,
             Description = specieViewModel.Description,
-            Type = specieViewModel.Type,
-            Cycle = specieViewModel.Lifecycle
+            PlantType = specieViewModel.Type,
+            Cycle = specieViewModel.Lifecycle,
+            MaxHeight = specieViewModel.MaxHeight,
+            MaxWidth = specieViewModel.MaxWidth
         };
     }
 
-    /*private static Dimensions CreateDimensions(SpecieViewModel specieViewModel)
+    private static void ValidateDimensions(double maxHeight, double maxWidth)
     {
-        if (specieViewModel.MaxHeight > 50 || specieViewModel.MaxHeight < 0.1)
-            throw new ArgumentOutOfRangeException(nameof(specieViewModel.MaxHeight));
+        if (maxHeight > 150 || maxHeight < 0.1)
+            throw new ArgumentOutOfRangeException(nameof(maxHeight));
 
-        if (specieViewModel.MaxWidth > 10 || specieViewModel.MaxWidth < 0.1)
-            throw new ArgumentOutOfRangeException(nameof(specieViewModel.MaxHeight));
-
-        return new Dimensions()
-        {
-            Height = specieViewModel.MaxHeight,
-            Width = specieViewModel.MaxWidth
-        };
+        if (maxWidth > 10 || maxWidth < 0.1)
+            throw new ArgumentOutOfRangeException(nameof(maxHeight));
     }
+    /*
 
     private static FlowerData CreateFlowerInfo(SpecieViewModel specieViewModel)
     {
@@ -83,6 +77,10 @@ public class SpecieFactory
 
     public static SpecieViewModel ToViewModel(Specie specie)
     {
+        if (specie == null)
+            throw new ArgumentNullException(nameof(specie));
+        ValidateDimensions(specie.MaxHeight, specie.MaxWidth);
+        
         return new SpecieViewModel()
         {
             Id = specie.Id,
@@ -91,8 +89,10 @@ public class SpecieFactory
             Cultivar = specie.Cultivar,
             CommonNames = specie.CommonNames,
             Description = specie.Description,
-            Type = specie.Type,
-            Lifecycle = specie.Cycle
+            Type = specie.PlantType,
+            Lifecycle = specie.Cycle,
+            MaxHeight = specie.MaxHeight,
+            MaxWidth = specie.MaxWidth
         };
     }
 }

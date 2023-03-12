@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Greenmaster_ASP.Models.Static.Object.Organic;
+using static Greenmaster_ASP.Models.Static.Object.Organic.PlantType;
 
 namespace Greenmaster_ASP.Models;
 
@@ -19,12 +20,16 @@ public class Specie
     public string Description { get; set; }
     
     [Required]
-    [Column(name: "PlantType")]
-    public string Type { get; set; }
+    public string PlantType { get; set; }
 
-    public PlantType GetPlantType => PlantType.GetByName(Type);
+    public PlantType GetPlantType => GetByName(PlantType);
 
     [Required]
     public Lifecycle Cycle { get; set; }
+
+    [Required]
+    public double MaxHeight { get; set; }
     
+    [Required]
+    public double MaxWidth { get; set; }
 }

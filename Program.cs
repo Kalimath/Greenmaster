@@ -1,12 +1,7 @@
-using Greenmaster_ASP.Controllers;
-using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Arboretum;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
