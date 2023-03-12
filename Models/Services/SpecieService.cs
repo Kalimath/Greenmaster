@@ -38,14 +38,18 @@ public class SpecieService : ISpecieService
 
     public async Task UpdateSpecie(Specie specie)
     {
-        Console.WriteLine($"Updating specie with id ={specie.Id}");
         _context.Update(specie);
         await _context.SaveChangesAsync();
     }
 
     public async Task DeleteSpecieById(int id)
     {
-        _context.Remove(id);
+        _context.Remove(await GetSpecieById(id));
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<bool> SpecieWithIdExists(int id)
+    {
+        return (await _context.Species.FirstOrDefaultAsync(m => m.Id == id)) != null;
     }
 }

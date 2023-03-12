@@ -3,14 +3,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Arboretum;
-using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
-using Greenmaster_ASP.Models.Static.Geographic;
-using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
-using Greenmaster_ASP.Models.StaticData;
-using Greenmaster_ASP.Models.StaticData.Time.Durations;
-using Greenmaster_ASP.Models.ViewModels;
 
 namespace Greenmaster_ASP.Controllers
 {
@@ -60,21 +54,12 @@ namespace Greenmaster_ASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind(
-                "Genus,Species,Cultivar,Type,CommonNames,Description")]
-            Specie specie)
+        public async Task<IActionResult> Create(Specie specie)
         {
-            
             if (ModelState.IsValid)
             {
-                _context.Species.Add(specie);
-                await _context.SaveChangesAsync();
-                
+                await _specieService.AddSpecie(specie);
                 return await Details(specie.Id);
-                /*createdSpecie = SpecieFactory.Create(specieViewModel);
-                await _specieService.AddSpecie(createdSpecie);
-                return await Details(createdSpecie.SpecieId);*/
             }
 
             DefineViewData();
@@ -84,7 +69,7 @@ namespace Greenmaster_ASP.Controllers
         private void DefineViewData()
         {
             ViewData["LifeCycle"] = new SelectList(Enum.GetNames(typeof(Lifecycle)));
-            ViewData["Type"] = new SelectList(PlantType.GetAllNames());
+            ViewData["PlantType"] = new SelectList(PlantType.GetAllNames());
             /*ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));
             ViewData["SoilType"] = new SelectList(Enum.GetNames(typeof(SoilType)));
@@ -95,13 +80,12 @@ namespace Greenmaster_ASP.Controllers
         // GET: Specie/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Species == null)
+            Specie specie;
+            try
             {
-                return NotFound();
+                specie = await _specieService.GetSpecieById((int)id);
             }
-
-            var specie = await _context.Species.FindAsync(id);
-            if (specie == null)
+            catch (Exception e)
             {
                 return NotFound();
             }
@@ -115,8 +99,7 @@ namespace Greenmaster_ASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,
-            [Bind("Id,Genus,Species,Cultivar,Type,CommonNames,Description")] Specie specie)
+        public async Task<IActionResult> Edit(int id, Specie specie)
         {
             if (ModelState.IsValid)
             {
@@ -126,7 +109,7 @@ namespace Greenmaster_ASP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SpecieExists(specie.Id))
+                    if (!await _specieService.SpecieWithIdExists(id))
                     {
                         return NotFound();
                     }
@@ -134,6 +117,7 @@ namespace Greenmaster_ASP.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+
 
             DefineViewData();
             return View(specie);
@@ -152,7 +136,7 @@ namespace Greenmaster_ASP.Controllers
             {
                 return NotFound();
             }
-            
+
             return View(specieById);
         }
 
@@ -165,15 +149,9 @@ namespace Greenmaster_ASP.Controllers
             {
                 return Problem("Entity set 'ArboretumContext.Species' is null.");
             }
-            
+
             await _specieService.DeleteSpecieById(id);
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool SpecieExists(int id)
-        {
-            /*return (_context.Species?.Any(e => e.SpecieId == id)).GetValueOrDefault();*/
-            return false;
         }
     }
 }
