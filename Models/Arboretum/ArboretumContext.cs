@@ -1,4 +1,5 @@
 ﻿using Greenmaster_ASP.Models.Static.Object.Organic;
+using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Greenmaster_ASP.Models.Arboretum;
@@ -39,8 +40,13 @@ public class ArboretumContext : DbContext
                 Description = "some text.",
                 PlantType = PlantType.SmallShrub.Name,
                 Cycle = Lifecycle.Perennial,
-                MaxHeight = 23.5,
-                MaxWidth = 4.5
+                MaxHeight = 2.5,
+                MaxWidth = 0.75,
+                BloomPeriod = new[]
+                {
+                    Month.May.ToString(), Month.June.ToString(), Month.July.ToString(), Month.August.ToString(),
+                    Month.September.ToString(), Month.October.ToString()
+                }
             },
             new()
             {
@@ -53,9 +59,15 @@ public class ArboretumContext : DbContext
                 PlantType = PlantType.SmallShrub.Name,
                 Cycle = Lifecycle.Perennial,
                 MaxHeight = 1,
-                MaxWidth = 0.25
+                MaxWidth = 0.25, 
+                BloomPeriod = new []{Month.May.ToString(), Month.June.ToString()}
             },
         });
+        modelBuilder.Entity<Specie>()
+            .Property(e => e.BloomPeriod)
+            .HasConversion(
+                v => string.Join(',', v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
         
         /*modelBuilder.Entity<Domain>().HasMany(domain => domain.Placeables).WithMany(x => x.Domains);
         modelBuilder.Entity<Area>().HasOne(x => x.Domain).WithMany(x => x.Areas);

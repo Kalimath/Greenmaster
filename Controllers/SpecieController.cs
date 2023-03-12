@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Greenmaster_ASP.Models;
-using Greenmaster_ASP.Models.Arboretum;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Static.Object.Organic;
+using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
 
 namespace Greenmaster_ASP.Controllers
@@ -48,7 +48,7 @@ namespace Greenmaster_ASP.Controllers
                 return NotFound();
             }
 
-            return View(specie);
+            return View(SpecieFactory.ToViewModel(specie));
         }
 
         // GET: Specie/Create
@@ -80,11 +80,12 @@ namespace Greenmaster_ASP.Controllers
         {
             ViewData["LifeCycle"] = new SelectList(Enum.GetNames(typeof(Lifecycle)));
             ViewData["PlantType"] = new SelectList(PlantType.GetAllNames());
+            ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
             /*ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));
             ViewData["SoilType"] = new SelectList(Enum.GetNames(typeof(SoilType)));
             ViewData["Color"] = new SelectList(Enum.GetNames(typeof(Color)));
-            ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));*/
+            */
         }
 
         // GET: Specie/Edit/5

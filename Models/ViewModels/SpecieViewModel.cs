@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Greenmaster_ASP.Models.Static.Object.Organic;
+using static Greenmaster_ASP.Models.Static.Object.Organic.PlantType;
+using Greenmaster_ASP.Models.StaticData.Time.Durations;
 
 namespace Greenmaster_ASP.Models.ViewModels;
 
 public class SpecieViewModel
 {
-    
     public int Id { get; set; }
     
     [Required(ErrorMessage = "Specie must have a genus.")]
@@ -18,15 +19,20 @@ public class SpecieViewModel
     public string? Cultivar { get; set; }
     
     [Required(ErrorMessage = "Specie must have a PlantType")]
+    [DisplayName("Plant-type")]
     public string Type { get; set; }
+    public PlantType GetPlantType => GetByName(Type);
     
     [Required(ErrorMessage = "Specie must have a Lifecycle")]
     public Lifecycle Lifecycle { get; set; }
     
+    [DisplayName("Scientific name")]
     public string ScientificName => $"{Genus} {Species}" + (string.IsNullOrEmpty(Cultivar) ? "" : $" '{Cultivar}'");
     
+    [DisplayName("Common Names")]
     public string CommonNames { get; set; }
     
+    [DisplayName("Info")]
     public string Description { get; set; }
     
     //MaxDimensions
@@ -39,6 +45,9 @@ public class SpecieViewModel
     [DisplayName("Maximum width (metric)")]
     [Range(0.1, 10, ErrorMessage = "Max. width is invalid.")]
     public double MaxWidth { get; set; }
+
+    [DisplayName(displayName: "Months of blooming")]
+    public Month[] BloomPeriod { get; set; } = { Month.NotSet };
 
     /*//PlantRequirements
     [Required]

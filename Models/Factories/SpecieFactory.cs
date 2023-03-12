@@ -1,4 +1,5 @@
-﻿using Greenmaster_ASP.Models.ViewModels;
+﻿using Greenmaster_ASP.Models.StaticData.Time.Durations;
+using Greenmaster_ASP.Models.ViewModels;
 
 namespace Greenmaster_ASP.Models.Factories;
 
@@ -9,6 +10,12 @@ public class SpecieFactory
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));
         ValidateDimensions(specieViewModel.MaxHeight, specieViewModel.MaxWidth);
+        
+        var stringifiedBloomPeriod = new string[specieViewModel.BloomPeriod.Length];
+        for (var index = 0; index < specieViewModel.BloomPeriod.Length; index++)
+        {
+            stringifiedBloomPeriod[index] = specieViewModel.BloomPeriod[index].ToString();
+        }
         
         return new Specie
         {
@@ -21,7 +28,8 @@ public class SpecieFactory
             PlantType = specieViewModel.Type,
             Cycle = specieViewModel.Lifecycle,
             MaxHeight = specieViewModel.MaxHeight,
-            MaxWidth = specieViewModel.MaxWidth
+            MaxWidth = specieViewModel.MaxWidth,
+            BloomPeriod = stringifiedBloomPeriod
         };
     }
 
@@ -81,6 +89,12 @@ public class SpecieFactory
             throw new ArgumentNullException(nameof(specie));
         ValidateDimensions(specie.MaxHeight, specie.MaxWidth);
         
+        var bloomPeriod = new Month[specie.BloomPeriod.Length];
+        for (var index = 0; index < specie.BloomPeriod.Length; index++)
+        {
+            bloomPeriod[index] = Enum.Parse<Month>(specie.BloomPeriod[index]);
+        }
+        
         return new SpecieViewModel()
         {
             Id = specie.Id,
@@ -92,7 +106,8 @@ public class SpecieFactory
             Type = specie.PlantType,
             Lifecycle = specie.Cycle,
             MaxHeight = specie.MaxHeight,
-            MaxWidth = specie.MaxWidth
+            MaxWidth = specie.MaxWidth,
+            BloomPeriod = bloomPeriod
         };
     }
 }

@@ -32,4 +32,6 @@ public class Specie
     
     [Required]
     public double MaxWidth { get; set; }
+
+    public string[] BloomPeriod { get; set; }
 }

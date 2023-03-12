@@ -1,4 +1,5 @@
 ﻿using Greenmaster_ASP.Models.Factories;
+using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Xunit;
 using static Greenmaster_ASP.Tests.Helpers.AssertObjects;
 
@@ -13,6 +14,7 @@ public class CreateSpecieShould : SpecieFactoryTestBase
     {
         Assert.Throws<ArgumentNullException>(() => SpecieFactory.Create(null!));
     }
+    
     [Fact]
     public void ThrowArgumentOutOfRangeException_WhenViewModelMaxHeightInvalid()
     {
@@ -23,6 +25,7 @@ public class CreateSpecieShould : SpecieFactoryTestBase
         _specieViewModelStrelitzia.MaxHeight = 150.1;
         Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModelStrelitzia));
     }
+    
     [Fact]
     public void ThrowArgumentOutOfRangeException_WhenViewModelMaxWidthInvalid()
     {

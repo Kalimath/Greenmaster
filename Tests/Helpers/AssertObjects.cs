@@ -17,6 +17,7 @@ public static class AssertObjects
         Assert.Equal(expected.PlantType, actual.PlantType);
         Assert.Equal(expected.Cycle, actual.Cycle);
         Assert.Equal(expected.Description, actual.Description);
+        Assert.Equal(expected.BloomPeriod, actual.BloomPeriod);
     }
     public static void AssertSpecieViewModel(SpecieViewModel expected, SpecieViewModel? actual)
     {
