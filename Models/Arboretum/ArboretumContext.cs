@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Greenmaster_ASP.Models.Static.Object.Organic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Greenmaster_ASP.Models.Arboretum;
 
@@ -26,7 +27,36 @@ public class ArboretumContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Specie>();
+        modelBuilder.Entity<Specie>().HasData(new List<Specie>()
+        {
+            new()
+            {
+                Id = 1,
+                Genus = "Strelitzia",
+                Species = "Reginae",
+                Cultivar = "",
+                CommonNames = "Bird of paradise,Paradijsvogelbloem",
+                Description = "some text.",
+                PlantType = PlantType.SmallShrub.Name,
+                Cycle = Lifecycle.Perennial,
+                MaxHeight = 23.5,
+                MaxWidth = 4.5
+            },
+            new()
+            {
+                Id = 2,
+                Genus = "Papaver",
+                Species = "Orientale",
+                Cultivar = "Catherina",
+                CommonNames = "Eastern poppy,Oosterse papaver",
+                Description = "Beautiful straight plant",
+                PlantType = PlantType.SmallShrub.Name,
+                Cycle = Lifecycle.Perennial,
+                MaxHeight = 1,
+                MaxWidth = 0.25
+            },
+        });
+        
         /*modelBuilder.Entity<Domain>().HasMany(domain => domain.Placeables).WithMany(x => x.Domains);
         modelBuilder.Entity<Area>().HasOne(x => x.Domain).WithMany(x => x.Areas);
         modelBuilder.Entity<Area>().HasMany(x => x.EdgePoints).WithOne(x => x.Area);
