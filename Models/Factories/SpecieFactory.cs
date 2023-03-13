@@ -1,4 +1,5 @@
-﻿using Greenmaster_ASP.Models.StaticData.Time.Durations;
+﻿using Greenmaster_ASP.Models.Static;
+using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
 
 namespace Greenmaster_ASP.Models.Factories;
@@ -10,13 +11,7 @@ public class SpecieFactory
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));
         ValidateDimensions(specieViewModel.MaxHeight, specieViewModel.MaxWidth);
-        
-        var stringifiedBloomPeriod = new string[specieViewModel.BloomPeriod.Length];
-        for (var index = 0; index < specieViewModel.BloomPeriod.Length; index++)
-        {
-            stringifiedBloomPeriod[index] = specieViewModel.BloomPeriod[index].ToString();
-        }
-        
+
         return new Specie
         {
             Id = specieViewModel.Id,
@@ -30,9 +25,15 @@ public class SpecieFactory
             Sunlight = specieViewModel.Sunlight,
             Water = specieViewModel.Water,
             Climate = specieViewModel.Climate,
+            IsPoisonous = specieViewModel.IsPoisonous,
+            
             MaxHeight = specieViewModel.MaxHeight,
             MaxWidth = specieViewModel.MaxWidth,
-            BloomPeriod = stringifiedBloomPeriod
+            
+            BloomPeriod = (specieViewModel.BloomPeriod ?? throw new ArgumentNullException(nameof(specieViewModel.BloomPeriod))).Select(a=>a.ToString()).ToArray(),
+            FlowerColors = (specieViewModel.FlowerColors ?? throw new ArgumentNullException(nameof(specieViewModel.FlowerColors))).Select(a=>a.ToString()).ToArray(),
+            IsFragrant = specieViewModel.IsFragrant,
+            AttractsPollinators = specieViewModel.AttractsPollinators
         };
     }
 
@@ -91,13 +92,7 @@ public class SpecieFactory
         if (specie == null)
             throw new ArgumentNullException(nameof(specie));
         ValidateDimensions(specie.MaxHeight, specie.MaxWidth);
-        
-        var bloomPeriod = new Month[specie.BloomPeriod.Length];
-        for (var index = 0; index < specie.BloomPeriod.Length; index++)
-        {
-            bloomPeriod[index] = Enum.Parse<Month>(specie.BloomPeriod[index]);
-        }
-        
+
         return new SpecieViewModel()
         {
             Id = specie.Id,
@@ -111,9 +106,16 @@ public class SpecieFactory
             Sunlight = specie.Sunlight,
             Water = specie.Water,
             Climate = specie.Climate,
+            IsPoisonous = specie.IsPoisonous,
+            
             MaxHeight = specie.MaxHeight,
             MaxWidth = specie.MaxWidth,
-            BloomPeriod = bloomPeriod
+            
+            BloomPeriod = (specie.BloomPeriod ?? throw new ArgumentNullException(nameof(specie.BloomPeriod))).Select(s => Enum.Parse<Month>(s)).ToArray(),
+            FlowerColors = (specie.FlowerColors ?? throw new ArgumentNullException(nameof(specie.FlowerColors))).Select(s => Enum.Parse<Color>(s)).ToArray(),
+            IsFragrant = specie.IsFragrant,
+            AttractsPollinators = specie.AttractsPollinators
+            
         };
     }
 }

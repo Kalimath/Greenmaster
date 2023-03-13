@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
@@ -24,10 +25,10 @@ public class Specie
 
     public PlantType GetPlantType => GetByName(PlantType);
 
-    [Required] 
-    public Lifecycle Cycle { get; set; }
-    
-    public string[] BloomPeriod { get; set; }
+    public bool IsPoisonous { get; set; }
+
+    [Required] public Lifecycle Cycle { get; set; }
+
 
     //PlantRequirements
     public Amount Sunlight { get; set; }
@@ -37,4 +38,10 @@ public class Specie
     //MaxDimensions
     [Required] public double MaxHeight { get; set; }
     [Required] public double MaxWidth { get; set; }
+    
+    //FlowerInfo
+    public string[] BloomPeriod { get; set; }
+    public string[]? FlowerColors { get; set; }
+    public bool IsFragrant { get; set; }
+    public bool AttractsPollinators { get; set; }
 }

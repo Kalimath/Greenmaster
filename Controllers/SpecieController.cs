@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
+using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
@@ -14,7 +15,6 @@ namespace Greenmaster_ASP.Controllers
 {
     public class SpecieController : Controller
     {
-        
         private readonly ISpecieService _specieService;
 
         public SpecieController(ISpecieService specieService)
@@ -85,9 +85,8 @@ namespace Greenmaster_ASP.Controllers
             ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
             ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));
-            /*ViewData["SoilType"] = new SelectList(Enum.GetNames(typeof(SoilType)));
             ViewData["Color"] = new SelectList(Enum.GetNames(typeof(Color)));
-            */
+            /*ViewData["SoilType"] = new SelectList(Enum.GetNames(typeof(SoilType)));*/
         }
 
         // GET: Specie/Edit/5
@@ -140,7 +139,7 @@ namespace Greenmaster_ASP.Controllers
         // GET: Specie/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id==null||!await _specieService.SpecieWithIdExists((int)id))
+            if (id == null || !await _specieService.SpecieWithIdExists((int)id))
             {
                 return NotFound();
             }

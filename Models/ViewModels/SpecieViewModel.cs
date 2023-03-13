@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
@@ -60,11 +61,20 @@ public class SpecieViewModel
     [DisplayName("Maximum width (metric)")]
     [Range(0.1, 10, ErrorMessage = "Max. width is invalid.")]
     public double MaxWidth { get; set; }
-
+    [DisplayName("Poisonous")]
+    public bool IsPoisonous { get; set; }
+    
+    //FlowerInfo
     [DisplayName(displayName: "Months of blooming")]
     public Month[] BloomPeriod { get; set; } = { Month.NotSet };
-
-
+    [DisplayName("Flower colors")]
+    public Color[]? FlowerColors { get; set; }
+    
+    [DisplayName("Fragrant flowers")]
+    public bool IsFragrant { get; set; }
+    [DisplayName("Flowers attract bees and butterflies")]
+    public bool AttractsPollinators { get; set; }
+    
     /*[Required]
     [DisplayName("Preferred soil type")]
     public SoilType Soil { get; set; }
@@ -81,15 +91,5 @@ public class SpecieViewModel
     [DisplayName("Potassium percentage")]
     [Range(1,99, ErrorMessage = "Potassium percentage is invalid.")]
     public int PotassiumLevel { get; set; }
-    
-    //FlowerData
-    [DisplayName("Flower color")]
-    public Color Color { get; set; } = Color.Green;
-    [DisplayName("Fragrant flowers")]
-    public bool IsFragrant { get; set; }
-    [DisplayName("Flowers attract bees and butterflies")]
-    public bool AttractsPollinators { get; set; }
-    
-    
     */
 }

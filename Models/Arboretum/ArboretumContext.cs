@@ -1,4 +1,5 @@
-﻿using Greenmaster_ASP.Models.Static.Geographic;
+﻿using Greenmaster_ASP.Models.Static;
+using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
@@ -51,7 +52,11 @@ public class ArboretumContext : DbContext
                 {
                     Month.May.ToString(), Month.June.ToString(), Month.July.ToString(), Month.August.ToString(),
                     Month.September.ToString(), Month.October.ToString()
-                }
+                },
+                AttractsPollinators = true,
+                IsFragrant = false,
+                IsPoisonous = true,
+                FlowerColors = new [] { Color.Blue.ToString() , Color.MultiColor.ToString(),Color.Orange.ToString()}
             },
             new()
             {
@@ -63,16 +68,25 @@ public class ArboretumContext : DbContext
                 Description = "Beautiful straight plant",
                 PlantType = PlantType.SmallShrub.Name,
                 Cycle = Lifecycle.Annual,
-                Sunlight = Amount.Average,
+                Sunlight = Amount.Many,
                 Water = Amount.Little,
                 Climate = ClimateType.Temperate,
                 MaxHeight = 1,
                 MaxWidth = 0.25, 
-                BloomPeriod = new []{Month.May.ToString(), Month.June.ToString()}
+                BloomPeriod = new []{Month.May.ToString(), Month.June.ToString()},
+                AttractsPollinators = true,
+                IsFragrant = false,
+                IsPoisonous = false,
+                FlowerColors = new [] { Color.Pink.ToString()}
             },
         });
         modelBuilder.Entity<Specie>()
             .Property(e => e.BloomPeriod)
+            .HasConversion(
+                v => string.Join(',', v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+        modelBuilder.Entity<Specie>()
+            .Property(e => e.FlowerColors)
             .HasConversion(
                 v => string.Join(',', v),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
