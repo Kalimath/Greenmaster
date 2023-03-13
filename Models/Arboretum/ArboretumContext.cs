@@ -2,6 +2,7 @@
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
+using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,6 +43,7 @@ public class ArboretumContext : DbContext
                 CommonNames = "Bird of paradise,Paradijsvogelbloem",
                 Description = "some text.",
                 PlantType = PlantType.SmallShrub.Name,
+                Shape = Shape.Vase,
                 Cycle = Lifecycle.Perennial,
                 Sunlight = Amount.Average,
                 Water = Amount.Little,
@@ -67,6 +69,7 @@ public class ArboretumContext : DbContext
                 CommonNames = "Eastern poppy,Oosterse papaver",
                 Description = "Beautiful straight plant",
                 PlantType = PlantType.SmallShrub.Name,
+                Shape = Shape.Columnar,
                 Cycle = Lifecycle.Annual,
                 Sunlight = Amount.Many,
                 Water = Amount.Little,
@@ -95,6 +98,11 @@ public class ArboretumContext : DbContext
             .HasConversion(
                 v => v.ToString(),
                 v => Enum.Parse<Lifecycle>(v));
+        modelBuilder.Entity<Specie>()
+            .Property(e => e.Shape)
+            .HasConversion(
+                v => v.ToString(),
+                v => Enum.Parse<Shape>(v));
         modelBuilder.Entity<Specie>()
             .Property(e => e.Sunlight)
             .HasConversion(

@@ -53,6 +53,11 @@
                 <span asp-validation-for="Lifecycle" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Shape" class="control-label"></label>
+                <select asp-for="Shape" class="form-control" asp-items="ViewBag.Shape"></select>
+                <span asp-validation-for="Shape" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Sunlight" class="control-label"></label>
                 <select asp-for="Sunlight" class="form-control" asp-items="ViewBag.Amount"></select>
                 <span asp-validation-for="Sunlight" class="text-danger"></span>

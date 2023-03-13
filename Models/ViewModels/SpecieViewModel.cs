@@ -4,14 +4,18 @@ using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
+using Greenmaster_ASP.Models.Static.PlantProperties;
 using static Greenmaster_ASP.Models.Static.Object.Organic.PlantType;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 
+#pragma warning disable CS8618
 namespace Greenmaster_ASP.Models.ViewModels;
 
 public class SpecieViewModel
 {
     public int Id { get; set; }
+
+    #region Naming
 
     [Required(ErrorMessage = "Specie must have a genus.")]
     public string Genus { get; set; }
@@ -20,6 +24,18 @@ public class SpecieViewModel
     public string Species { get; set; }
 
     public string? Cultivar { get; set; }
+
+    [DisplayName("Scientific name")]
+    public string ScientificName => $"{Genus} {Species}" + (string.IsNullOrEmpty(Cultivar) ? "" : $" '{Cultivar}'");
+
+    [DisplayName("Common Names (separated by a comma)")]
+    public string CommonNames { get; set; }
+
+    #endregion
+
+    [DisplayName("Info")] public string Description { get; set; }
+
+    public Shape Shape { get; set; }
 
     [Required(ErrorMessage = "Specie must have a PlantType")]
     [DisplayName("Plant-type")]
@@ -30,15 +46,10 @@ public class SpecieViewModel
     [Required(ErrorMessage = "Specie must have a Lifecycle")]
     public Lifecycle Lifecycle { get; set; }
 
-    [DisplayName("Scientific name")]
-    public string ScientificName => $"{Genus} {Species}" + (string.IsNullOrEmpty(Cultivar) ? "" : $" '{Cultivar}'");
+    [DisplayName("Poisonous")] public bool IsPoisonous { get; set; }
 
-    [DisplayName("Common Names (separated by a comma)")]
-    public string CommonNames { get; set; }
+    #region Requirements
 
-    [DisplayName("Info")] public string Description { get; set; }
-
-    //PlantRequirements
     [Required]
     [DisplayName("Sunlight requirement")]
     public Amount Sunlight { get; set; }
@@ -51,7 +62,10 @@ public class SpecieViewModel
     [DisplayName("Preferred climate")]
     public ClimateType Climate { get; set; }
 
-    //MaxDimensions
+    #endregion
+
+    #region MaxDimensions
+
     [Required(ErrorMessage = "Specie must have a max. height.")]
     [DisplayName("Maximum height (metric)")]
     [Range(0.1, 150, ErrorMessage = "Max. height is invalid.")]
@@ -61,20 +75,23 @@ public class SpecieViewModel
     [DisplayName("Maximum width (metric)")]
     [Range(0.1, 10, ErrorMessage = "Max. width is invalid.")]
     public double MaxWidth { get; set; }
-    [DisplayName("Poisonous")]
-    public bool IsPoisonous { get; set; }
-    
-    //FlowerInfo
+
+    #endregion
+
+    #region FlowerInfo
+
     [DisplayName(displayName: "Months of blooming")]
     public Month[] BloomPeriod { get; set; } = { Month.NotSet };
-    [DisplayName("Flower colors")]
-    public Color[]? FlowerColors { get; set; }
-    
-    [DisplayName("Fragrant flowers")]
-    public bool IsFragrant { get; set; }
+
+    [DisplayName("Flower colors")] public Color[]? FlowerColors { get; set; }
+
+    [DisplayName("Fragrant flowers")] public bool IsFragrant { get; set; }
+
     [DisplayName("Flowers attract bees and butterflies")]
     public bool AttractsPollinators { get; set; }
-    
+
+    #endregion
+
     /*[Required]
     [DisplayName("Preferred soil type")]
     public SoilType Soil { get; set; }

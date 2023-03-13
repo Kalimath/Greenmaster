@@ -19,6 +19,7 @@ public static class AssertObjects
         Assert.Equal(expected.IsPoisonous, actual.IsPoisonous);
         Assert.Equal(expected.Cycle, actual.Cycle);
         Assert.Equal(expected.Description, actual.Description);
+        Assert.Equal(expected.Shape, actual.Shape);
         //MaxDimensions
         Assert.Equal(expected.MaxHeight, actual.MaxHeight);
         Assert.Equal(expected.MaxWidth, actual.MaxWidth);
@@ -45,6 +46,7 @@ public static class AssertObjects
         Assert.Equal(expected.IsPoisonous, actual.IsPoisonous);
         Assert.Equal(expected.Lifecycle, actual.Lifecycle);
         Assert.Equal(expected.Description, actual.Description);
+        Assert.Equal(expected.Shape, actual.Shape);
         //MaxDimensions
         Assert.Equal(expected.MaxHeight, actual.MaxHeight);
         Assert.Equal(expected.MaxWidth, actual.MaxWidth);

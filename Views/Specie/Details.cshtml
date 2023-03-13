@@ -60,6 +60,12 @@
             @Html.DisplayFor(model => model.GetPlantType.Description)
         </dd>
         <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.Shape)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Shape)
+        </dd>
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.Lifecycle)
         </dt>
         <dd class="col-sm-10">
@@ -86,6 +92,7 @@
         <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.IsPoisonous) @Html.DisplayFor(model => model.IsPoisonous)
         </dt>
+        <h5>Blooming</h5>
         <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.BloomPeriod)
         </dt>
@@ -114,6 +121,7 @@
         <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.AttractsPollinators) @Html.DisplayFor(model => model.AttractsPollinators)
         </dt>
+        <h5>Dimensions</h5>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MaxHeight)
         </dt>

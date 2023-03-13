@@ -33,12 +33,12 @@
                 <input asp-for="Cultivar" class="form-control"/>
                 <span asp-validation-for="Cultivar" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="CommonNames" class="control-label"></label>
                 <input asp-for="CommonNames" class="form-control" type="text"/>
                 <span asp-validation-for="CommonNames" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control"/>
@@ -49,6 +49,12 @@
                 <select asp-for="Lifecycle" class="form-control" asp-items="ViewBag.LifeCycle"></select>
                 <span asp-validation-for="Lifecycle" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Shape" class="control-label"></label>
+                <select asp-for="Shape" class="form-control" asp-items="ViewBag.Shape"></select>
+                <span asp-validation-for="Shape" class="text-danger"></span>
+            </div>
+            <h5>Requirements</h5>
             <div class="form-group">
                 <label asp-for="Sunlight" class="control-label"></label>
                 <select asp-for="Sunlight" class="form-control" asp-items="ViewBag.Amount"></select>

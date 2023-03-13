@@ -59,8 +59,4 @@
       <_ContentIncludedByDefault Remove="Greenmaster_ASP\Properties\launchSettings.json" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Models\Static\PlantProperties" />
-    </ItemGroup>
-
 </Project>
