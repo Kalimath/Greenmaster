@@ -9,6 +9,7 @@ public static class AssertObjects
     public static void AssertSpecie(Specie expected, Specie? actual)
     {
         Assert.NotNull(actual);
+        Assert.Equal(expected.Id, actual.Id);
         Assert.Equal(expected.Genus, actual.Genus);
         Assert.Equal(expected.Species, actual.Species);
         Assert.Equal(expected.Cultivar, actual.Cultivar);
@@ -22,6 +23,7 @@ public static class AssertObjects
     public static void AssertSpecieViewModel(SpecieViewModel expected, SpecieViewModel? actual)
     {
         Assert.NotNull(actual);
+        Assert.Equal(expected.Id, actual.Id);
         Assert.Equal(expected.Genus, actual.Genus);
         Assert.Equal(expected.Species, actual.Species);
         Assert.Equal(expected.Cultivar, actual.Cultivar);

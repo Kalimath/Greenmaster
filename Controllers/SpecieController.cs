@@ -69,7 +69,7 @@ namespace Greenmaster_ASP.Controllers
             {
                 var specie = SpecieFactory.Create(specieViewModel);
                 await _specieService.AddSpecie(specie);
-                return await Details(specie.Id);
+                return RedirectToAction(nameof(Index));
             }
 
             DefineViewData();
