@@ -1,3 +1,4 @@
+@using Greenmaster_ASP.Models.Static
 @model Greenmaster_ASP.Models.ViewModels.SpecieViewModel
 
 @{
@@ -8,16 +9,17 @@
 <h1>Details</h1>
 
 <div>
-    <h4>@Html.DisplayFor(model => model.ScientificName)</h4>
+    <h2>@Html.DisplayFor(model => model.ScientificName)</h2>
     <hr/>
-    <dl>
-        <dt class="col-sm-10">
+    <h4>Identification</h4>
+    <dl class="row">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Id)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Id)
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Genus)
         </dt>
         <dd class="col-sm-10">
@@ -26,77 +28,81 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Species)
         </dt>
-        <dd class="col-sm-2">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Species)
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Cultivar)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cultivar)
+            @(Model.Cultivar == null ? Model.Cultivar : "None")
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CommonNames)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CommonNames)
         </dd>
+    </dl>
+    <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Type)
         </dt>
-        <dd class="col-sm-2">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Type)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class="col-sm-2">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
-            Plant-type description
+            Plant-type info
         </dt>
-        <dd class="col-sm-2">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.GetPlantType.Description)
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Shape)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Shape)
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Lifecycle)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Lifecycle)
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Sunlight)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Sunlight)
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Water)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Water)
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Climate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Climate)
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IsPoisonous)
         </dt>
         <dd class="col-sm-10">
-            @(Model.IsPoisonous?"Yes":"No")
+            @(Model.IsPoisonous ? "Yes" : "No")
         </dd>
-        <h5 class="h5">Blooming</h5>
-        <dt class="col-sm-10">
+    </dl>
+    <h4>Blooming</h4>
+    <dl class="row">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BloomPeriod)
         </dt>
         <dd class="col-sm-10">
@@ -107,14 +113,42 @@
         </dd>
         @if (Model.FlowerColors?.Length > 0)
         {
-            <dt class="col-sm-10">
+            <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.FlowerColors)
             </dt>
             <dd class="col-sm-10">
 
                 @for (int i = 0; i < Model.FlowerColors.Count(); i++)
                 {
-                    <div>@Model.FlowerColors[i] </div>
+                    if (Model.FlowerColors[i] != Color.MultiColor && @Model.FlowerColors[i] != Color.BiColor)
+                    {
+                        <svg fill="@Model.FlowerColors[i]" height="20px" width="20px" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             viewBox="0 0 511.999 511.999" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M429.374,186.312c-19.444-1.142-52.858,10.573-85.425,24.737c28.544-21.116,55.39-44.194,64.136-61.614
+                        			                    c21.705-43.235,4.19-96.071-39.046-117.778c-20.708-10.396-43.43-11.688-65.71-3.733c-18.01,6.43-34.555,18.693-47.328,34.943
+                        			                    c-12.771-16.249-29.317-28.513-47.328-34.943c-22.277-7.954-45.001-6.663-65.71,3.733C99.726,53.363,82.21,106.2,103.916,149.435
+                        			                    c8.743,17.415,35.572,40.482,64.105,61.592c-32.556-14.161-65.953-25.865-85.394-24.715c-48.298,2.82-85.296,44.407-82.476,92.703
+                        			                    c1.35,23.133,11.593,43.457,29.622,58.775c14.573,12.382,33.469,20.58,53.926,23.515c-7.687,19.185-10.036,39.646-6.599,58.458
+                        			                    c4.252,23.272,16.731,42.305,36.088,55.041c14.825,9.754,31.542,14.417,48.087,14.416c28.559-0.003,56.597-13.899,73.434-39.49
+                        			                    c10.713-16.282,17.276-51.065,21.29-86.341c4.015,35.276,10.578,70.06,21.291,86.341c16.838,25.594,44.871,39.49,73.434,39.49
+                        			                    c16.543,0,33.264-4.663,48.087-14.416c19.358-12.736,31.837-31.769,36.088-55.041c3.437-18.813,1.088-39.273-6.599-58.458
+                        			                    c20.457-2.935,39.352-11.133,53.926-23.515c18.029-15.318,28.272-35.642,29.622-58.775
+                        			                    C514.67,230.718,477.673,189.132,429.374,186.312z M256.001,305.694c-24.19,0-43.87-19.681-43.87-43.87
+                        			                    c0-24.19,19.68-43.87,43.87-43.87s43.87,19.68,43.87,43.87S280.19,305.694,256.001,305.694z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    }
+                }
+                @if (Model.FlowerColors.Contains(Color.MultiColor))
+                {
+                    @($" ({Color.MultiColor})")
+                }
+                @if (Model.FlowerColors.Contains(Color.BiColor))
+                {
+                    @($" ({Color.BiColor})")
                 }
             </dd>
         }
@@ -122,22 +156,24 @@
             @Html.DisplayNameFor(model => model.IsFragrant)
         </dt>
         <dd class="col-sm-10">
-            @(Model.IsFragrant?"Yes":"No")
+            @(Model.IsFragrant ? "Yes" : "No")
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.AttractsPollinators)
         </dt>
         <dd class="col-sm-10">
-            @(Model.AttractsPollinators?"Yes":"No")
+            @(Model.AttractsPollinators ? "Yes" : "No")
         </dd>
-        <h5 class="h5">Dimensions</h5>
+    </dl>
+    <h4>Dimensions</h4>
+    <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MaxHeight)
         </dt>
-        <dd class="col-sm-2">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MaxHeight) m
         </dd>
-        <dt class="col-sm-10">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MaxWidth)
         </dt>
         <dd class="col-sm-10">
