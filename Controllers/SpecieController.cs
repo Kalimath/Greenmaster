@@ -26,10 +26,13 @@ namespace Greenmaster_ASP.Controllers
         // GET: Specie
         public async Task<IActionResult> Index()
         {
+            return View();
+        }
+        // GET: Specie
+        public async Task<JsonResult> GetSpecies()
+        {
             var species = (await _specieService.GetSpecies());
-            var specieViewModels = new List<SpecieViewModel>();
-            foreach (var specie in species) specieViewModels.Add(SpecieFactory.ToViewModel(specie));
-            return View(specieViewModels);
+            return Json(new { data = species});
         }
 
         // GET: Specie/Details/5

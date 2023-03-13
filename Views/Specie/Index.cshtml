@@ -1,4 +1,4 @@
-@model IEnumerable<Greenmaster_ASP.Models.ViewModels.SpecieViewModel>
+@model IEnumerable<Greenmaster_ASP.Models.Specie>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create">Add new specie</a>
 </p>
-<table class="table">
+<table class="table" id="specieTable">
     <thead>
     <tr>
         <th>
@@ -20,10 +20,10 @@
             @Html.DisplayNameFor(model => model.ScientificName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.PlantType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Lifecycle)
+            @Html.DisplayNameFor(model => model.Cycle)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Climate)
@@ -31,31 +31,51 @@
         <th></th>
     </tr>
     </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ScientificName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lifecycle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Climate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
+    
 </table>
+
+@section Scripts {
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script>
+        $(function () {
+            $('#specieTable').DataTable({
+                "ajax": {
+                    "url": "/Specie/GetSpecies",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "id" },
+                    { "data": "scientificName" },
+                    { "data": "plantType" },
+                    { "data": "cycle" },
+                    { "data": "climate" },
+                    { "data": null, "defaultContent": "<a href='' class='del'>Delete</a>"}
+                ]
+            });
+
+            $('#specieTable tbody').on('click', 'tr', function (e) {
+                e.preventDefault();
+                let id = $("td:first", this).text();
+
+                if ($(e.target).is("a.del")) { $.get('@Url.Action("Delete","Specie")', { id: id }, function (data) {
+                        $("body").html(data);
+                    });
+                    return;
+                }
+                $.get('@Url.Action("Details","Specie")', { id: id }, function (data) {
+                    $("body").html(data);
+                });
+            });
+        });
+
+
+
+    </script> }
+    
+<style>
+    #usersTable tbody tr {
+        cursor: pointer;
+    }
+</style>
