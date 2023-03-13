@@ -1,4 +1,6 @@
-﻿using Greenmaster_ASP.Models.Static.Object.Organic;
+﻿using Greenmaster_ASP.Models.Static.Geographic;
+using Greenmaster_ASP.Models.Static.Gradation;
+using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +42,9 @@ public class ArboretumContext : DbContext
                 Description = "some text.",
                 PlantType = PlantType.SmallShrub.Name,
                 Cycle = Lifecycle.Perennial,
+                Sunlight = Amount.Average,
+                Water = Amount.Little,
+                Climate = ClimateType.Tropical,
                 MaxHeight = 2.5,
                 MaxWidth = 0.75,
                 BloomPeriod = new[]
@@ -57,7 +62,10 @@ public class ArboretumContext : DbContext
                 CommonNames = "Eastern poppy,Oosterse papaver",
                 Description = "Beautiful straight plant",
                 PlantType = PlantType.SmallShrub.Name,
-                Cycle = Lifecycle.Perennial,
+                Cycle = Lifecycle.Annual,
+                Sunlight = Amount.Average,
+                Water = Amount.Little,
+                Climate = ClimateType.Temperate,
                 MaxHeight = 1,
                 MaxWidth = 0.25, 
                 BloomPeriod = new []{Month.May.ToString(), Month.June.ToString()}
@@ -68,6 +76,21 @@ public class ArboretumContext : DbContext
             .HasConversion(
                 v => string.Join(',', v),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+        modelBuilder.Entity<Specie>()
+            .Property(e => e.Sunlight)
+            .HasConversion(
+                v => v.ToString(),
+                v => Enum.Parse<Amount>(v));
+        modelBuilder.Entity<Specie>()
+            .Property(e => e.Water)
+            .HasConversion(
+                v => v.ToString(),
+                v => Enum.Parse<Amount>(v));
+        modelBuilder.Entity<Specie>()
+            .Property(e => e.Climate)
+            .HasConversion(
+                v => v.ToString(),
+                v => Enum.Parse<ClimateType>(v));
         
         /*modelBuilder.Entity<Domain>().HasMany(domain => domain.Placeables).WithMany(x => x.Domains);
         modelBuilder.Entity<Area>().HasOne(x => x.Domain).WithMany(x => x.Areas);

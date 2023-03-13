@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
+using Greenmaster_ASP.Models.Static.Geographic;
+using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
@@ -81,9 +83,9 @@ namespace Greenmaster_ASP.Controllers
             ViewData["LifeCycle"] = new SelectList(Enum.GetNames(typeof(Lifecycle)));
             ViewData["PlantType"] = new SelectList(PlantType.GetAllNames());
             ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
-            /*ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
+            ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));
-            ViewData["SoilType"] = new SelectList(Enum.GetNames(typeof(SoilType)));
+            /*ViewData["SoilType"] = new SelectList(Enum.GetNames(typeof(SoilType)));
             ViewData["Color"] = new SelectList(Enum.GetNames(typeof(Color)));
             */
         }

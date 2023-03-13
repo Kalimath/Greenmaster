@@ -27,6 +27,9 @@ public class SpecieFactory
             Description = specieViewModel.Description,
             PlantType = specieViewModel.Type,
             Cycle = specieViewModel.Lifecycle,
+            Sunlight = specieViewModel.Sunlight,
+            Water = specieViewModel.Water,
+            Climate = specieViewModel.Climate,
             MaxHeight = specieViewModel.MaxHeight,
             MaxWidth = specieViewModel.MaxWidth,
             BloomPeriod = stringifiedBloomPeriod
@@ -105,6 +108,9 @@ public class SpecieFactory
             Description = specie.Description,
             Type = specie.PlantType,
             Lifecycle = specie.Cycle,
+            Sunlight = specie.Sunlight,
+            Water = specie.Water,
+            Climate = specie.Climate,
             MaxHeight = specie.MaxHeight,
             MaxWidth = specie.MaxWidth,
             BloomPeriod = bloomPeriod

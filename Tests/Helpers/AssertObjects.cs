@@ -18,7 +18,12 @@ public static class AssertObjects
         Assert.Equal(expected.PlantType, actual.PlantType);
         Assert.Equal(expected.Cycle, actual.Cycle);
         Assert.Equal(expected.Description, actual.Description);
+        Assert.Equal(expected.MaxHeight, actual.MaxHeight);
+        Assert.Equal(expected.MaxWidth, actual.MaxWidth);
         Assert.Equal(expected.BloomPeriod, actual.BloomPeriod);
+        Assert.Equal(expected.Sunlight, actual.Sunlight);
+        Assert.Equal(expected.Water, actual.Water);
+        Assert.Equal(expected.Climate, actual.Climate);
     }
     public static void AssertSpecieViewModel(SpecieViewModel expected, SpecieViewModel? actual)
     {
@@ -32,5 +37,11 @@ public static class AssertObjects
         Assert.Equal(expected.Type, actual.Type);
         Assert.Equal(expected.Lifecycle, actual.Lifecycle);
         Assert.Equal(expected.Description, actual.Description);
+        Assert.Equal(expected.MaxHeight, actual.MaxHeight);
+        Assert.Equal(expected.MaxWidth, actual.MaxWidth);
+        
+        Assert.Equal(expected.Sunlight, actual.Sunlight);
+        Assert.Equal(expected.Water, actual.Water);
+        Assert.Equal(expected.Climate, actual.Climate);
     }
 }
