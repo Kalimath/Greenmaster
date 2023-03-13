@@ -77,6 +77,11 @@ public class ArboretumContext : DbContext
                 v => string.Join(',', v),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
         modelBuilder.Entity<Specie>()
+            .Property(e => e.Cycle)
+            .HasConversion(
+                v => v.ToString(),
+                v => Enum.Parse<Lifecycle>(v));
+        modelBuilder.Entity<Specie>()
             .Property(e => e.Sunlight)
             .HasConversion(
                 v => v.ToString(),
