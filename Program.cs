@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Greenmaster_ASP.Models.Arboretum;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
@@ -8,6 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var services = builder.Services;
 services.AddControllersWithViews();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 services.AddDbContext<ArboretumContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("localDb"));

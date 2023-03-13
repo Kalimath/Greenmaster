@@ -1,4 +1,6 @@
-﻿namespace Greenmaster_ASP.Models.Static.Object.Organic;
+﻿using System.Runtime.Serialization;
+
+namespace Greenmaster_ASP.Models.Static.Object.Organic;
 
 public enum Lifecycle
 {

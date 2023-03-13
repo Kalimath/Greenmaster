@@ -32,7 +32,9 @@ namespace Greenmaster_ASP.Controllers
         public async Task<JsonResult> GetSpecies()
         {
             var species = (await _specieService.GetSpecies());
-            return Json(new { data = species});
+            var specieViewModels = new List<SpecieViewModel>();
+            foreach (var specie in species) specieViewModels.Add(SpecieFactory.ToViewModel(specie));
+            return Json(new { data = specieViewModels});
         }
 
         // GET: Specie/Details/5

@@ -1,4 +1,4 @@
-@model IEnumerable<Greenmaster_ASP.Models.Specie>
+@model IEnumerable<Greenmaster_ASP.Models.ViewModels.SpecieViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -20,10 +20,10 @@
             @Html.DisplayNameFor(model => model.ScientificName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PlantType)
+            @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cycle)
+            @Html.DisplayNameFor(model => model.Lifecycle)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Climate)
@@ -48,8 +48,8 @@
                 "columns": [
                     { "data": "id" },
                     { "data": "scientificName" },
-                    { "data": "plantType" },
-                    { "data": "cycle" },
+                    { "data": "type" },
+                    { "data": "lifecycle" },
                     { "data": "climate" },
                     { "data": null, "defaultContent": "<a href='' class='del'>Delete</a>"}
                 ]

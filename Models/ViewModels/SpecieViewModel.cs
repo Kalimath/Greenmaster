@@ -34,7 +34,6 @@ public class SpecieViewModel
     #endregion
 
     [DisplayName("Info")] public string Description { get; set; }
-
     public Shape Shape { get; set; }
 
     [Required(ErrorMessage = "Specie must have a PlantType")]
@@ -83,7 +82,8 @@ public class SpecieViewModel
     [DisplayName(displayName: "Months of blooming")]
     public Month[] BloomPeriod { get; set; } = { Month.NotSet };
 
-    [DisplayName("Flower colors")] public Color[]? FlowerColors { get; set; }
+    [DisplayName("Flower colors")]
+    public Color[]? FlowerColors { get; set; }
 
     [DisplayName("Fragrant flowers")] public bool IsFragrant { get; set; }
 
