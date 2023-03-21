@@ -20,7 +20,7 @@ public class CreateSpecieShould : SpecieFactoryTestBase
     [Fact]
     public void ThrowArgumentOutOfRangeException_WhenViewModelMaxHeightInvalid()
     {
-        var invalidMaxHeightSpecieViewModel = SpecieViewModelStrelitzia.Clone();
+        var invalidMaxHeightSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
         invalidMaxHeightSpecieViewModel.MaxHeight = -15;
         Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
         invalidMaxHeightSpecieViewModel.MaxHeight = 0;
@@ -32,7 +32,7 @@ public class CreateSpecieShould : SpecieFactoryTestBase
     [Fact]
     public void ThrowArgumentOutOfRangeException_WhenViewModelMaxWidthInvalid()
     {
-        var invalidMaxWidthSpecieViewModel = SpecieViewModelStrelitzia.Clone();
+        var invalidMaxWidthSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
         invalidMaxWidthSpecieViewModel.MaxWidth = -15;
         Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
         invalidMaxWidthSpecieViewModel.MaxWidth = 0;
@@ -52,7 +52,7 @@ public class CreateSpecieShould : SpecieFactoryTestBase
     [Fact]
     public void ThrowArgumentNullException_WhenImageNull()
     {
-        var invalidSpecieViewModel = SpecieViewModelStrelitzia.Clone();
+        var invalidSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
         invalidSpecieViewModel.Image = null!;
         Assert.Throws<ArgumentNullException>(() => SpecieFactory.Create(invalidSpecieViewModel));
     }

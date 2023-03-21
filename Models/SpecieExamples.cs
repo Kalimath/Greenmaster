@@ -9,9 +9,8 @@ using Color = Greenmaster_ASP.Models.Static.Color;
 namespace Greenmaster_ASP.Models;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-public static class SpecieExamples
+public static partial class SpecieExamples
 {
-    private static readonly string Base64Image = "R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==";
     public static readonly Specie Strelitzia = new Specie()
     {
         Id = 1,
