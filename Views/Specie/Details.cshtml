@@ -1,4 +1,5 @@
 @using Greenmaster_ASP.Models.Static
+@using Greenmaster_ASP.Helpers
 @model Greenmaster_ASP.Models.ViewModels.SpecieViewModel
 
 @{
@@ -11,7 +12,7 @@
 <div>
     <h2>@Html.DisplayFor(model => model.ScientificName)</h2>
     <hr/>
-    
+    <img alt="Red dot" src="data:image/png;base64, @Html.Raw(Model.ImageBase64)">
     <h4>Identification</h4>
     <dl class="row">
         <dt class="col-sm-2">

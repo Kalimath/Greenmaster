@@ -96,6 +96,7 @@ public class SpecieViewModel
     #region Media
 
     public Image Image { get; set; }
+    public string ImageBase64 { get; set; }
 
     #endregion
 

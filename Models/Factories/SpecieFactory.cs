@@ -101,6 +101,10 @@ public class SpecieFactory
         ValidateDimensions(specie.MaxHeight, specie.MaxWidth);
         if (specie.Image == null)
             throw new ArgumentNullException(nameof(specie.Image));
+        if (!StringValidator.IsBase64String(specie.Image))
+        {
+            throw new FormatException(nameof(specie.Image));
+        }
 
         return new SpecieViewModel()
         {
@@ -126,7 +130,8 @@ public class SpecieFactory
             IsFragrant = specie.IsFragrant,
             AttractsPollinators = specie.AttractsPollinators,
             
-            Image = ImageConverter.FromBase64(specie.Image)
+            Image = ImageConverter.FromBase64(specie.Image),
+            ImageBase64 = specie.Image
         };
     }
 }

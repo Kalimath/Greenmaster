@@ -35,7 +35,8 @@ public class SpecieFactoryTestBase
             IsFragrant = SpecieExamples.Strelitzia.IsFragrant,
             IsPoisonous = SpecieExamples.Strelitzia.IsPoisonous,
             FlowerColors =SpecieExamples.Strelitzia.FlowerColors!.Select(s => Enum.Parse<Color>(s)).ToArray(),
-            Image = ImageConverter.FromBase64(SpecieExamples.Strelitzia.Image)
+            Image = ImageConverter.FromBase64(SpecieExamples.Strelitzia.Image),
+            ImageBase64 = SpecieExamples.Strelitzia.Image
             
         };
 

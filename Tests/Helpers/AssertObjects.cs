@@ -67,6 +67,7 @@ public static class AssertObjects
         Assert.Equal(expected.FlowerColors, actual.FlowerColors);
         //Media
         AssertImage(expected.Image, actual.Image);
+        Assert.Equal(expected.ImageBase64, actual.ImageBase64);
     }
 
     public static void AssertImage(Image expected, Image actual)
