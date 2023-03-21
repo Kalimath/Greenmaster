@@ -1,9 +1,12 @@
-﻿using Greenmaster_ASP.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.ViewModels;
 using Xunit;
 
 namespace Greenmaster_ASP.Tests.Helpers;
 
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public static class AssertObjects
 {
     public static void AssertSpecie(Specie expected, Specie? actual)
@@ -32,6 +35,7 @@ public static class AssertObjects
         Assert.Equal(expected.AttractsPollinators, actual.AttractsPollinators);
         Assert.Equal(expected.IsFragrant, actual.IsFragrant);
         Assert.Equal(expected.FlowerColors, actual.FlowerColors);
+        Assert.Equal(expected.Image, actual.Image);
     }
     public static void AssertSpecieViewModel(SpecieViewModel expected, SpecieViewModel? actual)
     {
@@ -59,5 +63,17 @@ public static class AssertObjects
         Assert.Equal(expected.AttractsPollinators, actual.AttractsPollinators);
         Assert.Equal(expected.IsFragrant, actual.IsFragrant);
         Assert.Equal(expected.FlowerColors, actual.FlowerColors);
+        //Media
+        AssertImage(expected.Image, actual.Image);
+    }
+
+    public static void AssertImage(Image expected, Image actual)
+    {
+        Assert.Equal(expected.Flags, actual.Flags);
+        Assert.Equal(expected.Height, actual.Height);
+        Assert.Equal(expected.Width, actual.Width);
+        Assert.Equal(expected.RawFormat, actual.RawFormat);
+        Assert.Equal(expected.HorizontalResolution, actual.HorizontalResolution);
+        Assert.Equal(expected.VerticalResolution, actual.VerticalResolution);
     }
 }

@@ -1,15 +1,18 @@
-﻿using Greenmaster_ASP.Models.Static;
+﻿using System.Diagnostics.CodeAnalysis;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
+using Color = Greenmaster_ASP.Models.Static.Color;
 
 namespace Greenmaster_ASP.Models;
 
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public static class SpecieExamples
 {
-    public static Specie Strelitzia = new()
+    private static readonly string Base64Image = "R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==";
+    public static readonly Specie Strelitzia = new Specie()
     {
         Id = 1,
         Genus = "Strelitzia",
@@ -33,10 +36,11 @@ public static class SpecieExamples
         AttractsPollinators = true,
         IsFragrant = false,
         IsPoisonous = true,
-        FlowerColors = new[] { Color.Blue.ToString(), Color.MultiColor.ToString(), Color.Orange.ToString() }
+        FlowerColors = new[] { Color.Blue.ToString(), Color.MultiColor.ToString(), Color.Orange.ToString() },
+        Image = Base64Image
     };
 
-    public static Specie Papaver = new()
+    public static readonly Specie Papaver = new Specie()
     {
         Id = 2,
         Genus = "Papaver",
@@ -56,8 +60,10 @@ public static class SpecieExamples
         AttractsPollinators = true,
         IsFragrant = false,
         IsPoisonous = false,
-        FlowerColors = new[] { Color.Pink.ToString() }
+        FlowerColors = new[] { Color.Pink.ToString() },
+        Image = Base64Image
     };
+
 
     public static List<Specie> All()
     {

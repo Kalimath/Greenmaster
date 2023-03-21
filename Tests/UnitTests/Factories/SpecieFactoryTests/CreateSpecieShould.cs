@@ -1,4 +1,7 @@
-﻿using Greenmaster_ASP.Models.Factories;
+﻿using Greenmaster_ASP.Models.Extensions;
+using Greenmaster_ASP.Models.Factories;
+using Microsoft.Win32.SafeHandles;
+using NSubstitute;
 using Xunit;
 using static Greenmaster_ASP.Tests.Helpers.AssertObjects;
 
@@ -17,41 +20,54 @@ public class CreateSpecieShould : SpecieFactoryTestBase
     [Fact]
     public void ThrowArgumentOutOfRangeException_WhenViewModelMaxHeightInvalid()
     {
-        _specieViewModelStrelitzia.MaxHeight = -15;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModelStrelitzia));
-        _specieViewModelStrelitzia.MaxHeight = 0;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModelStrelitzia));
-        _specieViewModelStrelitzia.MaxHeight = 150.1;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModelStrelitzia));
+        var invalidMaxHeightSpecieViewModel = SpecieViewModelStrelitzia.Clone();
+        invalidMaxHeightSpecieViewModel.MaxHeight = -15;
+        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
+        invalidMaxHeightSpecieViewModel.MaxHeight = 0;
+        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
+        invalidMaxHeightSpecieViewModel.MaxHeight = 150.1;
+        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
     }
     
     [Fact]
     public void ThrowArgumentOutOfRangeException_WhenViewModelMaxWidthInvalid()
     {
-        _specieViewModelStrelitzia.MaxWidth = -15;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModelStrelitzia));
-        _specieViewModelStrelitzia.MaxWidth = 0;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModelStrelitzia));
-        _specieViewModelStrelitzia.MaxWidth = 10.1;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModelStrelitzia));
+        var invalidMaxWidthSpecieViewModel = SpecieViewModelStrelitzia.Clone();
+        invalidMaxWidthSpecieViewModel.MaxWidth = -15;
+        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
+        invalidMaxWidthSpecieViewModel.MaxWidth = 0;
+        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
+        invalidMaxWidthSpecieViewModel.MaxWidth = 10.1;
+        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
     }
 
     [Fact]
     public void ReturnCorrectModelOfSpecie_WhenViewModelValid()
     {
-        var resultSpecie = SpecieFactory.Create(_specieViewModelStrelitzia);
+        var resultSpecie = SpecieFactory.Create(SpecieViewModelStrelitzia);
         
-        AssertSpecie(_specieStrelitzia, resultSpecie);
+        AssertSpecie(SpecieStrelitzia, resultSpecie);
     }
 
-    /*[Fact]
-    public void ThrowArgumentOutOfRangeException_WhenCombinedNPPLevelsNotEqualTo100Percent()
+    [Fact]
+    public void ThrowArgumentNullException_WhenImageNull()
     {
-        _specieViewModel.NitrogenLevel += 6;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModel));
+        var invalidSpecieViewModel = SpecieViewModelStrelitzia.Clone();
+        invalidSpecieViewModel.Image = null!;
+        Assert.Throws<ArgumentNullException>(() => SpecieFactory.Create(invalidSpecieViewModel));
+    }
+    
+    /*[Fact]
+    public void ThrowInvalidOperationException_WhenParsingToImageObjectFails()
+    {
+        var invalidSpecieViewModel = SpecieViewModelStrelitzia.Clone();
+        invalidSpecieViewModel.Image = Substitute.For<IFormFile>();
+        invalidSpecieViewModel.Image.CopyTo(Arg.Any<Stream>()).th;
+        Assert.Throws<InvalidOperationException>(() => SpecieFactory.Create(invalidSpecieViewModel));
     }*/
     
     //TODO: check if plantrequirements are created correctly
     //TODO: check if flowerData is created correctly
     //TODO: check if FertiliserData is created correctly
+    
 }

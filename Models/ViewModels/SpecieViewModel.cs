@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Greenmaster_ASP.Models.Static;
+using System.Drawing;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.Static.PlantProperties;
 using static Greenmaster_ASP.Models.Static.Object.Organic.PlantType;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
+using Color = Greenmaster_ASP.Models.Static.Color;
 
 #pragma warning disable CS8618
 namespace Greenmaster_ASP.Models.ViewModels;
@@ -89,6 +90,12 @@ public class SpecieViewModel
 
     [DisplayName("Flowers attract bees and butterflies")]
     public bool AttractsPollinators { get; set; }
+
+    #endregion
+
+    #region Media
+
+    public Image Image { get; set; }
 
     #endregion
 

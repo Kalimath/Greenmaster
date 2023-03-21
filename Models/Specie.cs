@@ -44,4 +44,9 @@ public class Specie
     public bool IsFragrant { get; set; }
     public bool AttractsPollinators { get; set; }
     #endregion
+    
+    #region Media
+    public string Image { get; set; }
+
+    #endregion
 }
