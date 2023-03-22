@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <img alt="@Html.DisplayFor(model => model.ScientificName)" src="data:image/png;base64, @Html.Raw(Model.ImageBase64)" id="specie-image">
+            <img alt="@Html.DisplayFor(model => model.ScientificName)" src="data:image/png;base64, @Html.Raw(Model.ImageBase64)" class="img-fluid" id="specie-image">
         </div>
         <div class="col-md-8">
             <h2>@Html.DisplayFor(model => model.ScientificName)</h2>
