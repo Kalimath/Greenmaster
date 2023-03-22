@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
+using Greenmaster_ASP.Helpers;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.ViewModels;
 using Xunit;
@@ -35,9 +36,8 @@ public static class AssertObjects
         Assert.Equal(expected.AttractsPollinators, actual.AttractsPollinators);
         Assert.Equal(expected.IsFragrant, actual.IsFragrant);
         Assert.Equal(expected.FlowerColors, actual.FlowerColors);
-        Console.WriteLine(expected.Image);
-        Console.WriteLine(actual.Image);
-        Assert.StartsWith(expected.Image[..6], actual.Image);
+        //Media
+        AssertBase64(expected.Image, actual.Image);
     }
     public static void AssertSpecieViewModel(SpecieViewModel expected, SpecieViewModel? actual)
     {
@@ -66,17 +66,28 @@ public static class AssertObjects
         Assert.Equal(expected.IsFragrant, actual.IsFragrant);
         Assert.Equal(expected.FlowerColors, actual.FlowerColors);
         //Media
-        AssertImage(expected.Image, actual.Image);
-        Assert.Equal(expected.ImageBase64, actual.ImageBase64);
+        Assert.Null(actual.Image);
+        AssertBase64(expected.ImageBase64, actual.ImageBase64);
     }
 
-    public static void AssertImage(Image expected, Image actual)
+    public static void AssertBase64(string expected, string actual)
     {
-        Assert.Equal(expected.Flags, actual.Flags);
-        Assert.Equal(expected.Height, actual.Height);
-        Assert.Equal(expected.Width, actual.Width);
-        Assert.Equal(expected.RawFormat, actual.RawFormat);
-        Assert.Equal(expected.HorizontalResolution, actual.HorizontalResolution);
-        Assert.Equal(expected.VerticalResolution, actual.VerticalResolution);
+        const string errorMessagePrefix = "Could not assert to invalid '{nameof(expected)}' string";
+        if (StringValidator.IsValidString(expected))
+        {
+            if (StringValidator.IsBase64String(expected))
+            {
+                Assert.StartsWith(expected[..6], actual);
+            }
+            else
+            {
+                throw new FormatException(errorMessagePrefix);
+            }
+        }
+        else
+        {
+            throw new ArgumentException($"{errorMessagePrefix} (null,empty or whitespace)");
+        }
+        
     }
 }

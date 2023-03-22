@@ -61,6 +61,21 @@ public class ToViewModelShould : SpecieFactoryTestBase
         invalidSpecie.Image = "jeiejieijieji";
         Assert.Throws<FormatException>(() => SpecieFactory.ToViewModel(invalidSpecie));
     }
+    
+    [Fact]
+    public void KeepImageNull_AfterCreation()
+    {
+        var resultSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia);
+        Assert.Null(resultSpecieViewModel.Image);
+    }
+    
+    [Fact]
+    public void SetImageBase64_AfterCreation()
+    {
+        var resultSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia);
+        Assert.NotNull(resultSpecieViewModel.ImageBase64);
+        AssertBase64(SpecieStrelitzia.Image, resultSpecieViewModel.ImageBase64);
+    }
 
     /*[Fact]
     public void ThrowArgumentOutOfRangeException_WhenCombinedNPPLevelsNotEqualTo100Percent()

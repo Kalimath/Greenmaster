@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
+using Greenmaster_ASP.Helpers.Attributes;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
@@ -95,7 +97,12 @@ public class SpecieViewModel
 
     #region Media
 
-    public Image Image { get; set; }
+    [AtLeastOneRequired(new[] { $"{nameof(Image)}", $"{nameof(ImageBase64)}" },
+        ErrorMessage = $"At least one of {nameof(Image)} or {nameof(ImageBase64)} is required.")]
+    public IFormFile Image { get; set; }
+    
+    [AtLeastOneRequired(new[] { $"{nameof(Image)}", $"{nameof(ImageBase64)}" },
+        ErrorMessage = $"At least one of {nameof(Image)} or {nameof(ImageBase64)} is required.")]
     public string ImageBase64 { get; set; }
 
     #endregion

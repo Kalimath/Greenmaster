@@ -1,7 +1,6 @@
-﻿using Greenmaster_ASP.Models.Extensions;
+﻿using Greenmaster_ASP.Helpers;
+using Greenmaster_ASP.Models.Extensions;
 using Greenmaster_ASP.Models.Factories;
-using Microsoft.Win32.SafeHandles;
-using NSubstitute;
 using Xunit;
 using static Greenmaster_ASP.Tests.Helpers.AssertObjects;
 
@@ -9,52 +8,67 @@ namespace Greenmaster_ASP.Tests.UnitTests.Factories.SpecieFactoryTests;
 
 public class CreateSpecieShould : SpecieFactoryTestBase
 {
-    
-    
     [Fact]
-    public void ThrowArgumentNullException_WhenPassedViewModelNull()
+    public async Task ThrowArgumentNullException_WhenPassedViewModelNull()
     {
-        Assert.Throws<ArgumentNullException>(() => SpecieFactory.Create(null!));
+        await Assert.ThrowsAsync<ArgumentNullException>(async () => await SpecieFactory.Create(null!));
     }
     
     [Fact]
-    public void ThrowArgumentOutOfRangeException_WhenViewModelMaxHeightInvalid()
+    public async Task ThrowArgumentOutOfRangeException_WhenViewModelMaxHeightInvalid()
     {
         var invalidMaxHeightSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
         invalidMaxHeightSpecieViewModel.MaxHeight = -15;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
         invalidMaxHeightSpecieViewModel.MaxHeight = 0;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
         invalidMaxHeightSpecieViewModel.MaxHeight = 150.1;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await SpecieFactory.Create(invalidMaxHeightSpecieViewModel));
     }
     
     [Fact]
-    public void ThrowArgumentOutOfRangeException_WhenViewModelMaxWidthInvalid()
+    public async Task ThrowArgumentOutOfRangeException_WhenViewModelMaxWidthInvalid()
     {
         var invalidMaxWidthSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
         invalidMaxWidthSpecieViewModel.MaxWidth = -15;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
         invalidMaxWidthSpecieViewModel.MaxWidth = 0;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
         invalidMaxWidthSpecieViewModel.MaxWidth = 10.1;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await SpecieFactory.Create(invalidMaxWidthSpecieViewModel));
     }
 
     [Fact]
-    public void ReturnCorrectModelOfSpecie_WhenViewModelValid()
+    public async Task ReturnCorrectModelOfSpecie_WhenViewModelValid()
     {
-        var resultSpecie = SpecieFactory.Create(SpecieViewModelStrelitzia);
+        var resultSpecie = await SpecieFactory.Create(SpecieViewModelStrelitzia);
         
         AssertSpecie(SpecieStrelitzia, resultSpecie);
     }
-
     [Fact]
-    public void ThrowArgumentNullException_WhenImageNull()
+    public async Task SetImageToConvertedFormFile_WhenFormFileImageNotNull()
     {
-        var invalidSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
+        var resultSpecie = await SpecieFactory.Create(SpecieViewModelStrelitzia);
+
+        AssertBase64(resultSpecie.Image, (await FormFileConverter.ToBase64(SpecieViewModelStrelitzia.Image)));
+    }
+    
+    [Fact]
+    public void ThrowArgumentException_WhenImageNull()
+    {
+        var invalidSpecieViewModel = SpecieStrelitzia.Clone();
         invalidSpecieViewModel.Image = null!;
-        Assert.Throws<ArgumentNullException>(() => SpecieFactory.Create(invalidSpecieViewModel));
+        Assert.Throws<ArgumentException>( () => SpecieFactory.ToViewModel(invalidSpecieViewModel));
+    }
+    
+    [Fact]
+    public async Task SetImageToImageBase64_WhenImageFromViewModelNull()
+    {
+        var missingImageSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
+        missingImageSpecieViewModel.ImageBase64 = SpecieStrelitzia.Image;
+        missingImageSpecieViewModel.Image = null!;
+        var resultSpecie = await SpecieFactory.Create(missingImageSpecieViewModel);
+        AssertBase64(resultSpecie.Image, missingImageSpecieViewModel.ImageBase64);
     }
     
     /*[Fact]

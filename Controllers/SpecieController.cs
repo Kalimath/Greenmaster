@@ -24,9 +24,9 @@ namespace Greenmaster_ASP.Controllers
         }
 
         // GET: Specie
-        public async Task<IActionResult> Index()
+        public Task<IActionResult> Index()
         {
-            return View();
+            return Task.FromResult<IActionResult>(View());
         }
         // GET: Specie
         public async Task<JsonResult> GetSpecies()
@@ -75,7 +75,7 @@ namespace Greenmaster_ASP.Controllers
         {
             if (ModelState.IsValid)
             {
-                var specie = SpecieFactory.Create(specieViewModel);
+                var specie = await SpecieFactory.Create(specieViewModel);
                 await _specieService.AddSpecie(specie);
                 return RedirectToAction(nameof(Index));
             }
@@ -123,7 +123,7 @@ namespace Greenmaster_ASP.Controllers
             {
                 try
                 {
-                    var specie = SpecieFactory.Create(specieViewModel);
+                    var specie = await SpecieFactory.Create(specieViewModel);
                     await _specieService.UpdateSpecie(specie);
                 }
                 catch (DbUpdateConcurrencyException)

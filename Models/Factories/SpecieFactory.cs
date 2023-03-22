@@ -2,20 +2,19 @@
 using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
+using static Greenmaster_ASP.Helpers.StringValidator;
 
 namespace Greenmaster_ASP.Models.Factories;
 
 public class SpecieFactory
 {
-    public static Specie Create(SpecieViewModel specieViewModel)
+    public static async Task<Specie> Create(SpecieViewModel specieViewModel)
     {
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));
         ValidateDimensions(specieViewModel.MaxHeight, specieViewModel.MaxWidth);
-        if (specieViewModel.Image == null)
-            throw new ArgumentNullException(nameof(specieViewModel.Image));
 
-        return new Specie
+        var specie = new Specie
         {
             Id = specieViewModel.Id,
             Genus = specieViewModel.Genus,
@@ -30,17 +29,38 @@ public class SpecieFactory
             Water = specieViewModel.Water,
             Climate = specieViewModel.Climate,
             IsPoisonous = specieViewModel.IsPoisonous,
-            
+
             MaxHeight = specieViewModel.MaxHeight,
             MaxWidth = specieViewModel.MaxWidth,
-            
-            BloomPeriod = (specieViewModel.BloomPeriod ?? throw new ArgumentNullException(nameof(specieViewModel.BloomPeriod))).Select(a=>a.ToString()).ToArray(),
-            FlowerColors = (specieViewModel.FlowerColors ?? throw new ArgumentNullException(nameof(specieViewModel.FlowerColors))).Select(a=>a.ToString()).ToArray(),
+
+            BloomPeriod =
+                (specieViewModel.BloomPeriod ?? throw new ArgumentNullException(nameof(specieViewModel.BloomPeriod)))
+                .Select(a => a.ToString()).ToArray(),
+            FlowerColors =
+                (specieViewModel.FlowerColors ?? throw new ArgumentNullException(nameof(specieViewModel.FlowerColors)))
+                .Select(a => a.ToString()).ToArray(),
             IsFragrant = specieViewModel.IsFragrant,
             AttractsPollinators = specieViewModel.AttractsPollinators,
-            
-            Image = ImageConverter.ToBase64(specieViewModel.Image)
         };
+        await SetSpecieImage(specie, specieViewModel);
+        return specie;
+    }
+
+    private static async Task SetSpecieImage(Specie specie, SpecieViewModel specieViewModel)
+    {
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        if (specieViewModel.Image != null)
+        {
+            specie.Image = await FormFileConverter.ToBase64(specieViewModel.Image);
+        }
+        else
+        {
+            if (IsValidAndBase64String(specieViewModel.ImageBase64))
+                specie.Image = specieViewModel.ImageBase64;
+            else
+                throw new ArgumentException(
+                    $"Given {nameof(specieViewModel)} has invalid {nameof(specieViewModel.Image)} and/or {nameof(specieViewModel.ImageBase64)}");
+        }
     }
 
     private static void ValidateDimensions(double maxHeight, double maxWidth)
@@ -51,7 +71,7 @@ public class SpecieFactory
         if (maxWidth > 10 || maxWidth < 0.1)
             throw new ArgumentOutOfRangeException(nameof(maxWidth), $"Invalid value: {maxWidth}");
     }
-    
+
     /*
 
     private static FlowerData CreateFlowerInfo(SpecieViewModel specieViewModel)
@@ -99,12 +119,7 @@ public class SpecieFactory
         if (specie == null)
             throw new ArgumentNullException(nameof(specie));
         ValidateDimensions(specie.MaxHeight, specie.MaxWidth);
-        if (specie.Image == null)
-            throw new ArgumentNullException(nameof(specie.Image));
-        if (!StringValidator.IsBase64String(specie.Image))
-        {
-            throw new FormatException(nameof(specie.Image));
-        }
+        ValidateImageBase64(specie.Image);
 
         return new SpecieViewModel()
         {
@@ -121,16 +136,18 @@ public class SpecieFactory
             Water = specie.Water,
             Climate = specie.Climate,
             IsPoisonous = specie.IsPoisonous,
-            
+
             MaxHeight = specie.MaxHeight,
             MaxWidth = specie.MaxWidth,
-            
-            BloomPeriod = (specie.BloomPeriod ?? throw new ArgumentNullException(nameof(specie.BloomPeriod))).Select(s => Enum.Parse<Month>(s)).ToArray(),
-            FlowerColors = (specie.FlowerColors ?? throw new ArgumentNullException(nameof(specie.FlowerColors))).Select(s => Enum.Parse<Color>(s)).ToArray(),
+
+            BloomPeriod = (specie.BloomPeriod ?? throw new ArgumentNullException(nameof(specie.BloomPeriod)))
+                .Select(s => Enum.Parse<Month>(s)).ToArray(),
+            FlowerColors = (specie.FlowerColors ?? throw new ArgumentNullException(nameof(specie.FlowerColors)))
+                .Select(s => Enum.Parse<Color>(s)).ToArray(),
             IsFragrant = specie.IsFragrant,
             AttractsPollinators = specie.AttractsPollinators,
-            
-            Image = ImageConverter.FromBase64(specie.Image),
+
+            Image = null!,
             ImageBase64 = specie.Image
         };
     }
