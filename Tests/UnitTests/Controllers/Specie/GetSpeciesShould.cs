@@ -15,7 +15,7 @@ public class GetSpeciesShould
     {
         var specieService = Substitute.For<ISpecieService>();
         var specieController = new SpecieController(specieService);
-        specieService.GetSpecies().ReturnsForAnyArgs(SpecieExamples.GetAll());
+        specieService.GetAll().ReturnsForAnyArgs(SpecieExamples.GetAll());
 
         var result = await specieController.GetSpecies();
         Assert.NotNull(result);

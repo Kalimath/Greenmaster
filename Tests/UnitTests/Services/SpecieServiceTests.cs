@@ -53,7 +53,7 @@ public class SpecieServiceTests
             Cycle = Lifecycle.Biennial
         };
         
-        await specieService.UpdateSpecie(updatedSpecieStrelitzia);
+        await specieService.Update(updatedSpecieStrelitzia);
 
         var storedSpecie = context.Species.FirstOrDefault(specie => specie.Id == _specieStrelitzia.Id);
         AssertObjects.AssertSpecie(updatedSpecieStrelitzia, storedSpecie);

@@ -25,6 +25,10 @@ public class Rendering : BaseEntity
     [Required] public Season Season { get; set; }
     [Required] public RenderingObjectType Type { get; set; }
 
+    public Rendering()
+    {
+        
+    }
     public Rendering(int id, string base64Image, RenderingObjectType type, Season? season = Season.NotSet)
     {
         Season = (Season)season!;

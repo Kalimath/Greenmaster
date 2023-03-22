@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Greenmaster_ASP.Models.Services;
 
-public class SpecieService : ISpecieService
+public class SpecieService : ISpecieService,IContextService<Specie>
 {
     private readonly ArboretumContext _context;
 
@@ -12,43 +12,42 @@ public class SpecieService : ISpecieService
         _context = context;
     }
 
-    public Task<List<Specie>> GetSpecies()
+    public Task<List<Specie>> GetAll()
     {
         return Task.FromResult(_context.GetAllSpecies().ToList());
     }
     
-
-    public async Task<Specie> GetSpecieByScientificName(string scientificName)
+    public async Task<Specie> GetByScientificName(string scientificName)
     {
-        return (await GetSpecies()).FirstOrDefault(specie => specie.ScientificName == scientificName) 
+        return (await GetAll()).FirstOrDefault(specie => specie.ScientificName == scientificName) 
                ?? throw new ArgumentException($"No Specie found with scientific name={scientificName}");
     }
 
-    public async Task<Specie> GetSpecieById(int id)
+    public async Task<Specie> GetById(int id)
     {
         return (await _context.Species.FirstOrDefaultAsync(m => m.Id == id))
                 ?? throw new ArgumentException($"No Specie found with {nameof(id)}={id}");
     }
 
-    public async Task AddSpecie(Specie specie)
+    public async Task Add(Specie specie)
     {
         _context.Species.Add(specie);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateSpecie(Specie specie)
+    public async Task Update(Specie specie)
     {
         _context.Update(specie);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteSpecieById(int id)
+    public async Task Delete(int id)
     {
-        _context.Remove(await GetSpecieById(id));
+        _context.Remove(await GetById(id));
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> SpecieWithIdExists(int id)
+    public async Task<bool> ExistsWithId(int id)
     {
         return (await _context.Species.FirstOrDefaultAsync(m => m.Id == id)) != null;
     }

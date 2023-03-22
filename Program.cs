@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
+using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Arboretum;
+using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +22,8 @@ services.AddDbContext<ArboretumContext>(options =>
 });
 services.AddSingleton<SpecieFactory>();
 services.AddScoped<ISpecieService, SpecieService>();
+services.AddScoped<IRenderingService, RenderingService>();
+services.AddScoped<IExamplesService, ExamplesService>();
 
 
 var app = builder.Build();

@@ -3,7 +3,7 @@
 public interface IExamplesService
 {
     List<Specie> GetAllSpecies();
-    List<Rendering> GetAllSeasonalRenderings();
+    List<Rendering> GetAllRenderings();
 }
 
 public class ExamplesService : IExamplesService
@@ -13,7 +13,7 @@ public class ExamplesService : IExamplesService
         return SpecieExamples.GetAll();
     }
 
-    public List<Rendering> GetAllSeasonalRenderings()
+    public List<Rendering> GetAllRenderings()
     {
         return RenderingExamples.GetAll();
     }

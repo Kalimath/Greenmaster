@@ -1,4 +1,5 @@
-﻿using Greenmaster_ASP.Models.Static;
+﻿using Greenmaster_ASP.Models.Examples;
+using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
@@ -12,9 +13,9 @@ namespace Greenmaster_ASP.Models.Arboretum;
 
 public class ArboretumContext : DbContext
 {
+    private readonly IExamplesService _examplesService;
     public DbSet<Specie> Species { get; set; } = null!;
-    //public DbSet<Rendering> Renderings { get; set; } = null!;
-    public DbSet<Rendering> SeasonalRenderings { get; set; } = null!;
+    public DbSet<Rendering> Renderings { get; set; } = null!;
     
     /*public DbSet<Dimensions> PlantDimensions { get; set; } = null!;
     public DbSet<FlowerData> FlowerData { get; set; } = null!;
@@ -31,13 +32,13 @@ public class ArboretumContext : DbContext
         return Species;
     }
 
-    public ArboretumContext(DbContextOptions<ArboretumContext> options) : base(options)
+    public ArboretumContext(DbContextOptions<ArboretumContext> options, IExamplesService examplesService) : base(options)
     {
+        _examplesService = examplesService;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Specie>().HasData(Examples.SpecieExamples.GetAll());
         modelBuilder.Entity<Specie>()
             .Property(e => e.BloomPeriod)
             .HasConversion(
@@ -83,6 +84,9 @@ public class ArboretumContext : DbContext
             .HasConversion(
                 v => v.ToString(),
                 v => Enum.Parse<RenderingObjectType>(v));
+        
+        modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
+        modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
         
         /*modelBuilder.Entity<Domain>().HasMany(domain => domain.Placeables).WithMany(x => x.Domains);
         modelBuilder.Entity<Area>().HasOne(x => x.Domain).WithMany(x => x.Areas);
