@@ -16,11 +16,11 @@ namespace Greenmaster_ASP.Controllers
 {
     public class SpecieController : Controller
     {
-        private readonly ISpecieService _specieService;
+        private readonly ISpecieService _modelService;
 
         public SpecieController(ISpecieService specieService)
         {
-            _specieService = specieService ?? throw new ArgumentNullException(nameof(specieService));
+            _modelService = specieService ?? throw new ArgumentNullException(nameof(specieService));
         }
 
         // GET: Specie
@@ -28,10 +28,10 @@ namespace Greenmaster_ASP.Controllers
         {
             return Task.FromResult<IActionResult>(View());
         }
-        // GET: Specie
+        
         public async Task<JsonResult> GetSpecies()
         {
-            var species = (await _specieService.GetAll());
+            var species = (await _modelService.GetAll());
             var specieViewModels = new List<SpecieViewModel>();
             foreach (var specie in species) specieViewModels.Add(SpecieFactory.ToViewModel(specie));
             return Json(new { data = specieViewModels});
@@ -48,7 +48,7 @@ namespace Greenmaster_ASP.Controllers
             Specie specie;
             try
             {
-                specie = await _specieService.GetById((int)id);
+                specie = await _modelService.GetById((int)id);
             }
             catch (Exception e)
             {
@@ -76,7 +76,7 @@ namespace Greenmaster_ASP.Controllers
             if (ModelState.IsValid)
             {
                 var specie = await SpecieFactory.Create(specieViewModel);
-                await _specieService.Add(specie);
+                await _modelService.Add(specie);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -101,7 +101,7 @@ namespace Greenmaster_ASP.Controllers
             Specie specie;
             try
             {
-                specie = await _specieService.GetById((int)id!);
+                specie = await _modelService.GetById((int)id!);
             }
             catch (Exception)
             {
@@ -124,11 +124,11 @@ namespace Greenmaster_ASP.Controllers
                 try
                 {
                     var specie = await SpecieFactory.Create(specieViewModel);
-                    await _specieService.Update(specie);
+                    await _modelService.Update(specie);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await _specieService.ExistsWithId(id))
+                    if (!await _modelService.ExistsWithId(id))
                     {
                         return NotFound();
                     }
@@ -145,14 +145,14 @@ namespace Greenmaster_ASP.Controllers
         // GET: Specie/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || !await _specieService.ExistsWithId((int)id))
+            if (id == null || !await _modelService.ExistsWithId((int)id))
             {
                 return NotFound();
             }
 
             try
             {
-                return View(await _specieService.GetById((int)id));
+                return View(await _modelService.GetById((int)id));
             }
             catch (Exception e)
             {
@@ -166,12 +166,12 @@ namespace Greenmaster_ASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (!await _specieService.ExistsWithId(id))
+            if (!await _modelService.ExistsWithId(id))
             {
                 return NotFound();
             }
 
-            await _specieService.Delete(id);
+            await _modelService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
     }

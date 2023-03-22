@@ -1,4 +1,6 @@
-﻿namespace Greenmaster_ASP.Models.Services;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Greenmaster_ASP.Models.Services;
 
 public interface IContextService<T>
 {
