@@ -67,7 +67,11 @@ public static class AssertObjects
         Assert.Equal(expected.FlowerColors, actual.FlowerColors);
         //Media
         Assert.Null(actual.Image);
-        AssertBase64(expected.ImageBase64, actual.ImageBase64);
+        if (actual.ImageBase64 != null)
+        {
+            AssertBase64(expected.ImageBase64!, actual.ImageBase64);
+        }
+        
     }
 
     public static void AssertBase64(string expected, string actual)

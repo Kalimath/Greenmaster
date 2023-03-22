@@ -101,9 +101,9 @@ namespace Greenmaster_ASP.Controllers
             Specie specie;
             try
             {
-                specie = await _specieService.GetSpecieById((int)id);
+                specie = await _specieService.GetSpecieById((int)id!);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return NotFound();
             }
