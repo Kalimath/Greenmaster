@@ -2,7 +2,9 @@
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
+using Greenmaster_ASP.Models.Static.Object.Rendering;
 using Greenmaster_ASP.Models.Static.PlantProperties;
+using Greenmaster_ASP.Models.Static.Time.Durations;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +13,9 @@ namespace Greenmaster_ASP.Models.Arboretum;
 public class ArboretumContext : DbContext
 {
     public DbSet<Specie> Species { get; set; } = null!;
+    //public DbSet<Rendering> Renderings { get; set; } = null!;
+    public DbSet<Rendering> SeasonalRenderings { get; set; } = null!;
+    
     /*public DbSet<Dimensions> PlantDimensions { get; set; } = null!;
     public DbSet<FlowerData> FlowerData { get; set; } = null!;
     public DbSet<FertiliserData> FertiliserData { get; set; } = null!;
@@ -20,7 +25,7 @@ public class ArboretumContext : DbContext
     public DbSet<Domain> Domains { get; set; } = null!;
     public DbSet<Area> Areas { get; set; } = null!;
     public DbSet<Placeable> Placeables { get; set; } = null!;*/
-
+    
     public IEnumerable<Specie> GetAllSpecies()
     {
         return Species;
@@ -32,7 +37,7 @@ public class ArboretumContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Specie>().HasData(SpecieExamples.All());
+        modelBuilder.Entity<Specie>().HasData(Examples.SpecieExamples.GetAll());
         modelBuilder.Entity<Specie>()
             .Property(e => e.BloomPeriod)
             .HasConversion(
@@ -68,6 +73,16 @@ public class ArboretumContext : DbContext
             .HasConversion(
                 v => v.ToString(),
                 v => Enum.Parse<ClimateType>(v));
+        modelBuilder.Entity<Rendering>()
+            .Property(e => e.Season)
+            .HasConversion(
+                v => v.ToString(),
+                v => Enum.Parse<Season>(v));
+        modelBuilder.Entity<Rendering>()
+            .Property(e => e.Type)
+            .HasConversion(
+                v => v.ToString(),
+                v => Enum.Parse<RenderingObjectType>(v));
         
         /*modelBuilder.Entity<Domain>().HasMany(domain => domain.Placeables).WithMany(x => x.Domains);
         modelBuilder.Entity<Area>().HasOne(x => x.Domain).WithMany(x => x.Areas);

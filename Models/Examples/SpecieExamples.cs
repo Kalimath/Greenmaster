@@ -6,10 +6,10 @@ using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Color = Greenmaster_ASP.Models.Static.Color;
 
-namespace Greenmaster_ASP.Models;
+namespace Greenmaster_ASP.Models.Examples;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-public static partial class SpecieExamples
+public static partial class SpecieExamples 
 {
     public static readonly Specie Strelitzia = new Specie()
     {
@@ -36,7 +36,7 @@ public static partial class SpecieExamples
         IsFragrant = false,
         IsPoisonous = true,
         FlowerColors = new[] { Color.Blue.ToString(), Color.MultiColor.ToString(), Color.Orange.ToString() },
-        Image = Base64Image
+        Image = Base64Examples.Image
     };
 
     public static readonly Specie Papaver = new Specie()
@@ -60,11 +60,11 @@ public static partial class SpecieExamples
         IsFragrant = false,
         IsPoisonous = false,
         FlowerColors = new[] { Color.Pink.ToString() },
-        Image = Base64Image
+        Image = Base64Examples.Image
     };
 
 
-    public static List<Specie> All()
+    public static List<Specie> GetAll()
     {
         return new List<Specie>()
         {

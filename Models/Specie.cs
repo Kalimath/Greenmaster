@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Greenmaster_ASP.Models.Base;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
@@ -9,7 +10,7 @@ using static Greenmaster_ASP.Models.Static.Object.Organic.PlantType;
 
 namespace Greenmaster_ASP.Models;
 
-public class Specie
+public class Specie: BaseEntity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
     public int Id { get; set; }

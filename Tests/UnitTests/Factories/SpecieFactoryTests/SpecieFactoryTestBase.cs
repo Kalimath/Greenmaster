@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
-using System.Text;
-using Greenmaster_ASP.Helpers;
-using Greenmaster_ASP.Models;
+﻿using Greenmaster_ASP.Models;
+using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
+using SpecieExamples = Greenmaster_ASP.Models.Examples.SpecieExamples;
 
 namespace Greenmaster_ASP.Tests.UnitTests.Factories.SpecieFactoryTests;
 
@@ -15,7 +14,7 @@ public class SpecieFactoryTestBase
 
     public SpecieFactoryTestBase()
     {
-        var bytes = Convert.FromBase64String(SpecieExamples.Base64Image);
+        var bytes = Convert.FromBase64String(Base64Examples.Image);
         var stream = new MemoryStream(bytes);
         var fileName = "test_image_file";
         var imageFile = new FormFile(stream, 0, stream.Length, fileName, Path.GetFileNameWithoutExtension(fileName) + ".jpg");
