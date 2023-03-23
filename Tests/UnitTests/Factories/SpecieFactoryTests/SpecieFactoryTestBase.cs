@@ -3,6 +3,7 @@ using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
+using static Greenmaster_ASP.Helpers.FormFileConverter;
 using SpecieExamples = Greenmaster_ASP.Models.Examples.SpecieExamples;
 
 namespace Greenmaster_ASP.Tests.UnitTests.Factories.SpecieFactoryTests;
@@ -14,10 +15,7 @@ public class SpecieFactoryTestBase
 
     public SpecieFactoryTestBase()
     {
-        var bytes = Convert.FromBase64String(Base64Examples.Image);
-        var stream = new MemoryStream(bytes);
-        var fileName = "test_image_file";
-        var imageFile = new FormFile(stream, 0, stream.Length, fileName, Path.GetFileNameWithoutExtension(fileName) + ".jpg");
+        
         SpecieViewModelStrelitzia = new SpecieViewModel()
         {
             Id = 1,
@@ -39,7 +37,7 @@ public class SpecieFactoryTestBase
             IsFragrant = SpecieExamples.Strelitzia.IsFragrant,
             IsPoisonous = SpecieExamples.Strelitzia.IsPoisonous,
             FlowerColors =SpecieExamples.Strelitzia.FlowerColors!.Select(s => Enum.Parse<Color>(s)).ToArray(),
-            Image = imageFile,
+            Image = FromBase64(Base64Examples.Image),
             ImageBase64 = SpecieExamples.Strelitzia.Image
         };
 

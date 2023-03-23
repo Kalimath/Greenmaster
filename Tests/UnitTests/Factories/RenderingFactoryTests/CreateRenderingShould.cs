@@ -1,29 +1,94 @@
-﻿using Greenmaster_ASP.Models.Factories;
+﻿using Greenmaster_ASP.Models.Examples;
+using Greenmaster_ASP.Models.Factories;
+using Greenmaster_ASP.Models.Static.Object.Rendering;
+using Greenmaster_ASP.Models.Static.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
+using Greenmaster_ASP.Tests.Helpers;
 using Xunit;
+using static Greenmaster_ASP.Helpers.FormFileConverter;
 
 namespace Greenmaster_ASP.Tests.UnitTests.Factories.RenderingFactoryTests;
 
 public class CreateRenderingShould
 {
     [Fact]
-    public void ThrowArgumentException_WhenImageIsNull()
+    public async Task ThrowNullReferenceException_WhenImageIsNull()
     {
-        Assert.Throws<ArgumentException>(() => _ = RenderingFactory.Create(new RenderingViewModel() { }));
+        await Assert.ThrowsAsync<NullReferenceException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() {ImageBase64 = null!}));
     }
     [Fact]
-    public void ThrowArgumentException_WhenImageIsEmpty()
+    public async Task ThrowArgumentException_WhenImageIsEmpty()
     {
-        Assert.Throws<ArgumentException>(() => _ = RenderingFactory.Create(new RenderingViewModel() {ImageBase64 = String.Empty}));
+        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() {ImageBase64 = String.Empty}));
     }
     [Fact]
-    public void ThrowArgumentException_WhenImageIsWhiteSpace()
+    public async Task ThrowArgumentException_WhenImageIsWhiteSpace()
     {
-        Assert.Throws<ArgumentException>(() => _ = RenderingFactory.Create(new RenderingViewModel() { ImageBase64 = "  "}));
+        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() { ImageBase64 = "  "}));
     }
     [Fact]
-    public void ThrowFormatException_WhenImageIsNotBase64()
+    public async Task ThrowArgumentException_WhenImageIsNotBase64()
     {
-        Assert.Throws<FormatException>(() => _ = RenderingFactory.Create(new RenderingViewModel() { ImageBase64 = "eehu#ee"}));
+        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() { ImageBase64 = "eehu#ee"}));
+    }
+    
+    [Fact]
+    public async Task ThrowArgumentOutOfRangeException_WhenIdInvalid()
+    {
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel()
+        {
+            Id = -1,
+            ImageBase64 = Base64Examples.Image
+        }));
+    }
+    
+    [Fact]
+    public async Task SetImageToConvertedIFormFileImage_WhenImageFromViewModelNotNull()
+    {
+        var viewModel = new RenderingViewModel
+        {
+            Id = 1,
+            Type = RenderingObjectType.Plant,
+            Season = Season.Autumn,
+            Image = FromBase64(Base64Examples.Image),
+            ImageBase64 = Base64Examples.Image
+        };
+        
+        var resultRendering = await RenderingFactory.Create(viewModel);
+        
+        AssertObjects.AssertBase64(resultRendering.Image, await ToBase64(viewModel.Image));
+    }
+
+    [Fact]
+    public async Task SetId_WhenValidOrDefault()
+    {
+        var viewModel = new RenderingViewModel
+        {
+            Id = 122,
+            Type = RenderingObjectType.Plant,
+            Season = Season.Autumn,
+            Image = FromBase64(Base64Examples.Image),
+            ImageBase64 = Base64Examples.Image
+        };
+        
+        var resultRendering = await RenderingFactory.Create(viewModel);
+        
+        Assert.Equal(viewModel.Id, resultRendering.Id);
+    }
+    [Fact]
+    public async Task SetImageToImageBase64_WhenImageFromViewModelNull()
+    {
+        var viewModel = new RenderingViewModel
+        {
+            Id = 1,
+            Type = RenderingObjectType.Plant,
+            Season = Season.Autumn,
+            Image = FromBase64(Base64Examples.Image),
+            ImageBase64 = Base64Examples.Image
+        };
+        
+        var resultRendering = await RenderingFactory.Create(viewModel);
+        
+        AssertObjects.AssertBase64(resultRendering.Image, viewModel.ImageBase64);
     }
 }

@@ -42,11 +42,11 @@ public class SpecieFactory
             IsFragrant = specieViewModel.IsFragrant,
             AttractsPollinators = specieViewModel.AttractsPollinators,
         };
-        await SetSpecieImage(specie, specieViewModel);
+        await SetImage(specie, specieViewModel);
         return specie;
     }
 
-    private static async Task SetSpecieImage(Specie specie, SpecieViewModel specieViewModel)
+    private static async Task SetImage(Specie specie, SpecieViewModel specieViewModel)
     {
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (specieViewModel.Image != null)

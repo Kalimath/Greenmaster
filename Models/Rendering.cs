@@ -29,11 +29,18 @@ public class Rendering : BaseEntity
     {
         
     }
-    public Rendering(int id, string base64Image, RenderingObjectType type, Season? season = Season.NotSet)
+    
+    public Rendering(RenderingObjectType type, Season? season)
     {
         Season = (Season)season!;
-        Image = base64Image;
         Type = type;
-        Id = id;
     }
+    
+    public Rendering(int id, string base64Image, RenderingObjectType type, Season? season = Season.NotSet): this(type, season)
+    {
+        Id = id;
+        Image = base64Image;
+    }
+
+    
 }

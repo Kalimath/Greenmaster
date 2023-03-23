@@ -13,7 +13,7 @@ using Color = Greenmaster_ASP.Models.Static.Color;
 #pragma warning disable CS8618
 namespace Greenmaster_ASP.Models.ViewModels;
 
-public class SpecieViewModel
+public class SpecieViewModel : ViewModelWithImage
 {
     public int Id { get; set; }
 
