@@ -119,7 +119,7 @@ public class SpecieFactory
         if (specie == null)
             throw new ArgumentNullException(nameof(specie));
         ValidateDimensions(specie.MaxHeight, specie.MaxWidth);
-        ValidateImageBase64(specie.Image);
+        ValidateStringAndBase64(specie.Image);
 
         return new SpecieViewModel()
         {

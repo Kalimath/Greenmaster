@@ -18,7 +18,7 @@ public class Rendering : BaseEntity
         get => _image;
         set
         {
-            StringValidator.ValidateImageBase64(value);
+            StringValidator.ValidateStringAndBase64(value);
             _image = value;
         }
     }

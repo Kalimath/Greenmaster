@@ -8,6 +8,11 @@ namespace Greenmaster_ASP.Helpers;
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public static class ImageConverter
 {
+    /// <summary>
+    /// Converts given Image to an array of bytes.
+    /// </summary>
+    /// <param name="image">The Image object which will be converted.</param>
+    /// <returns>The converted byte array.</returns>
     public static byte[] ToByteArray(Image image)
     {
         using (var ms = new MemoryStream())
@@ -17,6 +22,11 @@ public static class ImageConverter
         }
     }
     
+    /// <summary>
+    /// Converts given Image to a string in base64 format.
+    /// </summary>
+    /// <param name="image">The Image object which will be converted.</param>
+    /// <returns>The converted base64-string.</returns>
     public static string ToBase64(Image image)
     {
         //a single pixel (black) "R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
@@ -25,6 +35,11 @@ public static class ImageConverter
         
     }
     
+    /// <summary>
+    /// Converts given base64-string to an Image object.
+    /// </summary>
+    /// <param name="base64String">The base64 string which will be converted.</param>
+    /// <returns>The converted image.</returns>
     public static Image FromBase64(string base64String)
     {
         //a single pixel (black) "R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
