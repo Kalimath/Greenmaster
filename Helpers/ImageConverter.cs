@@ -61,6 +61,10 @@ public static class ImageConverter
     /// <returns>The resized image.</returns>
     public static Image Resize(Image image, int width, int height)
     {
+        if (image == null)
+        {
+            throw new ArgumentNullException(nameof(image));
+        }
         var destRect = new Rectangle(0, 0, width, height);
         var destImage = new Bitmap(width, height);
 

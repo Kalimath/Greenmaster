@@ -1,6 +1,4 @@
-﻿using Greenmaster_ASP.Models;
-
-namespace Greenmaster_ASP.Helpers;
+﻿namespace Greenmaster_ASP.Helpers;
 
 public static class StringValidator
 {
