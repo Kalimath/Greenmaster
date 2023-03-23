@@ -1,12 +1,10 @@
 ﻿using Greenmaster_ASP.Models.Examples;
-using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.Static.Object.Rendering;
 using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.Static.Time.Durations;
-using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Greenmaster_ASP.Models.Arboretum;

@@ -1,11 +1,23 @@
-﻿using Greenmaster_ASP.Helpers;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using Greenmaster_ASP.Helpers;
 using Greenmaster_ASP.Models.ViewModels;
+using Microsoft.Extensions.Options;
+using ImageConverter = Greenmaster_ASP.Helpers.ImageConverter;
+
 // ReSharper disable MethodNameNotMeaningful
 
 namespace Greenmaster_ASP.Models.Factories;
 
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public static class RenderingFactory
 {
+    public static IConfiguration Configuration = new ConfigurationBuilder()
+        .SetBasePath(AppContext.BaseDirectory)
+        .AddJsonFile(@"appsettings.json", false, false)
+        .AddEnvironmentVariables()
+        .Build();
+    
     public static async Task<Rendering> Create(RenderingViewModel renderingViewModel)
     {
         var rendering = new Rendering(renderingViewModel.Type, renderingViewModel.Season);
@@ -37,10 +49,22 @@ public static class RenderingFactory
 
     private static async Task SetImage(Rendering rendering, RenderingViewModel renderingViewModel)
     {
+        var renderSettings = Configuration.GetSection("AppSettings").GetSection("Rendering");
+        
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (renderingViewModel.Image != null)
         {
-            rendering.Image = await FormFileConverter.ToBase64(renderingViewModel.Image);
+            var initialImage = ImageConverter.FromBase64(await FormFileConverter.ToBase64(renderingViewModel.Image));
+            
+            var maxHeightConfig = renderSettings.GetSection("Image")["MaxHeight"];
+            var maxWidthConfig = renderSettings.GetSection("Image")["MaxWidth"];
+            var maxHeight = int.Parse(maxHeightConfig);
+            var maxWidth = int.Parse(maxWidthConfig);
+            
+            var imageHeight = (maxHeight >= initialImage.Height) ? initialImage.Height : maxHeight;
+            var imageWidth = (maxWidth >= initialImage.Width) ? initialImage.Width : maxWidth;
+            
+            rendering.Image = ImageConverter.ToBase64(ImageConverter.Resize(initialImage, imageWidth, imageHeight));
         }
         else
         {

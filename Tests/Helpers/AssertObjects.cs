@@ -94,4 +94,18 @@ public static class AssertObjects
         }
         
     }
+
+    public static void AssertImageSize(Image expected, Image actual)
+    {
+        Assert.NotNull(actual);
+        Assert.Equal(expected.Height, actual.Height);
+        Assert.Equal(expected.Width, actual.Width);
+    }
+
+    public static void AssertImageSize(Image resizedImage, int maxWidth, int maxHeight)
+    {
+        Assert.NotNull(resizedImage);
+        Assert.True((maxHeight >= resizedImage.Height));
+        Assert.True((maxWidth >= resizedImage.Width));
+    }
 }

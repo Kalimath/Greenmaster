@@ -13,6 +13,14 @@ public class ResizeShould
     private const int ValidImageHeight = 150;
 
     [Fact]
+    public void ThrowArgumentNullException_WhenImageNull()
+    {
+        Image initialImage = new Bitmap(PathExamples.PathImageRendering);
+
+        Assert.Throws<ArgumentNullException>(() => ImageConverter.Resize(null!, ValidImageWidth, ValidImageHeight));
+    }
+    
+    [Fact]
     public void ReturnImage_WithPassedHeight()
     {
         Image initialImage = new Bitmap(PathExamples.PathImageRendering);
@@ -30,13 +38,6 @@ public class ResizeShould
         var resizedImage = ImageConverter.Resize(initialImage, ValidImageWidth, ValidImageHeight);
         
         Assert.Equal(ValidImageWidth, resizedImage.Width);
-    }
-    [Fact]
-    public void ThrowArgumentNullException_WhenImageNull()
-    {
-        Image initialImage = new Bitmap(PathExamples.PathImageRendering);
-
-        Assert.Throws<ArgumentNullException>(() => ImageConverter.Resize(null!, ValidImageWidth, ValidImageHeight));
     }
     
     [Fact]

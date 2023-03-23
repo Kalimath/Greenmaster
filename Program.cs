@@ -1,4 +1,6 @@
+using System.Configuration;
 using System.Text.Json.Serialization;
+using Greenmaster_ASP;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Arboretum;
 using Greenmaster_ASP.Models.Examples;
@@ -11,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var services = builder.Services;
 services.AddControllersWithViews();
+// services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {

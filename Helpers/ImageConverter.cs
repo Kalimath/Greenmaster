@@ -17,7 +17,7 @@ public static class ImageConverter
     {
         using (var ms = new MemoryStream())
         {
-            image.Save(ms,image.RawFormat);
+            image.Save(ms, ImageFormat.Png);
             return  ms.ToArray();
         }
     }
