@@ -38,7 +38,7 @@ public class CreateRenderingShould
         await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel()
         {
             Id = -1,
-            ImageBase64 = Base64Examples.Image
+            ImageBase64 = Base64Examples.ImageSpecie
         }));
     }
     
@@ -50,8 +50,8 @@ public class CreateRenderingShould
             Id = 1,
             Type = RenderingObjectType.Plant,
             Season = Season.Autumn,
-            Image = FromBase64(Base64Examples.Image),
-            ImageBase64 = Base64Examples.Image
+            Image = FromBase64(Base64Examples.ImageSpecie),
+            ImageBase64 = Base64Examples.ImageSpecie
         };
         
         var resultRendering = await RenderingFactory.Create(viewModel);
@@ -67,8 +67,8 @@ public class CreateRenderingShould
             Id = 122,
             Type = RenderingObjectType.Plant,
             Season = Season.Autumn,
-            Image = FromBase64(Base64Examples.Image),
-            ImageBase64 = Base64Examples.Image
+            Image = FromBase64(Base64Examples.ImageSpecie),
+            ImageBase64 = Base64Examples.ImageSpecie
         };
         
         var resultRendering = await RenderingFactory.Create(viewModel);
@@ -83,8 +83,8 @@ public class CreateRenderingShould
             Id = 1,
             Type = RenderingObjectType.Plant,
             Season = Season.Autumn,
-            Image = FromBase64(Base64Examples.Image),
-            ImageBase64 = Base64Examples.Image
+            Image = FromBase64(Base64Examples.ImageSpecie),
+            ImageBase64 = Base64Examples.ImageSpecie
         };
         
         var resultRendering = await RenderingFactory.Create(viewModel);

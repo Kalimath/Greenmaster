@@ -64,4 +64,8 @@
       <Folder Include="Tests\TestData" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\media\img\Arboretum\Trees0091_350.jpg" />
+    </ItemGroup>
+
 </Project>

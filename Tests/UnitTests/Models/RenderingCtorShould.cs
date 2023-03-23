@@ -32,28 +32,28 @@ public class RenderingCtorShould
     [Fact]
     public void SetImageToGiven_WhenPassed()
     {
-        var result = new Rendering(1, Base64Examples.Image, RenderingObjectType.Plant);
-        Assert.Equal(Base64Examples.Image, result.Image);
+        var result = new Rendering(1, Base64Examples.ImageSpecie, RenderingObjectType.Plant);
+        Assert.Equal(Base64Examples.ImageSpecie, result.Image);
     }
 
     [Fact]
     public void SetSeasonToNotSet_WhenNotPassed()
     {
-        var result = new Rendering(1, Base64Examples.Image, RenderingObjectType.Plant);
+        var result = new Rendering(1, Base64Examples.ImageSpecie, RenderingObjectType.Plant);
         Assert.Equal(Season.NotSet, result.Season);
     }
     
     [Fact]
     public void SetSeasonToGiven_WhenPassed()
     {
-        var result = new Rendering(1, Base64Examples.Image, RenderingObjectType.Plant, Season.Spring);
+        var result = new Rendering(1, Base64Examples.ImageSpecie, RenderingObjectType.Plant, Season.Spring);
         Assert.Equal(Season.Spring, result.Season);
     }
     
     [Fact]
     public void SetTypeToGiven_WhenPassed()
     {
-        var result = new Rendering(1, Base64Examples.Image, RenderingObjectType.Plant);
+        var result = new Rendering(1, Base64Examples.ImageSpecie, RenderingObjectType.Plant);
         Assert.Equal(RenderingObjectType.Plant, result.Type);
     }
 }

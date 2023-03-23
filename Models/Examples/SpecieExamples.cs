@@ -36,7 +36,7 @@ public static partial class SpecieExamples
         IsFragrant = false,
         IsPoisonous = true,
         FlowerColors = new[] { Color.Blue.ToString(), Color.MultiColor.ToString(), Color.Orange.ToString() },
-        Image = Base64Examples.Image
+        Image = Base64Examples.ImageSpecie
     };
 
     public static readonly Specie Papaver = new Specie()
@@ -60,7 +60,7 @@ public static partial class SpecieExamples
         IsFragrant = false,
         IsPoisonous = false,
         FlowerColors = new[] { Color.Pink.ToString() },
-        Image = Base64Examples.Image
+        Image = Base64Examples.ImageSpecie
     };
 
 
