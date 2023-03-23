@@ -29,15 +29,15 @@ public class SpecieService : ISpecieService,IContextService<Specie>
                 ?? throw new ArgumentException($"No Specie found with {nameof(id)}={id}");
     }
 
-    public async Task Add(Specie specie)
+    public async Task Add(Specie newObject)
     {
-        _context.Species.Add(specie);
+        _context.Species.Add(newObject);
         await _context.SaveChangesAsync();
     }
 
-    public async Task Update(Specie specie)
+    public async Task Update(Specie updatedObject)
     {
-        _context.Update(specie);
+        _context.Update(updatedObject);
         await _context.SaveChangesAsync();
     }
 

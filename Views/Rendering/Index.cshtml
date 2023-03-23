@@ -26,9 +26,6 @@
         <th class="th-sm">
             @Html.DisplayNameFor(model => model.Season)
         </th>
-        <th class="th-sm">
-            @Html.DisplayNameFor(model => model.Season)
-        </th>
         <th class="th-sm"></th>
     </tr>
     </thead>
@@ -38,7 +35,7 @@
 @section Scripts {
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
     <script>
@@ -52,16 +49,13 @@
                 "columns": [
                     { "data": "id" },
                     {
-                       "data": "ImageBase64",
-                       "render": function (data) {
-                           return '<img src="data:image/png;base64, ' + data + '" class="img-fluid" alt="rendering-'+ data.substring(0,6) +'"/>';
-                           }
-                     },
+                       data: "imageBase64",
+                       render: function (data, type, row, meta) {
+                            var imgSrc = 'data:image/png;base64,' + data;
+                            return '<img style="height:150px" class="img-fluid" src="' + imgSrc +'" alt="rendering">';
+                       }},
                     { "data": "type" },
-                    { "data": "lifecycle" },
-                    { "data": "climate" },
-                    { "data": "maxWidth" },
-                    { "data": "maxHeight" },
+                    { "data": "season" },
                     { "data": null, "defaultContent": "<a href='' class='del'>Delete</a>"}
                 ]
             });
@@ -70,21 +64,26 @@
                 e.preventDefault();
                 let id = $("td:first", this).text();
 
-                if ($(e.target).is("a.del")) { $.get('@Url.Action("Delete","Rendering")', { id: id }, function (data) {
+                if ($(e.target).is("a.del")) { $.get('@Url.Action("Delete", "Rendering")', { id: id }, function (data) {
                         $("body").html(data);
                     });
                     return;
                 }
-                $.get('@Url.Action("Details","Rendering")', { id: id }, function (data) {
+               /* $.get('@Url.Action("Details", "Rendering")', { id: id }, function (data) {
                     $("body").html(data);
-                });
+                });*/
             });
         });
 
     </script> }
     
-<style>
+@*<style>
     #specieTable tbody tr {
+        cursor: pointer;
+    }
+</style>*@    
+<style>
+    a.del {
         cursor: pointer;
     }
 </style>
