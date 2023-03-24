@@ -1,4 +1,4 @@
-﻿using Greenmaster_ASP.Models.Arboretum;
+﻿using Greenmaster_ASP.Models.Database.Arboretum;
 using Microsoft.EntityFrameworkCore;
 
 namespace Greenmaster_ASP.Models.Services;

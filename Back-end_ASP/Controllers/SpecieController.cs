@@ -17,10 +17,12 @@ namespace Greenmaster_ASP.Controllers
     public class SpecieController : Controller
     {
         private readonly ISpecieService _modelService;
+        private readonly IObjectTypeService<PlantType> _plantTypeService;
 
-        public SpecieController(ISpecieService specieService)
+        public SpecieController(ISpecieService specieService, IObjectTypeService<PlantType> plantTypeService)
         {
             _modelService = specieService ?? throw new ArgumentNullException(nameof(specieService));
+            _plantTypeService = plantTypeService;
         }
 
         // GET: Specie
@@ -60,9 +62,9 @@ namespace Greenmaster_ASP.Controllers
         }
 
         // GET: Specie/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            DefineViewData();
+            await DefineViewData();
             return View();
         }
 
@@ -80,14 +82,14 @@ namespace Greenmaster_ASP.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            DefineViewData();
+            await DefineViewData();
             return View(specieViewModel);
         }
 
-        private void DefineViewData()
+        private async Task DefineViewData()
         {
             ViewData["LifeCycle"] = new SelectList(Enum.GetNames(typeof(Lifecycle)));
-            ViewData["PlantType"] = new SelectList(PlantType.GetAllNames());
+            ViewData["PlantType"] = new SelectList(await _plantTypeService.GetAll(), dataValueField: nameof(PlantType.Id), dataTextField: nameof(PlantType.Name));
             ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
             ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));
@@ -108,7 +110,7 @@ namespace Greenmaster_ASP.Controllers
                 return NotFound();
             }
 
-            DefineViewData();
+            await DefineViewData();
             return View(SpecieFactory.ToViewModel(specie));
         }
 
@@ -138,7 +140,7 @@ namespace Greenmaster_ASP.Controllers
             }
 
 
-            DefineViewData();
+            await DefineViewData();
             return View(specieViewModel);
         }
 

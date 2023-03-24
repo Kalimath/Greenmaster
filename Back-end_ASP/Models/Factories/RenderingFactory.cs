@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
 using Greenmaster_ASP.Helpers;
 using Greenmaster_ASP.Models.ViewModels;
-using Microsoft.Extensions.Options;
 using ImageConverter = Greenmaster_ASP.Helpers.ImageConverter;
 
 // ReSharper disable MethodNameNotMeaningful

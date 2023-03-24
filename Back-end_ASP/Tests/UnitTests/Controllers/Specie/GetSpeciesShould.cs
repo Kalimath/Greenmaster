@@ -14,7 +14,8 @@ public class GetSpeciesShould
     public async Task ReturnJsonResult_WhenCalled()
     {
         var specieService = Substitute.For<ISpecieService>();
-        var specieController = new SpecieController(specieService);
+        var plantTypeService = Substitute.For<IObjectTypeService<PlantType>>();
+        var specieController = new SpecieController(specieService, plantTypeService);
         specieService.GetAll().ReturnsForAnyArgs(SpecieExamples.GetAll());
 
         var result = await specieController.GetSpecies();

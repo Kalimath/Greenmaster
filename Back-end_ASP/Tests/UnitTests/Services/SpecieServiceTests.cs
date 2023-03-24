@@ -1,5 +1,6 @@
 ﻿using Greenmaster_ASP.Models;
-using Greenmaster_ASP.Models.Arboretum;
+using Greenmaster_ASP.Models.Database.Arboretum;
+using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Tests.Helpers;
@@ -25,7 +26,7 @@ public class SpecieServiceTests
             Cultivar = "",
             CommonNames = "Bird of paradise,Paradijsvogelbloem",
             Description = "some text.",
-            PlantType = PlantType.SmallShrub.Name,
+            PlantType = ObjectTypeExamples.SmallShrub,
             Cycle = Lifecycle.Perennial
         };
         _inMemoryOptions = new DbContextOptionsBuilder<ArboretumContext>()
@@ -49,7 +50,7 @@ public class SpecieServiceTests
             Cultivar = "1",
             CommonNames = "Bird of paradise,Paradijsvogelbloem1",
             Description = "some text.1",
-            PlantType = PlantType.LargeShrub.Name,
+            PlantType = ObjectTypeExamples.SmallShrub,
             Cycle = Lifecycle.Biennial
         };
         

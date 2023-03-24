@@ -5,7 +5,7 @@ using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.Static.PlantProperties;
-using static Greenmaster_ASP.Models.Static.Object.Organic.PlantType;
+using static Greenmaster_ASP.Models.PlantType;
 #pragma warning disable CS8618
 
 namespace Greenmaster_ASP.Models;
@@ -23,8 +23,7 @@ public class Specie: BaseEntity
     public string CommonNames { get; set; }
     #endregion
     public string Description { get; set; }
-    public string PlantType { get; set; }
-    public PlantType GetPlantType => GetByName(PlantType);
+    public PlantType PlantType { get; set; }
     public bool IsPoisonous { get; set; }
     public Lifecycle Cycle { get; set; }
     public Shape Shape { get; set; }

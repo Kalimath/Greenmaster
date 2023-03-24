@@ -5,7 +5,6 @@ using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.Static.PlantProperties;
-using static Greenmaster_ASP.Models.Static.Object.Organic.PlantType;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Color = Greenmaster_ASP.Models.Static.Color;
 
@@ -39,9 +38,7 @@ public class SpecieViewModel : ViewModelWithImage
 
     [Required(ErrorMessage = "Specie must have a PlantType")]
     [DisplayName("Plant-type")]
-    public string Type { get; set; }
-
-    public PlantType GetPlantType => GetByName(Type);
+    public PlantType Type { get; set; }
 
     [Required(ErrorMessage = "Specie must have a Lifecycle")]
     public Lifecycle Lifecycle { get; set; }
