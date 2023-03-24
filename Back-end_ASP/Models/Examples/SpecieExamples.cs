@@ -9,7 +9,7 @@ using Color = Greenmaster_ASP.Models.Static.Color;
 namespace Greenmaster_ASP.Models.Examples;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-public static partial class SpecieExamples 
+public static class SpecieExamples 
 {
     public static readonly Specie Strelitzia = new Specie()
     {
@@ -25,6 +25,7 @@ public static partial class SpecieExamples
         Sunlight = Amount.Average,
         Water = Amount.Little,
         Climate = ClimateType.Tropical,
+        MinimalTemperature = 10,
         MaxHeight = 2.5,
         MaxWidth = 0.75,
         BloomPeriod = new[]
@@ -53,6 +54,7 @@ public static partial class SpecieExamples
         Sunlight = Amount.Many,
         Water = Amount.Little,
         Climate = ClimateType.Temperate,
+        MinimalTemperature = -2,
         MaxHeight = 1,
         MaxWidth = 0.25,
         BloomPeriod = new[] { Month.May.ToString(), Month.June.ToString() },
@@ -62,8 +64,7 @@ public static partial class SpecieExamples
         FlowerColors = new[] { Color.Pink.ToString() },
         Image = Base64Examples.ImageSpecie
     };
-
-
+    
     public static List<Specie> GetAll()
     {
         return new List<Specie>()

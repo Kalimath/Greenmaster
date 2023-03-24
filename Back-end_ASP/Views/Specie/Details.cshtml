@@ -99,6 +99,12 @@
                     @Html.DisplayFor(model => model.Climate)
                 </dd>
                 <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.MinimalTemperature)
+                </dt>
+                <dd class="col-sm-4">
+                     @Html.DisplayFor(model => model.MinimalTemperature) °C @* TODO: retrieve from config *@
+                </dd>
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.IsPoisonous)
                 </dt>
                 <dd class="col-sm-4">

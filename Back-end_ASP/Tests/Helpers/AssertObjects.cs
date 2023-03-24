@@ -31,6 +31,7 @@ public static class AssertObjects
         Assert.Equal(expected.Sunlight, actual.Sunlight);
         Assert.Equal(expected.Water, actual.Water);
         Assert.Equal(expected.Climate, actual.Climate);
+        Assert.Equal(expected.MinimalTemperature, actual.MinimalTemperature);
         //FlowerInfo
         Assert.Equal(expected.BloomPeriod, actual.BloomPeriod);
         Assert.Equal(expected.AttractsPollinators, actual.AttractsPollinators);
@@ -60,6 +61,7 @@ public static class AssertObjects
         Assert.Equal(expected.Sunlight, actual.Sunlight);
         Assert.Equal(expected.Water, actual.Water);
         Assert.Equal(expected.Climate, actual.Climate);
+        Assert.Equal(expected.MinimalTemperature, actual.MinimalTemperature);
         //FlowerInfo
         Assert.Equal(expected.BloomPeriod, actual.BloomPeriod);
         Assert.Equal(expected.AttractsPollinators, actual.AttractsPollinators);

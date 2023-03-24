@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d20489cc-5648-4844-8fed-669fb2da27c2" name="Changes" comment="Removed unused .idea folder" />
+    <list default="true" id="d20489cc-5648-4844-8fed-669fb2da27c2" name="Changes" comment="Removed unused .idea folder">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Greenmaster_ASP.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Greenmaster_ASP.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Migrations/ArboretumContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Migrations/ArboretumContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Examples/SpecieExamples.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Examples/SpecieExamples.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Factories/SpecieFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Factories/SpecieFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Specie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Specie.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/ViewModels/SpecieViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/ViewModels/SpecieViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Tests/Helpers/AssertObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Tests/Helpers/AssertObjects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Views/Specie/Create.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Views/Specie/Create.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Views/Specie/Details.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Views/Specie/Details.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Views/Specie/Edit.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Views/Specie/Edit.cshtml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +43,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679679012184</updated>
       <workItem from="1679679016228" duration="176000" />
-      <workItem from="1679679326662" duration="318000" />
+      <workItem from="1679679326662" duration="1022000" />
     </task>
     <task id="LOCAL-00001" summary="Moved Project to separate folder">
       <created>1679679084686</created>

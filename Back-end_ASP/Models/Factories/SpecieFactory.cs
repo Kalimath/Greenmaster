@@ -28,6 +28,7 @@ public class SpecieFactory
             Sunlight = specieViewModel.Sunlight,
             Water = specieViewModel.Water,
             Climate = specieViewModel.Climate,
+            MinimalTemperature = specieViewModel.MinimalTemperature,
             IsPoisonous = specieViewModel.IsPoisonous,
 
             MaxHeight = specieViewModel.MaxHeight,
@@ -55,8 +56,8 @@ public class SpecieFactory
         }
         else
         {
-            if (IsValidAndBase64String(specieViewModel.ImageBase64))
-                specie.Image = specieViewModel.ImageBase64;
+            if (IsValidAndBase64String(specieViewModel.ImageBase64!))
+                specie.Image = specieViewModel.ImageBase64!;
             else
                 throw new ArgumentException(
                     $"Given {nameof(specieViewModel)} has invalid {nameof(specieViewModel.Image)} and/or {nameof(specieViewModel.ImageBase64)}");
@@ -135,6 +136,7 @@ public class SpecieFactory
             Sunlight = specie.Sunlight,
             Water = specie.Water,
             Climate = specie.Climate,
+            MinimalTemperature = specie.MinimalTemperature,
             IsPoisonous = specie.IsPoisonous,
 
             MaxHeight = specie.MaxHeight,

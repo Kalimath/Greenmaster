@@ -33,6 +33,7 @@ public class Specie: BaseEntity
     public Amount Sunlight { get; set; }
     public Amount Water { get; set; }
     public ClimateType Climate { get; set; }
+    public int MinimalTemperature { get; set; }
     #endregion
 
     //MaxDimensions

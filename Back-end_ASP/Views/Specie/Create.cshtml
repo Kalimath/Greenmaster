@@ -71,6 +71,11 @@
                 <span asp-validation-for="Climate" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MinimalTemperature" class="control-label"></label>
+                <input type="number" asp-for="MinimalTemperature" class="form-control"/>
+                <span asp-validation-for="MinimalTemperature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="IsPoisonous" class="control-label"></label>
                 <input type="checkbox" asp-for="IsPoisonous" class="form-check-inline"/>
                 <span asp-validation-for="IsPoisonous" class="text-danger"></span>

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 using Greenmaster_ASP.Helpers.Attributes;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
@@ -62,7 +61,10 @@ public class SpecieViewModel : ViewModelWithImage
     [Required]
     [DisplayName("Preferred climate")]
     public ClimateType Climate { get; set; }
-
+    
+    [DisplayName("Minimal temperature")]
+    [Range(-40,40)]
+    public int MinimalTemperature { get; set; }
     #endregion
 
     #region MaxDimensions
