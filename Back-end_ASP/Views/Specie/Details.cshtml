@@ -51,22 +51,18 @@
             </dl>
             <dl class="row" id="specie-characteristics">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Type.Name)
+                    @Html.DisplayNameFor(model => model.PlantType)
                 </dt>
                 <dd class="col-sm-4">
-                    <a asp-controller="ObjectType" asp-action="Details" asp-route-id="@Model.Type.Id">@Html.DisplayFor(model => model.Type.Name)</a>
+                    <a asp-controller="ObjectType" asp-action="Details" asp-route-id="@Model.PlantType!.Id" title="Click to see details">
+                        @Html.DisplayFor(model => model.PlantType!.Name)
+                    </a>
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Description)
                 </dt>
                 <dd class="col-sm-4">
                     @Html.DisplayFor(model => model.Description)
-                </dd>
-                <dt class="col-sm-2">
-                    Plant-type info
-                </dt>
-                <dd class="col-sm-4">
-                    @Html.DisplayFor(model => model.Type.Description)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Shape)

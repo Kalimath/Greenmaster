@@ -24,7 +24,7 @@ public class SpecieFactoryTestBase
             Cultivar = SpecieExamples.Strelitzia.Cultivar,
             CommonNames = SpecieExamples.Strelitzia.CommonNames,
             Description = SpecieExamples.Strelitzia.Description,
-            Type = SpecieExamples.Strelitzia.PlantType,
+            PlantType = ObjectTypeExamples.SmallShrub,
             Shape = SpecieExamples.Strelitzia.Shape,
             Lifecycle = SpecieExamples.Strelitzia.Cycle,
             Sunlight = SpecieExamples.Strelitzia.Sunlight,
@@ -43,6 +43,7 @@ public class SpecieFactoryTestBase
         };
 
         SpecieStrelitzia = SpecieExamples.Strelitzia;
+        SpecieStrelitzia.PlantType = ObjectTypeExamples.SmallShrub;
     }
 
     

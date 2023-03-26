@@ -8,7 +8,7 @@
 <h1>Species</h1>
 
 <p>
-    <a asp-action="Create">Add new specie</a>
+    <a class="btn btn-primary" asp-action="Create">Add new specie</a>
 </p>
 @*<p>
     <a asp-controller="Rendering" asp-action="SpecieRenderings">Specie renderings</a>
@@ -23,7 +23,7 @@
             @Html.DisplayNameFor(model => model.ScientificName)
         </th>
         <th class="th-sm">
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.PlantType)
         </th>
         <th class="th-sm">
             @Html.DisplayNameFor(model => model.Lifecycle)
@@ -65,7 +65,7 @@
                 "columns": [
                     { "data": "id" },
                     { "data": "scientificName" },
-                    { "data": "type.name"},
+                    { "data": "plantType.name"},
                     { "data": "lifecycle" },
                     { "data": "climate" },
                     { "data": "maxWidth" },

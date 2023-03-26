@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Database.Arboretum;
-using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +49,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Specie}/{action=Index}/{id?}");
 
 app.Run();

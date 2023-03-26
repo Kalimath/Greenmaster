@@ -54,11 +54,27 @@ public class CreateSpecieShould : SpecieFactoryTestBase
     }
     
     [Fact]
-    public void ThrowArgumentException_WhenImageNull()
+    public async Task SetPlantTypeIdToIdOfViewModelPlantType()
     {
-        var invalidSpecieViewModel = SpecieStrelitzia.Clone();
+        var resultSpecie = await SpecieFactory.Create(SpecieViewModelStrelitzia);
+
+        Assert.Equal(resultSpecie.PlantTypeId, SpecieViewModelStrelitzia.PlantType.Id);
+    }
+    [Fact]
+    public async Task ThrowArgumentNullException_WhenPlantTypeNull()
+    {
+        var invalidSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
+        invalidSpecieViewModel.PlantType = null!;
+        await Assert.ThrowsAsync<ArgumentNullException>( () => SpecieFactory.Create(invalidSpecieViewModel));
+    }
+    
+    [Fact]
+    public async Task ThrowNullReferenceException_WhenImageAndImageBase64AreNull()
+    {
+        var invalidSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
         invalidSpecieViewModel.Image = null!;
-        Assert.Throws<ArgumentException>( () => SpecieFactory.ToViewModel(invalidSpecieViewModel));
+        invalidSpecieViewModel.ImageBase64 = null!;
+        await Assert.ThrowsAsync<NullReferenceException>( () => SpecieFactory.Create(invalidSpecieViewModel));
     }
     
     [Fact]

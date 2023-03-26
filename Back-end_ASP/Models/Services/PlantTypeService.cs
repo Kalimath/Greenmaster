@@ -21,7 +21,7 @@ public class PlantTypeService : IObjectTypeService<PlantType>
     public async Task<PlantType> GetById(int id)
     {
         return (await _context.PlantTypes.FirstOrDefaultAsync(m => m.Id == id))
-               ?? throw new ArgumentException($"No Rendering found with {nameof(id)}={id}");
+               ?? throw new ArgumentException($"No PlantType found with {nameof(id)}={id}");
     }
 
     public async Task<List<PlantType>> GetAll()

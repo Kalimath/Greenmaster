@@ -11,7 +11,7 @@ using Color = Greenmaster_ASP.Models.Static.Color;
 #pragma warning disable CS8618
 namespace Greenmaster_ASP.Models.ViewModels;
 
-public class SpecieViewModel : ViewModelWithImage
+public class SpecieViewModel : IViewModelWithImage
 {
     public int Id { get; set; }
 
@@ -33,12 +33,18 @@ public class SpecieViewModel : ViewModelWithImage
 
     #endregion
 
-    [DisplayName("Info")] public string Description { get; set; }
+    public string Description { get; set; }
     public Shape Shape { get; set; }
 
-    [Required(ErrorMessage = "Specie must have a PlantType")]
+    [AtLeastOneRequired(new[] { $"{nameof(PlantType)}", $"{nameof(PlantTypeId)}" },
+        ErrorMessage = $"At least one of {nameof(PlantType)} or {nameof(PlantTypeId)} is required.")]
     [DisplayName("Plant-type")]
-    public PlantType Type { get; set; }
+    public int PlantTypeId { get; set; }
+    
+    [AtLeastOneRequired(new[] { $"{nameof(PlantType)}", $"{nameof(PlantTypeId)}" },
+        ErrorMessage = $"At least one of {nameof(PlantType)} or {nameof(PlantTypeId)} is required.")]
+    [DisplayName("Plant-type")]
+    public PlantType? PlantType { get; set; }
 
     [Required(ErrorMessage = "Specie must have a Lifecycle")]
     public Lifecycle Lifecycle { get; set; }

@@ -75,21 +75,30 @@ namespace Greenmaster_ASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SpecieViewModel specieViewModel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var specie = await SpecieFactory.Create(specieViewModel);
-                await _modelService.Add(specie);
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    var requestedPlantType = (await _plantTypeService.GetById(specieViewModel.PlantTypeId)) ?? throw new ArgumentException($"Could not find a {nameof(PlantType)} with id={specieViewModel.PlantTypeId}");
+                    specieViewModel.PlantType = requestedPlantType;
+                    var specie = await SpecieFactory.Create(specieViewModel);
+                    await _modelService.Add(specie);
+                    return RedirectToAction(nameof(Index));
+                }
+                throw new ArgumentException(nameof(ModelState));
             }
-
-            await DefineViewData();
-            return View(specieViewModel);
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                await DefineViewData();
+                return View(specieViewModel);
+            }
         }
 
         private async Task DefineViewData()
         {
             ViewData["LifeCycle"] = new SelectList(Enum.GetNames(typeof(Lifecycle)));
-            ViewData["PlantType"] = new SelectList(await _plantTypeService.GetAll(), dataValueField: nameof(PlantType.Id), dataTextField: nameof(PlantType.Name));
+            ViewData["PlantType"] = new SelectList(await _plantTypeService.GetAll(), dataValueField: nameof(PlantType.Id), dataTextField: nameof(PlantType.Name), "---Select a plant-type---");
             ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
             ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));

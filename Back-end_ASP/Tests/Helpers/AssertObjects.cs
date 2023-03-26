@@ -49,7 +49,7 @@ public static class AssertObjects
         Assert.Equal(expected.Cultivar, actual.Cultivar);
         Assert.Equal(expected.CommonNames, actual.CommonNames);
         Assert.Equal(expected.Description, actual.Description);
-        Assert.Equal(expected.Type, actual.Type);
+        Assert.Equal(expected.PlantType, actual.PlantType);
         Assert.Equal(expected.IsPoisonous, actual.IsPoisonous);
         Assert.Equal(expected.Lifecycle, actual.Lifecycle);
         Assert.Equal(expected.Description, actual.Description);

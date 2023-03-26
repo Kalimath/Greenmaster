@@ -12,6 +12,8 @@ public class SpecieFactory
     {
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));
+        if (specieViewModel.PlantType == null)
+            throw new ArgumentNullException(nameof(specieViewModel.PlantType));
         ValidateDimensions(specieViewModel.MaxHeight, specieViewModel.MaxWidth);
 
         var specie = new Specie
@@ -22,7 +24,8 @@ public class SpecieFactory
             Cultivar = specieViewModel.Cultivar,
             CommonNames = specieViewModel.CommonNames,
             Description = specieViewModel.Description,
-            PlantType = specieViewModel.Type,
+            PlantTypeId = specieViewModel.PlantType.Id,
+            PlantType = specieViewModel.PlantType,
             Shape = specieViewModel.Shape,
             Cycle = specieViewModel.Lifecycle,
             Sunlight = specieViewModel.Sunlight,
@@ -57,10 +60,12 @@ public class SpecieFactory
         else
         {
             if (IsValidAndBase64String(specieViewModel.ImageBase64!))
+            {
                 specie.Image = specieViewModel.ImageBase64!;
-            else
+            }else{
                 throw new ArgumentException(
                     $"Given {nameof(specieViewModel)} has invalid {nameof(specieViewModel.Image)} and/or {nameof(specieViewModel.ImageBase64)}");
+            }
         }
     }
 
@@ -130,7 +135,7 @@ public class SpecieFactory
             Cultivar = specie.Cultivar,
             CommonNames = specie.CommonNames,
             Description = specie.Description,
-            Type = specie.PlantType,
+            PlantType = specie.PlantType,
             Shape = specie.Shape,
             Lifecycle = specie.Cycle,
             Sunlight = specie.Sunlight,
