@@ -50,6 +50,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
     <script>
+        function ViewObjectType(ObjectId) {  
+            $.get('@Url.Action("Details","ObjectType")', { id: id }, function (data) {
+                                $("body").html(data);
+                            });
+        }
         $(function () {
             $('#specieTable').DataTable({
                 "ajax": {
@@ -60,7 +65,7 @@
                 "columns": [
                     { "data": "id" },
                     { "data": "scientificName" },
-                    { "data": "type" },
+                    { "data": "type.name"},
                     { "data": "lifecycle" },
                     { "data": "climate" },
                     { "data": "maxWidth" },

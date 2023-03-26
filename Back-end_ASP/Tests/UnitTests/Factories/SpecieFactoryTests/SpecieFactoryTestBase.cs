@@ -30,6 +30,7 @@ public class SpecieFactoryTestBase
             Sunlight = SpecieExamples.Strelitzia.Sunlight,
             Water = SpecieExamples.Strelitzia.Water,
             Climate = SpecieExamples.Strelitzia.Climate,
+            MinimalTemperature = SpecieExamples.Strelitzia.MinimalTemperature,
             MaxHeight = SpecieExamples.Strelitzia.MaxHeight,
             MaxWidth = SpecieExamples.Strelitzia.MaxWidth,
             BloomPeriod = SpecieExamples.Strelitzia.BloomPeriod.Select(s => Enum.Parse<Month>(s)).ToArray(),

@@ -51,10 +51,10 @@
             </dl>
             <dl class="row" id="specie-characteristics">
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Type)
+                    @Html.DisplayNameFor(model => model.Type.Name)
                 </dt>
                 <dd class="col-sm-4">
-                    @Html.DisplayFor(model => model.Type)
+                    <a asp-controller="ObjectType" asp-action="Details" asp-route-id="@Model.Type.Id">@Html.DisplayFor(model => model.Type.Name)</a>
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Description)

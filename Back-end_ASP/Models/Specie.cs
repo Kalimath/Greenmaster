@@ -1,16 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Greenmaster_ASP.Models.Base;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.Static.PlantProperties;
-using static Greenmaster_ASP.Models.PlantType;
 #pragma warning disable CS8618
 
 namespace Greenmaster_ASP.Models;
 
-public class Specie: BaseEntity
+public class Specie : IObjectIdentity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
     public int Id { get; set; }
@@ -23,7 +21,8 @@ public class Specie: BaseEntity
     public string CommonNames { get; set; }
     #endregion
     public string Description { get; set; }
-    public PlantType PlantType { get; set; }
+    public int PlantTypeId { get; set; }
+    public virtual PlantType PlantType { get; set; }
     public bool IsPoisonous { get; set; }
     public Lifecycle Cycle { get; set; }
     public Shape Shape { get; set; }

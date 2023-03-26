@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Database.Arboretum;
-using Greenmaster_ASP.Models.Database.Type;
 using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
@@ -14,20 +13,18 @@ var services = builder.Services;
 services.AddControllersWithViews();
 // services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    });
+    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
+
 services.AddDbContext<ArboretumContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("localDb"));
+    options.EnableDetailedErrors();
+    options.EnableSensitiveDataLogging();
 });
-services.AddDbContext<ObjectTypeContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("localDb"));
-});
+
 services.AddSingleton<SpecieFactory>();
 services.AddScoped<ISpecieService, SpecieService>();
+services.AddScoped<IObjectTypeService<ObjectType>, ObjectTypeService>();
 services.AddScoped<IObjectTypeService<PlantType>, PlantTypeService>();
 services.AddScoped<IObjectTypeService<StructureType>, StructureTypeService>();
 services.AddScoped<IRenderingService, RenderingService>();

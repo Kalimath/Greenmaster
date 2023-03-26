@@ -25,7 +25,7 @@ public class SpecieService : ISpecieService,IContextService<Specie>
 
     public async Task<Specie> GetById(int id)
     {
-        return (await _context.Species.FirstOrDefaultAsync(m => m.Id == id))
+        return (await GetAll()).FirstOrDefault(m => m.Id == id)
                 ?? throw new ArgumentException($"No Specie found with {nameof(id)}={id}");
     }
 

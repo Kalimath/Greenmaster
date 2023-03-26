@@ -68,13 +68,10 @@ namespace Greenmaster_ASP.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var rendering = await RenderingFactory.Create(renderingViewModel);
-                    await _modelService.Add(rendering);
-                    return RedirectToAction(nameof(Index));
-                }
-                throw new ArgumentException($"Invalid {ModelState}");
+                if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
+                var rendering = await RenderingFactory.Create(renderingViewModel);
+                await _modelService.Add(rendering);
+                return RedirectToAction(nameof(Index));
             }
             catch
             {

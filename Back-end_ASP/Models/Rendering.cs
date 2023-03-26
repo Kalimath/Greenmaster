@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Greenmaster_ASP.Helpers;
-using Greenmaster_ASP.Models.Base;
 using Greenmaster_ASP.Models.Static.Object.Rendering;
 using Greenmaster_ASP.Models.Static.Time.Durations;
 
 namespace Greenmaster_ASP.Models;
 
-public class Rendering : BaseEntity
+public class Rendering : IObjectIdentity
 {
     private string _image;
 

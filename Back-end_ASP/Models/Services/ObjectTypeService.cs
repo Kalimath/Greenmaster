@@ -3,33 +3,33 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Greenmaster_ASP.Models.Services;
 
-public class PlantTypeService : IObjectTypeService<PlantType>
+public class ObjectTypeService : IObjectTypeService<ObjectType>
 {
     private readonly ArboretumContext _context;
 
-    public PlantTypeService(ArboretumContext context)
+    public ObjectTypeService(ArboretumContext context)
     {
         _context = context;
     }
 
-    public async Task Add(PlantType newObject)
+    public async Task Add(ObjectType newObject)
     {
-        _context.PlantTypes.Add(newObject);
+        _context.ObjectTypes.Add(newObject);
         await _context.SaveChangesAsync();
     }
 
-    public async Task<PlantType> GetById(int id)
+    public async Task<ObjectType> GetById(int id)
     {
         return (await _context.PlantTypes.FirstOrDefaultAsync(m => m.Id == id))
                ?? throw new ArgumentException($"No Rendering found with {nameof(id)}={id}");
     }
 
-    public async Task<List<PlantType>> GetAll()
+    public async Task<List<ObjectType>> GetAll()
     {
-        return await Task.FromResult(_context.PlantTypes.ToList());
+        return await Task.FromResult(_context.ObjectTypes.ToList());
     }
 
-    public async Task Update(PlantType updatedObject)
+    public async Task Update(ObjectType updatedObject)
     {
         _context.Update(updatedObject);
         await _context.SaveChangesAsync();
@@ -43,6 +43,6 @@ public class PlantTypeService : IObjectTypeService<PlantType>
 
     public async Task<bool> ExistsWithId(int id)
     {
-        return (await _context.PlantTypes.FirstOrDefaultAsync(m => m.Id == id)) != null;
+        return (await _context.ObjectTypes.FirstOrDefaultAsync(m => m.Id == id)) != null;
     }
 }
