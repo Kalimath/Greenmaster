@@ -85,6 +85,18 @@ public class CreatePlaceableShould
     }
     
     [Fact]
+    public void ReturnStructure_WhenSpecieNull()
+    {
+        var structureViewModel = _strelitziaViewModel.Clone();
+        structureViewModel.Specie = null;
+        
+        var resultPlaceable = PlaceableFactory.Create(structureViewModel);
+        
+        Assert.NotNull(resultPlaceable);
+        Assert.IsType<Structure>(resultPlaceable);
+    }
+    
+    [Fact]
     public void ThrowArgumentException_WhenSpecieNotNullAndTypeNotPlantType()
     {
         var invalidViewModel = _strelitziaViewModel.Clone();
