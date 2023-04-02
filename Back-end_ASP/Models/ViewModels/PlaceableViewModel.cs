@@ -27,8 +27,15 @@ public class PlaceableViewModel
     [AtLeastOneRequired(new[] { $"{nameof(DimensionsId)}", $"{nameof(Dimensions)}" },
         ErrorMessage = $"At least one of {nameof(DimensionsId)} or {nameof(Dimensions)} is required.")]
     public Dimensions? Dimensions { get; set; }
-    public ObjectType Type { get; set; }
+    
+    [AtLeastOneRequired(new[] { $"{nameof(TypeId)}", $"{nameof(Type)}" },
+        ErrorMessage = $"At least one of {nameof(TypeId)} or {nameof(Type)} is required.")]
+    public int? TypeId { get; set; }
+    
+    [AtLeastOneRequired(new[] { $"{nameof(TypeId)}", $"{nameof(Type)}" },
+        ErrorMessage = $"At least one of {nameof(TypeId)} or {nameof(Type)} is required.")]
+    public ObjectType? Type { get; set; }
     
     //Plant-specific properties
-    public Specie Specie { get; set; }
+    public Specie? Specie { get; set; }
 }

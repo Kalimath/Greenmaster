@@ -9,16 +9,16 @@ public abstract class Placeable : BaseAuditableEntity
     public Point? Location { get; set; }
     public int DimensionsId { get; set; }
     public virtual Dimensions Dimensions { get; set; }
-    public ObjectType Type { get; set; }
+    public int TypeId { get; set; }
 
     // public List<Domain> Domains { get; set; }
     protected Placeable()
     {
     }
 
-    public Placeable(ObjectType type, Dimensions dimensions, Point? location = null)
+    public Placeable(int typeId, Dimensions dimensions, Point? location = null)
     {
-        Type = type;
+        TypeId = typeId;
         Location = location;
         Dimensions = dimensions;
     }

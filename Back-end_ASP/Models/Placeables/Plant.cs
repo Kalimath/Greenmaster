@@ -12,7 +12,7 @@ public class Plant : Placeable
     {
         
     }
-    public Plant(Specie specie, PlantType type, Dimensions dimensions, Point? location = null): base(type, dimensions, location)
+    public Plant(Specie specie, int typeId, Dimensions dimensions, Point? location = null): base(typeId, dimensions, location)
     {
         Specie = specie;
     }

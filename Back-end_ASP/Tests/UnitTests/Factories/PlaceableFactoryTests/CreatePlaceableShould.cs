@@ -1,9 +1,10 @@
-﻿using Greenmaster_ASP.Helpers;
-using Greenmaster_ASP.Models;
+﻿using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Extensions;
+using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Measurements;
 using Greenmaster_ASP.Models.Placeables;
+using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.ViewModels;
 using Xunit;
 
@@ -17,9 +18,11 @@ public class CreatePlaceableShould
     private readonly Dimensions _strelitziaMatureDimensions;
     private readonly PlaceableViewModel _strelitziaViewModel;
     private readonly Point _somelocation;
+    private readonly IExamplesService _examplesService;
 
     public CreatePlaceableShould()
     {
+        _examplesService = new ExamplesService();
         _strelitziaCreationTime = DateTime.Now;
         _strelitziaId = Guid.NewGuid();
         _strelitziaMatureName = SpecieExamples.Strelitzia.ScientificName+" (mature)";
@@ -45,7 +48,8 @@ public class CreatePlaceableShould
             Location = _somelocation,
             DimensionsId = _strelitziaMatureDimensions.Id,
             Dimensions = _strelitziaMatureDimensions,
-            Type = SpecieExamples.Strelitzia.PlantType,
+            TypeId = SpecieExamples.Strelitzia.PlantTypeId,
+            Type = null,
             Specie = SpecieExamples.Strelitzia
         };
     }
@@ -72,6 +76,24 @@ public class CreatePlaceableShould
     }
     
     [Fact]
+    public void ReturnPlant_WhenSpecieNotNull()
+    {
+        var resultPlaceable = PlaceableFactory.Create(_strelitziaViewModel);
+        
+        Assert.NotNull(resultPlaceable);
+        Assert.IsType<Plant>(resultPlaceable);
+    }
+    
+    [Fact]
+    public void ThrowArgumentException_WhenSpecieNotNullAndTypeNotPlantType()
+    {
+        var invalidViewModel = _strelitziaViewModel.Clone();
+        invalidViewModel.Type = ObjectTypeExamples.Garage;
+        
+        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.Create(invalidViewModel));
+    }
+    
+    [Fact]
     public void SetDimensionsAndItsId()
     {
         var resultPlaceable = PlaceableFactory.Create(_strelitziaViewModel);
@@ -79,15 +101,6 @@ public class CreatePlaceableShould
         Assert.NotNull(resultPlaceable);
         Assert.Equal(_strelitziaViewModel.DimensionsId ,resultPlaceable.DimensionsId);
         Assert.NotNull(resultPlaceable.Dimensions);
-    }
-    
-    [Fact]
-    public void ThrowArgumentNullException_WhenDimensionsNull()
-    {
-        var invalidViewModel = _strelitziaViewModel.Clone();
-        invalidViewModel.Dimensions = null!;
-        
-        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -117,7 +130,10 @@ public class CreatePlaceableShould
         var invalidViewModel = _strelitziaViewModel.Clone();
         invalidViewModel.Specie = null!;
         
-        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.Create(invalidViewModel));
+        var resultPlaceable = PlaceableFactory.Create(invalidViewModel);
+        
+        Assert.NotNull(resultPlaceable);
+        Assert.IsType<Structure>(resultPlaceable);
     }
     
     [Fact]
@@ -146,28 +162,14 @@ public class CreatePlaceableShould
         
         Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.Create(invalidViewModel));
     }
-}
-
-public static class PlaceableFactory
-{
-    public static Placeable Create(PlaceableViewModel viewModel)
+    
+    [Fact]
+    public void ThrowArgumentNullException_WhenDimensionsAndDimensionsIdNull()
     {
-        if (!StringValidator.IsValidString(viewModel.Name))
-        {
-            throw new ArgumentException("string was invalid", nameof(viewModel.Name));
-        }
+        var invalidViewModel = _strelitziaViewModel.Clone();
+        invalidViewModel.DimensionsId = default;
+        invalidViewModel.Dimensions = null;
         
-        return new Plant
-        {
-            Id = viewModel.Id,
-            Created = viewModel.Created ?? throw new ArgumentException(nameof(viewModel.Created)),
-            Modified = (DateTime)(viewModel.Modified ?? viewModel.Created!),
-            Name = viewModel.Name,
-            Location = viewModel.Location,
-            DimensionsId = viewModel.DimensionsId,
-            Dimensions = viewModel.Dimensions ?? throw new ArgumentNullException(nameof(viewModel.Dimensions)),
-            Type = viewModel.Type,
-            Specie = viewModel.Specie ?? throw new ArgumentNullException(nameof(viewModel.Specie))
-        };
+        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.Create(invalidViewModel));
     }
 }
