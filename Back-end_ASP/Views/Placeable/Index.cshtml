@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Greenmaster_ASP.Models.Placeables.Placeable>
+
+@{
+    ViewBag.Title = "Placeables";
+    Layout = "_Layout";
+}
+
+<h1>Placeables</h1>
+
+<p>
+    <a class="btn btn-primary" asp-controller="Placeable" asp-action="CreatePlant">Add plant</a>
+    <a class="btn btn-primary" asp-controller="Placeable" asp-action="CreateStructure">Add structure</a>
+</p>
+
+<table  class="table table-striped table-bordered" id="specieTable">
+    <thead>
+    <tr>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Dimensions.Width)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Dimensions.Height)
+        </th>
+        <th class="th-sm"></th>
+    </tr>
+    </thead>
+    
+</table>

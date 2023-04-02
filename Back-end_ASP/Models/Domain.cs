@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Greenmaster_ASP.Models.Placeables;
 
 namespace Greenmaster_ASP.Models;
 

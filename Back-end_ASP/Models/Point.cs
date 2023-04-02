@@ -2,13 +2,12 @@
 
 namespace Greenmaster_ASP.Models;
 
-public class Location
+public class Point
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int LocationId { get; set; }
+    public int Id { get; set; }
 
     public double X { get; set; }
     public double Y { get; set; }
-
-    public Area? Area { get; set; }
+    public double Z { get; set; }
 }

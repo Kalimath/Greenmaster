@@ -38,13 +38,13 @@
                         Plantgrowth underneed is allowed
                     </dt>
                     <dd class="col-sm-8">
-                        @(Model is PlantType ? (Model as PlantType).AllowAsUndergrowth : "/")
+                        @(Model is PlantType ? ((Model as PlantType)!).AllowAsUndergrowth : "/")
                     </dd>
                     <dt class="col-sm-4">
                         @Html.DisplayName(nameof(PlantType.Canopy))
                     </dt>
                     <dd class="col-sm-8">
-                        @(Model is PlantType ? (Model as PlantType).Canopy : "/")
+                        @(Model is PlantType ? ((Model as PlantType)!).Canopy : "/")
                     </dd>
                 }
             </dl>

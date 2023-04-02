@@ -1,15 +1,13 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Greenmaster_ASP.Models.Base;
 
 namespace Greenmaster_ASP.Models;
 
-public class Area
+public class Area : BaseEntity
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int AreaId { get; set; }
-
     public string Name { get; set; }
     public bool IsOccupied { get; set; }
-    public List<Location> EdgePoints { get; set; }
+    public List<Point> EdgePoints { get; set; }
 
     public int DomainId { get; set; }
     public Domain Domain { get; set; }

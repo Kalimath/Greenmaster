@@ -35,12 +35,11 @@ public class SpecieServiceTests
             .Options;
     }
 
-    
-    [Fact(Skip = "Not properly working")]
+    /*[Fact(Skip = "Not properly working")]
     public async Task UpdateSpecie_CallsContextUpdate()
     {
-        var context = Substitute.For<IArboretumContext>();
-        context.Species.Add(_specieStrelitzia);
+        /*var context = Substitute.For<IArboretumContext>();
+        context.Species.Add(_specieStrelitzia);#1#
         var specieService = new SpecieService(null);
         var updatedSpecieStrelitzia = new Specie
         {
@@ -58,7 +57,7 @@ public class SpecieServiceTests
 
         var storedSpecie = context.Species.FirstOrDefault(specie => specie.Id == _specieStrelitzia.Id);
         AssertObjects.AssertSpecie(updatedSpecieStrelitzia, storedSpecie);
-    }
+    }*/
 
     
 }

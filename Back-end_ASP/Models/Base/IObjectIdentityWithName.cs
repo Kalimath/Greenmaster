@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Greenmaster_ASP.Models.Placeables;
 
-namespace Greenmaster_ASP.Models.Measurements;
+namespace Greenmaster_ASP.Models.Base;
 
-public class Dimensions
+public interface IObjectIdentityWithName : IObjectIdentity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
     public int Id { get; set; }
-    public double Height { get; set; }
-    public double Width { get; set; }
+    public string Name { get; set; }
+    
 }
