@@ -2,7 +2,11 @@
 
 public class StructureType : ObjectType
 {
-    public StructureType(int id, string name): base(id, name, "/")
+    public StructureType()
+    {
+        
+    }
+    public StructureType(int id, string name, string? description = "/"): base(id, name, description)
     {
     }
 }

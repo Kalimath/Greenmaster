@@ -13,39 +13,43 @@
             <h2>@Html.DisplayFor(model => model.Name)</h2>
             <hr/>
             <dl class="row" id="specie-identification">
-                <dt class="col-sm-2">
+                <dt class="col-sm-4">
                     @Html.DisplayNameFor(model => model.Id)
                 </dt>
-                <dd class="col-sm-4">
+                <dd class="col-sm-8">
                     @Html.DisplayFor(model => model.Id)
                 </dd>
-                <dt class="col-sm-2">
+                <dt class="col-sm-4">
                     @Html.DisplayNameFor(model => model.Name)
                 </dt>
-                <dd class="col-sm-4">
+                <dd class="col-sm-8">
                     @Html.DisplayFor(model => model.Name)
                 </dd>
-                <dt class="col-sm-2">
+                <dt class="col-sm-4">
                     @Html.DisplayNameFor(model => model.Description)
                 </dt>
-                <dd class="col-sm-4">
+                <dd class="col-sm-8">
                     @Html.DisplayFor(model => model.Description)
                 </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayName(nameof(PlantType.AllowAsUndergrowth))
-                </dt>
-                <dd class="col-sm-4">
-                    @(Model is PlantType ? (Model as PlantType).AllowAsUndergrowth : "/")
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayName(nameof(PlantType.Canopy)))
-                </dt>
-                <dd class="col-sm-4">
-                    @(Model is PlantType ? (Model as PlantType).AllowAsUndergrowth : "/")
-                </dd>
+                @if (Model is PlantType)
+                {
+                    var modelAsPlantType = Model as PlantType;
+                    <dt class="col-sm-4">
+                        Plantgrowth underneed is allowed
+                    </dt>
+                    <dd class="col-sm-8">
+                        @(Model is PlantType ? (Model as PlantType).AllowAsUndergrowth : "/")
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayName(nameof(PlantType.Canopy))
+                    </dt>
+                    <dd class="col-sm-8">
+                        @(Model is PlantType ? (Model as PlantType).Canopy : "/")
+                    </dd>
+                }
             </dl>
         </div>
-    
+
     </div>
 </div>
 

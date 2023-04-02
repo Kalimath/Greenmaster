@@ -20,8 +20,8 @@ public class ObjectTypeService : IObjectTypeService<ObjectType>
 
     public async Task<ObjectType> GetById(int id)
     {
-        return (await _context.PlantTypes.FirstOrDefaultAsync(m => m.Id == id))
-               ?? throw new ArgumentException($"No Rendering found with {nameof(id)}={id}");
+        return (await _context.ObjectTypes.FirstOrDefaultAsync(m => m.Id == id))
+               ?? throw new ArgumentException($"No {nameof(ObjectType)} found with {nameof(id)}={id}");
     }
 
     public async Task<List<ObjectType>> GetAll()
