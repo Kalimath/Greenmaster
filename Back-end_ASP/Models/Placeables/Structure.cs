@@ -8,7 +8,7 @@ public class Structure : Placeable
     {
         
     }
-    public Structure(int typeId, Dimensions dimensions, Point? location = null): base(typeId, dimensions, location)
+    public Structure(Guid id, string name, int typeId, Dimensions dimensions, DateTime? created, DateTime? modified, Point? location = null): base(id, name, typeId, dimensions, created, modified, location)
     {
     }
 }

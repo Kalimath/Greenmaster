@@ -8,19 +8,8 @@ public static class PlaceableFactory
 {
     public static Placeable Create(PlaceableViewModel viewModel)
     {
-        if (!StringValidator.IsValidString(viewModel.Name))
-            throw new ArgumentException("string was invalid", nameof(viewModel.Name));
-        if (viewModel.Created == default)
-            throw new ArgumentException("DateTime was invalid", nameof(viewModel.Created));
-        if (viewModel.Dimensions == default)
-            throw new ArgumentNullException(nameof(viewModel.Dimensions));
-        if (viewModel.DimensionsId == default && viewModel.Dimensions == default)
-            throw new ArgumentNullException(nameof(viewModel.Dimensions),"Placeable must have a DimensionsId and/or Dimensions, currently both are default/null");
-        if (viewModel.TypeId == default && viewModel.Type == null)
-            throw new ArgumentNullException(nameof(viewModel.Type),"Placeable must have a TypeId and/or Type, currently both are default/null");
-        if (viewModel.Type == null)
-            throw new ArgumentNullException(nameof(viewModel.Type));
-        
+        ValidateViewModel(viewModel);
+
         var timeModified = (DateTime)(viewModel.Modified ?? viewModel.Created!);
         
         if (viewModel.Specie != null)
@@ -32,7 +21,7 @@ public static class PlaceableFactory
             var plant = new Plant
             {
                 Id = viewModel.Id,
-                Created = (DateTime)viewModel.Created,
+                Created = (DateTime)viewModel.Created!,
                 Modified = timeModified,
                 Name = viewModel.Name,
                 Location = viewModel.Location,
@@ -58,8 +47,56 @@ public static class PlaceableFactory
         return structure;
     }
 
+    private static void ValidateViewModel(PlaceableViewModel viewModel)
+    {
+        if (!StringValidator.IsValidString(viewModel.Name))
+            throw new ArgumentException("string was invalid", nameof(viewModel.Name));
+        if (viewModel.Created == default)
+            throw new ArgumentException("DateTime was invalid", nameof(viewModel.Created));
+        if (viewModel.Modified != default && viewModel.Modified < viewModel.Created)
+            throw new ArgumentException("Modified before created", nameof(viewModel.Modified));
+        if (viewModel.Dimensions == default)
+            throw new ArgumentNullException(nameof(viewModel.Dimensions));
+        if (viewModel.DimensionsId > 0)
+        {
+            if (viewModel.Dimensions == default)
+            {
+                throw new ArgumentNullException(nameof(viewModel.Dimensions),
+                    "Placeable must have a DimensionsId and/or Dimensions, currently both are default/null");
+            }
+            if (viewModel.DimensionsId != viewModel.Dimensions.Id) 
+                throw new ArgumentOutOfRangeException(nameof(viewModel.DimensionsId) ,message: "DimensionsId does not match Dimensions.Id");
+        }
+        if (viewModel.TypeId == default && viewModel.Type == null)
+            throw new ArgumentNullException(nameof(viewModel.Type),
+                "Placeable must have a TypeId and/or Type, currently both are default/null");
+        if (viewModel.Type == null)
+            throw new ArgumentNullException(nameof(viewModel.Type));
+    }
+
     public static PlaceableViewModel ToViewModel(Placeable placeable)
     {
-        throw new NotImplementedException();
+        ValidatePlaceable(placeable);
+        return new PlaceableViewModel
+        {
+            Id = placeable.Id,
+            Created = placeable.Created,
+            Modified = placeable.Modified,
+            Name = placeable.Name,
+            Location = placeable.Location,
+            DimensionsId = placeable.DimensionsId,
+            Dimensions = placeable.Dimensions,
+            TypeId = placeable.TypeId,
+            Type = placeable.Type,
+            Specie = placeable is Plant plant? plant.Specie : null
+        };
+    }
+
+    private static void ValidatePlaceable(Placeable placeable)
+    {
+        if (placeable.Dimensions == null)
+        {
+            throw new ArgumentNullException(nameof(placeable.Dimensions));
+        }
     }
 }

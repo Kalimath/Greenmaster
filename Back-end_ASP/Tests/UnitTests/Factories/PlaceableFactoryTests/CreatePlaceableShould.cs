@@ -1,69 +1,12 @@
-﻿using Greenmaster_ASP.Models;
-using Greenmaster_ASP.Models.Examples;
-using Greenmaster_ASP.Models.Extensions;
+﻿using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Factories;
-using Greenmaster_ASP.Models.Measurements;
 using Greenmaster_ASP.Models.Placeables;
-using Greenmaster_ASP.Models.Services;
-using Greenmaster_ASP.Models.ViewModels;
 using Xunit;
 
 namespace Greenmaster_ASP.Tests.UnitTests.Factories.PlaceableFactoryTests;
 
-public class CreatePlaceableShould
+public class CreatePlaceableShould : PlaceableFactoryTestBase
 {
-    private readonly DateTime _strelitziaCreationTime;
-    private readonly Guid _strelitziaId;
-    private readonly string _strelitziaMatureName;
-    private readonly Dimensions _strelitziaMatureDimensions;
-    private readonly PlaceableViewModel _strelitziaViewModel;
-    private readonly Point _somelocation;
-    private readonly IExamplesService _examplesService;
-    private readonly PlantType _strelitziaPlantType;
-
-    public CreatePlaceableShould()
-    {
-        _examplesService = new ExamplesService();
-        _strelitziaCreationTime = DateTime.Now;
-        _strelitziaId = Guid.NewGuid();
-        _strelitziaMatureName = SpecieExamples.Strelitzia.ScientificName+" (mature)";
-        _strelitziaMatureDimensions = new Dimensions
-        {
-            Id = 1,
-            Height = SpecieExamples.Strelitzia.MaxHeight,
-            Width = SpecieExamples.Strelitzia.MaxWidth
-        };
-        _somelocation = new Point
-        {
-            Id = 24,
-            X = 122,
-            Y = 687,
-            Z = 3
-        };
-        var strelitziaPlantTypeId = SpecieExamples.Strelitzia.PlantTypeId;
-        _strelitziaPlantType = _examplesService.GetPlantType(strelitziaPlantTypeId);
-        _strelitziaViewModel = new PlaceableViewModel
-        {
-            Id = _strelitziaId,
-            Created = _strelitziaCreationTime,
-            Modified = _strelitziaCreationTime,
-            Name = _strelitziaMatureName,
-            Location = _somelocation,
-            DimensionsId = _strelitziaMatureDimensions.Id,
-            Dimensions = _strelitziaMatureDimensions,
-            TypeId = strelitziaPlantTypeId,
-            Type = null,
-            Specie = SpecieExamples.Strelitzia
-        };
-    }
-    
-    private PlaceableViewModel CloneStrelitziaViewModel()
-    {
-        var clonedStrelitziaViewModel = _strelitziaViewModel.Clone();
-        clonedStrelitziaViewModel.Type = _strelitziaPlantType;
-        return clonedStrelitziaViewModel;
-    }
-
     [Fact]
     public void SetLocationNull_WhenLocationNullInViewModel()
     {
@@ -83,10 +26,10 @@ public class CreatePlaceableShould
         
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Location);
-        Assert.Equal(_strelitziaViewModel.Location!.Id, resultPlaceable.Location.Id);
-        Assert.Equal(_strelitziaViewModel.Location!.X, resultPlaceable.Location.X);
-        Assert.Equal(_strelitziaViewModel.Location!.Y, resultPlaceable.Location.Y);
-        Assert.Equal(_strelitziaViewModel.Location!.Z, resultPlaceable.Location.Z);
+        Assert.Equal(StrelitziaViewModel.Location!.Id, resultPlaceable.Location.Id);
+        Assert.Equal(StrelitziaViewModel.Location!.X, resultPlaceable.Location.X);
+        Assert.Equal(StrelitziaViewModel.Location!.Y, resultPlaceable.Location.Y);
+        Assert.Equal(StrelitziaViewModel.Location!.Z, resultPlaceable.Location.Z);
     }
     
     [Fact]
@@ -150,7 +93,7 @@ public class CreatePlaceableShould
         var resultPlaceable = PlaceableFactory.Create(CloneStrelitziaViewModel());
         
         Assert.NotNull(resultPlaceable);
-        Assert.Equal(_strelitziaViewModel.DimensionsId ,resultPlaceable.DimensionsId);
+        Assert.Equal(StrelitziaViewModel.DimensionsId ,resultPlaceable.DimensionsId);
         Assert.NotNull(resultPlaceable.Dimensions);
     }
     
@@ -172,7 +115,17 @@ public class CreatePlaceableShould
         var resultPlaceable = PlaceableFactory.Create(validViewModel);
         
         Assert.NotNull(resultPlaceable);
-        Assert.Equal(_strelitziaViewModel.Created ,resultPlaceable.Modified);
+        Assert.Equal(StrelitziaViewModel.Created ,resultPlaceable.Modified);
+    }
+    
+    [Fact]
+    public void ThrowArgumentException_WhenPlaceableModifiedBeforeCreated()
+    {
+        var viewModel = CloneStrelitziaViewModel();
+        viewModel.Created = SomeCreationTime;
+        viewModel.Modified = SomeCreationTime.AddDays(-7);
+        
+        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.Create(viewModel));
     }
     
     [Fact]
@@ -185,6 +138,16 @@ public class CreatePlaceableShould
         
         Assert.NotNull(resultPlaceable);
         Assert.IsType<Structure>(resultPlaceable);
+    }
+    
+    [Fact]
+    public void ThrowArgumentOutOfRangeException_WhenDimensionsIdNotMatchingIdFromDimensions()
+    {
+        var invalidViewModel = CloneStrelitziaViewModel();
+        invalidViewModel.Dimensions = StrelitziaMatureDimensions;
+        invalidViewModel.DimensionsId = StrelitziaMatureDimensions.Id + 5;
+        
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.Create(invalidViewModel));
     }
     
     [Fact]
