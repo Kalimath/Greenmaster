@@ -57,6 +57,7 @@ public class ArboretumContext : DbContext
     public ArboretumContext(DbContextOptions<ArboretumContext> options, IExamplesService examplesService) : base(options)
     {
         _examplesService = examplesService;
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
