@@ -1,9 +1,10 @@
 using Greenmaster_ASP.Models.Database.Arboretum;
+using Greenmaster_ASP.Models.Placeables;
 using Microsoft.EntityFrameworkCore;
 
 namespace Greenmaster_ASP.Models.Services;
 
-public class SpecieService : ISpecieService,IContextService<Specie>
+public class SpecieService : ISpecieService
 {
     private readonly ArboretumContext _context;
 

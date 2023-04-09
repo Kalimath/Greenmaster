@@ -33,25 +33,27 @@ public class ArboretumContext : DbContext
         return Species.Include(specie => specie.PlantType);
     }
 
-    public IEnumerable<Placeable> GetAllPlaceables()
+    public Task<IEnumerable<Placeable>> GetAllPlaceables()
     {
-        return Placeables
+        return Task.FromResult<IEnumerable<Placeable>>(Placeables
             .Include(placeable => placeable.Dimensions)
             .Include(placeable => placeable.Location)
-            .Include(placeable => placeable.Type);
+            .Include(placeable => placeable.Type));
     }
-    public IEnumerable<Placeable> GetAllStructures()
+    public Task<IEnumerable<Structure>> GetAllStructures()
     {
-        return Placeables.Where(placeable => placeable is Structure);
+        return Task.FromResult<IEnumerable<Structure>>(Structures
+            .Include(plant => plant.Dimensions)
+            .Include(plant => plant.Location)
+            .Include(plant => plant.Type));
     }
-    public IEnumerable<Placeable> GetAllPlants()
+    public Task<IEnumerable<Plant>> GetAllPlants()
     {
-        return Placeables
-            .Include(placeable => placeable.Dimensions)
-            .Include(placeable => placeable.Location)
-            .Include(placeable => placeable.Type)
-            .Include(placeable => ((Plant)placeable).Specie)
-            .Where(placeable => placeable is Plant);
+        return Task.FromResult<IEnumerable<Plant>>(Plants
+            .Include(plant => plant.Dimensions)
+            .Include(plant => plant.Location)
+            .Include(plant => plant.Type)
+            .Include(plant => plant.Specie).ToList());
     }
 
     public ArboretumContext(DbContextOptions<ArboretumContext> options, IExamplesService examplesService) : base(options)

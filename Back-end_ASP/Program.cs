@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Database.Arboretum;
 using Greenmaster_ASP.Models.Factories;
+using Greenmaster_ASP.Models.Placeables;
 using Greenmaster_ASP.Models.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,8 @@ services.AddScoped<IObjectTypeService<PlantType>, PlantTypeService>();
 services.AddScoped<IObjectTypeService<StructureType>, StructureTypeService>();
 services.AddScoped<IRenderingService, RenderingService>();
 services.AddScoped<IExamplesService, ExamplesService>();
+services.AddScoped<IContextService<Plant, Guid>, PlantService>();
+services.AddScoped<IContextService<Structure, Guid>, StructureService>();
 
 
 var app = builder.Build();
