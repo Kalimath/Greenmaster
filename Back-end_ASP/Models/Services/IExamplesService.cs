@@ -1,4 +1,6 @@
-﻿namespace Greenmaster_ASP.Models.Services;
+﻿using Greenmaster_ASP.Models.Measurements;
+
+namespace Greenmaster_ASP.Models.Services;
 
 public interface IExamplesService
 {
@@ -8,4 +10,6 @@ public interface IExamplesService
     List<StructureType> GetAllStructureTypes();
     List<ObjectType> GetAllObjectTypes();
     PlantType GetPlantType(int plantTypeId);
+    List<Point> GetAllPoints();
+    List<Dimensions> GetAllDimensions();
 }

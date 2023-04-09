@@ -1,4 +1,6 @@
 ﻿using Greenmaster_ASP.Models.Examples;
+using Greenmaster_ASP.Models.Measurements;
+using Greenmaster_ASP.Models.Placeables;
 using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
@@ -18,20 +20,25 @@ public class ArboretumContext : DbContext
     public DbSet<ObjectType> ObjectTypes { get; set; } = null!;
     public DbSet<PlantType> PlantTypes { get; set; } = null!;
     public DbSet<StructureType> StructureTypes { get; set; } = null!;
+    public DbSet<Point> Points { get; set; } = null!;
+    public DbSet<Dimensions> Dimensions { get; set; } = null!;
+    public DbSet<Placeable> Placeables { get; set; } = null!;
     
-    /*public DbSet<Dimensions> PlantDimensions { get; set; } = null!;
-    public DbSet<FlowerData> FlowerData { get; set; } = null!;
-    public DbSet<FertiliserData> FertiliserData { get; set; } = null!;
-    public DbSet<Location> Locations { get; set; } = null!;
-    public DbSet<Plant> Plants { get; set; } = null!;
-    public DbSet<PlantRequirements> PlantRequirements { get; set; } = null!;
+    /*public DbSet<Plant> Plants { get; set; } = null!;
     public DbSet<Domain> Domains { get; set; } = null!;
-    public DbSet<Area> Areas { get; set; } = null!;
-    public DbSet<Placeable> Placeables { get; set; } = null!;*/
+    public DbSet<Area> Areas { get; set; } = null!;*/
     
     public IEnumerable<Specie> GetAllSpecies()
     {
         return Species.Include(specie => specie.PlantType);
+    }
+
+    public IEnumerable<Placeable> GetAllPlaceables()
+    {
+        return Placeables
+            .Include(placeable => placeable.Dimensions)
+            .Include(placeable => placeable.Location)
+            .Include(placeable => placeable.Type);
     }
 
     public ArboretumContext(DbContextOptions<ArboretumContext> options, IExamplesService examplesService) : base(options)
@@ -41,7 +48,18 @@ public class ArboretumContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        DefinePropertyConversions(modelBuilder);
+        DefineSeedData(modelBuilder);
         
+        modelBuilder.Entity<PlantType>().HasBaseType(typeof(ObjectType));
+        modelBuilder.Entity<ObjectType>().HasDiscriminator<string>("objectType_type")
+            .HasValue<PlantType>(nameof(PlantType))
+            .HasValue<StructureType>(nameof(StructureType));
+        modelBuilder.Entity<StructureType>().HasBaseType(typeof(ObjectType));
+    }
+
+    private static void DefinePropertyConversions(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Specie>()
             .Property(e => e.BloomPeriod)
             .HasConversion(
@@ -87,34 +105,20 @@ public class ArboretumContext : DbContext
             .HasConversion(
                 v => v.ToString(),
                 v => Enum.Parse<RenderingObjectType>(v));
-        
-        //modelBuilder.Entity<Specie>().Property<int>("PlantTypeForeignKey"); //shadow property for foreign key
-        modelBuilder.Entity<PlantType>().HasData(_examplesService.GetAllPlantTypes());
-        modelBuilder.Entity<StructureType>().HasData(_examplesService.GetAllStructureTypes());
-        modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
-        modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
-        modelBuilder.Entity<PlantType>().HasBaseType(typeof(ObjectType));
-        modelBuilder.Entity<ObjectType>().HasDiscriminator<string>("objectType_type")
-            .HasValue<PlantType>(nameof(PlantType))
-            .HasValue<StructureType>(nameof(StructureType));
-        modelBuilder.Entity<StructureType>().HasBaseType(typeof(ObjectType));
-        
         modelBuilder.Entity<PlantType>()
             .Property(e => e.Canopy)
             .HasConversion(
                 v => v.ToString(),
                 v => Enum.Parse<Permeability>(v));
-        
-        
-        
-        /*modelBuilder.Entity<Domain>().HasMany(domain => domain.Placeables).WithMany(x => x.Domains);
-        modelBuilder.Entity<Area>().HasOne(x => x.Domain).WithMany(x => x.Areas);
-        modelBuilder.Entity<Area>().HasMany(x => x.EdgePoints).WithOne(x => x.Area);
-        modelBuilder.Entity<Specie>().OwnsOne(x => x.MaxDimensions);
-        modelBuilder.Entity<Specie>().HasOne(x => x.FlowerInfo);
-        modelBuilder.Entity<Specie>().HasOne(x => x.Requirements);
-        modelBuilder.Entity<Plant>().HasOne(x => x.Specie).WithMany(x => x.Plants).HasForeignKey(x => x.PlaceableId);
-        modelBuilder.Entity<Plant>().HasOne(x => x.Position);
-        modelBuilder.Entity<PlantRequirements>().OwnsOne(x => x.FertiliserInfo);*/
+    }
+
+    private void DefineSeedData(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Point>().HasData(_examplesService.GetAllPoints());
+        modelBuilder.Entity<Dimensions>().HasData(_examplesService.GetAllDimensions());
+        modelBuilder.Entity<PlantType>().HasData(_examplesService.GetAllPlantTypes());
+        modelBuilder.Entity<StructureType>().HasData(_examplesService.GetAllStructureTypes());
+        modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
+        modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
     }
 }

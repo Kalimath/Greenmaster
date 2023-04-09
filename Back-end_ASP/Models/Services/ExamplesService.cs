@@ -1,4 +1,5 @@
 ﻿using Greenmaster_ASP.Models.Examples;
+using Greenmaster_ASP.Models.Measurements;
 
 namespace Greenmaster_ASP.Models.Services;
 
@@ -22,6 +23,16 @@ public class ExamplesService : IExamplesService
     public PlantType GetPlantType(int plantTypeId)
     {
         return ObjectTypeExamples.GetAllPlantTypes().First(type => type.Id == plantTypeId);
+    }
+
+    public List<Point> GetAllPoints()
+    {
+        return PointExamples.GetAll();
+    }
+    
+    public List<Dimensions> GetAllDimensions()
+    {
+        return DimensionsExamples.GetAll();
     }
 
     public List<StructureType> GetAllStructureTypes()
