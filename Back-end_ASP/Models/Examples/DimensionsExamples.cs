@@ -4,15 +4,15 @@ namespace Greenmaster_ASP.Models.Examples;
 
 public class DimensionsExamples
 {
-    public static readonly Dimensions DimensionsUp = new Dimensions
+    public static readonly Dimensions DimensionsUp = new()
     {
         Id = 1,
         Height = 2.5,
         Width = 0.75
     };
-    public static readonly Dimensions DimensionsFlat = new Dimensions
+    public static readonly Dimensions DimensionsFlat = new()
     {
-        Id = 1,
+        Id = 2,
         Length = 10,
         Width = 4.5
     };

@@ -14,7 +14,7 @@ public class PlaceableFactoryTestBase
     protected readonly string StrelitziaMatureName;
     protected readonly Dimensions StrelitziaMatureDimensions;
     protected readonly PlaceableViewModel StrelitziaViewModel;
-    protected readonly Point SomeLocation;
+    protected readonly Point StrelitziaLocation;
     protected readonly IExamplesService ExamplesService;
     protected readonly PlantType StrelitziaPlantType;
     protected readonly Plant StrelitziaPlaceable;
@@ -25,39 +25,27 @@ public class PlaceableFactoryTestBase
     {
         Strelitzia = SpecieExamples.Strelitzia;
         ExamplesService = new ExamplesService();
-        SomeCreationTime = DateTime.Now;
-        StrelitziaId = Guid.NewGuid();
-        StrelitziaMatureName = SpecieExamples.Strelitzia.ScientificName+" (mature)";
-        StrelitziaMatureDimensions = new Dimensions
-        {
-            Id = 1,
-            Height = SpecieExamples.Strelitzia.MaxHeight,
-            Width = SpecieExamples.Strelitzia.MaxWidth
-        };
-        SomeLocation = new Point
-        {
-            Id = 24,
-            X = 122,
-            Y = 687,
-            Z = 3
-        };
+        SomeCreationTime = PlaceableExamples.MatureStrelitziaPlant.Created;
+        StrelitziaId = PlaceableExamples.MatureStrelitziaPlant.Id;
+        StrelitziaMatureName = PlaceableExamples.MatureStrelitziaPlant.Name;
+        StrelitziaMatureDimensions = ExamplesService.GetAllDimensions().First(d => d.Id == PlaceableExamples.MatureStrelitziaPlant.DimensionsId);
+        StrelitziaLocation = ExamplesService.GetAllPoints().First(d => d.Id == PlaceableExamples.MatureStrelitziaPlant.LocationId);
         var strelitziaPlantTypeId = SpecieExamples.Strelitzia.PlantTypeId;
         StrelitziaPlantType = ExamplesService.GetPlantType(strelitziaPlantTypeId);
         StrelitziaViewModel = new PlaceableViewModel
         {
-            Id = StrelitziaId,
-            Created = SomeCreationTime,
-            Modified = SomeCreationTime,
-            Name = StrelitziaMatureName,
-            Location = SomeLocation,
+            Id = PlaceableExamples.MatureStrelitziaPlant.Id,
+            Created = PlaceableExamples.MatureStrelitziaPlant.Created,
+            Modified = PlaceableExamples.MatureStrelitziaPlant.Modified,
+            Name = PlaceableExamples.MatureStrelitziaPlant.Name,
+            Location = ExamplesService.GetAllPoints().First(point => point.Id == PlaceableExamples.MatureStrelitziaPlant.LocationId),
             DimensionsId = StrelitziaMatureDimensions.Id,
             Dimensions = StrelitziaMatureDimensions,
             TypeId = strelitziaPlantTypeId,
             Type = null,
             Specie = SpecieExamples.Strelitzia
         };
-        StrelitziaPlaceable = new Plant(StrelitziaId, StrelitziaMatureName, SpecieExamples.Strelitzia,
-            Strelitzia.PlantTypeId, DimensionsExamples.DimensionsUp, SomeCreationTime, null, PointExamples.PointOne);
+        StrelitziaPlaceable = PlaceableExamples.MatureStrelitziaPlant;
         StrelitziaPlaceable.DimensionsId = StrelitziaMatureDimensions.Id;
     }
 
@@ -70,19 +58,23 @@ public class PlaceableFactoryTestBase
     
     protected Placeable CloneStrelitziaPlaceable()
     {
-        var clonedStrelitziaPlaceable = new Plant(StrelitziaId, StrelitziaMatureName, SpecieExamples.Strelitzia, Strelitzia.PlantTypeId,  DimensionsExamples.DimensionsUp, SomeCreationTime, null, PointExamples.PointOne);
+        var clonedStrelitziaPlaceable = PlaceableExamples.MatureStrelitziaPlant;
         clonedStrelitziaPlaceable.DimensionsId = StrelitziaMatureDimensions.Id;
+        clonedStrelitziaPlaceable.Dimensions = StrelitziaMatureDimensions;
         clonedStrelitziaPlaceable.Type = StrelitziaPlantType;
+        clonedStrelitziaPlaceable.Specie = Strelitzia;
+        clonedStrelitziaPlaceable.Location = StrelitziaLocation;
         
         return clonedStrelitziaPlaceable;
     }
     
     protected Placeable CloneStructurePlaceable()
     {
-        var structure = new Structure(Guid.NewGuid(), "Large swimming pool", ObjectTypeExamples.SwimmingPool.Id,
-            DimensionsExamples.DimensionsFlat, SomeCreationTime, null, PointExamples.PointTwo);
+        var structure = PlaceableExamples.SwimmingPoolStructure;
         structure.DimensionsId = StrelitziaMatureDimensions.Id;
+        structure.Dimensions = StrelitziaMatureDimensions;
         structure.Type = ObjectTypeExamples.SwimmingPool;
+        structure.Location = PointExamples.GetAll().Find(p => p.Id == PlaceableExamples.SwimmingPoolStructure.LocationId);
         
         return structure;
     }

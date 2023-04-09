@@ -1,5 +1,6 @@
 ﻿using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Measurements;
+using Greenmaster_ASP.Models.Placeables;
 
 namespace Greenmaster_ASP.Models.Services;
 
@@ -33,6 +34,21 @@ public class ExamplesService : IExamplesService
     public List<Dimensions> GetAllDimensions()
     {
         return DimensionsExamples.GetAll();
+    }
+
+    public List<Placeable> GetAllPlaceables()
+    {
+        return PlaceableExamples.GetAll();
+    }
+
+    public List<Plant> GetAllPlants()
+    {
+        return PlaceableExamples.GetAllPlants();
+    }
+
+    public List<Structure> GetAllStructures()
+    {
+        return PlaceableExamples.GetAllStructures();
     }
 
     public List<StructureType> GetAllStructureTypes()

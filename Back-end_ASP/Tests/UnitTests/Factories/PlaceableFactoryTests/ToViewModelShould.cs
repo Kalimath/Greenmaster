@@ -23,15 +23,14 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     public void SetLocation_WhenLocationInPlaceableNotNull()
     {
         var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
-        
-        var expectedLocation = StrelitziaPlaceable.Location;
+
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Location);
-        Assert.NotNull(expectedLocation);
-        Assert.Equal(expectedLocation.Id, resultPlaceable.Location.Id);
-        Assert.Equal(expectedLocation.X, resultPlaceable.Location.X);
-        Assert.Equal(expectedLocation.Y, resultPlaceable.Location.Y);
-        Assert.Equal(expectedLocation.Z, resultPlaceable.Location.Z);
+        Assert.NotNull(StrelitziaLocation);
+        Assert.Equal(StrelitziaLocation.Id, resultPlaceable.Location.Id);
+        Assert.Equal(StrelitziaLocation.X, resultPlaceable.Location.X);
+        Assert.Equal(StrelitziaLocation.Y, resultPlaceable.Location.Y);
+        Assert.Equal(StrelitziaLocation.Z, resultPlaceable.Location.Z);
     }
     
     [Fact]
@@ -67,7 +66,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
-        Assert.Equal(SomeCreationTime ,resultPlaceable.Created);
+        Assert.Equal(StrelitziaPlaceable.Created ,resultPlaceable.Created);
     }
     
     [Fact]
@@ -76,7 +75,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
-        Assert.Equal(SomeCreationTime ,resultPlaceable.Modified);
+        Assert.Equal(StrelitziaPlaceable.Modified ,resultPlaceable.Modified);
     }
     
     [Fact]

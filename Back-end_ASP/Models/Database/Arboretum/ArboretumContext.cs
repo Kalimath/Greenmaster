@@ -23,10 +23,10 @@ public class ArboretumContext : DbContext
     public DbSet<Point> Points { get; set; } = null!;
     public DbSet<Dimensions> Dimensions { get; set; } = null!;
     public DbSet<Placeable> Placeables { get; set; } = null!;
-    
-    /*public DbSet<Plant> Plants { get; set; } = null!;
-    public DbSet<Domain> Domains { get; set; } = null!;
-    public DbSet<Area> Areas { get; set; } = null!;*/
+    public DbSet<Plant> Plants { get; set; } = null!;
+    public DbSet<Structure> Structures { get; set; } = null!;
+    // public DbSet<Domain> Domains { get; set; } = null!;
+    // public DbSet<Area> Areas { get; set; } = null!;
     
     public IEnumerable<Specie> GetAllSpecies()
     {
@@ -39,6 +39,19 @@ public class ArboretumContext : DbContext
             .Include(placeable => placeable.Dimensions)
             .Include(placeable => placeable.Location)
             .Include(placeable => placeable.Type);
+    }
+    public IEnumerable<Placeable> GetAllStructures()
+    {
+        return Placeables.Where(placeable => placeable is Structure);
+    }
+    public IEnumerable<Placeable> GetAllPlants()
+    {
+        return Placeables
+            .Include(placeable => placeable.Dimensions)
+            .Include(placeable => placeable.Location)
+            .Include(placeable => placeable.Type)
+            .Include(placeable => ((Plant)placeable).Specie)
+            .Where(placeable => placeable is Plant);
     }
 
     public ArboretumContext(DbContextOptions<ArboretumContext> options, IExamplesService examplesService) : base(options)
@@ -116,6 +129,8 @@ public class ArboretumContext : DbContext
     {
         modelBuilder.Entity<Point>().HasData(_examplesService.GetAllPoints());
         modelBuilder.Entity<Dimensions>().HasData(_examplesService.GetAllDimensions());
+        modelBuilder.Entity<Plant>().HasData(_examplesService.GetAllPlants());
+        modelBuilder.Entity<Structure>().HasData(_examplesService.GetAllStructures());
         modelBuilder.Entity<PlantType>().HasData(_examplesService.GetAllPlantTypes());
         modelBuilder.Entity<StructureType>().HasData(_examplesService.GetAllStructureTypes());
         modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());

@@ -6,6 +6,7 @@ namespace Greenmaster_ASP.Models.Placeables;
 public abstract class Placeable : BaseAuditableEntity
 {
     public string Name { get; set; }
+    public int? LocationId { get; set; }
     public Point? Location { get; set; }
     public int DimensionsId { get; set; }
     public Dimensions Dimensions { get; set; }
@@ -26,6 +27,7 @@ public abstract class Placeable : BaseAuditableEntity
         TypeId = typeId;
         Location = location;
         Dimensions = dimensions;
+        DimensionsId = dimensions.Id;
         Created = created ?? DateTime.Now;
         Modified = modified ?? Created;
     }
