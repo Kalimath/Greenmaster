@@ -96,7 +96,31 @@ public static class PlaceableFactory
     {
         if (placeable.Dimensions == null)
         {
+            if (placeable.DimensionsId <= 0)
+            {
+                throw new ArgumentNullException(nameof(placeable.DimensionsId));
+            }
             throw new ArgumentNullException(nameof(placeable.Dimensions));
         }
+        if (placeable.Created == default)
+        {
+            throw new ArgumentException(nameof(placeable.Created));
+        }
+        if (placeable.Modified != default && placeable.Modified < placeable.Created)
+        {
+            throw new ArgumentOutOfRangeException(nameof(placeable.Modified), "Modified before created");
+        }
+        if (!StringValidator.IsValidString(placeable.Name))
+        {
+            throw new ArgumentException(nameof(placeable.Name));
+        }
+
+        if (placeable.Type  == null) throw new ArgumentNullException(nameof(Plant.Specie), "Placeable with PlantType has specie = null");
+        
+        if (placeable.Type is PlantType && (placeable as Plant)?.Specie == null)
+        {
+            throw new ArgumentNullException(nameof(Plant.Specie), "Placeable with PlantType has specie = null");
+        }
+        
     }
 }

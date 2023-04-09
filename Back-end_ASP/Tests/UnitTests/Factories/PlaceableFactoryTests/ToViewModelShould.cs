@@ -22,7 +22,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetLocation_WhenLocationInPlaceableNotNull()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(StrelitziaPlaceable);
+        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         var expectedLocation = StrelitziaPlaceable.Location;
         Assert.NotNull(resultPlaceable);
@@ -37,7 +37,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetDimensions_WhenDimensionsInPlaceableNotNull()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(StrelitziaPlaceable);
+        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Dimensions);
@@ -46,7 +46,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetDimensionsId_WhenDimensionsIdInPlaceableValid()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(StrelitziaPlaceable);
+        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaPlaceable.DimensionsId ,resultPlaceable.DimensionsId);
@@ -55,7 +55,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetId_WhenIdInPlaceableValid()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(StrelitziaPlaceable);
+        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaId ,resultPlaceable.Id);
@@ -64,7 +64,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetCreated_WhenValidInPlaceable()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(StrelitziaPlaceable);
+        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(SomeCreationTime ,resultPlaceable.Created);
@@ -73,7 +73,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetModifiedToCreated_WhenNullInPlaceable()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(StrelitziaPlaceable);
+        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(SomeCreationTime ,resultPlaceable.Modified);
@@ -82,7 +82,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetName_WhenValidInPlaceable()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(StrelitziaPlaceable);
+        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaMatureName ,resultPlaceable.Name);
@@ -91,7 +91,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetSpecie_WhenPlaceableIsPlant()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(StrelitziaPlaceable);
+        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Specie);
@@ -153,7 +153,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         placeable.DimensionsId = 0;
         placeable.Dimensions = null!;
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -193,12 +193,12 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     }
     
     [Fact]
-    public void ThrowArgumentException_WhenPlaceableModifiedBeforeCreated()
+    public void ThrowArgumentOutOfRangeException_WhenPlaceableModifiedBeforeCreated()
     {
         var placeable = CloneStrelitziaPlaceable();
         placeable.Created = SomeCreationTime;
         placeable.Modified = SomeCreationTime.AddDays(-7);
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.ToViewModel(placeable));
     }
 }

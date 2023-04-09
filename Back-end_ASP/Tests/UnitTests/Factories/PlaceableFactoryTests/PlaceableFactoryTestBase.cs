@@ -82,6 +82,7 @@ public class PlaceableFactoryTestBase
         var structure = new Structure(Guid.NewGuid(), "Large swimming pool", ObjectTypeExamples.SwimmingPool.Id,
             DimensionsExamples.DimensionsFlat, SomeCreationTime, null, PointExamples.PointTwo);
         structure.DimensionsId = StrelitziaMatureDimensions.Id;
+        structure.Type = ObjectTypeExamples.SwimmingPool;
         
         return structure;
     }
