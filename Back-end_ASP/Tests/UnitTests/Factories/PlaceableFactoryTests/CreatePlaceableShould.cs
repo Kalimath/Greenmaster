@@ -98,6 +98,26 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
     }
     
     [Fact]
+    public void SetRendering_whenNotNull()
+    {
+        //TODO
+        var resultPlaceable = PlaceableFactory.Create(CloneStrelitziaViewModel());
+        
+        Assert.NotNull(resultPlaceable);
+        Assert.Equal(StrelitziaViewModel.Rendering.Id ,resultPlaceable.Rendering.Id);
+        Assert.NotNull(resultPlaceable.Rendering);
+    }
+    
+    [Fact]
+    public void ThrowArgumentNullException_WhenRenderingIsNull()
+    {
+        var invalidViewModel = CloneStrelitziaViewModel();
+        invalidViewModel.Rendering = null!;
+        
+        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.Create(invalidViewModel));
+    }
+    
+    [Fact]
     public void ThrowArgumentException_WhenCreatedIsDefault()
     {
         var invalidViewModel = CloneStrelitziaViewModel();

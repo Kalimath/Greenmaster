@@ -35,6 +35,8 @@ public class PlaceableViewModel
     [AtLeastOneRequired(new[] { $"{nameof(TypeId)}", $"{nameof(Type)}" },
         ErrorMessage = $"At least one of {nameof(TypeId)} or {nameof(Type)} is required.")]
     public ObjectType? Type { get; set; }
+
+    public RenderingViewModel Rendering { get; set; }
     
     //Plant-specific properties
     public Specie? Specie { get; set; }

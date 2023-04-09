@@ -12,15 +12,14 @@ public abstract class Placeable : BaseAuditableEntity
     public Dimensions Dimensions { get; set; }
     public int TypeId { get; set; }
     public ObjectType Type { get; set; }
+    public Rendering Rendering { get; set; }
 
     // public List<Domain> Domains { get; set; }
     protected Placeable()
     {
-        Created = DateTime.Now;
-        Modified = DateTime.Now;
     }
 
-    public Placeable(Guid id, string name, int typeId, Dimensions dimensions, DateTime? created, DateTime? modified, Point? location = null)
+    public Placeable(Guid id, string name, int typeId, Dimensions dimensions, Rendering rendering, DateTime? created, DateTime? modified, Point? location = null)
     {
         Id = id;
         Name = name;
@@ -28,6 +27,7 @@ public abstract class Placeable : BaseAuditableEntity
         Location = location;
         Dimensions = dimensions;
         DimensionsId = dimensions.Id;
+        Rendering = rendering;
         Created = created ?? DateTime.Now;
         Modified = modified ?? Created;
     }
