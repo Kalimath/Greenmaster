@@ -12,6 +12,7 @@ public abstract class Placeable : BaseAuditableEntity
     public Dimensions Dimensions { get; set; }
     public int TypeId { get; set; }
     public ObjectType Type { get; set; }
+    public int RenderingId { get; set; }
     public Rendering Rendering { get; set; }
 
     // public List<Domain> Domains { get; set; }
