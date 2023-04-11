@@ -20,7 +20,28 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     }
     
     [Fact]
-    public void SetLocation_WhenLocationInPlaceableNotNull()
+    public void SetLocationId()
+    {
+        var placeableWithLocationId = CloneStrelitziaPlaceable();
+        placeableWithLocationId.LocationId = StrelitziaLocation.Id;
+        
+        var resultPlaceable = PlaceableFactory.ToViewModel(placeableWithLocationId);
+        
+        Assert.NotNull(resultPlaceable);
+        Assert.Equal(StrelitziaLocation.Id ,resultPlaceable.LocationId);
+    }
+    
+    [Fact]
+    public void ThrowArgumentOutOfRangeException_WhenLocationIdLowerThenZero()
+    {
+        var placeableWithInvalidLocationId = CloneStrelitziaPlaceable();
+        placeableWithInvalidLocationId.LocationId = -5;
+        
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.ToViewModel(placeableWithInvalidLocationId));
+    }
+    
+    [Fact]
+    public void SetLocation()
     {
         var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
 
@@ -146,13 +167,13 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     }
     
     [Fact]
-    public void ThrowArgumentException_WhenPlaceableDimensionsAndDimensionsIdAreDefault()
+    public void ThrowArgumentOutOfRangeException_WhenPlaceableDimensionsAndDimensionsIdAreDefault()
     {
         var placeable = CloneStrelitziaPlaceable();
         placeable.DimensionsId = 0;
         placeable.Dimensions = null!;
         
-        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -162,6 +183,61 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         placeable.Name = null!;
         
         Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+    }
+    
+    [Fact]
+    public void ThrowArgumentException_WhenLocationIdNotMatchingIdFromLocation()
+    {
+        var placeable = CloneStrelitziaPlaceable();
+        placeable.LocationId = StrelitziaLocation.Id + 5;
+        
+        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+    }
+    
+    [Fact]
+    public void ThrowArgumentException_WhenDimensionsIdNotMatchingIdFromDimensions()
+    {
+        var placeable = CloneStrelitziaPlaceable();
+        placeable.DimensionsId = StrelitziaMatureDimensions.Id + 5;
+        
+        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+    }
+    
+    [Fact]
+    public void ThrowArgumentException_WhenTypeIdNotMatchingIdFromType()
+    {
+        var placeable = CloneStrelitziaPlaceable();
+        placeable.TypeId = StrelitziaPlantTypeId + 5;
+        
+        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+    }
+    
+    [Fact]
+    public void ThrowArgumentException_WhenRenderingIdNotMatchingIdFromRendering()
+    {
+        var placeable = CloneStrelitziaPlaceable();
+        placeable.RenderingId = StrelitziaRendering.Id + 5;
+        
+        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+    }
+    
+    [Fact]
+    public void ThrowArgumentNullException_WhenRenderingNull()
+    {
+        var placeable = CloneStrelitziaPlaceable();
+        placeable.Rendering = null!;
+        
+        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+    }
+    
+    [Fact]
+    public void ThrowArgumentOutOfRangeException_WhenRenderingIdLowerOrEqualToZero()
+    {
+        var placeable = CloneStrelitziaPlaceable();
+        placeable.Rendering = null!;
+        placeable.RenderingId = 0;
+        
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.ToViewModel(placeable));
     }
     
     [Fact]

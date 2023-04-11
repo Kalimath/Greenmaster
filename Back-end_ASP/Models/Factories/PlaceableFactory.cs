@@ -59,17 +59,22 @@ public static class PlaceableFactory
     public static PlaceableViewModel ToViewModel(Placeable placeable)
     {
         ValidatePlaceable(placeable);
+        var renderingViewModel = RenderingFactory.ToViewModel(placeable.Rendering);
+
         return new PlaceableViewModel
         {
             Id = placeable.Id,
             Created = placeable.Created,
             Modified = placeable.Modified,
             Name = placeable.Name,
+            LocationId = (int)(placeable.Location?.Id ?? placeable.LocationId!),
             Location = placeable.Location,
             DimensionsId = placeable.DimensionsId,
             Dimensions = placeable.Dimensions,
             TypeId = placeable.TypeId,
             Type = placeable.Type,
+            RenderingId = ((int)(renderingViewModel?.Id ?? placeable.RenderingId)!),
+            Rendering = renderingViewModel!,
             Specie = placeable is Plant plant ? plant.Specie : null
         };
     }
@@ -100,6 +105,7 @@ public static class PlaceableFactory
                 throw new ArgumentNullException(nameof(viewModel.Rendering),
                     $"Placeable must have a {nameof(viewModel.RenderingId)} and/or a {nameof(viewModel.Rendering)}, currently both are default/null");
             }
+
             if (viewModel.RenderingId != viewModel.Rendering.Id)
                 throw new ArgumentOutOfRangeException(nameof(viewModel.RenderingId),
                     message: $"{nameof(viewModel.RenderingId)} does not match {nameof(viewModel.Rendering)}.Id");
@@ -158,37 +164,76 @@ public static class PlaceableFactory
 
     private static void ValidatePlaceable(Placeable placeable)
     {
+        ValidatePlaceableDimensions(placeable);
+        ValidatePlaceableAuditData(placeable);
+
+        if (!StringValidator.IsValidString(placeable.Name))
+            throw new ArgumentException(nameof(placeable.Name));
+
+        ValidatePlant(placeable);
+        ValidatePlaceableLocation(placeable);
+        ValidatePlaceableRendering(placeable);
+    }
+
+    #region PlaceableValidators
+
+    private static void ValidatePlaceableDimensions(Placeable placeable)
+    {
         if (placeable.Dimensions == null)
         {
             if (placeable.DimensionsId <= 0)
             {
-                throw new ArgumentNullException(nameof(placeable.DimensionsId));
+                throw new ArgumentOutOfRangeException(nameof(placeable.DimensionsId));
             }
 
             throw new ArgumentNullException(nameof(placeable.Dimensions));
         }
+        if (placeable.DimensionsId != placeable.Dimensions.Id)
+            throw new ArgumentException($"{nameof(placeable.DimensionsId)} does not match {nameof(placeable.Dimensions)}.Id");
+    }
 
+    private static void ValidatePlaceableAuditData(Placeable placeable)
+    {
         if (placeable.Created == default)
-        {
             throw new ArgumentException(nameof(placeable.Created));
-        }
 
         if (placeable.Modified != default && placeable.Modified < placeable.Created)
-        {
             throw new ArgumentOutOfRangeException(nameof(placeable.Modified), "Modified before created");
-        }
+    }
 
-        if (!StringValidator.IsValidString(placeable.Name))
-        {
-            throw new ArgumentException(nameof(placeable.Name));
-        }
-
+    private static void ValidatePlant(Placeable placeable)
+    {
         if (placeable.Type == null)
-            throw new ArgumentNullException(nameof(Plant.Specie), "Placeable with PlantType has specie = null");
+            throw new ArgumentNullException(nameof(Plant.Specie), "Placeable with PlantType = null");
 
         if (placeable.Type is PlantType && (placeable as Plant)?.Specie == null)
-        {
             throw new ArgumentNullException(nameof(Plant.Specie), "Placeable with PlantType has specie = null");
+        
+        if (placeable.TypeId != placeable.Type.Id)
+            throw new ArgumentException($"{nameof(placeable.TypeId)} does not match {nameof(placeable.Type)}.Id");
+    }
+
+    private static void ValidatePlaceableLocation(Placeable placeable)
+    {
+        if (placeable.Location != null)
+        {
+            if (placeable.LocationId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(placeable.LocationId));
+
+            if (placeable.LocationId != placeable.Location.Id)
+                throw new ArgumentException($"{nameof(placeable.LocationId)} does not match {nameof(placeable.Location)}.Id");
         }
     }
+
+    private static void ValidatePlaceableRendering(Placeable placeable)
+    {
+        if (placeable.RenderingId <= 0)
+            throw new ArgumentOutOfRangeException(nameof(placeable.RenderingId));
+        if (placeable.Rendering == null)
+            throw new ArgumentNullException(nameof(placeable.Rendering), "Placeable with rendering = null");
+        if (placeable.RenderingId != placeable.Rendering.Id)
+            throw new ArgumentException($"{nameof(placeable.RenderingId)} does not match {nameof(placeable.Rendering)}.Id");
+    }
+
+    #endregion
 }

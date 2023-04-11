@@ -90,6 +90,7 @@ public class PlaceableFactoryTestBase
         clonedStrelitziaPlaceable.Specie = Strelitzia;
         clonedStrelitziaPlaceable.LocationId = StrelitziaLocation.Id;
         clonedStrelitziaPlaceable.Location = StrelitziaLocation;
+        clonedStrelitziaPlaceable.RenderingId = StrelitziaRendering.Id;
         clonedStrelitziaPlaceable.Rendering = StrelitziaRendering;
         
         return clonedStrelitziaPlaceable;
@@ -104,6 +105,7 @@ public class PlaceableFactoryTestBase
         structure.LocationId = StrelitziaLocation.Id;
         structure.Location = StrelitziaLocation;
         structure.Rendering = StrelitziaRendering;
+        structure.RenderingId = StrelitziaRendering.Id;
         
         return structure;
     }
