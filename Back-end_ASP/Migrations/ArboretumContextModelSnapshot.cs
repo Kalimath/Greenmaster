@@ -93,7 +93,7 @@ namespace Greenmaster_ASP.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("DimensionsId")
                         .HasColumnType("integer");
@@ -106,11 +106,14 @@ namespace Greenmaster_ASP.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Modified")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("RenderingId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("TypeId")
                         .HasColumnType("integer");
@@ -120,6 +123,8 @@ namespace Greenmaster_ASP.Migrations
                     b.HasIndex("DimensionsId");
 
                     b.HasIndex("LocationId");
+
+                    b.HasIndex("RenderingId");
 
                     b.HasIndex("TypeId");
 
@@ -363,6 +368,7 @@ namespace Greenmaster_ASP.Migrations
                             LocationId = 21,
                             Modified = new DateTime(2023, 8, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Strelitzia Reginae (mature)",
+                            RenderingId = 2,
                             TypeId = 4,
                             SpecieId = 1
                         },
@@ -372,8 +378,9 @@ namespace Greenmaster_ASP.Migrations
                             Created = new DateTime(2023, 8, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DimensionsId = 1,
                             LocationId = 22,
-                            Modified = new DateTime(2023, 4, 9, 16, 49, 11, 955, DateTimeKind.Local).AddTicks(2341),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Papaver Orientale 'Catherina' (mature)",
+                            RenderingId = 1,
                             TypeId = 4,
                             SpecieId = 2
                         });
@@ -392,8 +399,9 @@ namespace Greenmaster_ASP.Migrations
                             Created = new DateTime(2020, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DimensionsId = 2,
                             LocationId = 22,
-                            Modified = new DateTime(2023, 4, 9, 16, 49, 11, 955, DateTimeKind.Local).AddTicks(2625),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Large swimming pool",
+                            RenderingId = 2,
                             TypeId = 100
                         });
                 });
@@ -559,6 +567,12 @@ namespace Greenmaster_ASP.Migrations
                         .WithMany()
                         .HasForeignKey("LocationId");
 
+                    b.HasOne("Greenmaster_ASP.Models.Rendering", "Rendering")
+                        .WithMany()
+                        .HasForeignKey("RenderingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Greenmaster_ASP.Models.ObjectType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
@@ -568,6 +582,8 @@ namespace Greenmaster_ASP.Migrations
                     b.Navigation("Dimensions");
 
                     b.Navigation("Location");
+
+                    b.Navigation("Rendering");
 
                     b.Navigation("Type");
                 });

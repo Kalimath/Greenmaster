@@ -38,14 +38,16 @@ public class ArboretumContext : DbContext
         return Task.FromResult<IEnumerable<Placeable>>(Placeables
             .Include(placeable => placeable.Dimensions)
             .Include(placeable => placeable.Location)
-            .Include(placeable => placeable.Type));
+            .Include(placeable => placeable.Type)
+            .Include(placeable => placeable.Rendering));
     }
     public Task<IEnumerable<Structure>> GetAllStructures()
     {
         return Task.FromResult<IEnumerable<Structure>>(Structures
             .Include(plant => plant.Dimensions)
             .Include(plant => plant.Location)
-            .Include(plant => plant.Type));
+            .Include(plant => plant.Type)
+            .Include(placeable => placeable.Rendering));
     }
     public Task<IEnumerable<Plant>> GetAllPlants()
     {
@@ -53,6 +55,7 @@ public class ArboretumContext : DbContext
             .Include(plant => plant.Dimensions)
             .Include(plant => plant.Location)
             .Include(plant => plant.Type)
+            .Include(placeable => placeable.Rendering)
             .Include(plant => plant.Specie).ToList());
     }
 

@@ -16,6 +16,7 @@ public static class PlaceableExamples
         LocationId = PointExamples.PointOne.Id,
         DimensionsId = DimensionsExamples.DimensionsUp.Id,
         TypeId = SpecieExamples.Strelitzia.PlantTypeId,
+        RenderingId = RenderingExamples.SummerTree.Id,
         SpecieId = SpecieExamples.Strelitzia.Id,
     };
     
@@ -27,6 +28,7 @@ public static class PlaceableExamples
         LocationId = PointExamples.PointTwo.Id,
         DimensionsId = DimensionsExamples.DimensionsUp.Id,
         TypeId = SpecieExamples.Papaver.PlantTypeId,
+        RenderingId = RenderingExamples.FallTree.Id,
         SpecieId = SpecieExamples.Papaver.Id,
     };
 
@@ -38,6 +40,7 @@ public static class PlaceableExamples
         LocationId = PointExamples.PointTwo.Id,
         DimensionsId = DimensionsExamples.DimensionsFlat.Id,
         TypeId = ObjectTypeExamples.SwimmingPool.Id,
+        RenderingId = RenderingExamples.SummerTree.Id
     };
     
     public static List<Placeable> GetAll()
