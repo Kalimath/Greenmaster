@@ -52,8 +52,8 @@
                     {
                        data: "imageBase64",
                        render: function (data, type, row, meta) {
-                            var imgSrc = 'data:image/png;base64,' + data;
-                            return '<img style="height:150px" class="img-fluid" src="' + imgSrc +'" alt="rendering">';
+                            let imgSrc = 'data:image/png;base64,' + data;
+                            return '<img style="height:100px" class="img-fluid" src="' + imgSrc +'" alt="rendering">';
                        }, "autoWidth": true},
                     { "data": "type" },
                     { "data": "season" },
