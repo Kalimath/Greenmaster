@@ -1,6 +1,7 @@
 ﻿using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Placeables;
 using Greenmaster_ASP.Models.Services;
+using Greenmaster_ASP.Models.Services.Placeables;
 using Greenmaster_ASP.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace Greenmaster_ASP.Controllers;
 
 public class PlaceableController : Controller
 {
-    private readonly IContextService<Plant, Guid> _plantService;
+    private readonly IPlantService _plantService;
 
-    public PlaceableController(IContextService<Plant, Guid> plantService)
+    public PlaceableController(IPlantService plantService)
     {
         _plantService = plantService;
     }

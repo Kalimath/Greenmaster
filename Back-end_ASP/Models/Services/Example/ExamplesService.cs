@@ -2,16 +2,16 @@
 using Greenmaster_ASP.Models.Measurements;
 using Greenmaster_ASP.Models.Placeables;
 
-namespace Greenmaster_ASP.Models.Services;
+namespace Greenmaster_ASP.Models.Services.Example;
 
 public class ExamplesService : IExamplesService
 {
-    public List<Specie> GetAllSpecies()
+    public List<Models.Specie> GetAllSpecies()
     {
         return SpecieExamples.GetAll();
     }
 
-    public List<Rendering> GetAllRenderings()
+    public List<Models.Rendering> GetAllRenderings()
     {
         return RenderingExamples.GetAll();
     }

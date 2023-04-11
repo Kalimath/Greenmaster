@@ -1,9 +1,10 @@
 ﻿using Greenmaster_ASP.Models.Database.Arboretum;
 using Greenmaster_ASP.Models.Placeables;
-using Greenmaster_ASP.Models.Services;
 using Microsoft.EntityFrameworkCore;
 
-public class StructureService : IContextService<Structure, Guid>
+namespace Greenmaster_ASP.Models.Services.Placeables;
+
+public class StructureService : IStructureService
 {
     private readonly ArboretumContext _context;
 

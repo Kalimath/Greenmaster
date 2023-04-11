@@ -1,7 +1,7 @@
 ﻿using Greenmaster_ASP.Models.Database.Arboretum;
 using Microsoft.EntityFrameworkCore;
 
-namespace Greenmaster_ASP.Models.Services;
+namespace Greenmaster_ASP.Models.Services.Type;
 
 public class StructureTypeService : IObjectTypeService<StructureType>
 {

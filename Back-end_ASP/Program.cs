@@ -4,6 +4,11 @@ using Greenmaster_ASP.Models.Database.Arboretum;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Placeables;
 using Greenmaster_ASP.Models.Services;
+using Greenmaster_ASP.Models.Services.Example;
+using Greenmaster_ASP.Models.Services.Placeables;
+using Greenmaster_ASP.Models.Services.Rendering;
+using Greenmaster_ASP.Models.Services.Specie;
+using Greenmaster_ASP.Models.Services.Type;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,8 +34,8 @@ services.AddScoped<IObjectTypeService<PlantType>, PlantTypeService>();
 services.AddScoped<IObjectTypeService<StructureType>, StructureTypeService>();
 services.AddScoped<IRenderingService, RenderingService>();
 services.AddScoped<IExamplesService, ExamplesService>();
-services.AddScoped<IContextService<Plant, Guid>, PlantService>();
-services.AddScoped<IContextService<Structure, Guid>, StructureService>();
+services.AddScoped<IPlantService, PlantService>();
+services.AddScoped<IStructureService, StructureService>();
 
 
 var app = builder.Build();

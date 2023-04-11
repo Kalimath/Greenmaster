@@ -1,8 +1,7 @@
 ﻿using Greenmaster_ASP.Models.Database.Arboretum;
-using Greenmaster_ASP.Models.Placeables;
 using Microsoft.EntityFrameworkCore;
 
-namespace Greenmaster_ASP.Models.Services;
+namespace Greenmaster_ASP.Models.Services.Type;
 
 public class PlantTypeService : IObjectTypeService<PlantType>
 {

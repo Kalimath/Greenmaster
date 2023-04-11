@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services;
+using Greenmaster_ASP.Models.Services.Specie;
+using Greenmaster_ASP.Models.Services.Type;
 using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;

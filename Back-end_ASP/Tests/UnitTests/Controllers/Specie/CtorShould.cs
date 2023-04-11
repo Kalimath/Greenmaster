@@ -1,6 +1,7 @@
 ﻿using Greenmaster_ASP.Controllers;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Services;
+using Greenmaster_ASP.Models.Services.Type;
 using NSubstitute;
 using Xunit;
 

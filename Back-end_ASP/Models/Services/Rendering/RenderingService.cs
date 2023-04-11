@@ -1,8 +1,7 @@
 ﻿using Greenmaster_ASP.Models.Database.Arboretum;
-using Greenmaster_ASP.Models.Placeables;
 using Microsoft.EntityFrameworkCore;
 
-namespace Greenmaster_ASP.Models.Services;
+namespace Greenmaster_ASP.Models.Services.Rendering;
 
 public class RenderingService : IRenderingService
 {
@@ -11,24 +10,24 @@ public class RenderingService : IRenderingService
     {
         _context = context;
     }
-    public async Task Add(Rendering newObject)
+    public async Task Add(Models.Rendering newObject)
     {
         _context.Renderings.Add(newObject);
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Rendering> GetById(int id)
+    public async Task<Models.Rendering> GetById(int id)
     {
         return (await _context.Renderings.FirstOrDefaultAsync(m => m.Id == id))
                ?? throw new ArgumentException($"No Rendering found with {nameof(id)}={id}");
     }
 
-    public async Task<List<Rendering>> GetAll()
+    public async Task<List<Models.Rendering>> GetAll()
     {
         return await Task.FromResult(_context.Renderings.ToList());
     }
 
-    public async Task Update(Rendering updatedObject)
+    public async Task Update(Models.Rendering updatedObject)
     {
         _context.Update(updatedObject);
         await _context.SaveChangesAsync();

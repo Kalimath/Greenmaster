@@ -2,9 +2,9 @@
 using Greenmaster_ASP.Models.Placeables;
 using Microsoft.EntityFrameworkCore;
 
-namespace Greenmaster_ASP.Models.Services;
+namespace Greenmaster_ASP.Models.Services.Placeables;
 
-public class PlantService : IContextService<Plant, Guid>
+public class PlantService : IPlantService
 {
     private readonly ArboretumContext _context;
 

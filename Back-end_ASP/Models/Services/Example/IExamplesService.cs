@@ -1,12 +1,12 @@
 ﻿using Greenmaster_ASP.Models.Measurements;
 using Greenmaster_ASP.Models.Placeables;
 
-namespace Greenmaster_ASP.Models.Services;
+namespace Greenmaster_ASP.Models.Services.Example;
 
 public interface IExamplesService
 {
-    List<Specie> GetAllSpecies();
-    List<Rendering> GetAllRenderings();
+    List<Models.Specie> GetAllSpecies();
+    List<Models.Rendering> GetAllRenderings();
     List<PlantType> GetAllPlantTypes();
     List<StructureType> GetAllStructureTypes();
     List<ObjectType> GetAllObjectTypes();
