@@ -1,7 +1,6 @@
-﻿using Greenmaster_ASP.Models.Examples;
+﻿using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Measurements;
 using Greenmaster_ASP.Models.Placeables;
-using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Services.Example;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
@@ -11,7 +10,7 @@ using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.Static.Time.Durations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Greenmaster_ASP.Models.Database.Arboretum;
+namespace Greenmaster_ASP.Database.Arboretum;
 
 public class ArboretumContext : DbContext
 {

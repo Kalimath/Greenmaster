@@ -1,4 +1,4 @@
-﻿using Greenmaster_ASP.Models.Database.Arboretum;
+﻿using Greenmaster_ASP.Database.Arboretum;
 using Greenmaster_ASP.Models.Placeables;
 using Microsoft.EntityFrameworkCore;
 

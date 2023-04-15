@@ -1,5 +1,5 @@
-﻿using Greenmaster_ASP.Models;
-using Greenmaster_ASP.Models.Database.Arboretum;
+﻿using Greenmaster_ASP.Database.Arboretum;
+using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Static.Object.Organic;

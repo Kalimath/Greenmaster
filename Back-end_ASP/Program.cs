@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
+using Greenmaster_ASP.Database.Arboretum;
 using Greenmaster_ASP.Models;
-using Greenmaster_ASP.Models.Database.Arboretum;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Placeables;
 using Greenmaster_ASP.Models.Services;
