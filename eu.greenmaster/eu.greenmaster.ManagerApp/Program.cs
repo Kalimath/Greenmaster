@@ -25,7 +25,7 @@ services.AddDbContext<ArboretumContext>(options =>
     options.EnableSensitiveDataLogging();
 });
 
-services.AddSingleton<SpecieFactory>();
+services.AddSingleton<SpecieMapper>();
 services.AddScoped<ISpecieService, SpecieService>();
 services.AddScoped<IObjectTypeService<ObjectType>, ObjectTypeService>();
 services.AddScoped<IObjectTypeService<PlantType>, PlantTypeService>();

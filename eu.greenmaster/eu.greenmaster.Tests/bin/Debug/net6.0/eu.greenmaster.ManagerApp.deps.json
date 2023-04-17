@@ -10,12 +10,21 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration.FileExtensions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection": "6.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.8",
           "eu.greenmaster.Contracts": "1.0.0",
           "eu.greenmaster.Models": "1.0.0",
           "eu.greenmaster.Repository": "1.0.0"
         },
         "runtime": {
           "eu.greenmaster.ManagerApp.dll": {}
+        }
+      },
+      "FluentValidation/11.2.2": {
+        "runtime": {
+          "lib/net6.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.2.2.0"
+          }
         }
       },
       "Humanizer.Core/2.2.0": {
@@ -26,6 +35,25 @@
           "lib/netstandard1.0/Humanizer.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "MediatR/10.0.1": {
+        "dependencies": {
+          "MediatR.Contracts": "1.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/MediatR.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1.0"
+          }
+        }
+      },
+      "MediatR.Contracts/1.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
           }
         }
       },
@@ -2372,8 +2400,31 @@
         }
       },
       "eu.greenmaster.Contracts/1.0.0": {
+        "dependencies": {
+          "FluentValidation": "11.2.2",
+          "MediatR": "10.0.1"
+        },
         "runtime": {
           "eu.greenmaster.Contracts.dll": {}
+        }
+      },
+      "eu.greenmaster.EFCore/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.13",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.13",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.8",
+          "eu.greenmaster.Models": "1.0.0"
+        },
+        "runtime": {
+          "eu.greenmaster.EFCore.dll": {}
+        }
+      },
+      "eu.greenmaster.Examples/1.0.0": {
+        "dependencies": {
+          "eu.greenmaster.Models": "1.0.0"
+        },
+        "runtime": {
+          "eu.greenmaster.Examples.dll": {}
         }
       },
       "eu.greenmaster.Models/1.0.0": {
@@ -2385,7 +2436,8 @@
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Microsoft.Extensions.Configuration.Json": "6.0.0",
           "Newtonsoft.Json": "13.0.1",
-          "System.Configuration.ConfigurationManager": "6.0.0"
+          "System.Configuration.ConfigurationManager": "6.0.0",
+          "eu.greenmaster.Contracts": "1.0.0"
         },
         "runtime": {
           "eu.greenmaster.Models.dll": {}
@@ -2400,6 +2452,9 @@
           "Microsoft.VisualStudio.Web.CodeGeneration": "6.0.11",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.11",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "6.0.8",
+          "eu.greenmaster.Contracts": "1.0.0",
+          "eu.greenmaster.EFCore": "1.0.0",
+          "eu.greenmaster.Examples": "1.0.0",
           "eu.greenmaster.Models": "1.0.0"
         },
         "runtime": {
@@ -2414,12 +2469,33 @@
       "serviceable": false,
       "sha512": ""
     },
+    "FluentValidation/11.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5QEte2BUZZF6Sezeekr7Zu1THfgpxU7pmuL2SjIrajuGMah+pxPGiRiLtw+x/tSUSSVmcv9LrUe41lKu4l0n4A==",
+      "path": "fluentvalidation/11.2.2",
+      "hashPath": "fluentvalidation.11.2.2.nupkg.sha512"
+    },
     "Humanizer.Core/2.2.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-rsYXB7+iUPP8AHgQ8JP2UZI2xK2KhjcdGr9E6zX3CsZaTLCaw8M35vaAJRo1rfxeaZEVMuXeaquLVCkZ7JcZ5Q==",
       "path": "humanizer.core/2.2.0",
       "hashPath": "humanizer.core.2.2.0.nupkg.sha512"
+    },
+    "MediatR/10.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vnjbk4giDJzJelh34Ygt0eorApCKrRFB7j0pauFPY1oxfO3cEZ7FugBrIOjCM76SDGTOmPFfbfmVnz1t3iFrGA==",
+      "path": "mediatr/10.0.1",
+      "hashPath": "mediatr.10.0.1.nupkg.sha512"
+    },
+    "MediatR.Contracts/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NsRvOxthhkYml4DcBMyJsmym8C4MchioH7wxKVPEg7plFj9Euh/i4IcmZ3Gvgx6+K8obeuhPeJdoBl56wnuo3A==",
+      "path": "mediatr.contracts/1.0.1",
+      "hashPath": "mediatr.contracts.1.0.1.nupkg.sha512"
     },
     "MessagePack/2.1.152": {
       "type": "package",
@@ -3724,6 +3800,16 @@
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
     "eu.greenmaster.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "eu.greenmaster.EFCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "eu.greenmaster.Examples/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

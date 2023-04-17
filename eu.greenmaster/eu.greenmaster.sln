@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eu.greenmaster.EFCore", "eu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eu.greenmaster.Examples", "eu.greenmaster.Examples\eu.greenmaster.Examples.csproj", "{9366F01B-BC0C-44F2-8926-CD0C6F10C25B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eu.greenmaster.WebService", "eu.greenmaster.WebService\eu.greenmaster.WebService.csproj", "{E6D5EF43-FB50-42B9-91F6-843F281CCE38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{9366F01B-BC0C-44F2-8926-CD0C6F10C25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9366F01B-BC0C-44F2-8926-CD0C6F10C25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9366F01B-BC0C-44F2-8926-CD0C6F10C25B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6D5EF43-FB50-42B9-91F6-843F281CCE38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6D5EF43-FB50-42B9-91F6-843F281CCE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6D5EF43-FB50-42B9-91F6-843F281CCE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6D5EF43-FB50-42B9-91F6-843F281CCE38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -570,3 +570,6 @@ C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.g
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.ManagerApp\obj\Debug\net6.0\eu.greenmaster.ManagerApp.pdb
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.ManagerApp\obj\Debug\net6.0\eu.greenmaster.ManagerApp.genruntimeconfig.cache
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.ManagerApp\obj\Debug\net6.0\ref\eu.greenmaster.ManagerApp.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.ManagerApp\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.ManagerApp\bin\Debug\net6.0\MediatR.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.ManagerApp\bin\Debug\net6.0\MediatR.Contracts.dll

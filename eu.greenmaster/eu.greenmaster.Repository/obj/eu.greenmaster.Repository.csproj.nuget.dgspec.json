@@ -35,11 +35,7 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {
-              "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Models\\eu.greenmaster.Models.csproj": {
-                "projectPath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Models\\eu.greenmaster.Models.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -51,6 +47,16 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.2.2, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -103,9 +109,6 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Contracts\\eu.greenmaster.Contracts.csproj": {
-                "projectPath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Contracts\\eu.greenmaster.Contracts.csproj"
-              },
               "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Models\\eu.greenmaster.Models.csproj": {
                 "projectPath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Models\\eu.greenmaster.Models.csproj"
               }
@@ -125,6 +128,14 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.8, )"
             }
           },
           "imports": [
@@ -245,7 +256,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Contracts\\eu.greenmaster.Contracts.csproj": {
+                "projectPath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Contracts\\eu.greenmaster.Contracts.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

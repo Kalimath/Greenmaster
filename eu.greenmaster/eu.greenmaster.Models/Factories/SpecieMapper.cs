@@ -6,9 +6,10 @@ using static eu.greenmaster.Models.Helpers.StringValidator;
 
 namespace eu.greenmaster.Models.Factories;
 
-public class SpecieFactory
+
+public class SpecieMapper
 {
-    public static async Task<Specie> Create(SpecieViewModel specieViewModel)
+    public static async Task<Specie> MapSpecie(SpecieViewModel specieViewModel)
     {
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));
@@ -120,7 +121,7 @@ public class SpecieFactory
         };
     }*/
 
-    public static SpecieViewModel ToViewModel(Specie specie)
+    public static SpecieViewModel MapSpecieViewModel(Specie specie)
     {
         if (specie == null)
             throw new ArgumentNullException(nameof(specie));

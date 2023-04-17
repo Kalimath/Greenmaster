@@ -22,3 +22,6 @@ C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.g
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Models\obj\Debug\net6.0\refint\eu.greenmaster.Models.dll
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Models\obj\Debug\net6.0\eu.greenmaster.Models.pdb
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Models\obj\Debug\net6.0\ref\eu.greenmaster.Models.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Models\bin\Debug\net6.0\eu.greenmaster.Contracts.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Models\bin\Debug\net6.0\eu.greenmaster.Contracts.pdb
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Models\obj\Debug\net6.0\eu.greenmaster.Models.csproj.CopyComplete

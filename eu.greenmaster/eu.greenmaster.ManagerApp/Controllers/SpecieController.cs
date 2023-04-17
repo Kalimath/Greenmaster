@@ -36,7 +36,7 @@ namespace eu.greenmaster.ManagerApp.Controllers
         {
             var species = (await _modelService.GetAll());
             var specieViewModels = new List<SpecieViewModel>();
-            foreach (var specie in species) specieViewModels.Add(SpecieFactory.ToViewModel(specie));
+            foreach (var specie in species) specieViewModels.Add(SpecieMapper.MapSpecieViewModel(specie));
             return Json(new { data = specieViewModels});
         }
 
@@ -59,7 +59,7 @@ namespace eu.greenmaster.ManagerApp.Controllers
                 return NotFound();
             }
 
-            return View(SpecieFactory.ToViewModel(specie));
+            return View(SpecieMapper.MapSpecieViewModel(specie));
         }
 
         // GET: Specie/Create
@@ -82,7 +82,7 @@ namespace eu.greenmaster.ManagerApp.Controllers
                 {
                     var requestedPlantType = (await _plantTypeService.GetById(specieViewModel.PlantTypeId)) ?? throw new ArgumentException($"Could not find a {nameof(PlantType)} with id={specieViewModel.PlantTypeId}");
                     specieViewModel.PlantType = requestedPlantType;
-                    var specie = await SpecieFactory.Create(specieViewModel);
+                    var specie = await SpecieMapper.MapSpecie(specieViewModel);
                     await _modelService.Add(specie);
                     return RedirectToAction(nameof(Index));
                 }
@@ -121,7 +121,7 @@ namespace eu.greenmaster.ManagerApp.Controllers
             }
 
             await DefineViewData();
-            return View(SpecieFactory.ToViewModel(specie));
+            return View(SpecieMapper.MapSpecieViewModel(specie));
         }
 
         // POST: Specie/Edit/5
@@ -135,7 +135,7 @@ namespace eu.greenmaster.ManagerApp.Controllers
             {
                 try
                 {
-                    var specie = await SpecieFactory.Create(specieViewModel);
+                    var specie = await SpecieMapper.MapSpecie(specieViewModel);
                     await _modelService.Update(specie);
                 }
                 catch (DbUpdateConcurrencyException)

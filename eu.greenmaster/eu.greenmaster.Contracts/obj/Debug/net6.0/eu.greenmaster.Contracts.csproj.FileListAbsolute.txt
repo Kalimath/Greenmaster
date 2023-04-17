@@ -13,14 +13,11 @@ C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\Back-end_ASP\eu.gre
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\bin\Debug\net6.0\eu.greenmaster.Contracts.deps.json
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\bin\Debug\net6.0\eu.greenmaster.Contracts.dll
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\bin\Debug\net6.0\eu.greenmaster.Contracts.pdb
-C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\bin\Debug\net6.0\eu.greenmaster.Models.dll
-C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\bin\Debug\net6.0\eu.greenmaster.Models.pdb
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\eu.greenmaster.Contracts.csproj.AssemblyReference.cache
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\eu.greenmaster.Contracts.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\eu.greenmaster.Contracts.AssemblyInfoInputs.cache
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\eu.greenmaster.Contracts.AssemblyInfo.cs
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\eu.greenmaster.Contracts.csproj.CoreCompileInputs.cache
-C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\eu.greenmaster.Contracts.csproj.CopyComplete
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\eu.greenmaster.Contracts.dll
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\refint\eu.greenmaster.Contracts.dll
 C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Contracts\obj\Debug\net6.0\eu.greenmaster.Contracts.pdb

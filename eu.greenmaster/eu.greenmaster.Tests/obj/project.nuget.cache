@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "0xjCTu1VZFbjDcFACZGLJ3xx5yo1RLMHK5751IYbvZLE65j4Eba6cfh0iGIgQM52POTZhU6AtTawxuoXpWpOsw==",
+  "dgSpecHash": "GlvM++r0uTTCwmsHeqOhq1GEWMci0yneJYY46ZozaRd+jtgmAloTb14APEoNrC1Z7Gbwd3QeprzchPvQZK9ZLw==",
   "success": true,
   "projectFilePath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Greenmaster_ASP\\eu.greenmaster\\eu.greenmaster.Tests\\eu.greenmaster.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mathi\\.nuget\\packages\\castle.core\\5.0.0\\castle.core.5.0.0.nupkg.sha512",
     "C:\\Users\\mathi\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\fluentvalidation\\11.2.2\\fluentvalidation.11.2.2.nupkg.sha512",
     "C:\\Users\\mathi\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\mathi\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\mathi\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\mathi\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",

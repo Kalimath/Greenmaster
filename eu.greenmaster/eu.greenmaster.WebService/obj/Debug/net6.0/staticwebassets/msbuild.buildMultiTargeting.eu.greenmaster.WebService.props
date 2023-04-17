@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\eu.greenmaster.WebService.props" />
+</Project>
