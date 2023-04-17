@@ -1,5 +1,5 @@
 ﻿
-namespace eu.greenmaster.Repository.Services;
+namespace eu.greenmaster.EFCore.Services;
 
 public interface IContextService<T1, in T2>
 {

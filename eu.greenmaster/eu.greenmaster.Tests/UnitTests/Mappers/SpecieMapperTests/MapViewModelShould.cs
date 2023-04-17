@@ -4,7 +4,7 @@ using eu.greenmaster.Models.ViewModels;
 using static eu.greenmaster.Tests.Helpers.AssertObjects;
 // ReSharper disable StringLiteralTypo
 
-namespace eu.greenmaster.Tests.UnitTests.Factories.SpecieFactoryTests;
+namespace eu.greenmaster.Tests.UnitTests.Mappers.SpecieMapperTests;
 
 public class MapViewModelShould : SpecieFactoryTestBase
 {

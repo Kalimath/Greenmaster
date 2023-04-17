@@ -1,4 +1,5 @@
 ﻿using eu.greenmaster.EFCore.Extensions;
+using eu.greenmaster.EFCore.Services;
 using eu.greenmaster.Models;
 using eu.greenmaster.Models.Measurements;
 using eu.greenmaster.Models.Placeables;
@@ -8,10 +9,9 @@ using eu.greenmaster.Models.Static.Object.Organic;
 using eu.greenmaster.Models.Static.Object.Rendering;
 using eu.greenmaster.Models.Static.PlantProperties;
 using eu.greenmaster.Models.Static.Time.Durations;
-using eu.greenmaster.Repository.Services.Example;
 using Microsoft.EntityFrameworkCore;
 
-namespace eu.greenmaster.Repository;
+namespace eu.greenmaster.EFCore;
 
 public class ArboretumContext : DbContext
 {

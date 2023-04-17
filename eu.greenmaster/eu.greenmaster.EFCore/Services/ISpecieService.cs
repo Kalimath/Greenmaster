@@ -1,5 +1,5 @@
 ﻿
-namespace eu.greenmaster.Repository.Services.Specie;
+namespace eu.greenmaster.EFCore.Services;
 
 public interface ISpecieService : IContextService<Models.Specie, int>
 {

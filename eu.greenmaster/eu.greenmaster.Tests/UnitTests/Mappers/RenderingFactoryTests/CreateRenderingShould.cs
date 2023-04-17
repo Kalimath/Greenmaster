@@ -10,7 +10,7 @@ using eu.greenmaster.Tests.Helpers;
 using Microsoft.Extensions.Configuration;
 using static eu.greenmaster.Models.Helpers.ImageConverter;
 
-namespace eu.greenmaster.Tests.UnitTests.Factories.RenderingFactoryTests;
+namespace eu.greenmaster.Tests.UnitTests.Mappers.RenderingFactoryTests;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public class CreateRenderingShould

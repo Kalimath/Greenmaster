@@ -3,7 +3,7 @@ using eu.greenmaster.Models.Factories;
 using eu.greenmaster.Models.Helpers;
 using static eu.greenmaster.Tests.Helpers.AssertObjects;
 
-namespace eu.greenmaster.Tests.UnitTests.Factories.SpecieFactoryTests;
+namespace eu.greenmaster.Tests.UnitTests.Mappers.SpecieMapperTests;
 
 public class MapSpecieShould : SpecieFactoryTestBase
 {

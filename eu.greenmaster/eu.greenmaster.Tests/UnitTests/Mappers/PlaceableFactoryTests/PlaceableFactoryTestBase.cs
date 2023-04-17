@@ -1,4 +1,5 @@
-﻿using eu.greenmaster.Examples;
+﻿using eu.greenmaster.EFCore.Services;
+using eu.greenmaster.Examples;
 using eu.greenmaster.Models;
 using eu.greenmaster.Models.Extensions;
 using eu.greenmaster.Models.Factories;
@@ -7,7 +8,7 @@ using eu.greenmaster.Models.Placeables;
 using eu.greenmaster.Models.ViewModels;
 using eu.greenmaster.Repository.Services.Example;
 
-namespace eu.greenmaster.Tests.UnitTests.Factories.PlaceableFactoryTests;
+namespace eu.greenmaster.Tests.UnitTests.Mappers.PlaceableFactoryTests;
 
 public class PlaceableFactoryTestBase
 {

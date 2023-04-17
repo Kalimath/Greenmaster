@@ -1,4 +1,6 @@
-﻿using eu.greenmaster.Models;
+﻿using eu.greenmaster.EFCore;
+using eu.greenmaster.EFCore.Services;
+using eu.greenmaster.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace eu.greenmaster.Repository.Services.Type;

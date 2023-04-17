@@ -4,7 +4,7 @@ using eu.greenmaster.Models.Placeables;
 using ObjectType = eu.greenmaster.Models.ObjectType;
 using Point = eu.greenmaster.Models.Point;
 
-namespace eu.greenmaster.Repository.Services.Example;
+namespace eu.greenmaster.EFCore.Services;
 
 public interface IExamplesService
 {

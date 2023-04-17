@@ -5,7 +5,7 @@ using eu.greenmaster.Models.StaticData.Time.Durations;
 using eu.greenmaster.Models.ViewModels;
 using Color = eu.greenmaster.Models.Static.Color;
 
-namespace eu.greenmaster.Tests.UnitTests.Factories.SpecieFactoryTests;
+namespace eu.greenmaster.Tests.UnitTests.Mappers.SpecieMapperTests;
 
 public class SpecieFactoryTestBase
 {

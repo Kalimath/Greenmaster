@@ -2,7 +2,7 @@
 using eu.greenmaster.Models.Factories;
 using eu.greenmaster.Models.Placeables;
 
-namespace eu.greenmaster.Tests.UnitTests.Factories.PlaceableFactoryTests;
+namespace eu.greenmaster.Tests.UnitTests.Mappers.PlaceableFactoryTests;
 
 public class CreatePlaceableShould : PlaceableFactoryTestBase
 {
