@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<eu.greenmaster.Models.ViewModels.PlaceableViewModel>
+
+@{
+    ViewBag.Title = "Placeables";
+    Layout = "_Layout";
+}
+
+<h1>Placeables</h1>
+
+<p>
+    <a class="btn btn-primary" asp-controller="Placeable" asp-action="CreatePlant">Add plant</a>
+    <a class="btn btn-primary" asp-controller="Placeable" asp-action="CreateStructure">Add structure</a>
+</p>
+
+<table  class="table table-striped table-bordered" id="specieTable">
+    <thead>
+    <tr>
+        <th class="th-sm" hidden="hidden">
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Dimensions!.Width)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Dimensions!.Height)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Rendering)
+        </th>
+        <th class="th-sm"></th>
+    </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td hidden="hidden" id="itemId">
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-controller="ObjectType" asp-action="Details" asp-route-id="@item.Type!.Id">@Html.DisplayFor(modelItem => item.Type!.Name)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dimensions!.Width) m
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dimensions!.Height) m
+                    </td>
+                    <td>
+                        <img style="height:100px" class="img-fluid" src="data:image/png;base64,@item.Rendering?.ImageBase64" alt="rendering">
+                    </td>
+                    <td>
+                        <a class="disabled" asp-controller="Placeable" asp-action="Details" asp-route-id="@item.Id">Details</a> | <a class="disabled" asp-controller="Placeable" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | <a class="disabled" asp-controller="Placeable" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    
+</table>

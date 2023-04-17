@@ -1,0 +1,17 @@
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\bin\Debug\net6.0\eu.greenmaster.EFCore.deps.json
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\bin\Debug\net6.0\eu.greenmaster.EFCore.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\bin\Debug\net6.0\eu.greenmaster.EFCore.pdb
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\bin\Debug\net6.0\eu.greenmaster.Contracts.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\bin\Debug\net6.0\eu.greenmaster.Models.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\bin\Debug\net6.0\eu.greenmaster.Contracts.pdb
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\bin\Debug\net6.0\eu.greenmaster.Models.pdb
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\eu.greenmaster.EFCore.csproj.AssemblyReference.cache
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\eu.greenmaster.EFCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\eu.greenmaster.EFCore.AssemblyInfoInputs.cache
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\eu.greenmaster.EFCore.AssemblyInfo.cs
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\eu.greenmaster.EFCore.csproj.CoreCompileInputs.cache
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\eu.greenmaster.EFCore.csproj.CopyComplete
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\eu.greenmaster.EFCore.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\refint\eu.greenmaster.EFCore.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\eu.greenmaster.EFCore.pdb
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.EFCore\obj\Debug\net6.0\ref\eu.greenmaster.EFCore.dll

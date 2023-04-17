@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<eu.greenmaster.Models.Placeables.Plant>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "_Layout";
+}
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-controller="Placeable" asp-action="CreatePlant">Add new plant</a>
+</p>

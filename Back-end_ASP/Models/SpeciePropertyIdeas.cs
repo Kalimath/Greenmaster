@@ -1,0 +1,64 @@
+﻿namespace Greenmaster_ASP.Models;
+
+public class SpeciePropertyIdeas
+    {
+        public int? ID { get; set; }
+        public string CommonName { get; set; }
+        public List<string> ScientificName { get; set; }
+        public List<string> OtherName { get; set; }
+        public string Family { get; set; }
+        public object Origin { get; set; }
+        public string Type { get; set; }
+        public string Dimension { get; set; }
+        public string Cycle { get; set; }
+        public string Watering { get; set; }
+        public List<string> Attracts { get; set; }
+        public List<string> Propagation { get; set; }
+        public double MinTemp { get; set; }
+        public string HardinessLocationImage { get; set; }
+        public bool? Flowers { get; set; }
+        public string FloweringSeason { get; set; }
+        public string Color { get; set; }
+        public List<string> Sunlight { get; set; }
+        public List<object> Soil { get; set; }
+        public string Problem { get; set; }
+        public object PestSusceptibility { get; set; }
+        public bool? Cones { get; set; }
+        public bool? Fruits { get; set; }
+        public bool? EdibleFruit { get; set; }
+        public string EdibleFruitTasteProfile { get; set; }
+        public string FruitNutritionalValue { get; set; }
+        public object FruitColor { get; set; }
+        public object FruitingSeason { get; set; }
+        public object HarvestSeason { get; set; }
+        public string HarvestMethod { get; set; }
+        public bool? Leaf { get; set; }
+        public List<string> LeafColor { get; set; }
+        public bool? EdibleLeaf { get; set; }
+        public string EdibleLeafTasteProfile { get; set; }
+        public string LeafNutritionalValue { get; set; }
+        public string GrowthRate { get; set; }
+        public string Maintenance { get; set; }
+        public bool? Medicinal { get; set; }
+        public string MedicinalUse { get; set; }
+        public string MedicinalMethod { get; set; }
+        public bool? PoisonousToHumans { get; set; }
+        public string PoisonEffectsToHumans { get; set; }
+        public string PoisonToHumansCure { get; set; }
+        public bool? PoisonousToPets { get; set; }
+        public string PoisonEffectsToPets { get; set; }
+        public string PoisonToPetsCure { get; set; }
+        public bool? DroughtTolerant { get; set; }
+        public bool? SaltTolerant { get; set; }
+        public bool? Thorny { get; set; }
+        public bool? Invasive { get; set; }
+        public bool? Rare { get; set; }
+        public string RareLevel { get; set; }
+        public bool? Tropical { get; set; }
+        public bool? Cuisine { get; set; }
+        public string CuisineList { get; set; }
+        public bool? Indoor { get; set; }
+        public string CareLevel { get; set; }
+        public string Description { get; set; }
+        public Rendering Rendering { get; set; }
+    }

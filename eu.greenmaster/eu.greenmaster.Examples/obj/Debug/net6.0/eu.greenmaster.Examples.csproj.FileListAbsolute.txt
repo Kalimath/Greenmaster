@@ -1,0 +1,15 @@
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\bin\Debug\net6.0\eu.greenmaster.Examples.deps.json
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\bin\Debug\net6.0\eu.greenmaster.Examples.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\bin\Debug\net6.0\eu.greenmaster.Examples.pdb
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\bin\Debug\net6.0\eu.greenmaster.Models.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\bin\Debug\net6.0\eu.greenmaster.Models.pdb
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\eu.greenmaster.Examples.csproj.AssemblyReference.cache
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\eu.greenmaster.Examples.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\eu.greenmaster.Examples.AssemblyInfoInputs.cache
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\eu.greenmaster.Examples.AssemblyInfo.cs
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\eu.greenmaster.Examples.csproj.CoreCompileInputs.cache
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\eu.greenmaster.Examples.csproj.CopyComplete
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\eu.greenmaster.Examples.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\refint\eu.greenmaster.Examples.dll
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\eu.greenmaster.Examples.pdb
+C:\Users\mathi\RiderProjects\Greenmaster_ASP\Greenmaster_ASP\eu.greenmaster\eu.greenmaster.Examples\obj\Debug\net6.0\ref\eu.greenmaster.Examples.dll
