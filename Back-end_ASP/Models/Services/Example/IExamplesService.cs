@@ -1,4 +1,5 @@
-﻿using Greenmaster_ASP.Models.Measurements;
+﻿using Greenmaster_ASP.Models.Design;
+using Greenmaster_ASP.Models.Measurements;
 using Greenmaster_ASP.Models.Placeables;
 
 namespace Greenmaster_ASP.Models.Services.Example;
@@ -16,4 +17,5 @@ public interface IExamplesService
     List<Placeable> GetAllPlaceables();
     List<Plant> GetAllPlants();
     List<Structure> GetAllStructures();
+    List<GardenStyle> GetAllGardenStyles();
 }

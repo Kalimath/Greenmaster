@@ -13,5 +13,6 @@ public enum Shape
     Conical = 5,
     Weeping = 6,
     Open = 7,
-    Irregular = 8
+    Irregular = 8,
+    Cubic = 9
 }
