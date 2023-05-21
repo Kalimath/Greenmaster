@@ -8,7 +8,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
 {
 
     [Fact]
-    public void ThrowArgumentNullException_WhenGardenStyleIsNull()
+    public void ThrowArgumentNullException_WhenGardenStyleViewModelIsNull()
     {
         Assert.Throws<ArgumentNullException>(() => GardenStyleFactory.Create(null!));
     }

@@ -24,6 +24,23 @@ public static class GardenStyleFactory
             RequiresLargeGarden = gardenStyleViewModel.RequiresLargeGarden
         };
     }
+    
+    public static GardenStyleViewModel ToViewModel(GardenStyle gardenStyle)
+    {
+        if (gardenStyle == null) throw new ArgumentNullException(nameof(gardenStyle));
+        ValidateModel(gardenStyle);
+
+        return new GardenStyleViewModel()
+        {
+            Id = gardenStyle.Id,
+            Name = gardenStyle.Name,
+            Description = gardenStyle.Description,
+            Concepts = gardenStyle.Concepts,
+            Shapes = gardenStyle.Shapes,
+            Colors = gardenStyle.Colors,
+            RequiresLargeGarden = gardenStyle.RequiresLargeGarden
+        };
+    }
 
     private static void ValidateViewModel(GardenStyleViewModel gardenStyleViewModel)
     {
@@ -34,9 +51,14 @@ public static class GardenStyleFactory
         if (string.IsNullOrWhiteSpace(gardenStyleViewModel.Description))
             throw new ArgumentException(nameof(gardenStyleViewModel.Description));
     }
-
-    public static GardenStyleViewModel ToViewModel(GardenStyle gardenStyle)
+    private static void ValidateModel(GardenStyle gardenStyle)
     {
-        throw new NotImplementedException();
+        if (gardenStyle.Id<=0)
+            throw new ArgumentOutOfRangeException(nameof(gardenStyle.Id), "Id must be greater than 0");
+        if (string.IsNullOrWhiteSpace(gardenStyle.Name))
+            throw new ArgumentException(nameof(gardenStyle.Name));
+        if (string.IsNullOrWhiteSpace(gardenStyle.Description))
+            throw new ArgumentException(nameof(gardenStyle.Description));
     }
+
 }
