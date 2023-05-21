@@ -12,9 +12,9 @@ public class SpecieService : ISpecieService
         _context = context;
     }
 
-    public Task<List<Models.Specie>> GetAll()
+    public async Task<List<Models.Specie>> GetAll()
     {
-        return Task.FromResult(_context.GetAllSpecies().ToList());
+        return await Task.FromResult(_context.GetAllSpecies().ToList());
     }
     
     public async Task<Models.Specie> GetByScientificName(string scientificName)

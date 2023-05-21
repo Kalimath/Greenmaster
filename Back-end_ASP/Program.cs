@@ -5,6 +5,7 @@ using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Placeables;
 using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Services.Example;
+using Greenmaster_ASP.Models.Services.GardenStyle;
 using Greenmaster_ASP.Models.Services.Placeables;
 using Greenmaster_ASP.Models.Services.Rendering;
 using Greenmaster_ASP.Models.Services.Specie;
@@ -36,6 +37,7 @@ services.AddScoped<IRenderingService, RenderingService>();
 services.AddScoped<IExamplesService, ExamplesService>();
 services.AddScoped<IPlantService, PlantService>();
 services.AddScoped<IStructureService, StructureService>();
+services.AddScoped<IGardenStyleService, GardenStyleService>();
 
 
 var app = builder.Build();

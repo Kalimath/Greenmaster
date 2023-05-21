@@ -55,14 +55,14 @@ namespace Greenmaster_ASP.Controllers
             return View(RenderingFactory.ToViewModel(rendering));
         }
 
-        // GET: Rendering/Create
+        // GET: Rendering/CreateGardenStyle
         public IActionResult Create()
         {
             DefineViewData();
             return View();
         }
 
-        // POST: Rendering/Create
+        // POST: Rendering/CreateGardenStyle
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(RenderingViewModel renderingViewModel)

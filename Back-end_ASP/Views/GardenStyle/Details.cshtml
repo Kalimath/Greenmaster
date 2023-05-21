@@ -1,0 +1,74 @@
+﻿@model Greenmaster_ASP.Models.ViewModels.GardenStyleViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "_Layout";
+}
+
+<h1>Details</h1>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+            <hr/>
+            <dl class="row" id="specie-identification">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Id)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Id)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Concepts)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Concepts)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Colors)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Colors)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Shapes)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Shapes)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Shapes)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Shapes)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.RequiresLargeGarden)
+                </dt>
+                <dd class="col-sm-8">
+                    @(Model.RequiresLargeGarden ? "Yes" : "No")
+                </dd>
+                
+            </dl>
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

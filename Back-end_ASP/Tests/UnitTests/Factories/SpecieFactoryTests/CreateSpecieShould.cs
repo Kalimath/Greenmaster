@@ -93,7 +93,7 @@ public class CreateSpecieShould : SpecieFactoryTestBase
         var invalidSpecieViewModel = SpecieViewModelStrelitzia.Clone();
         invalidSpecieViewModel.Image = Substitute.For<IFormFile>();
         invalidSpecieViewModel.Image.CopyTo(Arg.Any<Stream>()).th;
-        Assert.Throws<InvalidOperationException>(() => SpecieFactory.Create(invalidSpecieViewModel));
+        Assert.Throws<InvalidOperationException>(() => SpecieFactory.CreateGardenStyle(invalidSpecieViewModel));
     }*/
     
     //TODO: check if plantrequirements are created correctly

@@ -52,7 +52,7 @@ public class ExamplesService : IExamplesService
         return PlaceableExamples.GetAllStructures();
     }
 
-    public List<GardenStyle> GetAllGardenStyles()
+    public List<Design.GardenStyle> GetAllGardenStyles()
     {
         return GardenStyleExamples.GetAll();
     }

@@ -1,4 +1,5 @@
 ﻿using Greenmaster_ASP.Models;
+using Greenmaster_ASP.Models.Design;
 using Greenmaster_ASP.Models.Measurements;
 using Greenmaster_ASP.Models.Placeables;
 using Greenmaster_ASP.Models.Services.Example;
@@ -25,6 +26,9 @@ public class ArboretumContext : DbContext
     public DbSet<Placeable> Placeables { get; set; } = null!;
     public DbSet<Plant> Plants { get; set; } = null!;
     public DbSet<Structure> Structures { get; set; } = null!;
+    public DbSet<GardenStyle> GardenStyles { get; set; } = null!;
+    
+    
     // public DbSet<Domain> Domains { get; set; } = null!;
     // public DbSet<Area> Areas { get; set; } = null!;
     
@@ -141,5 +145,6 @@ public class ArboretumContext : DbContext
         modelBuilder.Entity<StructureType>().HasData(_examplesService.GetAllStructureTypes());
         modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
         modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
+        modelBuilder.Entity<GardenStyle>().HasData(_examplesService.GetAllGardenStyles());
     }
 }

@@ -55,7 +55,6 @@ public class ObjectTypeController : Controller
     
     public IActionResult CreateStructureType()
     {
-        
         return View();
     }
     
