@@ -36,7 +36,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RequiresLargeGarden)
+                    @(item.RequiresLargeGarden ? "Yes" : "No")
                 </td>
                 <td>
                     <a asp-controller="GardenStyle" asp-action="Details" asp-route-id="@item.Id">Details</a> 

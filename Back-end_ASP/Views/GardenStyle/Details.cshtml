@@ -5,7 +5,7 @@
     Layout = "_Layout";
 }
 
-<h1>Details</h1>
+<h1>Style</h1>
 <br/>
 <div class="container">
     <div class="row">
@@ -35,25 +35,19 @@
                     @Html.DisplayNameFor(model => model.Concepts)
                 </dt>
                 <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Concepts)
+                    @(string.Join(", ", Model.Concepts))
                 </dd>
                 <dt class="col-sm-4">
                     @Html.DisplayNameFor(model => model.Colors)
                 </dt>
                 <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Colors)
+                    @(string.Join(", ", Model.Colors))
                 </dd>
                 <dt class="col-sm-4">
                     @Html.DisplayNameFor(model => model.Shapes)
                 </dt>
                 <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Shapes)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Shapes)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Shapes)
+                    @(string.Join(", ", Model.Shapes))
                 </dd>
                 <dt class="col-sm-4">
                     @Html.DisplayNameFor(model => model.RequiresLargeGarden)
