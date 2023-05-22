@@ -11,7 +11,7 @@ namespace Greenmaster_ASP.Models.Examples;
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public static class SpecieExamples 
 {
-    public static readonly Specie Strelitzia = new Specie()
+    public static readonly Specie Strelitzia = new()
     {
         Id = 1,
         Genus = "Strelitzia",
@@ -40,7 +40,7 @@ public static class SpecieExamples
         Image = Base64Examples.ImageSpecie
     };
 
-    public static readonly Specie Papaver = new Specie()
+    public static readonly Specie Papaver = new()
     {
         Id = 2,
         Genus = "Papaver",
