@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
-using Color = Greenmaster_ASP.Models.Static.Color;
 
 namespace Greenmaster_ASP.Models.Examples;
 

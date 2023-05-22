@@ -1,4 +1,5 @@
 ﻿using Greenmaster_ASP.Models.Design;
+using Greenmaster_ASP.Models.Extensions;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services.GardenStyle;
 using Greenmaster_ASP.Models.Static;
@@ -65,7 +66,6 @@ public class GardenStyleController : Controller
             Console.WriteLine(ex);
             return NotFound();
         }
-
         
         return View(viewModel);
     }
@@ -149,9 +149,20 @@ public class GardenStyleController : Controller
 
     private void DefineViewData()
     {
-        ViewData["Colors"] = new SelectList(Enum.GetNames(typeof(Color)));
+        ViewData["Colors"] = new SelectList(GetStyleColors());
         ViewData["Amounts"] = new SelectList(Enum.GetNames(typeof(Amount)));
         ViewData["Concepts"] = new SelectList(Enum.GetNames(typeof(GardenStyleConcept)));
         ViewData["Shapes"] = new SelectList(Enum.GetNames(typeof(Shape)));
+    }
+
+    private static IEnumerable<string> GetStyleColors()
+    {
+        var styleColors = new List<string>();
+        styleColors.AddRange(ColorWheel.PrimaryAndSecondaryColors().GetNames());
+        styleColors.Add(Color.Brown.GetName());
+        styleColors.Add(Color.White.GetName());
+        styleColors.Add(Color.Grey.GetName());
+        styleColors.Add(Color.Black.GetName());
+        return styleColors;
     }
 }

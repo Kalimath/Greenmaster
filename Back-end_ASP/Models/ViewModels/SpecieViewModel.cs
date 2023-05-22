@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Greenmaster_ASP.Helpers.Attributes;
+using Greenmaster_ASP.Models.Static;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
 using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
-using Color = Greenmaster_ASP.Models.Static.Color;
 
 #pragma warning disable CS8618
 namespace Greenmaster_ASP.Models.ViewModels;

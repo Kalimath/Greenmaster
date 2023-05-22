@@ -1,10 +1,12 @@
-﻿namespace Greenmaster_ASP.Models.Static;
+﻿
+
+namespace Greenmaster_ASP.Models.Static;
 
 public static class ColorWheel
 {
     //Based on subtractive color synthesis
     
-    public static Color[] PrimaryColors => new[]
+    public static Color[] PrimaryColors => new []
     {
         Color.Red,
         Color.Yellow,
@@ -88,7 +90,7 @@ public static class ColorWheel
             (Color.Yellow, Color.Red) => Color.Orange,
             (Color.Yellow, Color.Blue) => Color.Green,
             (Color.Blue, Color.Red) => Color.Violet,
-            _ => Color.NotSpecified
+            _ => throw new ArgumentOutOfRangeException(nameof(primaryColors))
         };
 
         return secondaryColor;
