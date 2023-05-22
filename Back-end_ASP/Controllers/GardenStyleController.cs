@@ -8,21 +8,22 @@ using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Greenmaster_ASP.Controllers;
 
 public class GardenStyleController : Controller
 {
-    private readonly IGardenStyleService _service;
+    private readonly IGardenStyleService _modelService;
 
     public GardenStyleController(IGardenStyleService service)
     {
-        _service = service ?? throw new ArgumentNullException(nameof(service));
+        _modelService = service ?? throw new ArgumentNullException(nameof(service));
     }
 
     public async Task<IActionResult> Index()
     {
-        return View(await _service.GetAll());
+        return View(await _modelService.GetAll());
     }
 
     public IActionResult CreateGardenStyle()
@@ -40,7 +41,7 @@ public class GardenStyleController : Controller
         {
             if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
             var gardenStyle = GardenStyleFactory.Create(viewModel);
-            await _service.Add(gardenStyle);
+            await _modelService.Add(gardenStyle);
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -56,7 +57,7 @@ public class GardenStyleController : Controller
         GardenStyleViewModel viewModel;
         try
         {
-            var gardenStyle = (await _service.GetById(id)) ?? throw new ArgumentException("No gardenStyle found with id= " + id);
+            var gardenStyle = (await _modelService.GetById(id)) ?? throw new ArgumentException("No gardenStyle found with id= " + id);
             viewModel = GardenStyleFactory.ToViewModel(gardenStyle);
         }
         catch (Exception ex)
@@ -69,14 +70,80 @@ public class GardenStyleController : Controller
         return View(viewModel);
     }
 
-    public IActionResult Edit()
+    public async Task<IActionResult> Edit(int id)
     {
-        throw new NotImplementedException();
+        GardenStyle gardenStyle;
+        try
+        {
+            gardenStyle = await _modelService.GetById(id);
+        }
+        catch (Exception)
+        {
+            return NotFound();
+        }
+
+        DefineViewData();
+        return View(GardenStyleFactory.ToViewModel(gardenStyle));
+    }
+    
+    // Put: api/GardenStyle/PutGardenStyle
+    // To protect from overposting attacks, please enable the specific properties you want to bind to.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, GardenStyleViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                var gardenStyle = GardenStyleFactory.Create(viewModel);
+                await _modelService.Update(gardenStyle);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                if (!await _modelService.ExistsWithId(id))
+                    return NotFound();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
+        }
+
+        DefineViewData();
+        return View(viewModel);
     }
 
-    public IActionResult Delete()
+    
+    public async Task<IActionResult> Delete(int id)
     {
-        return View();
+        if (!await _modelService.ExistsWithId(id))
+            return NotFound();
+
+        try
+        {
+            return View(await _modelService.GetById(id));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return NotFound();
+        }
+    }
+    
+    
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        if (!await _modelService.ExistsWithId(id))
+            return NotFound();
+
+        await _modelService.Delete(id);
+        return RedirectToAction(nameof(Index));
     }
     
 

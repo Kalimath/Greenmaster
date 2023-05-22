@@ -146,6 +146,11 @@ namespace Greenmaster_ASP.Controllers
                         return NotFound();
                     }
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
 
                 return RedirectToAction(nameof(Index));
             }

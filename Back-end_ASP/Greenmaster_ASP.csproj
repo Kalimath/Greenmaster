@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="EGIS.Web.Controls" Version="4.8.6" />
       <PackageReference Include="MessagePack.Annotations" Version="2.1.152" />
       <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.9" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
