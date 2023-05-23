@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using Greenmaster_ASP.Models.Base;
 
 namespace Greenmaster_ASP.Models;

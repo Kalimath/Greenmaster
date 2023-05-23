@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.ViewModels;
 
 namespace Greenmaster_ASP.Controllers;

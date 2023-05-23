@@ -1,6 +1,6 @@
 ﻿using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Examples;
-using Greenmaster_ASP.Models.Static;
+using Greenmaster_ASP.Models.Extensions;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
 using static Greenmaster_ASP.Helpers.FormFileConverter;
@@ -37,7 +37,7 @@ public class SpecieFactoryTestBase
             AttractsPollinators = SpecieExamples.Strelitzia.AttractsPollinators,
             IsFragrant = SpecieExamples.Strelitzia.IsFragrant,
             IsPoisonous = SpecieExamples.Strelitzia.IsPoisonous,
-            FlowerColors =SpecieExamples.Strelitzia.FlowerColors!.Select(s => Enum.Parse<Color>(s)).ToArray(),
+            FlowerColors =SpecieExamples.Strelitzia.FlowerColors!.Select(s => s.ToColor()).ToArray(),
             Image = FromBase64(Base64Examples.ImageSpecie),
             ImageBase64 = SpecieExamples.Strelitzia.Image
         };

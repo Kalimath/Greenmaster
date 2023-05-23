@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Greenmaster_ASP.Models;
+using Greenmaster_ASP.Models.Extensions;
 using Greenmaster_ASP.Models.Factories;
-using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Services.Specie;
 using Greenmaster_ASP.Models.Services.Type;
-using Greenmaster_ASP.Models.Static;
+using Greenmaster_ASP.Models.Static.Coloring;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
@@ -104,7 +104,7 @@ namespace Greenmaster_ASP.Controllers
             ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
             ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));
-            ViewData["Color"] = new SelectList(Enum.GetNames(typeof(Color)));
+            ViewData["Color"] = new SelectList(ColorPallet.Colors().GetNames());
             ViewData["Shape"] = new SelectList(Enum.GetNames(typeof(Shape)));
         }
 

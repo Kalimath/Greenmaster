@@ -1,5 +1,5 @@
 ﻿using Greenmaster_ASP.Helpers;
-using Greenmaster_ASP.Models.Static;
+using Greenmaster_ASP.Models.Extensions;
 using Greenmaster_ASP.Models.StaticData.Time.Durations;
 using Greenmaster_ASP.Models.ViewModels;
 using static Greenmaster_ASP.Helpers.StringValidator;
@@ -42,7 +42,7 @@ public class SpecieFactory
                 .Select(a => a.ToString()).ToArray(),
             FlowerColors =
                 (specieViewModel.FlowerColors ?? throw new ArgumentNullException(nameof(specieViewModel.FlowerColors)))
-                .Select(a => a.ToString()).ToArray(),
+                .Select(a => a.GetName()).ToArray(),
             IsFragrant = specieViewModel.IsFragrant,
             AttractsPollinators = specieViewModel.AttractsPollinators,
         };
@@ -150,7 +150,7 @@ public class SpecieFactory
             BloomPeriod = (specie.BloomPeriod ?? throw new ArgumentNullException(nameof(specie.BloomPeriod)))
                 .Select(s => Enum.Parse<Month>(s)).ToArray(),
             FlowerColors = (specie.FlowerColors ?? throw new ArgumentNullException(nameof(specie.FlowerColors)))
-                .Select(s => Enum.Parse<Color>(s)).ToArray(),
+                .Select(s => s.ToColor()).ToArray(),
             IsFragrant = specie.IsFragrant,
             AttractsPollinators = specie.AttractsPollinators,
 

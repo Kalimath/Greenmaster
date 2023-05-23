@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Greenmaster_ASP.Models.Static;
+using System.Drawing;
+using Greenmaster_ASP.Models.Extensions;
 using Greenmaster_ASP.Models.Static.Geographic;
 using Greenmaster_ASP.Models.Static.Gradation;
 using Greenmaster_ASP.Models.Static.Object.Organic;
@@ -36,7 +37,7 @@ public static class SpecieExamples
         AttractsPollinators = true,
         IsFragrant = false,
         IsPoisonous = true,
-        FlowerColors = new[] { Color.Blue.ToString(), Color.MultiColor.ToString(), Color.Orange.ToString() },
+        FlowerColors = new[] { Color.Blue.GetName(), Color.Orange.GetName() },
         Image = Base64Examples.ImageSpecie
     };
 
@@ -61,7 +62,7 @@ public static class SpecieExamples
         AttractsPollinators = true,
         IsFragrant = false,
         IsPoisonous = false,
-        FlowerColors = new[] { Color.Pink.ToString() },
+        FlowerColors = new[] { Color.Pink.GetName() },
         Image = Base64Examples.ImageSpecie
     };
     

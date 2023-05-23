@@ -1,6 +1,5 @@
 ﻿using Greenmaster_ASP.Controllers;
 using Greenmaster_ASP.Models;
-using Greenmaster_ASP.Models.Services;
 using Greenmaster_ASP.Models.Services.Specie;
 using Greenmaster_ASP.Models.Services.Type;
 using Microsoft.AspNetCore.Mvc;

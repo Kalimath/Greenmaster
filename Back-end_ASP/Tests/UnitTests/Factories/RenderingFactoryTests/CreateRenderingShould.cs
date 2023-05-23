@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Factories;

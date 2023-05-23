@@ -1,4 +1,5 @@
-@using Greenmaster_ASP.Models.Static
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Greenmaster_ASP.Models.Extensions
 @model Greenmaster_ASP.Models.ViewModels.SpecieViewModel
 
 @{
@@ -98,7 +99,7 @@
                     @Html.DisplayNameFor(model => model.MinimalTemperature)
                 </dt>
                 <dd class="col-sm-4">
-                     @Html.DisplayFor(model => model.MinimalTemperature) °C @* TODO: retrieve from config *@
+                    @Html.DisplayFor(model => model.MinimalTemperature) °C @* TODO: retrieve from config *@
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.IsPoisonous)
@@ -124,16 +125,14 @@
                         @Html.DisplayNameFor(model => model.FlowerColors)
                     </dt>
                     <dd class="col-sm-4">
-    
+
                         @for (int i = 0; i < Model.FlowerColors.Count(); i++)
                         {
-                            if (Model.FlowerColors[i] != Color.MultiColor && @Model.FlowerColors[i] != Color.BiColor)
-                            {
-                                <svg fill="@Model.FlowerColors[i]" height="20px" width="20px" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     viewBox="0 0 511.999 511.999" xml:space="preserve">
+                            <svg fill="@Model.FlowerColors[i].GetName()" height="20px" width="20px" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 viewBox="0 0 511.999 511.999" xml:space="preserve">
+                                <g>
                                     <g>
-                                        <g>
-                                            <path d="M429.374,186.312c-19.444-1.142-52.858,10.573-85.425,24.737c28.544-21.116,55.39-44.194,64.136-61.614
+                                        <path d="M429.374,186.312c-19.444-1.142-52.858,10.573-85.425,24.737c28.544-21.116,55.39-44.194,64.136-61.614
                                         			                    c21.705-43.235,4.19-96.071-39.046-117.778c-20.708-10.396-43.43-11.688-65.71-3.733c-18.01,6.43-34.555,18.693-47.328,34.943
                                         			                    c-12.771-16.249-29.317-28.513-47.328-34.943c-22.277-7.954-45.001-6.663-65.71,3.733C99.726,53.363,82.21,106.2,103.916,149.435
                                         			                    c8.743,17.415,35.572,40.482,64.105,61.592c-32.556-14.161-65.953-25.865-85.394-24.715c-48.298,2.82-85.296,44.407-82.476,92.703
@@ -144,18 +143,9 @@
                                         			                    c20.457-2.935,39.352-11.133,53.926-23.515c18.029-15.318,28.272-35.642,29.622-58.775
                                         			                    C514.67,230.718,477.673,189.132,429.374,186.312z M256.001,305.694c-24.19,0-43.87-19.681-43.87-43.87
                                         			                    c0-24.19,19.68-43.87,43.87-43.87s43.87,19.68,43.87,43.87S280.19,305.694,256.001,305.694z"/>
-                                        </g>
                                     </g>
-                                </svg>
-                            }
-                        }
-                        @if (Model.FlowerColors.Contains(Color.MultiColor))
-                        {
-                            @($" ({Color.MultiColor})")
-                        }
-                        @if (Model.FlowerColors.Contains(Color.BiColor))
-                        {
-                            @($" ({Color.BiColor})")
+                                </g>
+                            </svg>
                         }
                     </dd>
                 }
@@ -188,7 +178,7 @@
                 </dd>
             </dl>
         </div>
-    
+
     </div>
 </div>
 

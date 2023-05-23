@@ -1,6 +1,4 @@
-﻿using Greenmaster_ASP.Models.Measurements;
-
-namespace Greenmaster_ASP.Models.Examples;
+﻿namespace Greenmaster_ASP.Models.Examples;
 
 public class PointExamples
 {

@@ -1,5 +1,3 @@
-using System.Runtime.Serialization;
-
 namespace Greenmaster_ASP.Models.Static.PlantProperties;
 
 public enum Shape
