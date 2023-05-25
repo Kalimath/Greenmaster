@@ -1,17 +1,16 @@
-﻿@model StructureType
+﻿@model Greenmaster_ASP.Models.Design.MaterialType
 
 @{
-    ViewBag.Title = "Create structure-type";
+    ViewBag.Title = "Create material type";
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
-
-<h4>Structure-type</h4>
+<h2>title</h2>
+<h4>Garden style</h4>
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="ObjectType" asp-action="CreateStructureType" method="post">
+        <form asp-controller="MaterialType" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -32,5 +31,5 @@
 </div>
 
 <div>
-    <a asp-controller="Rendering" asp-action="Index">Back to List</a>
+    <a asp-controller="MaterialType" asp-action="Index">Back to List</a>
 </div>

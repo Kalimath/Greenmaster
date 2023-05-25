@@ -81,7 +81,7 @@ public class ToViewModelShould : SpecieFactoryTestBase
     public void ThrowArgumentOutOfRangeException_WhenCombinedNPPLevelsNotEqualTo100Percent()
     {
         _specieViewModel.NitrogenLevel += 6;
-        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.CreateGardenStyle(_specieViewModel));
+        Assert.Throws<ArgumentOutOfRangeException>(() => SpecieFactory.Create(_specieViewModel));
     }*/
     
 }

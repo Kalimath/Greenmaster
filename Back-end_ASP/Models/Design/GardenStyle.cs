@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Greenmaster_ASP.Models.Static.Measuring;
 
 namespace Greenmaster_ASP.Models.Design;
 
@@ -16,5 +17,9 @@ public class GardenStyle
     [DisplayName(displayName: "Large garden only")]
     public bool RequiresLargeGarden { get; set; }
     
+    public Size PathSize { get; set; }
+    
+    public virtual ICollection<MaterialType> Materials { get; set; } = new HashSet<MaterialType>();
+
     //TODO: add media 
 }

@@ -17,4 +17,5 @@ public interface IExamplesService
     List<Plant> GetAllPlants();
     List<Structure> GetAllStructures();
     List<Design.GardenStyle> GetAllGardenStyles();
+    List<Design.MaterialType> GetAllMaterialTypes();
 }

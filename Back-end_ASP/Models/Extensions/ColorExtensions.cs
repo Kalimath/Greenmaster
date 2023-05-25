@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Reflection;
+using Greenmaster_ASP.Models.Static.Coloring;
 
 namespace Greenmaster_ASP.Models.Extensions;
 
@@ -20,7 +21,19 @@ public static class ColorExtensions
     
     public static Color ComplementaryColor(this Color color)
     {
-        return Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);;
+        var complementary = color.ToKnownColor() switch
+            {
+                KnownColor.Black => Color.White,
+                KnownColor.White => Color.Black,
+                KnownColor.Red => Color.Green,
+                KnownColor.Green => Color.Red,
+                KnownColor.Blue => Color.Orange,
+                KnownColor.Yellow => Color.Purple,
+                KnownColor.Orange => Color.Blue,
+                _ => Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B)
+            };
+
+        return complementary;
     }
 
     public static Color ToColor(this string colorName)

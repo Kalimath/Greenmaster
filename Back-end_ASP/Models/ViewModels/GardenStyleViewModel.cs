@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using Greenmaster_ASP.Models.Design;
+using Greenmaster_ASP.Models.Static.Measuring;
 
 namespace Greenmaster_ASP.Models.ViewModels;
 
@@ -12,6 +14,9 @@ public class GardenStyleViewModel
     public string[] Colors { get; set; }
     [DisplayName(displayName: "Large garden only")]
     public bool RequiresLargeGarden { get; set; }
-    
+
+    public Size PathSize { get; set; }
+    public MaterialType[] Materials { get; set; }
+
     //TODO: add media 
 }

@@ -2,9 +2,11 @@
 using Greenmaster_ASP.Models.Extensions;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services.GardenStyle;
+using Greenmaster_ASP.Models.Services.MaterialType;
 using Greenmaster_ASP.Models.Static.Coloring;
 using Greenmaster_ASP.Models.Static.Design;
 using Greenmaster_ASP.Models.Static.Gradation;
+using Greenmaster_ASP.Models.Static.Measuring;
 using Greenmaster_ASP.Models.Static.PlantProperties;
 using Greenmaster_ASP.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +18,12 @@ namespace Greenmaster_ASP.Controllers;
 public class GardenStyleController : Controller
 {
     private readonly IGardenStyleService _modelService;
+    private readonly IMaterialTypeService _materialTypeService;
 
-    public GardenStyleController(IGardenStyleService service)
+    public GardenStyleController(IGardenStyleService service, IMaterialTypeService materialTypeService)
     {
         _modelService = service ?? throw new ArgumentNullException(nameof(service));
+        _materialTypeService = materialTypeService ?? throw new ArgumentNullException(nameof(materialTypeService));
     }
 
     public async Task<IActionResult> Index()
@@ -27,16 +31,16 @@ public class GardenStyleController : Controller
         return View(await _modelService.GetAll());
     }
 
-    public IActionResult CreateGardenStyle()
+    public async Task<IActionResult> Create()
     {
-        DefineViewData();
+        await DefineViewData();
         return View();
     }
 
-    //Post: api/GardenStyle/CreateGardenStyle
+    //Post: api/GardenStyle/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateGardenStyle(GardenStyleViewModel viewModel)
+    public async Task<IActionResult> Create(GardenStyleViewModel viewModel)
     {
         try
         {
@@ -47,7 +51,7 @@ public class GardenStyleController : Controller
         }
         catch
         {
-            DefineViewData();
+            await DefineViewData();
             return View(viewModel);
         }
         
@@ -82,7 +86,7 @@ public class GardenStyleController : Controller
             return NotFound();
         }
 
-        DefineViewData();
+        await DefineViewData();
         return View(GardenStyleFactory.ToViewModel(gardenStyle));
     }
     
@@ -113,7 +117,7 @@ public class GardenStyleController : Controller
             
         }
 
-        DefineViewData();
+        await DefineViewData();
         return View(viewModel);
     }
 
@@ -147,11 +151,13 @@ public class GardenStyleController : Controller
     }
     
 
-    private void DefineViewData()
+    private async Task DefineViewData()
     {
         ViewData["Colors"] = new SelectList(ColorPallet.Colors().GetNames());
         ViewData["Amounts"] = new SelectList(Enum.GetNames(typeof(Amount)));
         ViewData["Concepts"] = new SelectList(Enum.GetNames(typeof(GardenStyleConcept)));
         ViewData["Shapes"] = new SelectList(Enum.GetNames(typeof(Shape)));
+        ViewData["Sizes"] = new SelectList(Enum.GetNames(typeof(Size)));
+        ViewData["MaterialTypes"] = new SelectList(await _materialTypeService.GetAll());
     }
 }

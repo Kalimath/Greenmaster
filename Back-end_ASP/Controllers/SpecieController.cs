@@ -63,14 +63,14 @@ namespace Greenmaster_ASP.Controllers
             return View(SpecieFactory.ToViewModel(specie));
         }
 
-        // GET: Specie/CreateGardenStyle
+        // GET: Specie/Create
         public async Task<IActionResult> Create()
         {
             await DefineViewData();
             return View();
         }
 
-        // POST: Specie/CreateGardenStyle
+        // POST: Specie/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

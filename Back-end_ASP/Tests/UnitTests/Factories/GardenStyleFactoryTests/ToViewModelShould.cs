@@ -59,6 +59,24 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     }
 
     [Fact]
+    public void SetPathSize_WhenValid()
+    {
+        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+
+        Assert.NotNull(viewModel);
+        Assert.Equal(GardenStyle.PathSize, viewModel.PathSize);
+    }
+
+    [Fact]
+    public void SetMaterials_WhenValid()
+    {
+        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+
+        Assert.NotNull(viewModel);
+        Assert.Equal(GardenStyle.Materials, viewModel.Materials);
+    }
+
+    [Fact]
     public void SetName_WhenValid()
     {
         var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);

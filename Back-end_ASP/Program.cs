@@ -1,9 +1,11 @@
 using System.Text.Json.Serialization;
+using Greenmaster_ASP;
 using Greenmaster_ASP.Database.Arboretum;
 using Greenmaster_ASP.Models;
 using Greenmaster_ASP.Models.Factories;
 using Greenmaster_ASP.Models.Services.Example;
 using Greenmaster_ASP.Models.Services.GardenStyle;
+using Greenmaster_ASP.Models.Services.MaterialType;
 using Greenmaster_ASP.Models.Services.Placeables;
 using Greenmaster_ASP.Models.Services.Rendering;
 using Greenmaster_ASP.Models.Services.Specie;
@@ -26,17 +28,7 @@ services.AddDbContext<ArboretumContext>(options =>
     options.EnableSensitiveDataLogging();
 });
 
-services.AddSingleton<SpecieFactory>();
-services.AddScoped<ISpecieService, SpecieService>();
-services.AddScoped<IObjectTypeService<ObjectType>, ObjectTypeService>();
-services.AddScoped<IObjectTypeService<PlantType>, PlantTypeService>();
-services.AddScoped<IObjectTypeService<StructureType>, StructureTypeService>();
-services.AddScoped<IRenderingService, RenderingService>();
-services.AddScoped<IExamplesService, ExamplesService>();
-services.AddScoped<IPlantService, PlantService>();
-services.AddScoped<IStructureService, StructureService>();
-services.AddScoped<IGardenStyleService, GardenStyleService>();
-
+DependecyInjection.RegisterServices(services);
 
 var app = builder.Build();
 

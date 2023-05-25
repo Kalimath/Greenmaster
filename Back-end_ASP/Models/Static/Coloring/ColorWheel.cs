@@ -117,8 +117,6 @@ public static class ColorWheel
         };
         return tertiaryColor;
     }
-
-    
     
     public static Color[] AdjacentColors(Color color)
     {
@@ -172,7 +170,6 @@ public static class ColorWheel
 
     private static Tuple<KnownColor, KnownColor> ToKnownColorTuple(Tuple<Color, Color> colorPair)
     {
-        return new Tuple<KnownColor, KnownColor>(colorPair.Item1.ToKnownColor(),
-            colorPair.Item2.ToKnownColor());
+        return new Tuple<KnownColor, KnownColor>(colorPair.Item1.ToKnownColor(), colorPair.Item2.ToKnownColor());
     }
 }

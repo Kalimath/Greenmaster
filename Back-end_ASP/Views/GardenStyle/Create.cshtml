@@ -11,7 +11,7 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="GardenStyle" asp-action="CreateGardenStyle" method="post">
+        <form asp-controller="GardenStyle" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
@@ -45,14 +45,24 @@
                 <input type="checkbox" asp-for="RequiresLargeGarden" class="form-check-inline"/>
                 <span asp-validation-for="RequiresLargeGarden" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="PathSize" class="control-label"></label>
+                <select asp-for="PathSize" class="form-control" asp-items="ViewBag.Sizes"></select>
+                <span asp-validation-for="PathSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Materials" class="control-label"></label>
+                <select asp-for="Materials" class="form-control" asp-items="ViewBag.MaterialTypes" multiple></select>
+                <span asp-validation-for="Materials" class="text-danger"></span>
+            </div>
             <br/>
             <div class="form-group">
-                <input type="submit" value="CreateGardenStyle" class="btn btn-primary"/>
+                <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-controller="Rendering" asp-action="Index">Back to List</a>
+    <a asp-controller="GardenStyle" asp-action="Index">Back to List</a>
 </div>

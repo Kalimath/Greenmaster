@@ -58,6 +58,24 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     }
 
     [Fact]
+    public void SetPathSize_WhenValid()
+    {
+        var gardenStyle = GardenStyleFactory.Create(GardenStyleViewModel);
+
+        Assert.NotNull(gardenStyle);
+        Assert.Equal(GardenStyleViewModel.PathSize, gardenStyle.PathSize);
+    }
+
+    [Fact]
+    public void SetMaterials_WhenValid()
+    {
+        var gardenStyle = GardenStyleFactory.Create(GardenStyleViewModel);
+
+        Assert.NotNull(gardenStyle);
+        Assert.Equal(GardenStyleViewModel.Materials, gardenStyle.Materials);
+    }
+
+    [Fact]
     public void SetName_WhenValid()
     {
         var gardenStyle = GardenStyleFactory.Create(GardenStyleViewModel);

@@ -27,6 +27,7 @@ public class ArboretumContext : DbContext
     public DbSet<Plant> Plants { get; set; } = null!;
     public DbSet<Structure> Structures { get; set; } = null!;
     public DbSet<GardenStyle> GardenStyles { get; set; } = null!;
+    public DbSet<MaterialType> MaterialTypes { get; set; } = null!;
     
     
     // public DbSet<Domain> Domains { get; set; } = null!;
@@ -63,6 +64,11 @@ public class ArboretumContext : DbContext
             .Include(plant => plant.Specie).ToList());
     }
 
+    public Task<IEnumerable<GardenStyle>> GetAllGardenStyles()
+    {
+        return Task.FromResult<IEnumerable<GardenStyle>>(GardenStyles.Include(style => style.Materials).ToList());
+    }
+
     public ArboretumContext(DbContextOptions<ArboretumContext> options, IExamplesService examplesService) : base(options)
     {
         _examplesService = examplesService;
@@ -79,6 +85,12 @@ public class ArboretumContext : DbContext
             .HasValue<PlantType>(nameof(PlantType))
             .HasValue<StructureType>(nameof(StructureType));
         modelBuilder.Entity<StructureType>().HasBaseType(typeof(ObjectType));
+        
+        modelBuilder.Entity<GardenStyle>()
+            .HasMany<MaterialType>(s => s.Materials)
+            .WithMany(c => c.GardenStyles);
+        modelBuilder.Entity<MaterialType>().HasMany(m => m.GardenStyles)
+           .WithMany(m => m.Materials);
     }
 
     private static void DefinePropertyConversions(ModelBuilder modelBuilder)
@@ -146,5 +158,6 @@ public class ArboretumContext : DbContext
         modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
         modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
         modelBuilder.Entity<GardenStyle>().HasData(_examplesService.GetAllGardenStyles());
+        modelBuilder.Entity<MaterialType>().HasData(_examplesService.GetAllMaterialTypes());
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Greenmaster_ASP.Database.Arboretum;
 using Microsoft.EntityFrameworkCore;
+// ReSharper disable MethodNameNotMeaningful
 
 namespace Greenmaster_ASP.Models.Services.GardenStyle;
 
@@ -21,12 +22,12 @@ public class GardenStyleService : IGardenStyleService
     public async Task<Design.GardenStyle> GetById(int id)
     {
         return (await GetAll()).FirstOrDefault(m => m.Id == id)
-               ?? throw new ArgumentException($"No gardenStyle found with {nameof(id)}={id}");
+               ?? throw new ArgumentException($"No garden-style found with {nameof(id)}={id}");
     }
 
     public async Task<List<Design.GardenStyle>> GetAll()
     {
-        return await Task.FromResult(_context.GardenStyles.ToList());
+        return (await _context.GetAllGardenStyles()).ToList();
     }
 
     public async Task Update(Design.GardenStyle updatedObject)

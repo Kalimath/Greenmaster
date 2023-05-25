@@ -1,5 +1,6 @@
 ﻿using Greenmaster_ASP.Models.Design;
 using Greenmaster_ASP.Models.Examples;
+using Greenmaster_ASP.Models.Static.Measuring;
 using Greenmaster_ASP.Models.ViewModels;
 
 namespace Greenmaster_ASP.Tests.UnitTests.Factories.GardenStyleFactoryTests;
@@ -19,7 +20,16 @@ public class GardenStyleFactoryTestBase
             Concepts = GardenStyleExamples.ModernAndMinimal.Concepts,
             Colors = GardenStyleExamples.ModernAndMinimal.Colors,
             Shapes = GardenStyleExamples.ModernAndMinimal.Shapes,
-            RequiresLargeGarden = GardenStyleExamples.ModernAndMinimal.RequiresLargeGarden
+            RequiresLargeGarden = GardenStyleExamples.ModernAndMinimal.RequiresLargeGarden,
+            PathSize = Size.Medium,
+            Materials = new []
+            {
+                MaterialTypeExamples.Wood,
+                MaterialTypeExamples.Stone,
+                MaterialTypeExamples.Brick,
+                MaterialTypeExamples.CortenSteel
+            }
+            
         };
         GardenStyle = new GardenStyle
         {
@@ -29,7 +39,15 @@ public class GardenStyleFactoryTestBase
             Concepts = GardenStyleExamples.ModernAndMinimal.Concepts,
             Colors = GardenStyleExamples.ModernAndMinimal.Colors,
             Shapes = GardenStyleExamples.ModernAndMinimal.Shapes,
-            RequiresLargeGarden = GardenStyleExamples.ModernAndMinimal.RequiresLargeGarden
+            RequiresLargeGarden = GardenStyleExamples.ModernAndMinimal.RequiresLargeGarden,
+            PathSize = Size.Medium,
+            Materials = new []
+            {
+                MaterialTypeExamples.Wood,
+                MaterialTypeExamples.Stone,
+                MaterialTypeExamples.Brick,
+                MaterialTypeExamples.CortenSteel
+            }
         };
     }
 }

@@ -21,7 +21,9 @@ public static class GardenStyleFactory
             Concepts = gardenStyleViewModel.Concepts,
             Shapes = gardenStyleViewModel.Shapes,
             Colors = gardenStyleViewModel.Colors,
-            RequiresLargeGarden = gardenStyleViewModel.RequiresLargeGarden
+            RequiresLargeGarden = gardenStyleViewModel.RequiresLargeGarden,
+            PathSize = gardenStyleViewModel.PathSize,
+            Materials = gardenStyleViewModel.Materials
         };
     }
     
@@ -38,7 +40,9 @@ public static class GardenStyleFactory
             Concepts = gardenStyle.Concepts,
             Shapes = gardenStyle.Shapes,
             Colors = gardenStyle.Colors,
-            RequiresLargeGarden = gardenStyle.RequiresLargeGarden
+            RequiresLargeGarden = gardenStyle.RequiresLargeGarden,
+            PathSize = gardenStyle.PathSize,
+            Materials = gardenStyle.Materials.ToArray()
         };
     }
 

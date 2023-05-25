@@ -1,6 +1,7 @@
 ﻿using Greenmaster_ASP.Models.Examples;
 using Greenmaster_ASP.Models.Measurements;
 using Greenmaster_ASP.Models.Placeables;
+using Greenmaster_ASP.Tests.UnitTests.Factories.GardenStyleFactoryTests;
 
 namespace Greenmaster_ASP.Models.Services.Example;
 
@@ -54,6 +55,11 @@ public class ExamplesService : IExamplesService
     public List<Design.GardenStyle> GetAllGardenStyles()
     {
         return GardenStyleExamples.GetAll();
+    }
+
+    public List<Design.MaterialType> GetAllMaterialTypes()
+    {
+        return MaterialTypeExamples.GetAll();
     }
 
     public List<StructureType> GetAllStructureTypes()

@@ -14,7 +14,7 @@ public class StringRange : ValidationAttribute
         }
 
         var msg =
-            $"Please enter one of the allowable values: {string.Join(", ", (AllowableValues ?? new string[] { "No allowable values found" }))}.";
+            $"Please enter one of the allowable values: {string.Join(", ", (AllowableValues ?? new[] { "No allowable values found" }))}.";
         return new ValidationResult(msg);
     }
 }
