@@ -26,7 +26,7 @@ public class ObjectTypeService : IObjectTypeService<ObjectType>
 
     public async Task<List<ObjectType>> GetAll()
     {
-        return await Task.FromResult(_context.ObjectTypes.ToList());
+        return await Task.FromResult(_context.ObjectTypes.OrderBy(item => item.Id).ToList());
     }
 
     public async Task Update(ObjectType updatedObject)

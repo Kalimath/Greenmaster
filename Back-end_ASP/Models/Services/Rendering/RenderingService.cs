@@ -24,7 +24,7 @@ public class RenderingService : IRenderingService
 
     public async Task<List<Models.Rendering>> GetAll()
     {
-        return await Task.FromResult(_context.Renderings.ToList());
+        return await Task.FromResult(_context.Renderings.OrderBy(item => item.Id).ToList());
     }
 
     public async Task Update(Models.Rendering updatedObject)

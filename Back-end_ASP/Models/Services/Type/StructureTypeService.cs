@@ -26,7 +26,7 @@ public class StructureTypeService : IObjectTypeService<StructureType>
 
     public async Task<List<StructureType>> GetAll()
     {
-        return await Task.FromResult(_context.StructureTypes.ToList());
+        return await Task.FromResult(_context.StructureTypes.OrderBy(item => item.Id).ToList());
     }
 
     public async Task Update(StructureType updatedObject)

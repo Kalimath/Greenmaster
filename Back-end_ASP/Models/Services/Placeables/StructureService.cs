@@ -33,7 +33,7 @@ public class StructureService : IStructureService
 
     public async Task<List<Structure>> GetAll()
     {
-        return (List<Structure>)(await _context.GetAllStructures());
+        return (await _context.GetAllStructures()).OrderBy(item => item.Id).ToList();
     }
 
     public async Task Update(Structure updatedObject)

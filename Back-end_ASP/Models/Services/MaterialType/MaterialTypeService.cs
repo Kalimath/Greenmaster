@@ -27,7 +27,7 @@ public class MaterialTypeService : IMaterialTypeService
 
     public async Task<List<Design.MaterialType>> GetAll()
     {
-        return await Task.FromResult(_context.MaterialTypes.ToList());
+        return await Task.FromResult(_context.MaterialTypes.OrderBy(item => item.Id).ToList());
     }
 
     public async Task Update(Design.MaterialType updatedObject)

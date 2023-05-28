@@ -27,7 +27,7 @@ public class GardenStyleService : IGardenStyleService
 
     public async Task<List<Design.GardenStyle>> GetAll()
     {
-        return (await _context.GetAllGardenStyles()).ToList();
+        return (await _context.GetAllGardenStyles()).OrderBy(item => item.Id).ToList();
     }
 
     public async Task Update(Design.GardenStyle updatedObject)

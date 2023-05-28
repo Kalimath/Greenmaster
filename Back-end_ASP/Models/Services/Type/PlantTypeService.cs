@@ -26,7 +26,7 @@ public class PlantTypeService : IObjectTypeService<PlantType>
 
     public async Task<List<PlantType>> GetAll()
     {
-        return await Task.FromResult(_context.PlantTypes.ToList());
+        return await Task.FromResult(_context.PlantTypes.OrderBy(item => item.Id).ToList());
     }
 
     public async Task Update(PlantType updatedObject)

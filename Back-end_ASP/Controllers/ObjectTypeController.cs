@@ -97,6 +97,7 @@ public class ObjectTypeController : Controller
     }
     
 
+    //TODO: implement delete
     public IActionResult Delete()
     {
         throw new NotImplementedException();

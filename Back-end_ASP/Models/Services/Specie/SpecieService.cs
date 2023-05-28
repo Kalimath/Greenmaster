@@ -14,7 +14,7 @@ public class SpecieService : ISpecieService
 
     public async Task<List<Models.Specie>> GetAll()
     {
-        return await Task.FromResult(_context.GetAllSpecies().ToList());
+        return await Task.FromResult(_context.GetAllSpecies().OrderBy(item => item.Id).ToList());
     }
     
     public async Task<Models.Specie> GetByScientificName(string scientificName)
