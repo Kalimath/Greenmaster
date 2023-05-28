@@ -82,10 +82,26 @@ public class MaterialTypeController : Controller
 
         return View(model);
     }
-
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
+    
     public async Task<IActionResult> Delete(int id)
+    {
+        if (!await _modelService.ExistsWithId(id))
+            return NotFound();
+
+        try
+        {
+            return View(await _modelService.GetById(id));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return NotFound();
+        }
+    }
+
+    [HttpPost, ActionName("DeleteConfirmed")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
     {
         if (!await _modelService.ExistsWithId(id))
             return NotFound();

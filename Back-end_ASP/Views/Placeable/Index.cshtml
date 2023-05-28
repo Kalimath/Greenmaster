@@ -59,7 +59,9 @@
                         <img style="height:100px" class="img-fluid" src="data:image/png;base64,@item.Rendering?.ImageBase64" alt="rendering">
                     </td>
                     <td>
-                        <a class="disabled" asp-controller="Placeable" asp-action="Details" asp-route-id="@item.Id">Details</a> | <a class="disabled" asp-controller="Placeable" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | <a class="disabled" asp-controller="Placeable" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a class="disabled" asp-controller="Placeable" asp-action="Details" asp-route-id="@item.Id">Details</a> | 
+                        <a class="disabled" asp-controller="Placeable" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | 
+                        <a class="disabled" asp-controller="Placeable" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     </td>
                 </tr>
             }

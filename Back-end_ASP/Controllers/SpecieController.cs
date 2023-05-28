@@ -160,7 +160,7 @@ namespace Greenmaster_ASP.Controllers
             return View(specieViewModel);
         }
 
-        // GET: Specie/Delete/5
+        // GET: Specie/DeleteConfirmed/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || !await _modelService.ExistsWithId((int)id))
