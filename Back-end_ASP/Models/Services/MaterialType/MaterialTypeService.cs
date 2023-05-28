@@ -8,6 +8,11 @@ public class MaterialTypeService : IMaterialTypeService
 {
     private readonly ArboretumContext _context;
     
+    public MaterialTypeService(ArboretumContext context)
+    {
+        _context = context;
+    }
+    
     public async Task Add(Design.MaterialType newObject)
     {
         _context.MaterialTypes.Add(newObject);

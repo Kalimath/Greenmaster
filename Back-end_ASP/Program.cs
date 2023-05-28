@@ -1,15 +1,6 @@
 using System.Text.Json.Serialization;
 using Greenmaster_ASP;
 using Greenmaster_ASP.Database.Arboretum;
-using Greenmaster_ASP.Models;
-using Greenmaster_ASP.Models.Factories;
-using Greenmaster_ASP.Models.Services.Example;
-using Greenmaster_ASP.Models.Services.GardenStyle;
-using Greenmaster_ASP.Models.Services.MaterialType;
-using Greenmaster_ASP.Models.Services.Placeables;
-using Greenmaster_ASP.Models.Services.Rendering;
-using Greenmaster_ASP.Models.Services.Specie;
-using Greenmaster_ASP.Models.Services.Type;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

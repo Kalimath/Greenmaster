@@ -37,6 +37,8 @@ public class Specie : IObjectIdentity
     //MaxDimensions
     public double MaxHeight { get; set; }
     public double MaxWidth { get; set; }
+    
+    //TODO: Add symbiosis for specie
    
     #region FlowerInfo
     public string[] BloomPeriod { get; set; }

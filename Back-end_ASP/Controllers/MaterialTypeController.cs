@@ -40,7 +40,7 @@ public class MaterialTypeController : Controller
         }
     }
     
-    //TODO: fix NullReferenceException
+    
     public async Task<IActionResult> Edit(int id)
     {
         MaterialType materialType;
@@ -83,8 +83,14 @@ public class MaterialTypeController : Controller
         return View(model);
     }
 
-    public IActionResult Delete(int id)
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(int id)
     {
-        throw new NotImplementedException();
+        if (!await _modelService.ExistsWithId(id))
+            return NotFound();
+
+        await _modelService.Delete(id);
+        return RedirectToAction(nameof(Index));
     }
 }
