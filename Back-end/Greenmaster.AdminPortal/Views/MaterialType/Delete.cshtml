@@ -1,0 +1,28 @@
+﻿@model Greenmaster.Core.Models.Design.MaterialType
+
+@{
+    ViewBag.Title = "DeleteConfirmed Confirmation";
+    Layout = "_Layout";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Material type</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    
+    <form asp-controller="MaterialType" asp-action="DeleteConfirmed" method="post">
+         <input type="hidden" asp-for="Id"/>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-controller="MaterialType" asp-action="Index">Back to List</a>
+    </form>
+</div>

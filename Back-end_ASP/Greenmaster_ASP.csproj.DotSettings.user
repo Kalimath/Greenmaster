@@ -1,5 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CGREENMASTER_005FASP_002ESTYLES_002ECSS/@EntryIndexedValue"></s:String>
-	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CJS_005CJQUERY_002EDATATABLES_002EMIN_002EJS/@EntryIndexedValue"></s:String>
-	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CGREENMASTER_005FASP_002ESTYLES_002ECSS/@EntryIndexedValue">wwwroot\Greenmaster_ASP.styles.css</s:String>
-	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CJS_005CJQUERY_002EDATATABLES_002EMIN_002EJS/@EntryIndexedValue">wwwroot\js\jquery.dataTables.min.js</s:String></wpf:ResourceDictionary>

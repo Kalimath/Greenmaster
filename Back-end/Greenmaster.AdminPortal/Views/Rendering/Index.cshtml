@@ -1,0 +1,90 @@
+﻿@model Greenmaster.Core.Models.ViewModels.RenderingViewModel
+
+@{
+    ViewBag.Title = "Renderings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Renderings</h1>
+
+<p>
+    <a class="btn btn-primary" asp-controller="Rendering" asp-action="Create">Add new rendering</a>
+</p>
+
+<table  class="table table-striped table-bordered" id="specieTable">
+    <thead>
+    <tr>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th class="th-sm">
+            Rendering
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th class="th-sm">
+            @Html.DisplayNameFor(model => model.Season)
+        </th>
+        <th class="th-sm"></th>
+    </tr>
+    </thead>
+    
+</table>
+
+@section Scripts {
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(function () {
+            $('#specieTable').DataTable({
+            
+                "ajax": {
+                    "url": "/Rendering/GetRenderings",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "id" },
+                    {
+                       data: "imageBase64",
+                       render: function (data, type, row, meta) {
+                            let imgSrc = 'data:image/png;base64,' + data;
+                            return '<img style="height:100px" class="img-fluid" src="' + imgSrc +'" alt="rendering">';
+                       }, "autoWidth": true},
+                    { "data": "type" },
+                    { "data": "season" },
+                    { "data": null, "defaultContent": "<a href='' class='del'>Delete</a>"}
+                ]
+            });
+
+            $('#specieTable tbody').on('click', 'tr', function (e) {
+                e.preventDefault();
+                let id = $("td:first", this).text();
+
+                if ($(e.target).is("a.del")) { $.get('@Url.Action("Delete", "Rendering")', { id: id }, function (data) {
+                        $("body").html(data);
+                    });
+                    return;
+                }
+               /* $.get('@Url.Action("Details", "Rendering")', { id: id }, function (data) {
+                    $("body").html(data);
+                });*/
+            });
+        });
+
+    </script> }
+    
+@*<style>
+    #specieTable tbody tr {
+        cursor: pointer;
+    }
+</style>*@    
+<style>
+    a.del {
+        cursor: pointer;
+    }
+</style>
