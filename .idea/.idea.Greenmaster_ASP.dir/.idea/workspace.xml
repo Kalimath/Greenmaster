@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d20489cc-5648-4844-8fed-669fb2da27c2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Back-end_ASP/Models/ObjectType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Back-end_ASP/Models/PlantType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Services/IObjectTypeService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Services/PlantTypeService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Back-end_ASP/Models/StructureType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Greenmaster_ASP.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Greenmaster_ASP.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Controllers/SpecieController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Controllers/SpecieController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Examples/SpecieExamples.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Examples/SpecieExamples.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Factories/RenderingFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Factories/RenderingFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Services/IContextService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Services/IContextService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Specie.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/Specie.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Static/Object/ObjectType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/Static/Object/Organic/PlantType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Models/ViewModels/SpecieViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Models/ViewModels/SpecieViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end_ASP/Tests/UnitTests/Services/SpecieServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end_ASP/Tests/UnitTests/Services/SpecieServiceTests.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NTD7YPxYkNKFeN3mOBvRnfsRlw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d20489cc-5648-4844-8fed-669fb2da27c2" name="Changes" comment="" />
+      <created>1679679012184</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679679012184</updated>
+      <workItem from="1679679016228" duration="176000" />
+      <workItem from="1679679326662" duration="1022000" />
+    </task>
+    <task id="LOCAL-00001" summary="Moved Project to separate folder">
+      <created>1679679084686</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679679084686</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Removed unused .idea folder">
+      <created>1679679363835</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679679363835</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Moved Project to separate folder" />
+    <MESSAGE value="Removed unused .idea folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unused .idea folder" />
+  </component>
+</project>

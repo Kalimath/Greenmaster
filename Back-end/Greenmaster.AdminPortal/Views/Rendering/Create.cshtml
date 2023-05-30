@@ -1,0 +1,42 @@
+﻿@model Greenmaster.Core.Models.ViewModels.RenderingViewModel
+
+@{
+    ViewBag.Title = "Create rendering";
+    Layout = "_Layout";
+}
+
+<h1>Create</h1>
+
+<h4>Rendering</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Rendering" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-control" asp-items="ViewBag.Type"></select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Season" class="control-label"></label>
+                <select asp-for="Season" class="form-control" asp-items="ViewBag.Season"></select>
+                <span asp-validation-for="Season" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" type="file" accept=".png, .jpg, .jpeg"/>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Rendering" asp-action="Index">Back to List</a>
+</div>

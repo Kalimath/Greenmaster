@@ -1,0 +1,59 @@
+﻿@model ObjectType
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+            <hr/>
+            <dl class="row" id="specie-identification">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Id)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Id)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                @if (Model is PlantType)
+                {
+                    var modelAsPlantType = Model as PlantType;
+                    <dt class="col-sm-4">
+                        Plantgrowth underneed is allowed
+                    </dt>
+                    <dd class="col-sm-8">
+                        @(Model is PlantType ? ((Model as PlantType)!).AllowAsUndergrowth : "/")
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayName(nameof(PlantType.Canopy))
+                    </dt>
+                    <dd class="col-sm-8">
+                        @(Model is PlantType ? ((Model as PlantType)!).Canopy : "/")
+                    </dd>
+                }
+            </dl>
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

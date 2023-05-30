@@ -1,0 +1,133 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Greenmaster.AdminPortal
+build_property.RootNamespace = Greenmaster.AdminPortal
+build_property.ProjectDir = C:\Users\mathi\RiderProjects\Greenmaster_ASP\Back-end\Greenmaster.AdminPortal\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\mathi\RiderProjects\Greenmaster_ASP\Back-end\Greenmaster.AdminPortal
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/GardenStyle/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FyZGVuU3R5bGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/GardenStyle/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FyZGVuU3R5bGVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/GardenStyle/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FyZGVuU3R5bGVcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/GardenStyle/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FyZGVuU3R5bGVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/GardenStyle/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FyZGVuU3R5bGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/MaterialType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxUeXBlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/MaterialType/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxUeXBlXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/MaterialType/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxUeXBlXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/MaterialType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxUeXBlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/ObjectType/CreatePlantType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JqZWN0VHlwZVxDcmVhdGVQbGFudFR5cGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/ObjectType/CreateStructureType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JqZWN0VHlwZVxDcmVhdGVTdHJ1Y3R1cmVUeXBlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/ObjectType/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JqZWN0VHlwZVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/ObjectType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JqZWN0VHlwZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Placeable/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhY2VhYmxlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Placeable/Plant/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhY2VhYmxlXFBsYW50XGluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Rendering/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVuZGVyaW5nXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Rendering/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVuZGVyaW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Specie/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Specie/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Specie/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Specie/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Specie/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-unvw52yitj
