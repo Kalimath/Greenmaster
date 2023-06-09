@@ -1,5 +1,5 @@
-﻿using Greenmaster.Core.Factories;
-using Greenmaster.Core.Models.Placeables;
+﻿using Greenmaster.Core.Models.Placeables;
+using Greenmaster.Core.Tests.Factories.Base;
 
 namespace Greenmaster.Core.Tests.Factories.PlaceableFactoryTests;
 
@@ -12,7 +12,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeableWithoutLocation = CloneStrelitziaPlaceable();
         placeableWithoutLocation.Location = null;
         
-        var resultPlaceable = PlaceableFactory.ToViewModel(placeableWithoutLocation);
+        var resultPlaceable = Factory.ToViewModel(placeableWithoutLocation);
         
         Assert.NotNull(resultPlaceable);
         Assert.Null(resultPlaceable.Location);
@@ -24,7 +24,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeableWithLocationId = CloneStrelitziaPlaceable();
         placeableWithLocationId.LocationId = StrelitziaLocation.Id;
         
-        var resultPlaceable = PlaceableFactory.ToViewModel(placeableWithLocationId);
+        var resultPlaceable = Factory.ToViewModel(placeableWithLocationId);
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaLocation.Id ,resultPlaceable.LocationId);
@@ -36,13 +36,13 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeableWithInvalidLocationId = CloneStrelitziaPlaceable();
         placeableWithInvalidLocationId.LocationId = -5;
         
-        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.ToViewModel(placeableWithInvalidLocationId));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = Factory.ToViewModel(placeableWithInvalidLocationId));
     }
     
     [Fact]
     public void SetLocation()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
 
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Location);
@@ -56,7 +56,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetDimensions_WhenDimensionsInPlaceableNotNull()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Dimensions);
@@ -65,7 +65,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetDimensionsId_WhenDimensionsIdInPlaceableValid()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaPlaceable.DimensionsId ,resultPlaceable.DimensionsId);
@@ -74,7 +74,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetId_WhenIdInPlaceableValid()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaId ,resultPlaceable.Id);
@@ -83,7 +83,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetCreated_WhenValidInPlaceable()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaPlaceable.Created ,resultPlaceable.Created);
@@ -92,7 +92,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetModifiedToCreated_WhenNullInPlaceable()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaPlaceable.Modified ,resultPlaceable.Modified);
@@ -101,7 +101,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetName_WhenValidInPlaceable()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaMatureName ,resultPlaceable.Name);
@@ -110,7 +110,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetSpecie_WhenPlaceableIsPlant()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Specie);
@@ -122,7 +122,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     {
         var structurePlaceable = CloneStructurePlaceable();
         
-        var resultPlaceable = PlaceableFactory.ToViewModel(structurePlaceable);
+        var resultPlaceable = Factory.ToViewModel(structurePlaceable);
         
         Assert.NotNull(resultPlaceable);
         Assert.Null(resultPlaceable.Specie);
@@ -131,7 +131,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     [Fact]
     public void SetType_WhenTypeOfPlaceableIsValid()
     {
-        var resultPlaceable = PlaceableFactory.ToViewModel(CloneStrelitziaPlaceable());
+        var resultPlaceable = Factory.ToViewModel(CloneStrelitziaPlaceable());
         
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Type);
@@ -144,7 +144,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.Dimensions = null!;
         
-        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentNullException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -153,7 +153,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.Type = null!;
         
-        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentNullException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -162,7 +162,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = (Plant)CloneStrelitziaPlaceable();
         placeable.Specie = null!;
         
-        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentNullException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -172,7 +172,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         placeable.DimensionsId = 0;
         placeable.Dimensions = null!;
         
-        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -181,7 +181,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.Name = null!;
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -190,7 +190,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.LocationId = StrelitziaLocation.Id + 5;
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -199,7 +199,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.DimensionsId = StrelitziaMatureDimensions.Id + 5;
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -208,7 +208,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.TypeId = StrelitziaPlantTypeId + 5;
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -217,7 +217,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.RenderingId = StrelitziaRendering.Id + 5;
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -226,7 +226,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.Rendering = null!;
         
-        Assert.Throws<ArgumentNullException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentNullException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -236,7 +236,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         placeable.Rendering = null!;
         placeable.RenderingId = 0;
         
-        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -245,7 +245,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.Name = string.Empty;
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -254,7 +254,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.Name = "   ";
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -263,7 +263,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         var placeable = CloneStrelitziaPlaceable();
         placeable.Created = default!;
         
-        Assert.Throws<ArgumentException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }
     
     [Fact]
@@ -273,6 +273,6 @@ public class ToViewModelShould : PlaceableFactoryTestBase
         placeable.Created = SomeCreationTime;
         placeable.Modified = SomeCreationTime.AddDays(-7);
         
-        Assert.Throws<ArgumentOutOfRangeException>(() => _ = PlaceableFactory.ToViewModel(placeable));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _ = Factory.ToViewModel(placeable));
     }
 }

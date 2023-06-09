@@ -9,9 +9,14 @@ using Microsoft.Extensions.Configuration;
 namespace Greenmaster.Core.Factories;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-public static class RenderingFactory
+public class RenderingFactory : IModelFactory<Rendering, RenderingViewModel>
 {
+    private readonly IConfiguration _configuration;
     
+    public RenderingFactory(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
     //TODO: fix failing tests due to missing configuration by Substitution of IConfiguration
     private static readonly IConfiguration Configuration = new ConfigurationBuilder()
         .SetBasePath(AppContext.BaseDirectory)
@@ -19,7 +24,7 @@ public static class RenderingFactory
         .AddEnvironmentVariables()
         .Build();
     
-    public static async Task<Rendering> Create(RenderingViewModel renderingViewModel)
+    public async Task<Rendering> Create(RenderingViewModel renderingViewModel)
     {
         var rendering = new Rendering(renderingViewModel.Type, renderingViewModel.Season);
         
@@ -29,7 +34,7 @@ public static class RenderingFactory
         return rendering;
     }
 
-    public static RenderingViewModel ToViewModel(Rendering rendering)
+    public RenderingViewModel ToViewModel(Rendering rendering)
     {
         return new RenderingViewModel()
         {
@@ -48,9 +53,9 @@ public static class RenderingFactory
         rendering.Id = renderingViewModel.Id;
     }
 
-    private static async Task SetImage(Rendering rendering, RenderingViewModel renderingViewModel)
+    private async Task SetImage(Rendering rendering, RenderingViewModel renderingViewModel)
     {
-        var renderSettings = Configuration.GetSection($"AppSettings").GetSection($"Rendering");
+        var renderSettings = _configuration.GetSection($"AppSettings").GetSection($"Rendering");
         
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (renderingViewModel.Image != null)
@@ -59,9 +64,10 @@ public static class RenderingFactory
             
             var maxHeightConfig = renderSettings.GetSection("Image")["MaxHeight"];
             var maxWidthConfig = renderSettings.GetSection("Image")["MaxWidth"];
-            var maxHeight = int.Parse(maxHeightConfig);
-            var maxWidth = int.Parse(maxWidthConfig);
+            var maxHeight = string.IsNullOrWhiteSpace(maxHeightConfig) ?  initialImage.Height : int.Parse(maxHeightConfig);
+            var maxWidth = string.IsNullOrWhiteSpace(maxWidthConfig) ?  initialImage.Width : int.Parse(maxWidthConfig);
             
+            //set image size to original image if not specified in config
             var imageHeight = (maxHeight >= initialImage.Height) ? initialImage.Height : maxHeight;
             var imageWidth = (maxWidth >= initialImage.Width) ? initialImage.Width : maxWidth;
             

@@ -1,6 +1,7 @@
 ﻿using Greenmaster.Core.Factories;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
+using Greenmaster.Core.Tests.Factories.Base;
 using static Greenmaster.Core.Tests.Helpers.AssertObjects;
 
 namespace Greenmaster.Core.Tests.Factories.SpecieFactoryTests;

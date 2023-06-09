@@ -1,18 +1,19 @@
 ﻿using Greenmaster.Core.Examples;
-using Greenmaster.Core.Factories;
 using Greenmaster.Core.Models.Placeables;
+using Greenmaster.Core.Tests.Factories.Base;
 
 namespace Greenmaster.Core.Tests.Factories.PlaceableFactoryTests;
 
 public class CreatePlaceableShould : PlaceableFactoryTestBase
 {
+
     [Fact]
     public async Task SetLocationNull_WhenLocationNullInViewModel()
     {
         var viewModelWithoutLocation = CloneStrelitziaViewModel();
         viewModelWithoutLocation.Location = null!;
         
-        var resultPlaceable = await PlaceableFactory.Create(viewModelWithoutLocation);
+        var resultPlaceable = await Factory.Create(viewModelWithoutLocation);
         
         Assert.NotNull(resultPlaceable);
         Assert.Null(resultPlaceable.Location);
@@ -21,7 +22,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
     [Fact]
     public async Task SetLocation_WhenLocationInViewModel()
     {
-        var resultPlaceable = await PlaceableFactory.Create(CloneStrelitziaViewModel());
+        var resultPlaceable = await Factory.Create(CloneStrelitziaViewModel());
         
         Assert.NotNull(resultPlaceable);
         Assert.NotNull(resultPlaceable.Location);
@@ -34,7 +35,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
     [Fact]
     public async Task ReturnPlant_WhenSpecieNotNull()
     {
-        var resultPlaceable = await PlaceableFactory.Create(CloneStrelitziaViewModel());
+        var resultPlaceable = await Factory.Create(CloneStrelitziaViewModel());
         
         Assert.NotNull(resultPlaceable);
         Assert.IsType<Plant>(resultPlaceable);
@@ -46,7 +47,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var structureViewModel = CloneStrelitziaViewModel();
         structureViewModel.Specie = null;
         
-        var resultPlaceable = await PlaceableFactory.Create(structureViewModel);
+        var resultPlaceable = await Factory.Create(structureViewModel);
         
         Assert.NotNull(resultPlaceable);
         Assert.IsType<Structure>(resultPlaceable);
@@ -58,7 +59,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Type = ObjectTypeExamples.Garage;
         
-        Assert.ThrowsAsync<ArgumentException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -67,10 +68,10 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Dimensions = null;
         
-        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await Factory.Create(invalidViewModel));
 
         invalidViewModel.Specie = null;
-        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -79,17 +80,17 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Type = null;
         
-        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await Factory.Create(invalidViewModel));
 
         invalidViewModel.Specie = null;
-        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await Factory.Create(invalidViewModel));
         
     }
     
     [Fact]
     public async Task SetDimensionsAndItsId()
     {
-        var resultPlaceable = await PlaceableFactory.Create(CloneStrelitziaViewModel());
+        var resultPlaceable = await Factory.Create(CloneStrelitziaViewModel());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaViewModel.DimensionsId ,resultPlaceable.DimensionsId);
@@ -100,7 +101,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
     public async Task SetRendering_whenNotNull()
     {
         //TODO
-        var resultPlaceable = await PlaceableFactory.Create(CloneStrelitziaViewModel());
+        var resultPlaceable = await Factory.Create(CloneStrelitziaViewModel());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaRendering!.Id ,resultPlaceable.Rendering.Id);
@@ -110,7 +111,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
     [Fact]
     public async Task SetRenderingId_whenNotZero()
     {
-        var resultPlaceable = await PlaceableFactory.Create(CloneStrelitziaViewModel());
+        var resultPlaceable = await Factory.Create(CloneStrelitziaViewModel());
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaRendering.Id ,resultPlaceable.RenderingId);
@@ -124,7 +125,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         invalidViewModel.Rendering = StrelitziaRenderingViewModel;
         invalidViewModel.DimensionsId = StrelitziaRenderingViewModel.Id + 5;
         
-        Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -133,7 +134,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Rendering = null!;
         
-        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -142,7 +143,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Created = default!;
         
-        Assert.ThrowsAsync<ArgumentException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -151,7 +152,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var validViewModel = CloneStrelitziaViewModel();
         validViewModel.Modified = default!;
         
-        var resultPlaceable = await PlaceableFactory.Create(validViewModel);
+        var resultPlaceable = await Factory.Create(validViewModel);
         
         Assert.NotNull(resultPlaceable);
         Assert.Equal(StrelitziaViewModel.Created ,resultPlaceable.Modified);
@@ -164,7 +165,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         viewModel.Created = SomeCreationTime;
         viewModel.Modified = SomeCreationTime.AddDays(-7);
         
-        Assert.ThrowsAsync<ArgumentException>(async () => _ = await PlaceableFactory.Create(viewModel));
+        Assert.ThrowsAsync<ArgumentException>(async () => _ = await Factory.Create(viewModel));
     }
     
     [Fact]
@@ -173,7 +174,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Specie = null!;
         
-        var resultPlaceable = await PlaceableFactory.Create(invalidViewModel);
+        var resultPlaceable = await Factory.Create(invalidViewModel);
         
         Assert.NotNull(resultPlaceable);
         Assert.IsType<Structure>(resultPlaceable);
@@ -186,7 +187,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         invalidViewModel.Dimensions = StrelitziaMatureDimensions;
         invalidViewModel.DimensionsId = StrelitziaMatureDimensions.Id + 5;
         
-        Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -195,7 +196,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Name = null!;
         
-        Assert.ThrowsAsync<ArgumentException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -204,7 +205,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Name = string.Empty;
         
-        Assert.ThrowsAsync<ArgumentException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -213,7 +214,7 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         var invalidViewModel = CloneStrelitziaViewModel();
         invalidViewModel.Name = "   ";
         
-        Assert.ThrowsAsync<ArgumentException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentException>(async () => _ = await Factory.Create(invalidViewModel));
     }
     
     [Fact]
@@ -223,6 +224,6 @@ public class CreatePlaceableShould : PlaceableFactoryTestBase
         invalidViewModel.DimensionsId = default;
         invalidViewModel.Dimensions = null;
         
-        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await PlaceableFactory.Create(invalidViewModel));
+        Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await Factory.Create(invalidViewModel));
     }
 }

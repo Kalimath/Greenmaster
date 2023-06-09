@@ -12,10 +12,12 @@ namespace Greenmaster.AdminPortal.Controllers
     public class RenderingController : Controller
     {
         private readonly IRenderingService _modelService;
+        private readonly IModelFactory<Rendering, RenderingViewModel> _renderingFactory;
 
-        public RenderingController(IRenderingService renderingService)
+        public RenderingController(IRenderingService renderingService, IModelFactory<Rendering, RenderingViewModel> renderingFactory)
         {
             _modelService = renderingService ?? throw new ArgumentNullException(nameof(renderingService));
+            _renderingFactory = renderingFactory;
         }
         
         // GET: Specie
@@ -27,8 +29,7 @@ namespace Greenmaster.AdminPortal.Controllers
         public async Task<JsonResult> GetRenderings()
         {
             var renderings = (await _modelService.GetAll());
-            var viewModels = new List<RenderingViewModel>();
-            foreach (var rendering in renderings) viewModels.Add(RenderingFactory.ToViewModel(rendering));
+            var viewModels = renderings.Select(rendering => _renderingFactory.ToViewModel(rendering)).ToList();
             return Json(new { data = viewModels});
         }
 
@@ -51,7 +52,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 return NotFound();
             }
 
-            return View(RenderingFactory.ToViewModel(rendering));
+            return View(_renderingFactory.ToViewModel(rendering));
         }
 
         // GET: Rendering/Create
@@ -69,7 +70,7 @@ namespace Greenmaster.AdminPortal.Controllers
             try
             {
                 if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
-                var rendering = await RenderingFactory.Create(renderingViewModel);
+                var rendering = await _renderingFactory.Create(renderingViewModel);
                 await _modelService.Add(rendering);
                 return RedirectToAction(nameof(Index));
             }

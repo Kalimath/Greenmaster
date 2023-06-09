@@ -1,4 +1,5 @@
 ﻿using Greenmaster.Core.Factories;
+using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Placeables;
 using Microsoft.AspNetCore.Mvc;
@@ -8,17 +9,18 @@ namespace Greenmaster.AdminPortal.Controllers;
 public class PlaceableController : Controller
 {
     private readonly IPlantService _plantService;
+    private readonly IModelFactory<Placeable, PlaceableViewModel> _placeableFactory;
 
-    public PlaceableController(IPlantService plantService)
+    public PlaceableController(IPlantService plantService, IModelFactory<Placeable, PlaceableViewModel> placeableFactory)
     {
         _plantService = plantService;
+        _placeableFactory = placeableFactory;
     }
 
     public async Task<IActionResult> Index()
     {
         var plants = (await _plantService.GetAll());
-        var viewModels = new List<PlaceableViewModel>();
-        foreach (var plant in plants) viewModels.Add(PlaceableFactory.ToViewModel(plant));
+        var viewModels = plants.Select(plant => _placeableFactory.ToViewModel(plant)).ToList();
         return View(viewModels);
     }
     

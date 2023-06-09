@@ -1,13 +1,21 @@
-﻿using Greenmaster.Core.Helpers;
+﻿using Greenmaster.Core.Exceptions;
+using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
 
 namespace Greenmaster.Core.Factories;
 
-public static class PlaceableFactory
+public  class PlaceableFactory : IModelFactory<Placeable, PlaceableViewModel>
 {
-    public static async Task<Placeable> Create(PlaceableViewModel viewModel)
+    public PlaceableFactory(IModelFactory<Rendering, RenderingViewModel> renderingFactory)
+    {
+        RenderingFactory = renderingFactory;
+    }
+
+    private IModelFactory<Rendering,RenderingViewModel> RenderingFactory { get; set; }
+
+    public async Task<Placeable> Create(PlaceableViewModel viewModel)
     {
         ValidateViewModel(viewModel);
 
@@ -21,7 +29,7 @@ public static class PlaceableFactory
         if (viewModel.Specie != null)
         {
             if (viewModel.Type is not PlantType)
-                throw new ArgumentException("If Placeable has Specie, Type must be a PlantType",
+                throw new ObjectTypeException("If Placeable has Specie, Type must be a PlantType",
                     nameof(viewModel.Type));
 
             var plant = new Plant
@@ -57,7 +65,7 @@ public static class PlaceableFactory
         return structure;
     }
 
-    public static PlaceableViewModel ToViewModel(Placeable placeable)
+    public PlaceableViewModel ToViewModel(Placeable placeable)
     {
         ValidatePlaceable(placeable);
         var renderingViewModel = RenderingFactory.ToViewModel(placeable.Rendering);

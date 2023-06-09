@@ -1,11 +1,8 @@
-﻿using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.ViewModels;
+﻿namespace Greenmaster.Core.Factories;
 
-namespace Greenmaster.Core.Factories;
-
-public interface IModelFactory
+public interface IModelFactory<T1, T2> where T1 : class where T2 : class
 {
-    public Task<Specie> Create(SpecieViewModel specieViewModel);
+    public Task<T1> Create(T2 viewModel);
 
-    public SpecieViewModel ToViewModel(Specie specie);
+    public T2 ToViewModel(T1 model);
 }

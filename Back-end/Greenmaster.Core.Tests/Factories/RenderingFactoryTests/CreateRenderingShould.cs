@@ -1,10 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using Greenmaster.Core.Examples;
-using Greenmaster.Core.Factories;
 using Greenmaster.Core.Models.ViewModels;
+using Greenmaster.Core.Tests.Factories.Base;
 using Greenmaster.Core.Tests.Helpers;
-using Microsoft.Extensions.Configuration;
 using StaticData.Object.Rendering;
 using StaticData.Time.Durations;
 using static Greenmaster.Core.Helpers.FormFileConverter;
@@ -13,24 +12,13 @@ using ImageConverter = Greenmaster.Core.Helpers.ImageConverter;
 namespace Greenmaster.Core.Tests.Factories.RenderingFactoryTests;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-public class CreateRenderingShould
+public class CreateRenderingShould : RenderingFactoryTestBase
 {
-    private readonly IConfigurationRoot _configuration;
-    private readonly IConfigurationSection? _renderSettings;
-    private readonly int _maxHeightConfig;
-    private readonly int _maxWidthConfig;
     private readonly Image _renderingImage;
+    
 
     public CreateRenderingShould()
     {
-        _configuration = new ConfigurationBuilder()
-            .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile(@"appsettings.json", false, false)
-            .AddEnvironmentVariables()
-            .Build();
-        _renderSettings = _configuration.GetSection("AppSettings").GetSection("Rendering");
-        _maxHeightConfig = int.Parse(_renderSettings.GetSection("Image")["MaxHeight"]);
-        _maxWidthConfig = int.Parse(_renderSettings.GetSection("Image")["MaxWidth"]);
         _renderingImage = ImageConverter.FromBase64(Base64Examples.ImageSpecie);
     }
     
@@ -79,7 +67,7 @@ public class CreateRenderingShould
         
         var resultRendering = await RenderingFactory.Create(viewModel);
         
-        var expected = ImageConverter.Resize(_renderingImage, _maxWidthConfig, _maxHeightConfig);
+        var expected = ImageConverter.Resize(_renderingImage, MaxWidthConfig, MaxHeightConfig);
         AssertObjects.AssertImageSize(expected, ImageConverter.FromBase64(resultRendering.Image));
     }
     
@@ -97,7 +85,7 @@ public class CreateRenderingShould
         
         var resultRendering = await RenderingFactory.Create(viewModel);
         
-        var expected = ImageConverter.Resize(_renderingImage, _maxWidthConfig, _maxHeightConfig);
+        var expected = ImageConverter.Resize(_renderingImage, MaxWidthConfig, MaxHeightConfig);
         AssertObjects.AssertImageSize(expected, ImageConverter.FromBase64(resultRendering.Image));
     }
     
@@ -116,7 +104,7 @@ public class CreateRenderingShould
         var resultRendering = await RenderingFactory.Create(viewModel);
 
         var actual = ImageConverter.FromBase64(resultRendering.Image);
-        AssertObjects.AssertImageSize(actual, _maxWidthConfig, _maxHeightConfig);
+        AssertObjects.AssertImageSize(actual, MaxWidthConfig, MaxHeightConfig);
     } 
     
     [Fact]
@@ -134,7 +122,7 @@ public class CreateRenderingShould
         var resultRendering = await RenderingFactory.Create(viewModel);
 
         var actual = ImageConverter.FromBase64(resultRendering.Image);
-        AssertObjects.AssertImageSize(actual, _maxWidthConfig, _maxHeightConfig);
+        AssertObjects.AssertImageSize(actual, MaxWidthConfig, MaxHeightConfig);
     }
 
     [Fact]

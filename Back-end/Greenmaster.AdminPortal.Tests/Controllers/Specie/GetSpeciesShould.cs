@@ -18,6 +18,7 @@ public class GetSpeciesShould
         specieService.GetAll().ReturnsForAnyArgs(SpecieExamples.GetAll());
 
         var result = await specieController.GetSpecies();
+        
         Assert.NotNull(result);
         Assert.IsType<JsonResult>(result);
     }

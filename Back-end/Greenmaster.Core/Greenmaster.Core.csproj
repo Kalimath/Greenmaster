@@ -26,4 +26,15 @@
       <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Update="Examples\Images\tree-silver-birch.png">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Examples\Images\top_tree_2-250px.png">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

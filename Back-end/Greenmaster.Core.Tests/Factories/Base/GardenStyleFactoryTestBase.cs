@@ -3,7 +3,7 @@ using Greenmaster.Core.Models.Design;
 using Greenmaster.Core.Models.ViewModels;
 using StaticData.Measuring;
 
-namespace Greenmaster.Core.Tests.Factories.GardenStyleFactoryTests;
+namespace Greenmaster.Core.Tests.Factories.Base;
 
 public class GardenStyleFactoryTestBase
 {

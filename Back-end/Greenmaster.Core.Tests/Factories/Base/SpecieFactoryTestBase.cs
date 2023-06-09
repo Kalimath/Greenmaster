@@ -5,7 +5,7 @@ using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
 using StaticData.Time.Durations;
 
-namespace Greenmaster.Core.Tests.Factories.SpecieFactoryTests;
+namespace Greenmaster.Core.Tests.Factories.Base;
 
 public class SpecieFactoryTestBase
 {

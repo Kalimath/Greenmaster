@@ -1,16 +1,21 @@
 ﻿using Greenmaster.Core.Examples;
 using Greenmaster.Core.Factories;
+using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.Measurements;
 using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Example;
+using NSubstitute;
+using Point = Greenmaster.Core.Models.Point;
 
-namespace Greenmaster.Core.Tests.Factories.PlaceableFactoryTests;
+namespace Greenmaster.Core.Tests.Factories.Base;
 
-public class PlaceableFactoryTestBase
+public class PlaceableFactoryTestBase : RenderingFactoryTestBase
 {
+    protected readonly IModelFactory<Placeable, PlaceableViewModel> Factory;
+    
     protected Guid StrelitziaId;
     protected readonly string StrelitziaMatureName;
     protected readonly Dimensions StrelitziaMatureDimensions;
@@ -27,6 +32,8 @@ public class PlaceableFactoryTestBase
 
     public PlaceableFactoryTestBase()
     {
+        Factory = new PlaceableFactory(RenderingFactory);
+        
         Strelitzia = SpecieExamples.Strelitzia;
         ExamplesService = new ExamplesService();
         SomeCreationTime = PlaceableExamples.MatureStrelitziaPlant.Created;
