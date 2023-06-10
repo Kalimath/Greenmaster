@@ -47,6 +47,15 @@ public class GardenStyleController : Controller
         try
         {
             if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
+            
+            
+            var materials = new List<MaterialType>();
+            foreach (var id in viewModel.MaterialTypeIds)
+            {
+                materials.Add(await _materialTypeService.GetById(id));
+            }
+            viewModel.Materials = materials.ToArray();
+            
             var gardenStyle = await GardenStyleFactory.Create(viewModel);
             await _modelService.Add(gardenStyle);
             return RedirectToAction(nameof(Index));
@@ -160,6 +169,6 @@ public class GardenStyleController : Controller
         ViewData["Concepts"] = new SelectList(Enum.GetNames(typeof(GardenStyleConcept)));
         ViewData["Shapes"] = new SelectList(Enum.GetNames(typeof(Shape)));
         ViewData["Sizes"] = new SelectList(Enum.GetNames(typeof(Size)));
-        ViewData["MaterialTypes"] = new SelectList(await _materialTypeService.GetAll());
+        ViewData["MaterialTypes"] = new SelectList(await _materialTypeService.GetAll(), nameof(MaterialType.Id), nameof(MaterialType.Name), "---Choose---");
     }
 }

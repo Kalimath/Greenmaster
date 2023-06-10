@@ -15,7 +15,10 @@ public class GardenStyleViewModel
     public bool RequiresLargeGarden { get; set; }
 
     public Size PathSize { get; set; }
-    public MaterialType[] Materials { get; set; }
+
+    [DisplayName(displayName: "Material types")]
+    public int[] MaterialTypeIds { get; set; }
+    public MaterialType[]? Materials { get; set; }
 
     //TODO: add media 
 }

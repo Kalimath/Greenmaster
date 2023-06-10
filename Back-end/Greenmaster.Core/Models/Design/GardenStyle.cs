@@ -19,7 +19,7 @@ public class GardenStyle
     
     public Size PathSize { get; set; }
     
-    public virtual ICollection<MaterialType> Materials { get; set; } = new HashSet<MaterialType>();
+    public virtual ICollection<MaterialType>? Materials { get; set; } = new HashSet<MaterialType>();
 
     //TODO: add media 
 }
