@@ -7,9 +7,9 @@ using static Greenmaster.Core.Helpers.StringValidator;
 
 namespace Greenmaster.Core.Factories;
 
-public class SpecieFactory
+public class SpecieFactory : IModelFactory<Specie, SpecieViewModel>
 {
-    public static async Task<Specie> Create(SpecieViewModel specieViewModel)
+    public async Task<Specie> Create(SpecieViewModel specieViewModel)
     {
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));
@@ -51,7 +51,7 @@ public class SpecieFactory
         return specie;
     }
 
-    private static async Task SetImage(Specie specie, SpecieViewModel specieViewModel)
+    private async Task SetImage(Specie specie, SpecieViewModel specieViewModel)
     {
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (specieViewModel.Image != null)
@@ -121,7 +121,7 @@ public class SpecieFactory
         };
     }*/
 
-    public static SpecieViewModel ToViewModel(Specie specie)
+    public SpecieViewModel ToViewModel(Specie specie)
     {
         if (specie == null)
             throw new ArgumentNullException(nameof(specie));
@@ -149,7 +149,7 @@ public class SpecieFactory
             MaxWidth = specie.MaxWidth,
 
             BloomPeriod = (specie.BloomPeriod ?? throw new ArgumentNullException(nameof(specie.BloomPeriod)))
-                .Select(s => Enum.Parse<Month>(s)).ToArray(),
+                .Select(Enum.Parse<Month>).ToArray(),
             FlowerColors = (specie.FlowerColors ?? throw new ArgumentNullException(nameof(specie.FlowerColors)))
                 .Select(s => s.ToColor()).ToArray(),
             IsFragrant = specie.IsFragrant,

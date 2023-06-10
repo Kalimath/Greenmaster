@@ -58,7 +58,7 @@ public class CreateSpecieShould : SpecieFactoryTestBase
     {
         var resultSpecie = await SpecieFactory.Create(SpecieViewModelStrelitzia);
 
-        Assert.Equal(resultSpecie.PlantTypeId, SpecieViewModelStrelitzia.PlantType.Id);
+        Assert.Equal(resultSpecie.PlantTypeId, SpecieViewModelStrelitzia.PlantType!.Id);
     }
     [Fact]
     public async Task ThrowArgumentNullException_WhenPlantTypeNull()

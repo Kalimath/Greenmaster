@@ -1,4 +1,5 @@
 ﻿using Greenmaster.Core.Examples;
+using Greenmaster.Core.Factories;
 using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
@@ -9,12 +10,14 @@ namespace Greenmaster.Core.Tests.Factories.Base;
 
 public class SpecieFactoryTestBase
 {
+    protected readonly IModelFactory<Specie, SpecieViewModel> SpecieFactory;
     protected SpecieViewModel SpecieViewModelStrelitzia;
     protected Specie SpecieStrelitzia;
 
     public SpecieFactoryTestBase()
     {
-        
+        SpecieFactory = new SpecieFactory();
+
         SpecieViewModelStrelitzia = new SpecieViewModel()
         {
             Id = 1,

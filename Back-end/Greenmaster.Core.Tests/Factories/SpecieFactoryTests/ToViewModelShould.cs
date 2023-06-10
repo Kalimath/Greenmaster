@@ -8,7 +8,7 @@ namespace Greenmaster.Core.Tests.Factories.SpecieFactoryTests;
 
 public class ToViewModelShould : SpecieFactoryTestBase
 {
-    private readonly SpecieViewModel _specieViewModel;
+    // private readonly SpecieViewModel _specieViewModel;
     
     [Fact]
     public void ThrowArgumentNullException_WhenPassedSpecieNull()
@@ -50,7 +50,7 @@ public class ToViewModelShould : SpecieFactoryTestBase
     public void ThrowArgumentException_WhenImageStringEmpty()
     {
         var invalidSpecie = SpecieStrelitzia.Clone();
-        invalidSpecie.Image =String.Empty;
+        invalidSpecie.Image =string.Empty;
         Assert.Throws<ArgumentException>(() => SpecieFactory.ToViewModel(invalidSpecie));
     }
     

@@ -20,11 +20,13 @@ namespace Greenmaster.AdminPortal.Controllers
     {
         private readonly ISpecieService _modelService;
         private readonly IObjectTypeService<PlantType> _plantTypeService;
+        private readonly IModelFactory<Specie, SpecieViewModel> _specieFactory;
 
-        public SpecieController(ISpecieService specieService, IObjectTypeService<PlantType> plantTypeService)
+        public SpecieController(ISpecieService specieService, IObjectTypeService<PlantType> plantTypeService, IModelFactory<Specie, SpecieViewModel> specieFactory)
         {
             _modelService = specieService ?? throw new ArgumentNullException(nameof(specieService));
             _plantTypeService = plantTypeService;
+            _specieFactory = specieFactory;
         }
 
         // GET: Specie
@@ -37,7 +39,7 @@ namespace Greenmaster.AdminPortal.Controllers
         {
             var species = (await _modelService.GetAll());
             var specieViewModels = new List<SpecieViewModel>();
-            foreach (var specie in species) specieViewModels.Add(SpecieFactory.ToViewModel(specie));
+            foreach (var specie in species) specieViewModels.Add(_specieFactory.ToViewModel(specie));
             return Json(new { data = specieViewModels});
         }
 
@@ -60,7 +62,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 return NotFound();
             }
 
-            return View(SpecieFactory.ToViewModel(specie));
+            return View(_specieFactory.ToViewModel(specie));
         }
 
         // GET: Specie/Create
@@ -83,7 +85,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 {
                     var requestedPlantType = (await _plantTypeService.GetById(specieViewModel.PlantTypeId)) ?? throw new ArgumentException($"Could not find a {nameof(PlantType)} with id={specieViewModel.PlantTypeId}");
                     specieViewModel.PlantType = requestedPlantType;
-                    var specie = await SpecieFactory.Create(specieViewModel);
+                    var specie = await _specieFactory.Create(specieViewModel);
                     await _modelService.Add(specie);
                     return RedirectToAction(nameof(Index));
                 }
@@ -122,7 +124,7 @@ namespace Greenmaster.AdminPortal.Controllers
             }
 
             await DefineViewData();
-            return View(SpecieFactory.ToViewModel(specie));
+            return View(_specieFactory.ToViewModel(specie));
         }
 
         // POST: Specie/Edit/5
@@ -136,7 +138,7 @@ namespace Greenmaster.AdminPortal.Controllers
             {
                 try
                 {
-                    var specie = await SpecieFactory.Create(specieViewModel);
+                    var specie = await _specieFactory.Create(specieViewModel);
                     await _modelService.Update(specie);
                 }
                 catch (DbUpdateConcurrencyException)

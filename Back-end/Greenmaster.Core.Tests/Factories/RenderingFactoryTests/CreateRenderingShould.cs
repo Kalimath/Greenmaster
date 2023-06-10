@@ -30,7 +30,7 @@ public class CreateRenderingShould : RenderingFactoryTestBase
     [Fact]
     public async Task ThrowArgumentException_WhenImageIsEmpty()
     {
-        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() {ImageBase64 = String.Empty}));
+        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() {ImageBase64 = string.Empty}));
     }
     [Fact]
     public async Task ThrowArgumentException_WhenImageIsWhiteSpace()
@@ -67,13 +67,16 @@ public class CreateRenderingShould : RenderingFactoryTestBase
         
         var resultRendering = await RenderingFactory.Create(viewModel);
         
-        var expected = ImageConverter.Resize(_renderingImage, MaxWidthConfig, MaxHeightConfig);
-        AssertObjects.AssertImageSize(expected, ImageConverter.FromBase64(resultRendering.Image));
+        AssertObjects.AssertImageSize(ImageConverter.FromBase64(resultRendering.Image), MaxWidthConfig, MaxHeightConfig);
     }
     
     [Fact]
     public async Task SetImageToImageBase64_WhenImageFromViewModelNull()
     {
+        //mock resize config
+        var imageRendering = ImageConverter.FromBase64(Base64Examples.ImageRendering);
+        DefineConfigReturnValues(imageRendering.Height, imageRendering.Width);
+        
         var viewModel = new RenderingViewModel
         {
             Id = 1,
@@ -84,9 +87,9 @@ public class CreateRenderingShould : RenderingFactoryTestBase
         };
         
         var resultRendering = await RenderingFactory.Create(viewModel);
-        
-        var expected = ImageConverter.Resize(_renderingImage, MaxWidthConfig, MaxHeightConfig);
-        AssertObjects.AssertImageSize(expected, ImageConverter.FromBase64(resultRendering.Image));
+
+        var actual = ImageConverter.FromBase64(resultRendering.Image);
+        AssertObjects.AssertImageSize(imageRendering, actual);
     }
     
     [Fact]

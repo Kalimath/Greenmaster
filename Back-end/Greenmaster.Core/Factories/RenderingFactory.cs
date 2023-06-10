@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Greenmaster.Core.Configuration;
 using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.ViewModels;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 // ReSharper disable MethodNameNotMeaningful
 
@@ -11,19 +13,13 @@ namespace Greenmaster.Core.Factories;
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public class RenderingFactory : IModelFactory<Rendering, RenderingViewModel>
 {
-    private readonly IConfiguration _configuration;
+    private readonly IOptions<RenderingConfig> _configuration;
     
-    public RenderingFactory(IConfiguration configuration)
+    public RenderingFactory(IOptions<RenderingConfig> configuration)
     {
         _configuration = configuration;
     }
-    //TODO: fix failing tests due to missing configuration by Substitution of IConfiguration
-    private static readonly IConfiguration Configuration = new ConfigurationBuilder()
-        .SetBasePath(AppContext.BaseDirectory)
-        .AddJsonFile(@"appsettings.json", false, false)
-        .AddEnvironmentVariables()
-        .Build();
-    
+
     public async Task<Rendering> Create(RenderingViewModel renderingViewModel)
     {
         var rendering = new Rendering(renderingViewModel.Type, renderingViewModel.Season);
@@ -55,21 +51,19 @@ public class RenderingFactory : IModelFactory<Rendering, RenderingViewModel>
 
     private async Task SetImage(Rendering rendering, RenderingViewModel renderingViewModel)
     {
-        var renderSettings = _configuration.GetSection($"AppSettings").GetSection($"Rendering");
+        var renderSettings = _configuration.Value;
         
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (renderingViewModel.Image != null)
         {
             var initialImage = ImageConverter.FromBase64(await FormFileConverter.ToBase64(renderingViewModel.Image));
             
-            var maxHeightConfig = renderSettings.GetSection("Image")["MaxHeight"];
-            var maxWidthConfig = renderSettings.GetSection("Image")["MaxWidth"];
-            var maxHeight = string.IsNullOrWhiteSpace(maxHeightConfig) ?  initialImage.Height : int.Parse(maxHeightConfig);
-            var maxWidth = string.IsNullOrWhiteSpace(maxWidthConfig) ?  initialImage.Width : int.Parse(maxWidthConfig);
+            var maxHeightConfig = renderSettings.Image.MaxHeight;
+            var maxWidthConfig = renderSettings.Image.MaxWidth;
             
             //set image size to original image if not specified in config
-            var imageHeight = (maxHeight >= initialImage.Height) ? initialImage.Height : maxHeight;
-            var imageWidth = (maxWidth >= initialImage.Width) ? initialImage.Width : maxWidth;
+            var imageHeight = (maxHeightConfig >= initialImage.Height) ? initialImage.Height : maxHeightConfig;
+            var imageWidth = (maxWidthConfig >= initialImage.Width) ? initialImage.Width : maxWidthConfig;
             
             rendering.Image = ImageConverter.ToBase64(ImageConverter.Resize(initialImage, imageWidth, imageHeight));
         }
