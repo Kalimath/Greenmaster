@@ -17,11 +17,13 @@ namespace Greenmaster.AdminPortal.Controllers;
 
 public class GardenStyleController : Controller
 {
+    private IModelFactory<GardenStyle, GardenStyleViewModel> GardenStyleFactory { get; }
     private readonly IGardenStyleService _modelService;
     private readonly IMaterialTypeService _materialTypeService;
 
-    public GardenStyleController(IGardenStyleService service, IMaterialTypeService materialTypeService)
+    public GardenStyleController(IGardenStyleService service, IMaterialTypeService materialTypeService, IModelFactory<GardenStyle, GardenStyleViewModel> gardenStyleFactory)
     {
+        GardenStyleFactory = gardenStyleFactory ?? throw new ArgumentNullException(nameof(gardenStyleFactory));
         _modelService = service ?? throw new ArgumentNullException(nameof(service));
         _materialTypeService = materialTypeService ?? throw new ArgumentNullException(nameof(materialTypeService));
     }
@@ -45,7 +47,7 @@ public class GardenStyleController : Controller
         try
         {
             if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
-            var gardenStyle = GardenStyleFactory.Create(viewModel);
+            var gardenStyle = await GardenStyleFactory.Create(viewModel);
             await _modelService.Add(gardenStyle);
             return RedirectToAction(nameof(Index));
         }
@@ -100,7 +102,7 @@ public class GardenStyleController : Controller
         {
             try
             {
-                var gardenStyle = GardenStyleFactory.Create(viewModel);
+                var gardenStyle = await GardenStyleFactory.Create(viewModel);
                 await _modelService.Update(gardenStyle);
                 return RedirectToAction(nameof(Index));
             }

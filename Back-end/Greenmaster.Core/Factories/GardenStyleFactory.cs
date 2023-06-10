@@ -2,9 +2,9 @@
 
 namespace Greenmaster.Core.Factories;
 
-public static class GardenStyleFactory
+public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewModel>
 {
-    public static GardenStyle Create(GardenStyleViewModel gardenStyleViewModel)
+    public Task<GardenStyle> Create(GardenStyleViewModel gardenStyleViewModel)
     {
         if (gardenStyleViewModel == null)
         {
@@ -12,7 +12,7 @@ public static class GardenStyleFactory
         }
         ValidateViewModel(gardenStyleViewModel);
 
-        return new GardenStyle
+        return Task.FromResult(new GardenStyle
         {
             Id = gardenStyleViewModel.Id,
             Name = gardenStyleViewModel.Name,
@@ -23,10 +23,10 @@ public static class GardenStyleFactory
             RequiresLargeGarden = gardenStyleViewModel.RequiresLargeGarden,
             PathSize = gardenStyleViewModel.PathSize,
             Materials = gardenStyleViewModel.Materials
-        };
+        });
     }
     
-    public static GardenStyleViewModel ToViewModel(GardenStyle gardenStyle)
+    public GardenStyleViewModel ToViewModel(GardenStyle gardenStyle)
     {
         if (gardenStyle == null) throw new ArgumentNullException(nameof(gardenStyle));
         ValidateModel(gardenStyle);

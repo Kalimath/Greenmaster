@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Greenmaster.Core.Configuration;
 using Greenmaster.Core.Database.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,7 @@ services.AddControllersWithViews();
 // services.AddEndpointsApiExplorer();
 // services.AddSwaggerGen();
 
-//Register all Greenmaster.Core items (services, factories and EF)
+//Register all Greenmaster.Core items (services, factories, EF and configuration)
 services.RegisterGreenmasterCore(builder.Configuration);
 
 var app = builder.Build();

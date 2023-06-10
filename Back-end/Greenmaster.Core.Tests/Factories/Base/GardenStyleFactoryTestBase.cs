@@ -1,4 +1,5 @@
 ﻿using Greenmaster.Core.Examples;
+using Greenmaster.Core.Factories;
 using Greenmaster.Core.Models.Design;
 using Greenmaster.Core.Models.ViewModels;
 using StaticData.Measuring;
@@ -9,9 +10,11 @@ public class GardenStyleFactoryTestBase
 {
     protected GardenStyleViewModel GardenStyleViewModel;
     protected GardenStyle GardenStyle;
+    protected readonly IModelFactory<GardenStyle, GardenStyleViewModel> GardenStyleFactory;
 
     public GardenStyleFactoryTestBase()
     {
+        GardenStyleFactory = new GardenStyleFactory();
         GardenStyleViewModel = new GardenStyleViewModel()
         {
             Id = 1,
