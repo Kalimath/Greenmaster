@@ -16,6 +16,7 @@ public class GardenStyle
     public string[] Colors { get; set; }
     [DisplayName(displayName: "Large garden only")]
     public bool RequiresLargeGarden { get; set; }
+    public bool AllSeasonInterest { get; set; }
     
     public Size PathSize { get; set; }
     

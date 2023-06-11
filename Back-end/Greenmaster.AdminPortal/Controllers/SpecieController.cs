@@ -5,6 +5,7 @@ using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Specie;
 using Greenmaster.Core.Services.Type;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StaticData.Coloring;
@@ -134,7 +135,7 @@ namespace Greenmaster.AdminPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, SpecieViewModel specieViewModel)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid || ModelState["Image"]!.ValidationState == ModelValidationState.Invalid)
             {
                 try
                 {

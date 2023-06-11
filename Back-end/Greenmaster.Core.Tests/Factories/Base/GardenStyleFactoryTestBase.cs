@@ -24,6 +24,7 @@ public class GardenStyleFactoryTestBase
             Colors = GardenStyleExamples.ModernAndMinimal.Colors,
             Shapes = GardenStyleExamples.ModernAndMinimal.Shapes,
             RequiresLargeGarden = GardenStyleExamples.ModernAndMinimal.RequiresLargeGarden,
+            AllSeasonInterest = GardenStyleExamples.ModernAndMinimal.AllSeasonInterest,
             PathSize = Size.Medium,
             Materials = new []
             {
@@ -43,6 +44,7 @@ public class GardenStyleFactoryTestBase
             Colors = GardenStyleExamples.ModernAndMinimal.Colors,
             Shapes = GardenStyleExamples.ModernAndMinimal.Shapes,
             RequiresLargeGarden = GardenStyleExamples.ModernAndMinimal.RequiresLargeGarden,
+            AllSeasonInterest = GardenStyleExamples.ModernAndMinimal.AllSeasonInterest,
             PathSize = Size.Medium,
             Materials = new []
             {

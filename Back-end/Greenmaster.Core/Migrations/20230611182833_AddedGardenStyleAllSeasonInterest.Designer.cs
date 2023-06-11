@@ -3,6 +3,7 @@ using System;
 using Greenmaster.Core.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Greenmaster.Core.Migrations
 {
     [DbContext(typeof(ArboretumContext))]
-    partial class ArboretumContextModelSnapshot : ModelSnapshot
+    [Migration("20230611182833_AddedGardenStyleAllSeasonInterest")]
+    partial class AddedGardenStyleAllSeasonInterest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,7 +85,7 @@ namespace Greenmaster.Core.Migrations
                         {
                             Id = 1,
                             AllSeasonInterest = false,
-                            Colors = new[] { "White", "Green", "Blue" },
+                            Colors = new[] { "Color [White]", "Color [Green]", "Color [Blue]" },
                             Concepts = new[] { "StraightLines", "CurvedLines" },
                             Description = "If you love sharp, clean lines, clutter-free spaces and a contemporary feel, then modern and minimal garden design is perfect for you.",
                             Name = "Modern and minimal",

@@ -11,9 +11,14 @@ public class GardenStyleViewModel
     public string[] Concepts { get; set; }
     public string[] Shapes { get; set; }
     public string[] Colors { get; set; }
+    
+    
     [DisplayName(displayName: "Large garden only")]
     public bool RequiresLargeGarden { get; set; }
-
+    [DisplayName(displayName: "Beautiful whole year")]
+    public bool AllSeasonInterest { get; set; }
+    
+    
     public Size PathSize { get; set; }
 
     [DisplayName(displayName: "Material types")]

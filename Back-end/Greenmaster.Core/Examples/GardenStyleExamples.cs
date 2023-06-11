@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Greenmaster.Core.Models.Extensions;
 using StaticData.Design;
 using StaticData.PlantProperties;
 using Size = StaticData.Measuring.Size;
@@ -25,10 +26,10 @@ public static class GardenStyleExamples
         },
         Colors = new[]
         {
-            Color.White.ToString(),
-            Color.Green.ToString(),
-            Color.Blue.ToString()
-        },
+            Color.White,
+            Color.Green,
+            Color.Blue
+        }.GetNames().ToArray(),
         RequiresLargeGarden = false,
         PathSize = Size.Small,
         Materials = Array.Empty<MaterialType>(),

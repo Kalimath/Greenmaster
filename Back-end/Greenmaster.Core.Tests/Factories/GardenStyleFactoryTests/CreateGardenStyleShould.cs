@@ -122,6 +122,16 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.Shapes, gardenStyle.Shapes);
     }
+    
+    // test that checks that AllSeasonInterest is set correctly
+    [Fact]
+    public async Task SetAllSeasonInterest_WhenPresent()
+    {
+        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        
+        Assert.NotNull(gardenStyle);
+        Assert.Equal(GardenStyleViewModel.AllSeasonInterest, gardenStyle.AllSeasonInterest);
+    }
 
     [Fact]
     public async Task SetRequiresLargeGarden()

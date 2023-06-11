@@ -38,7 +38,7 @@ public static class SpecieExamples
         AttractsPollinators = true,
         IsFragrant = false,
         IsPoisonous = true,
-        FlowerColors = new[] { Color.Blue.GetName(), Color.Orange.GetName() },
+        FlowerColors = new[] { Color.Blue, Color.Orange }.GetNames().ToArray(),
         Image = Base64Examples.ImageSpecie
     };
 

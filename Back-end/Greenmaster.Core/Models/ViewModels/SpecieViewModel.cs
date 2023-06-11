@@ -104,7 +104,7 @@ public class SpecieViewModel : IViewModelWithImage
 
     [AtLeastOneRequired(new[] { $"{nameof(Image)}", $"{nameof(ImageBase64)}" },
         ErrorMessage = $"At least one of {nameof(Image)} or {nameof(ImageBase64)} is required.")]
-    public IFormFile Image { get; set; }
+    public IFormFile? Image { get; set; }
     
     [AtLeastOneRequired(new[] { $"{nameof(Image)}", $"{nameof(ImageBase64)}" },
         ErrorMessage = $"At least one of {nameof(Image)} or {nameof(ImageBase64)} is required.")]
