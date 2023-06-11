@@ -135,6 +135,7 @@ namespace Greenmaster.AdminPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, SpecieViewModel specieViewModel)
         {
+            //TODO BUG: fix received viewmodel with  a lot of empty fields
             if (ModelState.IsValid || ModelState["Image"]!.ValidationState == ModelValidationState.Invalid)
             {
                 try

@@ -121,12 +121,29 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
         Assert.Equal(GardenStyle.Shapes, viewModel.Shapes);
     }
 
-    [Fact]
-    public void SetRequiresLargeGarden()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void SetAllSeasonInterest_WhenPresent( bool allSeasonInterest)
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var gardenStyleWithAllSeasonInterest = GardenStyle.Clone(); 
+        gardenStyleWithAllSeasonInterest.AllSeasonInterest = allSeasonInterest;
+        var viewModel = GardenStyleFactory.ToViewModel(gardenStyleWithAllSeasonInterest);
+        
+        Assert.NotNull(viewModel);
+        Assert.Equal(allSeasonInterest, viewModel.AllSeasonInterest);
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void SetRequiresLargeGarden(bool requiresLargeGarden)
+    {
+        var gardenStyleForLargeGardens = GardenStyle.Clone();
+        gardenStyleForLargeGardens.RequiresLargeGarden = requiresLargeGarden;
+        var viewModel = GardenStyleFactory.ToViewModel(gardenStyleForLargeGardens);
 
         Assert.NotNull(viewModel);
-        Assert.Equal(GardenStyle.RequiresLargeGarden, viewModel.RequiresLargeGarden);
+        Assert.Equal(requiresLargeGarden, viewModel.RequiresLargeGarden);
     }
 }

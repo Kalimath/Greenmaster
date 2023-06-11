@@ -124,21 +124,29 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     }
     
     // test that checks that AllSeasonInterest is set correctly
-    [Fact]
-    public async Task SetAllSeasonInterest_WhenPresent()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task SetAllSeasonInterest_WhenPresent(bool allSeasonInterest)  
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyleVmWithAllSeasonInterest = GardenStyleViewModel.Clone();
+        gardenStyleVmWithAllSeasonInterest.AllSeasonInterest = allSeasonInterest;
+        var gardenStyle = await GardenStyleFactory.Create(gardenStyleVmWithAllSeasonInterest);
         
         Assert.NotNull(gardenStyle);
-        Assert.Equal(GardenStyleViewModel.AllSeasonInterest, gardenStyle.AllSeasonInterest);
+        Assert.Equal(allSeasonInterest, gardenStyle.AllSeasonInterest);
     }
 
-    [Fact]
-    public async Task SetRequiresLargeGarden()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task SetRequiresLargeGarden(bool requiresLargeGarden)
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyleVmForLargeGardens = GardenStyleViewModel.Clone();
+        gardenStyleVmForLargeGardens.RequiresLargeGarden = requiresLargeGarden;
+        var gardenStyle = await GardenStyleFactory.Create(gardenStyleVmForLargeGardens);
 
         Assert.NotNull(gardenStyle);
-        Assert.Equal(GardenStyleViewModel.RequiresLargeGarden, gardenStyle.RequiresLargeGarden);
+        Assert.Equal(requiresLargeGarden, gardenStyle.RequiresLargeGarden);
     }
 }

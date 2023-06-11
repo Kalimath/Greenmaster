@@ -2,7 +2,18 @@
 
 public enum GardenStyleConcept
 {
-    StraightLines,CurvedLines,Symmetrical,Forest,Colorful
+    StraightLines,
+    CurvedLines,
+    Symmetrical,
+    Forest,
+    Colorful,
+    Geometric,
+    Herbaceous,
+    FewColors,
+    Topiary,
+    MandatoryLawn,
+    OptionalLawn,
+    NoLawn
 }
 
 public enum GardenPurpose
@@ -12,5 +23,4 @@ public enum GardenPurpose
     Privacy,
     LowMaintenance,
     HighMaintenance
-    
 }
