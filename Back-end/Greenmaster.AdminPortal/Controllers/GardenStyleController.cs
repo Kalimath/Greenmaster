@@ -164,7 +164,7 @@ public class GardenStyleController : Controller
 
     private async Task DefineViewData()
     {
-        ViewData["Colors"] = new SelectList(ColorPallet.Colors().GetNames());
+        ViewData["Colors"] = new SelectList(ColorPallet.BaseColors().GetNames());
         ViewData["Amounts"] = new SelectList(Enum.GetNames(typeof(Amount)));
         ViewData["Concepts"] = new SelectList(Enum.GetNames(typeof(GardenStyleConcept)));
         ViewData["Shapes"] = new SelectList(Enum.GetNames(typeof(Shape)));

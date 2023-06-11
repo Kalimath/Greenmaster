@@ -131,6 +131,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     {
         var gardenStyleVmWithAllSeasonInterest = GardenStyleViewModel.Clone();
         gardenStyleVmWithAllSeasonInterest.AllSeasonInterest = allSeasonInterest;
+        
         var gardenStyle = await GardenStyleFactory.Create(gardenStyleVmWithAllSeasonInterest);
         
         Assert.NotNull(gardenStyle);
@@ -144,9 +145,24 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     {
         var gardenStyleVmForLargeGardens = GardenStyleViewModel.Clone();
         gardenStyleVmForLargeGardens.RequiresLargeGarden = requiresLargeGarden;
+        
         var gardenStyle = await GardenStyleFactory.Create(gardenStyleVmForLargeGardens);
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(requiresLargeGarden, gardenStyle.RequiresLargeGarden);
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task SetDivideIntoRooms(bool divideIntoRooms)
+    {
+        var gardenStyleVmDividedIntoRooms = GardenStyleViewModel.Clone();
+        gardenStyleVmDividedIntoRooms.DivideIntoRooms = divideIntoRooms;
+        
+        var gardenStyle = await GardenStyleFactory.Create(gardenStyleVmDividedIntoRooms);
+
+        Assert.NotNull(gardenStyle);
+        Assert.Equal(divideIntoRooms, gardenStyle.DivideIntoRooms);
     }
 }

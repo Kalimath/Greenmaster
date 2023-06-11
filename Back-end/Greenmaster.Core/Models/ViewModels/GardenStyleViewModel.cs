@@ -15,9 +15,11 @@ public class GardenStyleViewModel
     
     [DisplayName(displayName: "Large garden only")]
     public bool RequiresLargeGarden { get; set; }
-    [DisplayName(displayName: "Beautiful whole year")]
+    [DisplayName(displayName: "All season interest")]
     public bool AllSeasonInterest { get; set; }
     
+    [DisplayName(displayName: "Divide garden into rooms")]
+    public bool DivideIntoRooms { get; set; }
     
     public Size PathSize { get; set; }
 

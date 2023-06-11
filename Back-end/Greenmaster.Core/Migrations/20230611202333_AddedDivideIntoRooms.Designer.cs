@@ -3,6 +3,7 @@ using System;
 using Greenmaster.Core.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Greenmaster.Core.Migrations
 {
     [DbContext(typeof(ArboretumContext))]
-    partial class ArboretumContextModelSnapshot : ModelSnapshot
+    [Migration("20230611202333_AddedDivideIntoRooms")]
+    partial class AddedDivideIntoRooms
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,7 +101,7 @@ namespace Greenmaster.Core.Migrations
                         {
                             Id = 2,
                             AllSeasonInterest = true,
-                            Colors = new[] { "Red", "Yellow", "Blue", "Orange", "Violet", "Green", "White", "LightGray", "Gray", "Black", "Brown" },
+                            Colors = new[] { "Red", "Yellow", "Blue", "Orange", "Violet", "Green", "YellowGreen", "Turquoise", "OrangeRed", "Goldenrod", "BlueViolet", "Purple", "White", "LightGray", "Gray", "Black", "Brown" },
                             Concepts = new[] { "Herbaceous", "Topiary", "Sculptured", "Colorful" },
                             Description = "Wide paths, deep herbaceous borders, structures, pools, rills, structures, terraces and lavishly planted pots.",
                             DivideIntoRooms = true,

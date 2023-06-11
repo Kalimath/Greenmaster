@@ -13,7 +13,9 @@ public enum GardenStyleConcept
     Topiary,
     MandatoryLawn,
     OptionalLawn,
-    NoLawn
+    NoLawn,
+    Cramped,
+    Sculptured
 }
 
 public enum GardenPurpose

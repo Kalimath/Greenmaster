@@ -128,6 +128,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     {
         var gardenStyleWithAllSeasonInterest = GardenStyle.Clone(); 
         gardenStyleWithAllSeasonInterest.AllSeasonInterest = allSeasonInterest;
+        
         var viewModel = GardenStyleFactory.ToViewModel(gardenStyleWithAllSeasonInterest);
         
         Assert.NotNull(viewModel);
@@ -141,9 +142,24 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     {
         var gardenStyleForLargeGardens = GardenStyle.Clone();
         gardenStyleForLargeGardens.RequiresLargeGarden = requiresLargeGarden;
+        
         var viewModel = GardenStyleFactory.ToViewModel(gardenStyleForLargeGardens);
 
         Assert.NotNull(viewModel);
         Assert.Equal(requiresLargeGarden, viewModel.RequiresLargeGarden);
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void SetDivideIntoRooms(bool divideIntoRooms)
+    {
+        var gardenStyleDividedIntoRooms = GardenStyle.Clone();
+        gardenStyleDividedIntoRooms.DivideIntoRooms = divideIntoRooms;
+        
+        var viewModel = GardenStyleFactory.ToViewModel(gardenStyleDividedIntoRooms);
+
+        Assert.NotNull(viewModel);
+        Assert.Equal(divideIntoRooms, viewModel.DivideIntoRooms);
     }
 }

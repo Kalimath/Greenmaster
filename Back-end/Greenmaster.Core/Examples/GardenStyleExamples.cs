@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Greenmaster.Core.Models.Extensions;
+using StaticData.Coloring;
 using StaticData.Design;
 using StaticData.PlantProperties;
 using Size = StaticData.Measuring.Size;
@@ -17,7 +18,7 @@ public static class GardenStyleExamples
         Concepts = new[]
         {
             GardenStyleConcept.StraightLines.ToString(),
-            GardenStyleConcept.CurvedLines.ToString()
+            GardenStyleConcept.Geometric.ToString()
         },
         Shapes = new[]
         {
@@ -31,16 +32,46 @@ public static class GardenStyleExamples
             Color.Blue
         }.GetNames().ToArray(),
         RequiresLargeGarden = false,
+        AllSeasonInterest = false,
+        DivideIntoRooms = false,
         PathSize = Size.Small,
         Materials = Array.Empty<MaterialType>(),
 
     };
     
+    public static readonly GardenStyle EnglishCountry = new()
+    {
+        Id = 2,
+        Name = "English country",
+        Description =
+            "Wide paths, deep herbaceous borders, structures, pools, rills, structures, terraces and lavishly planted pots.",
+        Concepts = new[]
+        {
+            GardenStyleConcept.Herbaceous.ToString(),
+            GardenStyleConcept.Topiary.ToString(),
+            GardenStyleConcept.Sculptured.ToString(),
+            GardenStyleConcept.Colorful.ToString()
+        },
+        Shapes = new[]
+        {
+            Shape.NotSet.ToString()
+        },
+        Colors = ColorPallet.BaseColors().GetNames().ToArray(),
+        RequiresLargeGarden = true,
+        AllSeasonInterest = true,
+        DivideIntoRooms = true,
+        PathSize = Size.Large,
+        Materials = Array.Empty<MaterialType>(),
+
+    };
+    //TODO: add plantTypes & structureTypes
+    //TODO: add species matching style
+    
     public static List<GardenStyle> GetAll()
     {
         return new List<GardenStyle>()
         {
-            ModernAndMinimal
+            ModernAndMinimal, EnglishCountry
         };
     }
 }

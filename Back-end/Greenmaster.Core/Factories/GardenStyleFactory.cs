@@ -22,6 +22,7 @@ public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewMode
             Colors = gardenStyleViewModel.Colors,
             RequiresLargeGarden = gardenStyleViewModel.RequiresLargeGarden,
             AllSeasonInterest = gardenStyleViewModel.AllSeasonInterest,
+            DivideIntoRooms = gardenStyleViewModel.DivideIntoRooms,
             PathSize = gardenStyleViewModel.PathSize,
             Materials = gardenStyleViewModel.Materials
         });
@@ -42,6 +43,7 @@ public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewMode
             Colors = gardenStyle.Colors,
             RequiresLargeGarden = gardenStyle.RequiresLargeGarden,
             AllSeasonInterest = gardenStyle.AllSeasonInterest,
+            DivideIntoRooms = gardenStyle.DivideIntoRooms,
             PathSize = gardenStyle.PathSize,
             Materials = (gardenStyle.Materials ?? new List<MaterialType>()).ToArray()
         };
