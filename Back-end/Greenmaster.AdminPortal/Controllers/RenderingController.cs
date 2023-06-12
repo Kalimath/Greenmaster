@@ -74,8 +74,9 @@ namespace Greenmaster.AdminPortal.Controllers
                 await _modelService.Add(rendering);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex) 
             {
+                Console.WriteLine(ex);
                 DefineViewData();
                 return View(renderingViewModel);
             }

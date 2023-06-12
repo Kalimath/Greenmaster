@@ -34,6 +34,7 @@ public class SpecieViewModel : IViewModelWithImage
 
     #endregion
 
+    [DataType(DataType.MultilineText)]
     public string Description { get; set; }
     public Shape Shape { get; set; }
 
@@ -76,6 +77,7 @@ public class SpecieViewModel : IViewModelWithImage
     [Required(ErrorMessage = "Specie must have a max. height.")]
     [DisplayName("Maximum height (metric)")]
     [Range(0.1, 150, ErrorMessage = "Max. height is invalid.")]
+    [DataType(DataType.Currency)]
     public double MaxHeight { get; set; }
 
     [Required(ErrorMessage = "Specie must have a max. width.")]

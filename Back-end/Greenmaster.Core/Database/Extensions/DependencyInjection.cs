@@ -44,9 +44,9 @@ public static class DependencyInjection
 
     public static void RegisterRenderingConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        var configurationRoot = configuration.GetSection($"appsettings:Rendering");
+        var configurationRoot = configuration.GetSection($"AppSettings:Rendering");
 
-        services.Configure<RenderingConfig>(configurationRoot.GetSection(key: "Rendering"));
+        services.Configure<RenderingConfig>(configurationRoot);
     }
 
     public static void RegisterDataLink(this IServiceCollection services, IConfiguration configuration)

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using StaticData.Measuring;
 
 namespace Greenmaster.Core.Models.ViewModels;
@@ -7,6 +8,8 @@ public class GardenStyleViewModel
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    
+    [DataType(DataType.MultilineText)]
     public string Description { get; set; }
     public string[] Concepts { get; set; }
     public string[] Shapes { get; set; }
