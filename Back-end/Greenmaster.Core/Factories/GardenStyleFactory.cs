@@ -1,4 +1,5 @@
-﻿using Greenmaster.Core.Models.ViewModels;
+﻿using Greenmaster.Core.Models;
+using Greenmaster.Core.Models.ViewModels;
 
 namespace Greenmaster.Core.Factories;
 
@@ -24,7 +25,8 @@ public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewMode
             AllSeasonInterest = gardenStyleViewModel.AllSeasonInterest,
             DivideIntoRooms = gardenStyleViewModel.DivideIntoRooms,
             PathSize = gardenStyleViewModel.PathSize,
-            Materials = gardenStyleViewModel.Materials
+            Materials = gardenStyleViewModel.Materials,
+            PlantTypes = gardenStyleViewModel.PlantTypes
         });
     }
     
@@ -45,7 +47,8 @@ public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewMode
             AllSeasonInterest = gardenStyle.AllSeasonInterest,
             DivideIntoRooms = gardenStyle.DivideIntoRooms,
             PathSize = gardenStyle.PathSize,
-            Materials = (gardenStyle.Materials ?? new List<MaterialType>()).ToArray()
+            Materials = (gardenStyle.Materials ?? new List<MaterialType>()).ToArray(),
+            PlantTypes = (gardenStyle.PlantTypes ?? new List<PlantType>()).ToArray()
         };
     }
 

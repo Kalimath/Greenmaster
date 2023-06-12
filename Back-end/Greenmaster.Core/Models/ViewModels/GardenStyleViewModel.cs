@@ -26,6 +26,8 @@ public class GardenStyleViewModel
     [DisplayName(displayName: "Material types")]
     public int[] MaterialTypeIds { get; set; }
     public MaterialType[]? Materials { get; set; }
+    public PlantType[]? PlantTypes { get; set; }
+    public int[]? PlantTypeIds { get; set; }
 
     //TODO: add media 
 }

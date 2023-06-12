@@ -1,4 +1,5 @@
 ﻿using Greenmaster.Core.Factories;
+using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Tests.Factories.Base;
 
@@ -74,6 +75,27 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
 
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.Materials, viewModel.Materials);
+    }
+
+    [Fact]
+    public void SetPlantTypes_WhenValid()
+    {
+        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+
+        Assert.NotNull(viewModel);
+        Assert.Equal(GardenStyle.PlantTypes, viewModel.PlantTypes);
+    }
+
+    [Fact]
+    public void ReturnEmptyList_WhenPlantTypesEmpty()
+    {
+        var gardenStyle = GardenStyle.Clone();
+        gardenStyle.PlantTypes = Array.Empty<PlantType>();
+        
+        var viewModel = GardenStyleFactory.ToViewModel(gardenStyle);
+        
+        Assert.NotNull(viewModel);
+        Assert.Empty(viewModel.PlantTypes!);
     }
 
     [Fact]
