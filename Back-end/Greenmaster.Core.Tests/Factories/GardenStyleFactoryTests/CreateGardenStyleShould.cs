@@ -1,4 +1,5 @@
 ﻿using Greenmaster.Core.Factories;
+using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Tests.Factories.Base;
 
@@ -164,5 +165,26 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(divideIntoRooms, gardenStyle.DivideIntoRooms);
+    }
+    
+    [Fact]
+    public async Task SetPlantTypes_WhenValid()
+    {
+        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+
+        Assert.NotNull(gardenStyle);
+        Assert.Equal(GardenStyleViewModel.PlantTypes, gardenStyle.PlantTypes);
+    }
+    
+    [Fact]
+    public async Task ReturnEmpty_WhenPlantTypesEmpty()
+    {
+        var viewModel = GardenStyleViewModel.Clone();
+        viewModel.PlantTypes = Array.Empty<PlantType>();
+        
+        var gardenStyle = await GardenStyleFactory.Create(viewModel);
+        
+        Assert.NotNull(gardenStyle);
+        Assert.Empty(gardenStyle.PlantTypes!);
     }
 }
