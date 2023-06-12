@@ -4,6 +4,7 @@ using Greenmaster.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using StaticData.Object.Organic;
+using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Tests.Services;
 
@@ -17,7 +18,7 @@ public class SpecieServiceTests
         _specieStrelitzia = new Specie
         {
             Id = 1,
-            Genus = "Strelitzia",
+            Genus = PlantGenus.Strelitzia,
             Species = "Reginae",
             Cultivar = "",
             CommonNames = "Bird of paradise,Paradijsvogelbloem",

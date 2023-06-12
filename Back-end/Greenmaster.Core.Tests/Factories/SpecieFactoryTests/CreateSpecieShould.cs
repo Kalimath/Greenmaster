@@ -14,6 +14,16 @@ public class CreateSpecieShould : SpecieFactoryTestBase
         await Assert.ThrowsAsync<ArgumentNullException>(async () => await SpecieFactory.Create(null!));
     }
     
+    //test if SpecieFactory.Create throws an exception when viewmodel.Genus does not exist in PlantGenus
+    [Fact]
+    public async Task ThrowArgumentException_WhenGenusDoesInPlantGenus()
+    {
+        var invalidGenusSpecieViewModel = SpecieFactory.ToViewModel(SpecieStrelitzia.Clone());
+        invalidGenusSpecieViewModel.Genus = "invalidGenus";
+        
+        await Assert.ThrowsAsync<ArgumentException>(async () => await SpecieFactory.Create(invalidGenusSpecieViewModel));
+    }
+
     [Fact]
     public async Task ThrowArgumentOutOfRangeException_WhenViewModelMaxHeightInvalid()
     {

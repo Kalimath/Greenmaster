@@ -13,6 +13,7 @@ using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 
 namespace Greenmaster.AdminPortal.Controllers
@@ -82,15 +83,12 @@ namespace Greenmaster.AdminPortal.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var requestedPlantType = (await _plantTypeService.GetById(specieViewModel.PlantTypeId)) ?? throw new ArgumentException($"Could not find a {nameof(PlantType)} with id={specieViewModel.PlantTypeId}");
-                    specieViewModel.PlantType = requestedPlantType;
-                    var specie = await _specieFactory.Create(specieViewModel);
-                    await _modelService.Add(specie);
-                    return RedirectToAction(nameof(Index));
-                }
-                throw new ArgumentException(nameof(ModelState));
+                if (!ModelState.IsValid) throw new ArgumentException(nameof(ModelState));
+                var requestedPlantType = (await _plantTypeService.GetById(specieViewModel.PlantTypeId)) ?? throw new ArgumentException($"Could not find a {nameof(PlantType)} with id={specieViewModel.PlantTypeId}");
+                specieViewModel.PlantType = requestedPlantType;
+                var specie = await _specieFactory.Create(specieViewModel);
+                await _modelService.Add(specie);
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
@@ -103,6 +101,7 @@ namespace Greenmaster.AdminPortal.Controllers
         private async Task DefineViewData()
         {
             ViewData["LifeCycle"] = new SelectList(Enum.GetNames(typeof(Lifecycle)));
+            ViewData["PlantGenera"] = new SelectList(Enum.GetNames(typeof(PlantGenus)));
             ViewData["PlantType"] = new SelectList(await _plantTypeService.GetAll(), dataValueField: nameof(PlantType.Id), dataTextField: nameof(PlantType.Name), "---Select a plant-type---");
             ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
             ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));

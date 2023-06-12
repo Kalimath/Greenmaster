@@ -4,6 +4,7 @@ using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 
 #pragma warning disable CS8618
 
@@ -15,7 +16,7 @@ public class Specie : IObjectIdentity
     public int Id { get; set; }
 
     #region Naming
-    [Required] public string Genus { get; set; }
+    [Required] public PlantGenus Genus { get; set; }
     [Required] public string Species { get; set; }
     public string? Cultivar { get; set; }
     public string ScientificName => $"{Genus} {Species}" + (string.IsNullOrEmpty(Cultivar) ? "" : $" '{Cultivar}'");

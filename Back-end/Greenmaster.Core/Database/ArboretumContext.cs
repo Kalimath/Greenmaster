@@ -9,6 +9,7 @@ using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.Object.Rendering;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 
 namespace Greenmaster.Core.Database;
@@ -95,6 +96,11 @@ public class ArboretumContext : DbContext, IApplicationDbContext
 
     private static void DefinePropertyConversions(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Specie>()
+            .Property(e => e.Genus)
+            .HasConversion(
+                v => v.ToString(),
+                v => Enum.Parse<PlantGenus>(v));
         modelBuilder.Entity<Specie>()
             .Property(e => e.BloomPeriod)
             .HasConversion(

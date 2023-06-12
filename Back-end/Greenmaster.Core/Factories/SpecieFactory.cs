@@ -2,6 +2,7 @@
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
+using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 using static Greenmaster.Core.Helpers.StringValidator;
 
@@ -20,7 +21,7 @@ public class SpecieFactory : IModelFactory<Specie, SpecieViewModel>
         var specie = new Specie
         {
             Id = specieViewModel.Id,
-            Genus = specieViewModel.Genus,
+            Genus = (PlantGenus)Enum.Parse(typeof(PlantGenus), specieViewModel.Genus),
             Species = specieViewModel.Species,
             Cultivar = specieViewModel.Cultivar,
             CommonNames = specieViewModel.CommonNames,
@@ -131,7 +132,7 @@ public class SpecieFactory : IModelFactory<Specie, SpecieViewModel>
         return new SpecieViewModel()
         {
             Id = specie.Id,
-            Genus = specie.Genus,
+            Genus = specie.Genus.ToString(),
             Species = specie.Species,
             Cultivar = specie.Cultivar,
             CommonNames = specie.CommonNames,

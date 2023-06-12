@@ -6,6 +6,7 @@ using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 
 namespace Greenmaster.Core.Examples;
@@ -16,7 +17,7 @@ public static class SpecieExamples
     public static readonly Specie Strelitzia = new()
     {
         Id = 1,
-        Genus = "Strelitzia",
+        Genus = PlantGenus.Strelitzia,
         Species = "Reginae",
         Cultivar = "",
         CommonNames = "Bird of paradise,Paradijsvogelbloem",
@@ -45,10 +46,10 @@ public static class SpecieExamples
     public static readonly Specie Papaver = new()
     {
         Id = 2,
-        Genus = "Papaver",
+        Genus = PlantGenus.Papaver,
         Species = "Orientale",
         Cultivar = "Catherina",
-        CommonNames = "Eastern poppy,Oosterse papaver",
+        CommonNames = "Eastern poppy, Oosterse papaver",
         Description = "Beautiful straight plant",
         PlantTypeId = ObjectTypeExamples.SmallShrub.Id,
         Shape = Shape.Columnar,
