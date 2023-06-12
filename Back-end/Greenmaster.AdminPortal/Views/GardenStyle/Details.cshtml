@@ -71,35 +71,63 @@
 
             </dl>
         </div>
-        
-        <h3>Used materials:</h3>
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>
-                    @(nameof(MaterialType.Name))
-                </th>
-                <th>
-                    @(nameof(MaterialType.Description))
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tbody>
-            @foreach (var item in Model.Materials)
-            {
+        <h3>Used materials:</h3>
+        @if (Model.Materials != null && Model.Materials.Length > 0)
+        {
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
+                    <th>
+                        @(nameof(MaterialType.Name))
+                    </th>
+                    <th>
+                        @(nameof(MaterialType.Description))
+                    </th>
                 </tr>
-            }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <tbody>
+                @foreach (var item in Model.Materials)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        <h3>Suited species groups:</h3>
+
+        @if (Model.SuitablePlantGenera != null && Model.SuitablePlantGenera.Length > 0)
+        {
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tbody>
+                @foreach (var item in Model.SuitablePlantGenera)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item)
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+
     </div>
 </div>
 

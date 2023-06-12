@@ -26,7 +26,7 @@ public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewMode
             DivideIntoRooms = gardenStyleViewModel.DivideIntoRooms,
             PathSize = gardenStyleViewModel.PathSize,
             Materials = gardenStyleViewModel.Materials,
-            PlantTypes = gardenStyleViewModel.PlantTypes
+            SuitablePlantGenera = gardenStyleViewModel.SuitablePlantGenera
         });
     }
     
@@ -48,7 +48,7 @@ public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewMode
             DivideIntoRooms = gardenStyle.DivideIntoRooms,
             PathSize = gardenStyle.PathSize,
             Materials = (gardenStyle.Materials ?? new List<MaterialType>()).ToArray(),
-            PlantTypes = (gardenStyle.PlantTypes ?? new List<PlantType>()).ToArray()
+            SuitablePlantGenera = gardenStyle.SuitablePlantGenera
         };
     }
 

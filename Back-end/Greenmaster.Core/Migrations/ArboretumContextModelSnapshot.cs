@@ -77,6 +77,10 @@ namespace Greenmaster.Core.Migrations
                         .IsRequired()
                         .HasColumnType("text[]");
 
+                    b.Property<string>("SuitablePlantGenera")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("GardenStyles");
@@ -93,7 +97,8 @@ namespace Greenmaster.Core.Migrations
                             Name = "Modern and minimal",
                             PathSize = 0,
                             RequiresLargeGarden = false,
-                            Shapes = new[] { "Round", "Cubic" }
+                            Shapes = new[] { "Round", "Cubic" },
+                            SuitablePlantGenera = "Ginkgo"
                         },
                         new
                         {
@@ -106,7 +111,8 @@ namespace Greenmaster.Core.Migrations
                             Name = "English country",
                             PathSize = 2,
                             RequiresLargeGarden = true,
-                            Shapes = new[] { "NotSet" }
+                            Shapes = new[] { "NotSet" },
+                            SuitablePlantGenera = "Iris,Delphinium,Rosa"
                         });
                 });
 

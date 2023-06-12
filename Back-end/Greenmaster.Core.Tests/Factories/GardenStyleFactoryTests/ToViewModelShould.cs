@@ -2,6 +2,7 @@
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Tests.Factories.Base;
+using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Tests.Factories.GardenStyleFactoryTests;
 
@@ -78,24 +79,24 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     }
 
     [Fact]
-    public void SetPlantTypes_WhenValid()
+    public void SetSuitablePlantGenera_WhenValid()
     {
         var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
 
         Assert.NotNull(viewModel);
-        Assert.Equal(GardenStyle.PlantTypes, viewModel.PlantTypes);
+        Assert.Equal(GardenStyle.SuitablePlantGenera, viewModel.SuitablePlantGenera);
     }
 
     [Fact]
-    public void ReturnEmptyList_WhenPlantTypesEmpty()
+    public void ReturnEmptyList_WhenSuitablePlantGeneraEmpty()
     {
         var gardenStyle = GardenStyle.Clone();
-        gardenStyle.PlantTypes = Array.Empty<PlantType>();
+        gardenStyle.SuitablePlantGenera = Array.Empty<PlantGenus>();
         
         var viewModel = GardenStyleFactory.ToViewModel(gardenStyle);
         
         Assert.NotNull(viewModel);
-        Assert.Empty(viewModel.PlantTypes!);
+        Assert.Empty(viewModel.SuitablePlantGenera!);
     }
 
     [Fact]

@@ -3,6 +3,7 @@ using Greenmaster.Core.Models.Extensions;
 using StaticData.Coloring;
 using StaticData.Design;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 using Size = StaticData.Measuring.Size;
 
 namespace Greenmaster.Core.Examples;
@@ -36,6 +37,10 @@ public static class GardenStyleExamples
         DivideIntoRooms = false,
         PathSize = Size.Small,
         Materials = Array.Empty<MaterialType>(),
+        SuitablePlantGenera = new []
+        {
+            PlantGenus.Ginkgo
+        },
 
     };
     
@@ -62,6 +67,10 @@ public static class GardenStyleExamples
         DivideIntoRooms = true,
         PathSize = Size.Large,
         Materials = Array.Empty<MaterialType>(),
+        SuitablePlantGenera = new []
+        {
+            PlantGenus.Iris, PlantGenus.Delphinium, PlantGenus.Rosa
+        }
 
     };
     //TODO: add plantTypes & structureTypes

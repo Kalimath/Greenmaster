@@ -84,6 +84,7 @@ public enum PlantGenus
     Gazania,
     Geranium,
     Geum,
+    Ginkgo,
     Gladiolus,
     Glaucium,
     Glechoma,

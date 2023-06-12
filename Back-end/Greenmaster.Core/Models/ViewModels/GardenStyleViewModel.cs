@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using StaticData.Measuring;
+using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Models.ViewModels;
 
@@ -29,8 +30,8 @@ public class GardenStyleViewModel
     [DisplayName(displayName: "Material types")]
     public int[] MaterialTypeIds { get; set; }
     public MaterialType[]? Materials { get; set; }
-    public PlantType[]? PlantTypes { get; set; }
-    public int[]? PlantTypeIds { get; set; }
+    [DisplayName(displayName: "Suitable plant genera (species groups)")]
+    public PlantGenus[]? SuitablePlantGenera { get; set; }
 
     //TODO: add media 
 }

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using StaticData.Measuring;
+using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Models.Design;
 
@@ -22,7 +23,7 @@ public class GardenStyle
     public Size PathSize { get; set; }
     
     public virtual ICollection<MaterialType>? Materials { get; set; } = new HashSet<MaterialType>();
-    public virtual ICollection<PlantType>? PlantTypes { get; set; } = new HashSet<PlantType>();
+    public PlantGenus[] SuitablePlantGenera { get; set; } = Array.Empty<PlantGenus>();
 
     //TODO: add media 
 }

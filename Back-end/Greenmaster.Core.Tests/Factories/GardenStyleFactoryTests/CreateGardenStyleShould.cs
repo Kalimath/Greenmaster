@@ -2,6 +2,7 @@
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Tests.Factories.Base;
+using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Tests.Factories.GardenStyleFactoryTests;
 
@@ -168,23 +169,23 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     }
     
     [Fact]
-    public async Task SetPlantTypes_WhenValid()
+    public async Task SetSuitablePlantGenera_WhenValid()
     {
         var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
 
         Assert.NotNull(gardenStyle);
-        Assert.Equal(GardenStyleViewModel.PlantTypes, gardenStyle.PlantTypes);
+        Assert.Equal(GardenStyleViewModel.SuitablePlantGenera, gardenStyle.SuitablePlantGenera);
     }
     
     [Fact]
-    public async Task ReturnEmpty_WhenPlantTypesEmpty()
+    public async Task ReturnEmpty_WhenSuitablePlantGeneraEmpty()
     {
         var viewModel = GardenStyleViewModel.Clone();
-        viewModel.PlantTypes = Array.Empty<PlantType>();
+        viewModel.SuitablePlantGenera = Array.Empty<PlantGenus>();
         
         var gardenStyle = await GardenStyleFactory.Create(viewModel);
         
         Assert.NotNull(gardenStyle);
-        Assert.Empty(gardenStyle.PlantTypes!);
+        Assert.Empty(gardenStyle.SuitablePlantGenera!);
     }
 }

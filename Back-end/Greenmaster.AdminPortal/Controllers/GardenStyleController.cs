@@ -1,4 +1,5 @@
-﻿using Greenmaster.Core.Factories;
+﻿using System.Drawing;
+using Greenmaster.Core.Factories;
 using Greenmaster.Core.Models.Design;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
@@ -10,8 +11,9 @@ using Microsoft.EntityFrameworkCore;
 using StaticData.Coloring;
 using StaticData.Design;
 using StaticData.Gradation;
-using StaticData.Measuring;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
+using Size = StaticData.Measuring.Size;
 
 namespace Greenmaster.AdminPortal.Controllers;
 
@@ -164,11 +166,12 @@ public class GardenStyleController : Controller
 
     private async Task DefineViewData()
     {
-        ViewData["Colors"] = new SelectList(ColorPallet.BaseColors().GetNames());
-        ViewData["Amounts"] = new SelectList(Enum.GetNames(typeof(Amount)));
-        ViewData["Concepts"] = new SelectList(Enum.GetNames(typeof(GardenStyleConcept)));
-        ViewData["Shapes"] = new SelectList(Enum.GetNames(typeof(Shape)));
-        ViewData["Sizes"] = new SelectList(Enum.GetNames(typeof(Size)));
-        ViewData["MaterialTypes"] = new SelectList(await _materialTypeService.GetAll(), nameof(MaterialType.Id), nameof(MaterialType.Name), "---Choose---");
+        ViewData["Colors"] = new SelectList(ColorPallet.BaseColors().GetNames(),$"---Select {nameof(Color)}s---");
+        ViewData["Amounts"] = new SelectList(Enum.GetNames(typeof(Amount)),$"---Select {nameof(Amount)}---");
+        ViewData["Concepts"] = new SelectList(Enum.GetNames(typeof(GardenStyleConcept)), $"---Select concepts---");
+        ViewData["Shapes"] = new SelectList(Enum.GetNames(typeof(Shape)),$"---Select {nameof(Shape)}s---");
+        ViewData["Sizes"] = new SelectList(Enum.GetNames(typeof(Size)), $"---Select {nameof(Size)}---");
+        ViewData["PlantGenera"] = new SelectList(Enum.GetNames(typeof(PlantGenus)), $"---Select Genera---");
+        ViewData["MaterialTypes"] = new SelectList(await _materialTypeService.GetAll(), nameof(MaterialType.Id), nameof(MaterialType.Name),$"---Select {nameof(MaterialType)}s---");
     }
 }

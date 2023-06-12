@@ -111,6 +111,11 @@ public class ArboretumContext : DbContext, IApplicationDbContext
             .HasConversion(
                 v => string.Join(',', v ?? Array.Empty<string>()),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+        modelBuilder.Entity<GardenStyle>()
+            .Property(e => e.SuitablePlantGenera)
+            .HasConversion(
+                v => string.Join(',', v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select( Enum.Parse<PlantGenus>).ToArray());
         modelBuilder.Entity<Specie>()
             .Property(e => e.Cycle)
             .HasConversion(

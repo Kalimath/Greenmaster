@@ -4,6 +4,7 @@ using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Design;
 using Greenmaster.Core.Models.ViewModels;
 using StaticData.Measuring;
+using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Tests.Factories.Base;
 
@@ -34,7 +35,7 @@ public class GardenStyleFactoryTestBase
                 MaterialTypeExamples.Brick,
                 MaterialTypeExamples.CortenSteel
             },
-            PlantTypes = (GardenStyleExamples.ModernAndMinimal.PlantTypes ?? throw new InvalidOperationException()).ToArray()
+            SuitablePlantGenera = GardenStyleExamples.ModernAndMinimal.SuitablePlantGenera
             
         };
         GardenStyle = new GardenStyle
@@ -55,7 +56,7 @@ public class GardenStyleFactoryTestBase
                 MaterialTypeExamples.Brick,
                 MaterialTypeExamples.CortenSteel
             },
-            PlantTypes = GardenStyleExamples.ModernAndMinimal.PlantTypes
+            SuitablePlantGenera = GardenStyleExamples.ModernAndMinimal.SuitablePlantGenera
         };
     }
 }

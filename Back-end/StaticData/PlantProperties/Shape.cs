@@ -12,5 +12,6 @@ public enum Shape
     Weeping = 6,
     Open = 7,
     Irregular = 8,
-    Cubic = 9
+    Cubic = 9,
+    Topiary = 10
 }
