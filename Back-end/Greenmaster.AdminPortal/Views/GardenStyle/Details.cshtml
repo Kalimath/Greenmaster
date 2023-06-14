@@ -73,7 +73,7 @@
         </div>
 
         <h3>Used materials:</h3>
-        @if (Model.Materials != null && Model.Materials.Length > 0)
+        @if (Model.Materials is {Length: > 0 })
         {
             <table class="table table-striped">
                 <thead>
@@ -104,7 +104,7 @@
         }
         <h3>Suited species groups:</h3>
 
-        @if (Model.SuitablePlantGenera != null && Model.SuitablePlantGenera.Length > 0)
+        @if (Model.SuitablePlantGenera is {Length: > 0 })
         {
             <table class="table table-striped">
                 <thead>

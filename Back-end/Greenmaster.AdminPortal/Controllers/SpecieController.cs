@@ -102,7 +102,7 @@ namespace Greenmaster.AdminPortal.Controllers
         {
             ViewData["LifeCycle"] = new SelectList(Enum.GetNames(typeof(Lifecycle)));
             ViewData["PlantGenera"] = new SelectList(Enum.GetNames(typeof(PlantGenus)));
-            ViewData["PlantType"] = new SelectList(await _plantTypeService.GetAll(), dataValueField: nameof(PlantType.Id), dataTextField: nameof(PlantType.Name), "---Select a plant-type---");
+            ViewData["PlantType"] = new SelectList(await _plantTypeService.GetAll(), dataValueField: nameof(PlantType.Id), dataTextField: nameof(PlantType.Name));
             ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
             ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));
@@ -126,7 +126,7 @@ namespace Greenmaster.AdminPortal.Controllers
             await DefineViewData();
             return View(_specieFactory.ToViewModel(specie));
         }
-
+        
         // POST: Specie/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -134,7 +134,7 @@ namespace Greenmaster.AdminPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, SpecieViewModel specieViewModel)
         {
-            //TODO BUG: fix received viewmodel with  a lot of empty fields
+            //TODO BUG: fix edit method
             if (ModelState.IsValid || ModelState["Image"]!.ValidationState == ModelValidationState.Invalid)
             {
                 try

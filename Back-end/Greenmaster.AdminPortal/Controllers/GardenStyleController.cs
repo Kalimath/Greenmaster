@@ -50,14 +50,8 @@ public class GardenStyleController : Controller
         {
             if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
             
-            
-            var materials = new List<MaterialType>();
-            foreach (var id in viewModel.MaterialTypeIds)
-            {
-                materials.Add(await _materialTypeService.GetById(id));
-            }
-            viewModel.Materials = materials.ToArray();
-            
+            await GatherMaterials(viewModel);
+
             var gardenStyle = await GardenStyleFactory.Create(viewModel);
             await _modelService.Add(gardenStyle);
             return RedirectToAction(nameof(Index));
@@ -68,6 +62,17 @@ public class GardenStyleController : Controller
             return View(viewModel);
         }
         
+    }
+
+    private async Task GatherMaterials(GardenStyleViewModel viewModel)
+    {
+        var materials = new List<MaterialType>();
+        foreach (var id in viewModel.MaterialTypeIds)
+        {
+            materials.Add(await _materialTypeService.GetById(id));
+        }
+
+        viewModel.Materials = materials.ToArray();
     }
 
     public async Task<IActionResult> Details(int id)
@@ -107,14 +112,18 @@ public class GardenStyleController : Controller
     // To protect from overposting attacks, please enable the specific properties you want to bind to.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, GardenStyleViewModel viewModel)
+    public async Task<IActionResult> Edit(int id, [Bind(include:"Name,Description,Concepts,Shapes,Colors,RequiresLargeGarden,AllSeasonInterest,DivideIntoRooms,PathSize,MaterialTypeIds,SuitablePlantGenera")] GardenStyleViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
             try
             {
+                //TODO: fix issue with duplicate key value violates unique constraint "PK..."
+                await GatherMaterials(viewModel);
+                viewModel.Id = id;
                 var gardenStyle = await GardenStyleFactory.Create(viewModel);
                 await _modelService.Update(gardenStyle);
+                
                 return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateConcurrencyException ex)

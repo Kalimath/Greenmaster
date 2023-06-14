@@ -14,23 +14,24 @@ namespace Greenmaster.AdminPortal.Controllers
         private readonly IRenderingService _modelService;
         private readonly IModelFactory<Rendering, RenderingViewModel> _renderingFactory;
 
-        public RenderingController(IRenderingService renderingService, IModelFactory<Rendering, RenderingViewModel> renderingFactory)
+        public RenderingController(IRenderingService renderingService,
+            IModelFactory<Rendering, RenderingViewModel> renderingFactory)
         {
             _modelService = renderingService ?? throw new ArgumentNullException(nameof(renderingService));
             _renderingFactory = renderingFactory;
         }
-        
+
         // GET: Specie
         public Task<IActionResult> Index()
         {
             return Task.FromResult<IActionResult>(View());
         }
-        
+
         public async Task<JsonResult> GetRenderings()
         {
             var renderings = (await _modelService.GetAll());
             var viewModels = renderings.Select(rendering => _renderingFactory.ToViewModel(rendering)).ToList();
-            return Json(new { data = viewModels});
+            return Json(new { data = viewModels });
         }
 
         // GET: Rendering/Details/5
@@ -74,7 +75,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 await _modelService.Add(rendering);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 DefineViewData();
@@ -108,18 +109,20 @@ namespace Greenmaster.AdminPortal.Controllers
         // GET: Rendering/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(new RenderingViewModel(){Id= id});
         }
 
         // POST: Rendering/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteConfirmed(int id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (!await _modelService.ExistsWithId(id))
+                    return NotFound();
 
+                await _modelService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -127,7 +130,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 return View();
             }
         }
-        
+
         private void DefineViewData()
         {
             ViewData["Season"] = new SelectList(Enum.GetNames(typeof(Season)));
