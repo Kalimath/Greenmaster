@@ -125,9 +125,10 @@ namespace Greenmaster.AdminPortal.Controllers
                 await _modelService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch( Exception e )
             {
-                return View();
+                Console.WriteLine(e);
+                return new BadRequestResult();
             }
         }
 
