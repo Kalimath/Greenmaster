@@ -39,12 +39,12 @@ public class PlaceableController : Controller
         return View();
     }
 
-    private async Task DefineViewData()
+    public IActionResult CreateStructure()
     {
-        ViewData["Species"] = new SelectList(await _specieService.GetAll(), nameof(Specie.Id), nameof(Specie.ScientificName));
+        throw new NotImplementedException();
     }
 
-    public IActionResult CreateStructure()
+    public async Task<IActionResult> AddPlant(int id)
     {
         throw new NotImplementedException();
     }
@@ -62,5 +62,10 @@ public class PlaceableController : Controller
     public IActionResult Edit()
     {
         throw new NotImplementedException();
+    }
+
+    private async Task DefineViewData()
+    {
+        ViewData["Species"] = new SelectList(await _specieService.GetAll(), nameof(Specie.Id), nameof(Specie.ScientificName));
     }
 }
