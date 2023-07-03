@@ -13,13 +13,14 @@ public class PlaceableController : Controller
 
     public PlaceableController(IPlantService plantService, IModelFactory<Placeable, PlaceableViewModel> placeableFactory)
     {
-        _plantService = plantService;
-        _placeableFactory = placeableFactory;
+        _plantService = plantService ?? throw new ArgumentNullException(nameof(plantService));
+        _placeableFactory = placeableFactory ?? throw new ArgumentNullException(nameof(placeableFactory));
     }
 
     public async Task<IActionResult> Index()
     {
         var plants = (await _plantService.GetAll());
+        if(plants == null) plants = new List<Plant>();
         var viewModels = plants.Select(plant => _placeableFactory.ToViewModel(plant)).ToList();
         return View(viewModels);
     }

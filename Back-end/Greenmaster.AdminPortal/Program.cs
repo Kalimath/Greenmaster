@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Greenmaster.Core.Configuration;
 using Greenmaster.Core.Database.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
