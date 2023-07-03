@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Greenmaster.Core.Helpers;
 using StaticData.Object.Rendering;
 using StaticData.Time.Durations;
+// ReSharper disable UnusedMember.Global
 
 namespace Greenmaster.Core.Models;
 

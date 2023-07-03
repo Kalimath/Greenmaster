@@ -24,6 +24,6 @@ public class GardenStyle
     
     public virtual ICollection<MaterialType>? Materials { get; set; } = new HashSet<MaterialType>();
     public PlantGenus[] SuitablePlantGenera { get; set; } = Array.Empty<PlantGenus>();
-
-    //TODO: add media 
+    
+    //public string ImageBase64 { get; set; } TODO: add groundplan of the domain 
 }
