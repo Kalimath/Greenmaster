@@ -1,26 +1,44 @@
 ﻿using Greenmaster.AdminPortal.Controllers;
-using Greenmaster.Core.Factories;
-using Greenmaster.Core.Models.ViewModels;
-using Greenmaster.Core.Services.Placeables;
 
 namespace Greenmaster.AdminPortal.Tests.Controllers.Placeable;
 
-public class CtorShould
+public class CtorShould : PlaceableControllerTestBase
 {
     [Fact]
     public void ThrowArgumentNullException_WhenPlantServiceIsNull()
     {
         // Arrange
-        PlaceableController Act() => new (null!, Substitute.For<IModelFactory<Core.Models.Placeables.Placeable, PlaceableViewModel>>());
+        PlaceableController Act() => new (null!, PlantTypeService, SpecieService, PlaceableFactory);
         
         // Act & Assert
         Assert.Throws<ArgumentNullException>(Act);
     }
+    
+    [Fact]
+    public void ThrowArgumentNullException_WhenObjectTypeServiceIsNull()
+    {
+        // Arrange
+        PlaceableController Act() => new (PlantService, null!, SpecieService, PlaceableFactory);
+        
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(Act);
+    }
+    
+    [Fact]
+    public void ThrowArgumentNullException_WhenSpecieServiceIsNull()
+    {
+        // Arrange
+        PlaceableController Act() => new (PlantService, PlantTypeService, null!, PlaceableFactory);
+        
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(Act);
+    }
+    
     [Fact]
     public void ThrowArgumentNullException_WhenPlaceableFactoryIsNull()
     {
         // Arrange
-        PlaceableController Act() => new (Substitute.For<IPlantService>(), null!);
+        PlaceableController Act() => new (PlantService, PlantTypeService, SpecieService, null!);
         
         // Act & Assert
         Assert.Throws<ArgumentNullException>(Act);
