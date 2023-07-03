@@ -14,15 +14,13 @@ namespace Greenmaster.AdminPortal.Controllers;
 public class PlaceableController : Controller
 {
     private readonly IPlantService _plantService;
-    private readonly IObjectTypeService<PlantType> _plantTypeService;
     private readonly ISpecieService _specieService;
     private readonly IModelFactory<Placeable, PlaceableViewModel> _placeableFactory;
 
-    public PlaceableController(IPlantService plantService, IObjectTypeService<PlantType> plantTypeService, ISpecieService specieService,
+    public PlaceableController(IPlantService plantService, ISpecieService specieService,
         IModelFactory<Placeable, PlaceableViewModel> placeableFactory)
     {
         _plantService = plantService ?? throw new ArgumentNullException(nameof(plantService));
-        _plantTypeService = plantTypeService ?? throw new ArgumentNullException(nameof(plantTypeService));
         _specieService = specieService ?? throw new ArgumentNullException(nameof(specieService));
         _placeableFactory = placeableFactory ?? throw new ArgumentNullException(nameof(placeableFactory));
     }
@@ -43,7 +41,6 @@ public class PlaceableController : Controller
 
     private async Task DefineViewData()
     {
-        ViewData["PlantTypes"] = new SelectList(await _plantTypeService.GetAll());
         ViewData["Species"] = new SelectList(await _specieService.GetAll(), nameof(Specie.Id), nameof(Specie.ScientificName));
     }
 
