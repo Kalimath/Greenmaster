@@ -1,7 +1,4 @@
-﻿using Greenmaster.Core.Examples;
-using Greenmaster.Core.Models;
-using Greenmaster.Core.Services.Specie;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Greenmaster.AdminPortal.Tests.Controllers.Placeable;
 
@@ -11,7 +8,7 @@ public class CreatePlantShould : PlaceableControllerTestBase
 
     static CreatePlantShould()
     {
-        SomeSpecies = new List<Core.Models.Specie>(SpecieExamples.GetAll());
+        SomeSpecies = new List<Core.Models.Specie>(ExamplesService.GetAllSpecies());
         
         //Substitutes
         SpecieService.GetAll().Returns(SomeSpecies);
