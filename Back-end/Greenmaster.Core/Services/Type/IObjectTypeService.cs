@@ -2,6 +2,6 @@
 
 namespace Greenmaster.Core.Services.Type;
 
-public interface IObjectTypeService<T> : IContextService<T, int> where T : ObjectType
+public interface IObjectTypeService<T> : IContextService<T, Guid> where T : ObjectType
 {
 }

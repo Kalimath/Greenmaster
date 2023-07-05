@@ -11,7 +11,7 @@ public class Plant : Placeable
     {
         
     }
-    public Plant(Guid id, string name, Specie specie, int typeId, Dimensions dimensions, Rendering rendering, DateTime? created,
+    public Plant(Guid id, string name, Specie specie, Guid typeId, Dimensions dimensions, Rendering rendering, DateTime? created,
         DateTime? modified, Point? location = null): base(id, name, typeId, dimensions, rendering, created, modified, location)
     {
         Specie = specie;

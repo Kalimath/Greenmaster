@@ -22,7 +22,7 @@ public class ExamplesService : IExamplesService
         return ObjectTypeExamples.GetAllPlantTypes();
     }
     
-    public PlantType GetPlantType(int plantTypeId)
+    public PlantType GetPlantType(Guid plantTypeId)
     {
         return ObjectTypeExamples.GetAllPlantTypes().First(type => type.Id == plantTypeId);
     }

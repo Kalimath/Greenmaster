@@ -21,7 +21,7 @@ public class Specie : BaseAuditableEntity
     public string CommonNames { get; set; }
     #endregion
     public string Description { get; set; }
-    public int PlantTypeId { get; set; }
+    public Guid PlantTypeId { get; set; }
     public virtual PlantType PlantType { get; set; }
     public bool IsPoisonous { get; set; }
     public Lifecycle Cycle { get; set; }

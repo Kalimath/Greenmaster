@@ -6,7 +6,7 @@ public class StructureType : ObjectType
     {
         
     }
-    public StructureType(int id, string name, string? description = "/"): base(id, name, description)
+    public StructureType(Guid id, string name, string? description = "/"): base(id, name, description)
     {
     }
 }

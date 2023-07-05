@@ -41,7 +41,7 @@ public class SpecieViewModel : IViewModelWithImage
     [AtLeastOneRequired(new[] { $"{nameof(PlantType)}", $"{nameof(PlantTypeId)}" },
         ErrorMessage = $"At least one of {nameof(PlantType)} or {nameof(PlantTypeId)} is required.")]
     [DisplayName("Plant-type")]
-    public int PlantTypeId { get; set; }
+    public Guid PlantTypeId { get; set; }
     
     [AtLeastOneRequired(new[] { $"{nameof(PlantType)}", $"{nameof(PlantTypeId)}" },
         ErrorMessage = $"At least one of {nameof(PlantType)} or {nameof(PlantTypeId)} is required.")]

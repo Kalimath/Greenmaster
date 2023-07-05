@@ -36,7 +36,7 @@ public class PlaceableViewModel
     
     [AtLeastOneRequired(new[] { $"{nameof(TypeId)}", $"{nameof(Type)}" },
         ErrorMessage = $"At least one of {nameof(TypeId)} or {nameof(Type)} is required.")]
-    public int? TypeId { get; set; }
+    public Guid? TypeId { get; set; }
     
     [AtLeastOneRequired(new[] { $"{nameof(TypeId)}", $"{nameof(Type)}" },
         ErrorMessage = $"At least one of {nameof(TypeId)} or {nameof(Type)} is required.")]

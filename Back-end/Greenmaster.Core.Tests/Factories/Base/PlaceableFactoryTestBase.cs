@@ -26,7 +26,7 @@ public class PlaceableFactoryTestBase : RenderingFactoryTestBase
     protected DateTime SomeCreationTime;
     protected readonly Rendering StrelitziaRendering;
     protected readonly RenderingViewModel StrelitziaRenderingViewModel;
-    protected readonly int StrelitziaPlantTypeId;
+    protected readonly Guid StrelitziaPlantTypeId;
 
     public PlaceableFactoryTestBase()
     {

@@ -11,7 +11,7 @@ public interface IExamplesService
     List<PlantType> GetAllPlantTypes();
     List<StructureType> GetAllStructureTypes();
     List<ObjectType> GetAllObjectTypes();
-    PlantType GetPlantType(int plantTypeId);
+    PlantType GetPlantType(Guid plantTypeId);
     List<Point> GetAllPoints();
     List<Dimensions> GetAllDimensions();
     List<Placeable> GetAllPlaceables();

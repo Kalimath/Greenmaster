@@ -41,7 +41,7 @@ public  class PlaceableFactory : IModelFactory<Placeable, PlaceableViewModel>
                 Location = viewModel.Location,
                 DimensionsId = viewModel.DimensionsId,
                 Dimensions = viewModel.Dimensions!,
-                TypeId = (int)viewModel.TypeId!,
+                TypeId = (Guid)viewModel.TypeId!,
                 RenderingId = ((int)(renderingFromViewModel?.Id ?? viewModel.RenderingId)!),
                 Rendering = renderingFromViewModel!,
                 Specie = viewModel.Specie
@@ -58,7 +58,7 @@ public  class PlaceableFactory : IModelFactory<Placeable, PlaceableViewModel>
             Location = viewModel.Location,
             DimensionsId = viewModel.DimensionsId,
             Dimensions = viewModel.Dimensions!,
-            TypeId = (int)viewModel.TypeId!,
+            TypeId = (Guid)viewModel.TypeId!,
             RenderingId = ((int)(renderingFromViewModel?.Id ?? viewModel.RenderingId)!),
             Rendering = renderingFromViewModel!
         };
@@ -123,7 +123,7 @@ public  class PlaceableFactory : IModelFactory<Placeable, PlaceableViewModel>
 
     private static void ValidateType(PlaceableViewModel viewModel)
     {
-        if (viewModel.TypeId <= 0)
+        if (viewModel.TypeId.HasValue)
         {
             if (viewModel.Type == default)
             {

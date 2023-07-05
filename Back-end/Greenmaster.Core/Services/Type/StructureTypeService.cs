@@ -19,7 +19,7 @@ public class StructureTypeService : IObjectTypeService<StructureType>
         await _context.SaveChangesAsync();
     }
 
-    public async Task<StructureType> GetById(int id)
+    public async Task<StructureType> GetById(Guid id)
     {
         return (await _context.StructureTypes.FirstOrDefaultAsync(m => m.Id == id))
                ?? throw new ArgumentException($"No Rendering found with {nameof(id)}={id}");
@@ -36,13 +36,13 @@ public class StructureTypeService : IObjectTypeService<StructureType>
         await _context.SaveChangesAsync();
     }
 
-    public async Task Delete(int id)
+    public async Task Delete(Guid id)
     {
         _context.Remove(await GetById(id));
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> ExistsWithId(int id)
+    public async Task<bool> ExistsWithId(Guid id)
     {
         return (await _context.StructureTypes.FirstOrDefaultAsync(m => m.Id == id)) != null;
     }

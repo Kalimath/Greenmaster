@@ -206,7 +206,7 @@ public class ToViewModelShould : PlaceableFactoryTestBase
     public void ThrowArgumentException_WhenTypeIdNotMatchingIdFromType()
     {
         var placeable = CloneStrelitziaPlaceable();
-        placeable.TypeId = StrelitziaPlantTypeId + 5;
+        placeable.TypeId = Guid.NewGuid();
         
         Assert.Throws<ArgumentException>(() => _ = Factory.ToViewModel(placeable));
     }

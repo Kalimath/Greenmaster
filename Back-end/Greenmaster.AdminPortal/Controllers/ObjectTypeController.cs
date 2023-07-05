@@ -75,7 +75,7 @@ public class ObjectTypeController : Controller
         }
     }
     
-    public async Task<IActionResult> Details(int id)
+    public async Task<IActionResult> Details(Guid id)
     {
         ObjectType objectType;
         try
@@ -91,7 +91,7 @@ public class ObjectTypeController : Controller
         return View(objectType);
     }
 
-    public IActionResult Edit()
+    public IActionResult Edit(Guid id, PlantType plantType)
     {
         throw new NotImplementedException();
     }

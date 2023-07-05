@@ -19,7 +19,7 @@ public class PlantTypeService : IObjectTypeService<PlantType>
         await _context.SaveChangesAsync();
     }
 
-    public async Task<PlantType> GetById(int id)
+    public async Task<PlantType> GetById(Guid id)
     {
         return (await _context.PlantTypes.FirstOrDefaultAsync(m => m.Id == id))
                ?? throw new ArgumentException($"No PlantType found with {nameof(id)}={id}");
@@ -36,13 +36,13 @@ public class PlantTypeService : IObjectTypeService<PlantType>
         await _context.SaveChangesAsync();
     }
 
-    public async Task Delete(int id)
+    public async Task Delete(Guid id)
     {
         _context.Remove(await GetById(id));
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> ExistsWithId(int id)
+    public async Task<bool> ExistsWithId(Guid id)
     {
         return (await _context.PlantTypes.FirstOrDefaultAsync(m => m.Id == id)) != null;
     }

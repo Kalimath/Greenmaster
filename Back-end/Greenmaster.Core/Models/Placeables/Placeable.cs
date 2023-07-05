@@ -10,7 +10,7 @@ public abstract class Placeable : BaseAuditableEntity
     public Point? Location { get; set; }
     public int DimensionsId { get; set; }
     public Dimensions Dimensions { get; set; }
-    public int TypeId { get; set; }
+    public Guid TypeId { get; set; }
     public ObjectType Type { get; set; }
     public int RenderingId { get; set; }
     public Rendering Rendering { get; set; }
@@ -20,7 +20,7 @@ public abstract class Placeable : BaseAuditableEntity
     {
     }
 
-    public Placeable(Guid id, string name, int typeId, Dimensions dimensions, Rendering rendering, DateTime? created, DateTime? modified, Point? location = null)
+    public Placeable(Guid id, string name, Guid typeId, Dimensions dimensions, Rendering rendering, DateTime? created, DateTime? modified, Point? location = null)
     {
         Id = id;
         Name = name;
