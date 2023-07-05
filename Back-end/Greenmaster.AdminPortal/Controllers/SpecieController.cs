@@ -46,7 +46,7 @@ namespace Greenmaster.AdminPortal.Controllers
         }
 
         // GET: Specie/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -56,7 +56,7 @@ namespace Greenmaster.AdminPortal.Controllers
             Specie specie;
             try
             {
-                specie = await _modelService.GetById((int)id);
+                specie = await _modelService.GetById((Guid)id);
             }
             catch (Exception e)
             {
@@ -111,12 +111,12 @@ namespace Greenmaster.AdminPortal.Controllers
         }
 
         // GET: Specie/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             Specie specie;
             try
             {
-                specie = await _modelService.GetById((int)id!);
+                specie = await _modelService.GetById((Guid)id!);
             }
             catch (Exception)
             {
@@ -132,7 +132,7 @@ namespace Greenmaster.AdminPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, SpecieViewModel specieViewModel)
+        public async Task<IActionResult> Edit(Guid id, SpecieViewModel specieViewModel)
         {
             //TODO BUG: fix edit method
             if (ModelState.IsValid || ModelState["Image"]!.ValidationState == ModelValidationState.Invalid)
@@ -164,16 +164,16 @@ namespace Greenmaster.AdminPortal.Controllers
         }
         
         // GET: Specie/DeleteConfirmed/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || !await _modelService.ExistsWithId((int)id))
+            if (id == null || !await _modelService.ExistsWithId((Guid)id))
             {
                 return NotFound();
             }
 
             try
             {
-                return View(await _modelService.GetById((int)id));
+                return View(await _modelService.GetById((Guid)id));
             }
             catch (Exception e)
             {
@@ -185,7 +185,7 @@ namespace Greenmaster.AdminPortal.Controllers
         // POST: Specie/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (!await _modelService.ExistsWithId(id))
             {

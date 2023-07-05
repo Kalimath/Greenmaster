@@ -1,5 +1,4 @@
-﻿using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.ViewModels;
+﻿using Greenmaster.Core.Models.ViewModels;
 
 namespace Greenmaster.Core.Factories;
 

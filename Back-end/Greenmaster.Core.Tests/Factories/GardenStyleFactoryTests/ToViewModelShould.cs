@@ -1,6 +1,4 @@
-﻿using Greenmaster.Core.Factories;
-using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
+﻿using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Tests.Factories.Base;
 using StaticData.Taxonomy;
 

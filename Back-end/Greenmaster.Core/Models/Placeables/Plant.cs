@@ -4,7 +4,7 @@ namespace Greenmaster.Core.Models.Placeables;
 
 public class Plant : Placeable
 {
-    public int SpecieId { get; set; }
+    public Guid SpecieId { get; set; }
     public Specie Specie { get; set; }
 
     public Plant()

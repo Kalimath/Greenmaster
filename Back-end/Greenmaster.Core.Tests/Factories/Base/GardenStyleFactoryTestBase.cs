@@ -1,10 +1,8 @@
 ﻿using Greenmaster.Core.Examples;
 using Greenmaster.Core.Factories;
-using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Design;
 using Greenmaster.Core.Models.ViewModels;
 using StaticData.Measuring;
-using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Tests.Factories.Base;
 

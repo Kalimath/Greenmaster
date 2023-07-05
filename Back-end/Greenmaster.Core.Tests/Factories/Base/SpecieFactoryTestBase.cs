@@ -4,7 +4,6 @@ using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
-using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 
 namespace Greenmaster.Core.Tests.Factories.Base;
@@ -21,7 +20,7 @@ public class SpecieFactoryTestBase
 
         SpecieViewModelStrelitzia = new SpecieViewModel()
         {
-            Id = 1,
+            Id = SpecieExamples.Strelitzia.Id,
             Genus = SpecieExamples.Strelitzia.Genus.ToString(),
             Species = SpecieExamples.Strelitzia.Species,
             Cultivar = SpecieExamples.Strelitzia.Cultivar,

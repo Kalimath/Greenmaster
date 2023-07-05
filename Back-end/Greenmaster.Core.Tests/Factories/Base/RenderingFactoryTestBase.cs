@@ -2,7 +2,6 @@
 using Greenmaster.Core.Factories;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.ViewModels;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NSubstitute;
 // ReSharper disable SettingNotFoundInConfiguration

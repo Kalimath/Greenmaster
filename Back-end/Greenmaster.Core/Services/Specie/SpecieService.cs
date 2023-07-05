@@ -23,7 +23,7 @@ public class SpecieService : ISpecieService
                ?? throw new ArgumentException($"No Specie found with scientific name={scientificName}");
     }
 
-    public async Task<Models.Specie> GetById(int id)
+    public async Task<Models.Specie> GetById(Guid id)
     {
         return (await GetAll()).FirstOrDefault(m => m.Id == id)
                 ?? throw new ArgumentException($"No Specie found with {nameof(id)}={id}");
@@ -41,13 +41,13 @@ public class SpecieService : ISpecieService
         await _context.SaveChangesAsync();
     }
 
-    public async Task Delete(int id)
+    public async Task Delete(Guid id)
     {
         _context.Remove(await GetById(id));
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> ExistsWithId(int id)
+    public async Task<bool> ExistsWithId(Guid id)
     {
         return (await _context.Species.FirstOrDefaultAsync(m => m.Id == id)) != null;
     }

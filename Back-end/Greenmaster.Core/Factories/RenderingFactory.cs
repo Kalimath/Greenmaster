@@ -3,7 +3,6 @@ using Greenmaster.Core.Configuration;
 using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.ViewModels;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 // ReSharper disable MethodNameNotMeaningful

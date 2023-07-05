@@ -20,7 +20,7 @@ public class PlantType : ObjectType
         Canopy = canopy;
     }
 
-    public PlantType(int id, string name, bool allowAsUndergrowth, Permeability canopy, string description) : base(id, name, description)
+    public PlantType(Guid id, string name, bool allowAsUndergrowth, Permeability canopy, string description) : base(id, name, description)
     {
         AllowAsUndergrowth = allowAsUndergrowth;
         Canopy = canopy;

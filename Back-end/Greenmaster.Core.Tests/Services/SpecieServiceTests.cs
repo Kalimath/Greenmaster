@@ -17,7 +17,7 @@ public class SpecieServiceTests
     {
         _specieStrelitzia = new Specie
         {
-            Id = 1,
+            Id = Guid.NewGuid(),
             Genus = PlantGenus.Strelitzia,
             Species = "Reginae",
             Cultivar = "",

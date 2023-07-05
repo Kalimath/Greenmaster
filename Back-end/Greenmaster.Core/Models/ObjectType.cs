@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Greenmaster.Core.Models.Base;
 
 namespace Greenmaster.Core.Models;
 
-public abstract class ObjectType : IObjectIdentityWithName
+public abstract class ObjectType : BaseAuditableEntity
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
-    public int Id { get; set; }
     [Required]
     [MinLength(2)]
     public string Name { get; set; } = null!;
@@ -23,7 +20,7 @@ public abstract class ObjectType : IObjectIdentityWithName
         Description = description;
     }
 
-    public ObjectType(int id, string name, string? description): this(name, description)
+    public ObjectType(Guid id, string name, string? description): this(name, description)
     {
         Id = id;
     }

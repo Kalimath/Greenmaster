@@ -16,7 +16,7 @@ public static class SpecieExamples
 {
     public static readonly Specie Strelitzia = new()
     {
-        Id = 1,
+        Id = Guid.NewGuid(),
         Genus = PlantGenus.Strelitzia,
         Species = "Reginae",
         Cultivar = "",
@@ -45,7 +45,7 @@ public static class SpecieExamples
 
     public static readonly Specie Papaver = new()
     {
-        Id = 2,
+        Id = Guid.NewGuid(),
         Genus = PlantGenus.Papaver,
         Species = "Orientale",
         Cultivar = "Catherina",

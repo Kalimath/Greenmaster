@@ -4,7 +4,7 @@ using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Placeables;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Greenmaster.ArboretumWebService.Controllers;
+namespace Greenmaster.ArboretumWebService.Controllers.Arboretum;
 
 [ApiController]
 [Route("[controller]")]

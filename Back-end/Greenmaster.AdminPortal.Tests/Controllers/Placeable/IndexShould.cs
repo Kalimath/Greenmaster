@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using Greenmaster.Core.Models.ViewModels;
+﻿using Greenmaster.Core.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using NSubstitute.ClearExtensions;
 
 namespace Greenmaster.AdminPortal.Tests.Controllers.Placeable;
 

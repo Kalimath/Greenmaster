@@ -4,7 +4,6 @@ using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Placeables;
 using Greenmaster.Core.Services.Specie;
-using Greenmaster.Core.Services.Type;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 // ReSharper disable TooManyDependencies

@@ -14,7 +14,7 @@ namespace Greenmaster.Core.Models.ViewModels;
 
 public class SpecieViewModel : IViewModelWithImage
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     #region Naming
 

@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Greenmaster.Core.Models.Base;
 using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
@@ -10,10 +10,8 @@ using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Models;
 
-public class Specie : IObjectIdentity
+public class Specie : BaseAuditableEntity
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
-    public int Id { get; set; }
 
     #region Naming
     [Required] public PlantGenus Genus { get; set; }

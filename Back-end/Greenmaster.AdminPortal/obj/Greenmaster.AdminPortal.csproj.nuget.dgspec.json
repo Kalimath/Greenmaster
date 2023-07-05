@@ -85,6 +85,68 @@
         }
       }
     },
+    "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\Greenmaster.Contracts\\Greenmaster.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\Greenmaster.Contracts\\Greenmaster.Contracts.csproj",
+        "projectName": "Greenmaster.Contracts",
+        "projectPath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\Greenmaster.Contracts\\Greenmaster.Contracts.csproj",
+        "packagesPath": "C:\\Users\\mathi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\Greenmaster.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mathi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\Greenmaster.Core\\Greenmaster.Core.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -116,6 +178,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\Greenmaster.Contracts\\Greenmaster.Contracts.csproj": {
+                "projectPath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\Greenmaster.Contracts\\Greenmaster.Contracts.csproj"
+              },
               "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\StaticData\\StaticData.csproj": {
                 "projectPath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\StaticData\\StaticData.csproj"
               }
@@ -132,6 +197,26 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.6.0, )"
+            },
+            "IdentityServer4": {
+              "target": "Package",
+              "version": "[4.1.2, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.2.2, )"
@@ -166,13 +251,29 @@
               "target": "Package",
               "version": "[6.0.1, )"
             },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[13.0.3, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[6.0.8, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.28.1, )"
+            },
+            "SendGrid.Net40": {
+              "target": "Package",
+              "version": "[5.1.0, )"
             },
             "System.Drawing.Common": {
               "target": "Package",
