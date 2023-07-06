@@ -1,8 +1,8 @@
 ﻿using Greenmaster.Contracts.Commands.Authentication;
 using Greenmaster.Contracts.Dto.Users;
 using Greenmaster.Core.Communication.Mail;
-using Greenmaster.Core.Database.Extensions;
 using Greenmaster.Core.Dxos.Users;
+using Greenmaster.Core.Extensions;
 using Greenmaster.Core.Helpers.Authentication;
 using Greenmaster.Core.Models.Users;
 using MediatR;

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Greenmaster.Core;
+namespace Greenmaster.Core.Database;
 
 public class UserContext : IdentityDbContext<User, Role, Guid>
 {

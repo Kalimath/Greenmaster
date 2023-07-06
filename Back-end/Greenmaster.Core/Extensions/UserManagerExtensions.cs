@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Greenmaster.Core.Database.Extensions;
+namespace Greenmaster.Core.Extensions;
 
 public static class UserManagerExtensions
 {

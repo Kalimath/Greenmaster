@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
 using FluentValidation;
 using Greenmaster.Contracts.Base;
+using Greenmaster.Core.Communication.Mail;
 using Greenmaster.Core.Configuration;
+using Greenmaster.Core.Database;
 using Greenmaster.Core.Dxos.Image;
 using Greenmaster.Core.Dxos.Users;
 using Greenmaster.Core.Factories;
@@ -22,7 +24,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Greenmaster.Core.Database.Extensions;
+namespace Greenmaster.Core.Extensions;
 
 public static class DependencyInjection
 {
@@ -98,13 +100,12 @@ public static class DependencyInjection
     }
     
     //registerCrossOrigins
-    public static void RegisterCors(this IServiceCollection services)
+    public static void RegisterCors(this IServiceCollection services, string allowedSpecificOrigins)
     {
-        const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
         //Cors
         services.AddCors(options =>
         {
-            options.AddPolicy(name: myAllowSpecificOrigins,
+            options.AddPolicy(name: allowedSpecificOrigins,
                 policy =>
                 {
                     policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
@@ -124,5 +125,11 @@ public static class DependencyInjection
             //TODO: uncomment below lines to use email registration confirmation.
             //config.SignIn.RequireConfirmedEmail = true;
         }).AddEntityFrameworkStores<UserContext>().AddDefaultTokenProviders();
+    }
+
+    public static void RegisterMailService(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddMailingService();
+        MailService.SetKey(configuration["MailApiKey"]);
     }
 }

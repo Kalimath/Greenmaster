@@ -5,6 +5,7 @@ using Greenmaster.Core.Database;
 using Greenmaster.Core.Database.Base;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Graphic;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 
@@ -59,5 +60,13 @@ public static class RegisterWebService
     {
         services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
         services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+    }
+    public static void RegisterAuthentication(this IServiceCollection services)
+    {
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        });
     }
 }

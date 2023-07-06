@@ -1,7 +1,7 @@
 ﻿using Greenmaster.Core.Communication.Mail;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Greenmaster.Core.Database.Extensions;
+namespace Greenmaster.Core.Extensions;
 
 public static class CommunicationExtensions
 {
