@@ -57,7 +57,7 @@ public static class DependencyInjection
         services.Configure<RenderingConfig>(configurationRoot);
     }
 
-    private static void RegisterDataLink(this IServiceCollection services, IConfiguration configuration)
+    private static void RegisterApplicationContext(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ArboretumContext>(options =>
         {
@@ -67,11 +67,21 @@ public static class DependencyInjection
         });
     }
 
+    public static void RegisterIdentityContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<UserContext>(options =>
+        {
+            options.UseNpgsql(configuration.GetConnectionString($"localUserDb"));
+            options.EnableDetailedErrors();
+            options.EnableSensitiveDataLogging();
+        });
+    }
+
     public static void RegisterGreenmasterCore(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterServices();
         services.RegisterFactories();
-        services.RegisterDataLink(configuration);
+        services.RegisterApplicationContext(configuration);
         
         services.AddAutoMapper(Assembly.GetAssembly(typeof(DependencyInjection)));
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));

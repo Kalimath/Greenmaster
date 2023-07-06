@@ -18,7 +18,10 @@ services.RegisterGreenmasterCore(builder.Configuration); //Register all Greenmas
 
 services.RegisterAuthorization();
 services.RegisterAuthentication();
+
+//Identity
 services.RegisterIdentity();
+services.RegisterIdentityContext(builder.Configuration);
 
 services.RegisterVersioning();
 services.RegisterCors(allowedSpecificOrigins);
