@@ -1,5 +1,5 @@
 ﻿using Greenmaster.Contracts.Dto;
-using Greenmaster.Core.Database.Queries;
+using Greenmaster.Contracts.Queries;
 using MediatR;
 
 namespace Greenmaster.Core.Database.Handlers.Queries;

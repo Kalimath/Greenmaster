@@ -1,6 +1,6 @@
-﻿using Greenmaster.Contracts.Dto;
+﻿using Greenmaster.Contracts.Commands.Graphic;
+using Greenmaster.Contracts.Dto;
 using Greenmaster.Core.Database.Base;
-using Greenmaster.Core.Database.Commands.Graphic;
 using Greenmaster.Core.Dxos.Image;
 using Greenmaster.Core.Models.Graphic;
 using MediatR;

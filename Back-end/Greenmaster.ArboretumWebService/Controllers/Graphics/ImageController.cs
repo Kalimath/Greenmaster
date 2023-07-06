@@ -1,4 +1,4 @@
-﻿using Greenmaster.Core.Database.Commands.Graphic;
+﻿using Greenmaster.Contracts.Commands.Graphic;
 using Greenmaster.Core.WebService.Base;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

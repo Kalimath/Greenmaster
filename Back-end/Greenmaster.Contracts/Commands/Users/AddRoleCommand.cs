@@ -2,7 +2,7 @@
 using Greenmaster.Contracts.Base;
 using Greenmaster.Contracts.Dto.Users;
 
-namespace Greenmaster.Core.Database.Commands.Users;
+namespace Greenmaster.Contracts.Commands.Users;
 
 public class AddRoleCommand : CommandBase<RoleDto>
 {

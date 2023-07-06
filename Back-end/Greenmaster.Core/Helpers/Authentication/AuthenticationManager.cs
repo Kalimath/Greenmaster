@@ -6,7 +6,7 @@ using Greenmaster.Core.Models.Users;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Greenmaster.Core.Helpers.Users;
+namespace Greenmaster.Core.Helpers.Authentication;
 
 public static class AuthenticationManager
 {

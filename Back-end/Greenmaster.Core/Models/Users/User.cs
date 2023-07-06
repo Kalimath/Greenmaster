@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Greenmaster.Core.Models.Users;
 
-public sealed class User : IdentityUser<Guid>
+public class User : IdentityUser<Guid>
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
@@ -14,6 +14,7 @@ public sealed class User : IdentityUser<Guid>
         public string PasswordSalt { get; set; }
         public string? Phone { get; set; }
         public List<RefreshToken> RefreshTokens { get; set; }
+        public virtual ICollection<Role> Roles { get; set; } = new HashSet<Role>();
 
         public bool IsDeleted { get; private set; }
 

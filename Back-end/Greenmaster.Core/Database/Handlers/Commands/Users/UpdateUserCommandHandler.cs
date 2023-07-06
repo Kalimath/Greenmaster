@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
-using Greenmaster.Contracts.Base;
+using Greenmaster.Contracts.Commands.Users;
 using Greenmaster.Contracts.Dto.Users;
-using Greenmaster.Core.Database.Commands.Users;
 using Greenmaster.Core.Dxos.Users;
 using Greenmaster.Core.Models.Users;
 using MediatR;

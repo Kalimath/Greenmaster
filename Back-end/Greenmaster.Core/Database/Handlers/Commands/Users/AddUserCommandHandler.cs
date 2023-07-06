@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
+using Greenmaster.Contracts.Commands.Users;
 using Greenmaster.Contracts.Dto.Users;
 using Greenmaster.Core.Communication.Mail;
-using Greenmaster.Core.Database.Commands.Users;
 using Greenmaster.Core.Dxos.Users;
-using Greenmaster.Core.Helpers.Users;
+using Greenmaster.Core.Helpers.Authentication;
 using Greenmaster.Core.Models.Users;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -58,7 +58,3 @@ public class AddUserCommandHandler : IRequestHandler<AddUserCommand, UserDto>
 
         }
     }
-
-public class LoginDto
-{
-}

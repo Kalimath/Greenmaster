@@ -1,5 +1,5 @@
-﻿using Greenmaster.Core.Database.Commands.Users;
-using Greenmaster.Core.Database.Queries.Users;
+﻿using Greenmaster.Contracts.Commands.Users;
+using Greenmaster.Contracts.Queries.Users;
 using Greenmaster.Core.WebService.Base;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

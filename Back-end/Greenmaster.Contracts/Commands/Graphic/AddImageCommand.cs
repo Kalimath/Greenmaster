@@ -1,7 +1,7 @@
 ﻿using Greenmaster.Contracts.Base;
 using Greenmaster.Contracts.Dto;
 
-namespace Greenmaster.Core.Database.Commands.Graphic;
+namespace Greenmaster.Contracts.Commands.Graphic;
 
 public class AddImageCommand : CommandBase<ImageDto>
 {

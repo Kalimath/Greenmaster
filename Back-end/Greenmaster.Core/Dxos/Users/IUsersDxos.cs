@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Greenmaster.Contracts.Dto.Users;
-using Greenmaster.Core.Database.Handlers.Commands.Users;
+using Greenmaster.Contracts.Dto.Users.Auth;
 using Greenmaster.Core.Models.Users;
 
 namespace Greenmaster.Core.Dxos.Users;

@@ -1,5 +1,5 @@
 ﻿using Greenmaster.Contracts.Dto.Users;
-using Greenmaster.Core.Database.Queries.Users;
+using Greenmaster.Contracts.Queries.Users;
 using Greenmaster.Core.Dxos.Users;
 using Greenmaster.Core.Models.Users;
 using MediatR;

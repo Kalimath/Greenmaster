@@ -1,3 +1,4 @@
+using System.Reflection;
 using FluentValidation.AspNetCore;
 using Greenmaster.ArboretumWebService;
 using Greenmaster.Core.Communication.Mail;
@@ -12,10 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 
+
+services.RegisterVersioning();
+services.RegisterDependencies();
 services.RegisterAuthorization();
+services.RegisterGreenmasterCore(builder.Configuration);
 services.AddMailingService();
 MailService.SetKey(builder.Configuration["MailApiKey"]);
-services.AddMediatR(typeof(MediatrEntryPoint).Assembly);
+services.AddMediatR(cfg=>cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -29,8 +34,13 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
 //Register all Greenmaster.Core items (services, factories, EF and configuration)
-services.RegisterGreenmasterCore(builder.Configuration);
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+});
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

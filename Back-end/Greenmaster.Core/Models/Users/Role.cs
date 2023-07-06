@@ -5,6 +5,10 @@ namespace Greenmaster.Core.Models.Users;
 public class Role : IdentityRole<Guid>
 {
     public bool IsDeleted { get; set; }
+    
+    public Guid UserId { get; set; }
+    
+    public virtual User User { get; set; }
 
     public Role()
     {

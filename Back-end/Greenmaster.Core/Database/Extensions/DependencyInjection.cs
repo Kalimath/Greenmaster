@@ -1,7 +1,13 @@
-﻿using Greenmaster.Core.Configuration;
+﻿using System.Reflection;
+using FluentValidation;
+using Greenmaster.Contracts.Base;
+using Greenmaster.Core.Configuration;
+using Greenmaster.Core.Dxos.Image;
+using Greenmaster.Core.Dxos.Users;
 using Greenmaster.Core.Factories;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Placeables;
+using Greenmaster.Core.Models.Users;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Example;
 using Greenmaster.Core.Services.GardenStyle;
@@ -10,6 +16,8 @@ using Greenmaster.Core.Services.Placeables;
 using Greenmaster.Core.Services.Rendering;
 using Greenmaster.Core.Services.Specie;
 using Greenmaster.Core.Services.Type;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +26,7 @@ namespace Greenmaster.Core.Database.Extensions;
 
 public static class DependencyInjection
 {
-    public static void RegisterServices(this IServiceCollection services)
+    private static void RegisterServices(this IServiceCollection services)
     {
         services.AddScoped<ISpecieService, SpecieService>();
         services.AddScoped<IObjectTypeService<ObjectType>, ObjectTypeService>();
@@ -32,7 +40,7 @@ public static class DependencyInjection
         services.AddScoped<IMaterialTypeService, MaterialTypeService>();
     }
 
-    public static void RegisterFactories(this IServiceCollection services)
+    private static void RegisterFactories(this IServiceCollection services)
     {
         services.AddSingleton<IModelFactory<Specie, SpecieViewModel>, SpecieFactory>();
         services.AddSingleton<IModelFactory<Rendering, RenderingViewModel>, RenderingFactory>();
@@ -47,7 +55,7 @@ public static class DependencyInjection
         services.Configure<RenderingConfig>(configurationRoot);
     }
 
-    public static void RegisterDataLink(this IServiceCollection services, IConfiguration configuration)
+    private static void RegisterDataLink(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ArboretumContext>(options =>
         {
@@ -62,6 +70,59 @@ public static class DependencyInjection
         services.RegisterServices();
         services.RegisterFactories();
         services.RegisterDataLink(configuration);
-        services.RegisterRenderingConfig(configuration);
+        
+        services.AddAutoMapper(Assembly.GetAssembly(typeof(DependencyInjection)));
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
+        AssemblyScanner.FindValidatorsInAssemblyContaining<CommandBase<IValidator>>()
+            .ForEach(x =>
+            {
+                services.Add(ServiceDescriptor.Transient(x.InterfaceType, x.ValidatorType));
+                services.Add(ServiceDescriptor.Transient(x.ValidatorType, x.ValidatorType));
+            });
+        
+        services.AddTransient<IUsersDxos, UsersDxos>();
+        services.AddTransient<IImageDxos, ImageDxos>();
+        services.AddTransient<IRolesDxos, RolesDxos>();
+    }
+    
+    public static void RegisterVersioning(this IServiceCollection services)
+    {
+        //version
+        services.AddApiVersioning(x =>
+        {
+            x.DefaultApiVersion = new ApiVersion(1, 0);
+            x.AssumeDefaultVersionWhenUnspecified = true;
+            x.ReportApiVersions = true;
+        });
+    }
+    
+    //registerCrossOrigins
+    public static void RegisterCors(this IServiceCollection services)
+    {
+        const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        //Cors
+        services.AddCors(options =>
+        {
+            options.AddPolicy(name: myAllowSpecificOrigins,
+                policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                });
+        });
+    }
+    
+    public static void RegisterIdentity(this IServiceCollection services)
+    {
+        services.AddDistributedMemoryCache();
+        services.AddIdentity<User, Role>(config =>
+        {
+            config.Password.RequiredLength = 4;
+            config.Password.RequireDigit = false;
+            config.Password.RequireNonAlphanumeric = false;
+            config.Password.RequireUppercase = false;
+            //TODO: uncomment below lines to use email registration confirmation.
+            //config.SignIn.RequireConfirmedEmail = true;
+        }).AddEntityFrameworkStores<UserContext>().AddDefaultTokenProviders();
     }
 }

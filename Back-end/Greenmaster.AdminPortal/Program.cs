@@ -15,6 +15,7 @@ services.AddControllersWithViews();
 
 //Register all Greenmaster.Core items (services, factories, EF and configuration)
 services.RegisterGreenmasterCore(builder.Configuration);
+services.RegisterRenderingConfig(builder.Configuration);
 
 var app = builder.Build();
 
