@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yS45uxYvpLZvZwk3Sz/ZuFVdi8BLJvAFxOJ5+yPZXjoOzznSZHWG5jod5qUMWQymPzhF/om0LB1T1k5wMP1PAA==",
+  "dgSpecHash": "Qck+bRma6cvJE4u2mRWfY5r7ZIvfJIZdSnX3d6sjkDMsNBQYg/xGgV0tcJ4g73sjRznxgjN+d6T1IGM0wN6eIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\Greenmaster.Core.Tests\\Greenmaster.Core.Tests.csproj",
   "expectedPackageFiles": [
@@ -174,7 +174,10 @@
     "C:\\Users\\mathi\\.nuget\\packages\\xunit.core\\2.4.2\\xunit.core.2.4.2.nupkg.sha512",
     "C:\\Users\\mathi\\.nuget\\packages\\xunit.extensibility.core\\2.4.2\\xunit.extensibility.core.2.4.2.nupkg.sha512",
     "C:\\Users\\mathi\\.nuget\\packages\\xunit.extensibility.execution\\2.4.2\\xunit.extensibility.execution.2.4.2.nupkg.sha512",
-    "C:\\Users\\mathi\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512"
+    "C:\\Users\\mathi\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.18\\microsoft.netcore.app.ref.6.0.18.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.18\\microsoft.windowsdesktop.app.ref.6.0.18.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.18\\microsoft.aspnetcore.app.ref.6.0.18.nupkg.sha512"
   ],
   "logs": [
     {

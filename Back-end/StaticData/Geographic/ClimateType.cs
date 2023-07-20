@@ -6,5 +6,6 @@ public enum ClimateType
     Dry,
     Temperate,
     Continental,
-    Cold
+    Cold,
+    Mediterranean
 }

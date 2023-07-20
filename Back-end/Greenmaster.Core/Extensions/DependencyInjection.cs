@@ -82,10 +82,10 @@ public static class DependencyInjection
         services.RegisterServices();
         services.RegisterFactories();
         services.RegisterApplicationContext(configuration);
-        
-        services.AddAutoMapper(Assembly.GetAssembly(typeof(DependencyInjection)));
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+    }
 
+    public static void RegisterDxos(this IServiceCollection services)
+    {
         AssemblyScanner.FindValidatorsInAssemblyContaining<CommandBase<IValidator>>()
             .ForEach(x =>
             {

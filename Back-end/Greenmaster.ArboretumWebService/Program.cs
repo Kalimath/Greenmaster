@@ -28,6 +28,8 @@ services.RegisterCors(allowedSpecificOrigins);
 services.RegisterMailService(builder.Configuration);
 
 services.AddMediatR(cfg=>cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+services.RegisterDxos();
+services.AddAutoMapper(Assembly.GetAssembly(typeof(DependencyInjection)));
 
 services.AddHttpContextAccessor();
 services.AddMvc().AddFluentValidation(fv => fv.DisableDataAnnotationsValidation = false);

@@ -38,7 +38,8 @@ public class Specie : BaseAuditableEntity
     public double MaxHeight { get; set; }
     public double MaxWidth { get; set; }
     
-    //TODO: Add symbiosis for specie
+    ///Symbiotic relations
+    public IEnumerable<PlantGenus> MutualisticGenera { get; set; }
    
     #region FlowerInfo
     public string[] BloomPeriod { get; set; }
