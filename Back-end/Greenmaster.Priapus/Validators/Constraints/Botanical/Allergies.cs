@@ -1,11 +1,141 @@
 ﻿using Greenmaster.Core.Models;
+using StaticData.Taxonomy;
+using static StaticData.Taxonomy.PlantGenus;
 
 namespace Greenmaster.Priapus.Validators.Constraints.Botanical;
 
 public static class Allergies
 {
+    public static readonly PlantGenus[] HeavyPollinatingGenera = {
+        Betula, 
+        Alnus, 
+        Arthemisia, 
+        Ambrosia, 
+        Quercus, 
+        Carya, 
+        Poaceae,
+        Gramineae,
+        Pinus,
+        Taxus,
+        Amentotaxus,
+        Castanea,
+        Pistacia,
+        Junglans,
+        Pterocarya,
+        Cyclocarya,
+        Platycarya,
+        Annamocarya,
+        Oreomunnea,
+        Alfaroa,
+        Engelhardia,
+        Actinoschoenus,
+        Actinoscirpus,
+        Afroscirpoides,
+        Afrotrilepis,
+        Amphiscirpus,
+        Androtrichum,
+        Arthrostylis,
+        Becquerelia,
+        Bisboeckelera,
+        Blysmus,
+        Bolboschoenus,
+        Bulbostylis,
+        Calliscirpus,
+        Calyptrocarya,
+        Capeobolus,
+        Capitularina,
+        Carex,
+        Carpha,
+        Caustis,
+        Cephalocarpus,
+        Chorizandra,
+        Chrysitrix,
+        Cladium,
+        Coleochloa,
+        Costularia,
+        Cyathochaeta,
+        Cyathocoma,
+        Cyperus,
+        Cypringlea,
+        Diplacrum,
+        Diplasia,
+        Dracoscirpoides,
+        Dulichium,
+        Eleocharis,
+        Eriophorum,
+        Erioscirpus,
+        Evandra,
+        Everardia,
+        Exocarya,
+        Ficinia,
+        Fimbristylis,
+        Fuirena,
+        Gahnia,
+        Gymnoschoenus,
+        Hellmuthia,
+        Hypolytrum,
+        Isolepis,
+        Khaosokia,
+        Koyamaea,
+        Lagenocarpus,
+        Lepidosperma,
+        Lepironia,
+        Machaerina,
+        Mapania,
+        Mesomelaena,
+        Microdracoides,
+        Morelotia,
+        Neesenbeckia,
+        Nelmesia,
+        Nemum,
+        Oreobolopsis,
+        Oreobolus,
+        Paramapania,
+        Phylloscirpus,
+        Pleurostachys,
+        Principina,
+        Pseudoschoenus,
+        Ptilothrix,
+        Reedia,
+        Rhodoscirpus,
+        Rhynchocladium,
+        Rhynchospora,
+        Schoenoplectiella,
+        Schoenoplectus,
+        Schoenus,
+        Scirpodendron,
+        Scirpoides,
+        Scirpus,
+        Scleria,
+        Sumatroscirpus,
+        Tetraria,
+        Trachystylis,
+        Trianoptiles,
+        Trichophorum,
+        Trichoschoenus,
+        Tricostularia,
+        Trilepis,
+        Zameioscirpus
+        
+    };
+    
+    /*public static PlantFamily[] HeavyPollinatingFamilies = new[]
+    {
+        PlantFamily.Araucariaceae,
+        PlantFamily.Cupressales,
+        PlantFamily.Pinaceae,
+        PlantFamily.Ephedraceae,
+        PlantFamily.Welwitschiaceae,
+        PlantFamily.Gnetaceae,
+        PlantFamily.Cycadaceae,
+        PlantFamily.Zambiaceae
+        //TODO
+    };*/
+    
     public static bool IsLowAllergy(this Specie specie)
     {
-        return !specie.PollinatingFlowers;
+        var result = !specie.PollinatingFlowers;
+        if(HeavyPollinatingGenera.Contains(specie.Genus)) result = false;
+        return result;
     }
 }

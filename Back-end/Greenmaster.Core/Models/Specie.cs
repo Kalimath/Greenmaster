@@ -53,7 +53,7 @@ public class Specie : IObjectIdentity
     public Color[] FlowerColors { get; set; }
     public bool IsFragrant { get; set; }
     
-    //Affects allergies and attraction of butterflies and bees
+    //Affects allergies and attraction of butterflies and bees TODO: correct name ->  anemophilous
     public bool PollinatingFlowers { get; set; }
     #endregion
     
