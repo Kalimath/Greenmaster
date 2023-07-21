@@ -39,7 +39,7 @@ public static class SpecieExamples
             Month.September, 
             Month.October
         },
-        PollinatingFlowers = true,
+        PollinatingFlowers = false,
         IsFragrant = false,
         IsPoisonous = true,
         MutualisticGenera = Array.Empty<PlantGenus>(),
