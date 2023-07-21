@@ -2,7 +2,6 @@
 using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
 using StaticData.Time.Durations;
 
@@ -35,11 +34,11 @@ public class SpecieMapperTestBase
             MinimalTemperature = SpecieExamples.Strelitzia.MinimalTemperature,
             MaxHeight = SpecieExamples.Strelitzia.MaxHeight,
             MaxWidth = SpecieExamples.Strelitzia.MaxWidth,
-            BloomPeriod = SpecieExamples.Strelitzia.BloomPeriod.Select(s => Enum.Parse<Month>(s)).ToArray(),
+            BloomPeriod = SpecieExamples.Strelitzia.BloomPeriod,
             AttractsPollinators = SpecieExamples.Strelitzia.AttractsPollinators,
             IsFragrant = SpecieExamples.Strelitzia.IsFragrant,
             IsPoisonous = SpecieExamples.Strelitzia.IsPoisonous,
-            FlowerColors =SpecieExamples.Strelitzia.FlowerColors!.Select(s => s.ToColor()).ToArray(),
+            FlowerColors =SpecieExamples.Strelitzia.FlowerColors,
             Image = FormFileConverter.FromBase64(Base64Examples.ImageSpecie),
             ImageBase64 = SpecieExamples.Strelitzia.Image
         };

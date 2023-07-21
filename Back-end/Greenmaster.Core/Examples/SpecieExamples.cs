@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
 using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
@@ -33,13 +32,17 @@ public static class SpecieExamples
         MaxWidth = 0.75,
         BloomPeriod = new[]
         {
-            Month.May.ToString(), Month.June.ToString(), Month.July.ToString(), Month.August.ToString(),
-            Month.September.ToString(), Month.October.ToString()
+            Month.May, 
+            Month.June, 
+            Month.July, 
+            Month.August,
+            Month.September, 
+            Month.October
         },
         AttractsPollinators = true,
         IsFragrant = false,
         IsPoisonous = true,
-        FlowerColors = new[] { Color.Blue, Color.Orange }.GetNames().ToArray(),
+        FlowerColors = new[] { Color.Blue, Color.Orange },
         Image = Base64Examples.ImageSpecie
     };
 
@@ -60,11 +63,11 @@ public static class SpecieExamples
         MinimalTemperature = -2,
         MaxHeight = 1,
         MaxWidth = 0.25,
-        BloomPeriod = new[] { Month.May.ToString(), Month.June.ToString() },
+        BloomPeriod = new[] { Month.May, Month.June },
         AttractsPollinators = true,
         IsFragrant = false,
         IsPoisonous = false,
-        FlowerColors = new[] { Color.Pink.GetName() },
+        FlowerColors = new[] { Color.Pink },
         Image = Base64Examples.ImageSpecie
     };
     
@@ -85,18 +88,18 @@ public static class SpecieExamples
         MinimalTemperature = -2,
         MaxHeight = 0.2,
         MaxWidth = 0.2,
-        BloomPeriod = new[]
+        BloomPeriod = new []
         {
-            Month.May.ToString(), 
-            Month.June.ToString(), 
-            Month.July.ToString(), 
-            Month.August.ToString(),
-            Month.September.ToString()
+            Month.May, 
+            Month.June, 
+            Month.July, 
+            Month.August,
+            Month.September
         },
         AttractsPollinators = true,
         IsFragrant = false,
         IsPoisonous = false,
-        FlowerColors = new[] { Color.Yellow.GetName() },
+        FlowerColors = new[] { Color.Yellow },
         //MutualisticGenera =  new[] { PlantGenus.Papaver },
         Image = Base64Examples.ImageSpecie
     };
@@ -105,7 +108,9 @@ public static class SpecieExamples
     {
         return new List<Specie>()
         {
-            Strelitzia,Papaver
+            Strelitzia,
+            Papaver, 
+            Aster
         };
     }
 }

@@ -1,4 +1,6 @@
-﻿using Greenmaster.Core.Models;
+﻿using System.Drawing;
+using Greenmaster.Core.Extensions;
+using Greenmaster.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using StaticData.Geographic;
 using StaticData.Gradation;
@@ -40,7 +42,7 @@ public static class PropertyConversions
         modelBuilder.Entity<GardenStyle>()
             .Property(e => e.SuitablePlantGenera)
             .HasConversion(
-                v => string.Join(',', v),
+                v => string.Join(',', v.Select(x => x.ToString())),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(Enum.Parse<PlantGenus>).ToArray());
     }
 
@@ -54,13 +56,13 @@ public static class PropertyConversions
         modelBuilder.Entity<Specie>()
             .Property(e => e.BloomPeriod)
             .HasConversion(
-                v => string.Join(',', v),
-                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+                v => string.Join(',', v.Select(x => x.ToString())),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(Enum.Parse<Month>).ToArray());
         modelBuilder.Entity<Specie>()
             .Property(e => e.FlowerColors)
             .HasConversion(
-                v => string.Join(',', v ?? Array.Empty<string>()),
-                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+                v => string.Join(',', v.Select(color => color.GetName())),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(Color.FromName).ToArray());
         modelBuilder.Entity<Specie>()
             .Property(e => e.Cycle)
             .HasConversion(

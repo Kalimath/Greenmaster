@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Greenmaster.Core.Models.Extensions;
+namespace Greenmaster.Core.Extensions;
 
 public class StringRange : ValidationAttribute
 {

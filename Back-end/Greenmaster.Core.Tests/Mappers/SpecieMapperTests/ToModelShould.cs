@@ -1,5 +1,5 @@
-﻿using Greenmaster.Core.Helpers;
-using Greenmaster.Core.Models.Extensions;
+﻿using Greenmaster.Core.Extensions;
+using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Tests.Mappers.Base;
 using static Greenmaster.Core.Tests.Helpers.AssertObjects;
 

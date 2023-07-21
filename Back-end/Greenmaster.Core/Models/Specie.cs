@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.PlantProperties;
 using StaticData.Taxonomy;
+using StaticData.Time.Durations;
 
 #pragma warning disable CS8618
 
@@ -43,8 +45,8 @@ public class Specie : IObjectIdentity
     //TODO: Add symbiosis for specie
    
     #region FlowerInfo
-    public string[] BloomPeriod { get; set; }
-    public string[]? FlowerColors { get; set; }
+    public Month[] BloomPeriod { get; set; }
+    public Color[] FlowerColors { get; set; }
     public bool IsFragrant { get; set; }
     public bool AttractsPollinators { get; set; }
     #endregion

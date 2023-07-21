@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using Greenmaster.Core.Models.Extensions;
+using Greenmaster.Core.Extensions;
 using StaticData.Coloring;
 using Xunit.Sdk;
 

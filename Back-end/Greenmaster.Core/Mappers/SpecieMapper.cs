@@ -1,6 +1,5 @@
 ﻿using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
 using StaticData.Taxonomy;
 using StaticData.Time.Durations;
@@ -40,11 +39,9 @@ public class SpecieMapper : IViewModelMapper<Specie, SpecieViewModel>
             MaxWidth = specieViewModel.MaxWidth,
 
             BloomPeriod =
-                (specieViewModel.BloomPeriod ?? throw new ArgumentNullException(nameof(specieViewModel.BloomPeriod)))
-                .Select(a => a.ToString()).ToArray(),
+                (specieViewModel.BloomPeriod ?? throw new ArgumentNullException(nameof(specieViewModel.BloomPeriod))),
             FlowerColors =
-                (specieViewModel.FlowerColors ?? throw new ArgumentNullException(nameof(specieViewModel.FlowerColors)))
-                .Select(a => a.GetName()).ToArray(),
+                (specieViewModel.FlowerColors ?? throw new ArgumentNullException(nameof(specieViewModel.FlowerColors))),
             IsFragrant = specieViewModel.IsFragrant,
             AttractsPollinators = specieViewModel.AttractsPollinators,
         };
@@ -149,10 +146,8 @@ public class SpecieMapper : IViewModelMapper<Specie, SpecieViewModel>
             MaxHeight = specie.MaxHeight,
             MaxWidth = specie.MaxWidth,
 
-            BloomPeriod = (specie.BloomPeriod ?? throw new ArgumentNullException(nameof(specie.BloomPeriod)))
-                .Select(Enum.Parse<Month>).ToArray(),
-            FlowerColors = (specie.FlowerColors ?? throw new ArgumentNullException(nameof(specie.FlowerColors)))
-                .Select(s => s.ToColor()).ToArray(),
+            BloomPeriod = (specie.BloomPeriod ?? throw new ArgumentNullException(nameof(specie.BloomPeriod))),
+            FlowerColors = (specie.FlowerColors ?? throw new ArgumentNullException(nameof(specie.FlowerColors))),
             IsFragrant = specie.IsFragrant,
             AttractsPollinators = specie.AttractsPollinators,
 

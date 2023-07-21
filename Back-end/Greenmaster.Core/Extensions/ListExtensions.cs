@@ -1,6 +1,6 @@
 ﻿using StaticData.Time.Durations;
 
-namespace Greenmaster.Core.Models.Extensions;
+namespace Greenmaster.Core.Extensions;
 
 public static class ListExtensions
 {

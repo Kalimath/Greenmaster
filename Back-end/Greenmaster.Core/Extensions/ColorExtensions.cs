@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Reflection;
 
-namespace Greenmaster.Core.Models.Extensions;
+namespace Greenmaster.Core.Extensions;
 
 public static class ColorExtensions
 {
@@ -38,5 +38,14 @@ public static class ColorExtensions
     public static Color ToColor(this string colorName)
     {
         return Color.FromKnownColor(Enum.Parse<KnownColor>(colorName));
+    }
+
+    /// <summary>
+    /// Convert a .NET Color to a hex string.
+    /// </summary>
+    /// <returns>null if invalid</returns>
+    public static string ToHex(this Color color)
+    {
+        return "#" + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
     }
 }

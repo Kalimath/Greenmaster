@@ -1,5 +1,5 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@using Greenmaster.Core.Models.Extensions
+@using Greenmaster.Core.Extensions
 @model Greenmaster.Core.Models.ViewModels.SpecieViewModel
 
 @{
@@ -114,7 +114,7 @@
                     @Html.DisplayNameFor(model => model.BloomPeriod)
                 </dt>
                 <dd class="col-sm-4">
-                    @for (int i = 0; i < Model.BloomPeriod.Count(); i++)
+                    @for (var i = 0; i < Model.BloomPeriod.Count(); i++)
                     {
                         <div>@Model.BloomPeriod[i] </div>
                     }
@@ -126,9 +126,10 @@
                     </dt>
                     <dd class="col-sm-4">
 
-                        @for (int i = 0; i < Model.FlowerColors.Count(); i++)
+                        @for (var i = 0; i < Model.FlowerColors.Count(); i++)
                         {
-                            <svg fill="@Model.FlowerColors[i].GetName()" height="20px" width="20px" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            var hexColor = Model.FlowerColors[i].ToHex();
+                            <svg fill="@hexColor" height="20px" width="20px" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                  viewBox="0 0 511.999 511.999" xml:space="preserve">
                                 <g>
                                     <g>

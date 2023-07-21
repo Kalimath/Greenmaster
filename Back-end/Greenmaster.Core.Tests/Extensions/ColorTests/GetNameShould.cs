@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using Greenmaster.Core.Models.Extensions;
+using Greenmaster.Core.Extensions;
 
 namespace Greenmaster.Core.Tests.Extensions.ColorTests;
 

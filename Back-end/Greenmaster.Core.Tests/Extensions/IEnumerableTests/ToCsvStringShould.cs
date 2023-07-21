@@ -1,4 +1,4 @@
-﻿using Greenmaster.Core.Models.Extensions;
+﻿using Greenmaster.Core.Extensions;
 using StaticData.Time.Durations;
 
 namespace Greenmaster.Core.Tests.Extensions.IEnumerableTests;

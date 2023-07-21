@@ -1,6 +1,6 @@
+using Greenmaster.Core.Extensions;
 using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Specie;
 using Greenmaster.Core.Services.Type;
