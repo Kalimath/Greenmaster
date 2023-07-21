@@ -59,6 +59,11 @@ public static class PropertyConversions
                 v => string.Join(',', v.Select(x => x.ToString())),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(Enum.Parse<Month>).ToArray());
         modelBuilder.Entity<Specie>()
+            .Property(e => e.MutualisticGenera)
+            .HasConversion(
+                v => string.Join(',', v.Select(x => x.ToString())),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(Enum.Parse<PlantGenus>).ToArray());
+        modelBuilder.Entity<Specie>()
             .Property(e => e.FlowerColors)
             .HasConversion(
                 v => string.Join(',', v.Select(color => color.GetName())),

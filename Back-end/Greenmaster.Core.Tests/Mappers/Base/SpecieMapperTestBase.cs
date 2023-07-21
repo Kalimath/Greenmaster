@@ -35,7 +35,7 @@ public class SpecieMapperTestBase
             MaxHeight = SpecieExamples.Strelitzia.MaxHeight,
             MaxWidth = SpecieExamples.Strelitzia.MaxWidth,
             BloomPeriod = SpecieExamples.Strelitzia.BloomPeriod,
-            AttractsPollinators = SpecieExamples.Strelitzia.AttractsPollinators,
+            PollinatingFlowers = SpecieExamples.Strelitzia.PollinatingFlowers,
             IsFragrant = SpecieExamples.Strelitzia.IsFragrant,
             IsPoisonous = SpecieExamples.Strelitzia.IsPoisonous,
             FlowerColors =SpecieExamples.Strelitzia.FlowerColors,

@@ -38,12 +38,14 @@ public class SpecieMapper : IViewModelMapper<Specie, SpecieViewModel>
             MaxHeight = specieViewModel.MaxHeight,
             MaxWidth = specieViewModel.MaxWidth,
 
+            MutualisticGenera = specieViewModel.MutualisticGenera,
+            
             BloomPeriod =
                 (specieViewModel.BloomPeriod ?? throw new ArgumentNullException(nameof(specieViewModel.BloomPeriod))),
             FlowerColors =
                 (specieViewModel.FlowerColors ?? throw new ArgumentNullException(nameof(specieViewModel.FlowerColors))),
             IsFragrant = specieViewModel.IsFragrant,
-            AttractsPollinators = specieViewModel.AttractsPollinators,
+            PollinatingFlowers = specieViewModel.PollinatingFlowers,
         };
         await SetImage(specie, specieViewModel);
         return specie;
@@ -84,7 +86,7 @@ public class SpecieMapper : IViewModelMapper<Specie, SpecieViewModel>
         return new FlowerData()
         {
             Color = specieViewModel.Color,
-            AttractsPollinators = specieViewModel.AttractsPollinators,
+            PollinatingFlowers = specieViewModel.PollinatingFlowers,
             FlowerPeriod = specieViewModel.FlowerPeriod.ToCsvString(),
             IsFragrant = specieViewModel.IsFragrant
         };
@@ -125,6 +127,7 @@ public class SpecieMapper : IViewModelMapper<Specie, SpecieViewModel>
             throw new ArgumentNullException(nameof(specie));
         ValidateDimensions(specie.MaxHeight, specie.MaxWidth);
         ValidateStringAndBase64(specie.Image);
+        var mutualisticGenera = specie.MutualisticGenera ?? Array.Empty<PlantGenus>();
 
         return new SpecieViewModel()
         {
@@ -145,11 +148,13 @@ public class SpecieMapper : IViewModelMapper<Specie, SpecieViewModel>
 
             MaxHeight = specie.MaxHeight,
             MaxWidth = specie.MaxWidth,
+            
+            MutualisticGenera = mutualisticGenera,
 
             BloomPeriod = (specie.BloomPeriod ?? throw new ArgumentNullException(nameof(specie.BloomPeriod))),
             FlowerColors = (specie.FlowerColors ?? throw new ArgumentNullException(nameof(specie.FlowerColors))),
             IsFragrant = specie.IsFragrant,
-            AttractsPollinators = specie.AttractsPollinators,
+            PollinatingFlowers = specie.PollinatingFlowers,
 
             Image = null!,
             ImageBase64 = specie.Image

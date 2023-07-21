@@ -39,9 +39,10 @@ public static class SpecieExamples
             Month.September, 
             Month.October
         },
-        AttractsPollinators = true,
+        PollinatingFlowers = true,
         IsFragrant = false,
         IsPoisonous = true,
+        MutualisticGenera = Array.Empty<PlantGenus>(),
         FlowerColors = new[] { Color.Blue, Color.Orange },
         Image = Base64Examples.ImageSpecie
     };
@@ -64,9 +65,10 @@ public static class SpecieExamples
         MaxHeight = 1,
         MaxWidth = 0.25,
         BloomPeriod = new[] { Month.May, Month.June },
-        AttractsPollinators = true,
+        PollinatingFlowers = true,
         IsFragrant = false,
         IsPoisonous = false,
+        MutualisticGenera =  new[] { PlantGenus.Aster},
         FlowerColors = new[] { Color.Pink },
         Image = Base64Examples.ImageSpecie
     };
@@ -96,11 +98,11 @@ public static class SpecieExamples
             Month.August,
             Month.September
         },
-        AttractsPollinators = true,
+        PollinatingFlowers = true,
         IsFragrant = false,
         IsPoisonous = false,
+        MutualisticGenera =  new[] { PlantGenus.Papaver},
         FlowerColors = new[] { Color.Yellow },
-        //MutualisticGenera =  new[] { PlantGenus.Papaver },
         Image = Base64Examples.ImageSpecie
     };
     

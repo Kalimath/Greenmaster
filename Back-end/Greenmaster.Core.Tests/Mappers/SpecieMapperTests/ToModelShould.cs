@@ -1,6 +1,8 @@
-﻿using Greenmaster.Core.Extensions;
+﻿using Greenmaster.Core.Examples;
+using Greenmaster.Core.Extensions;
 using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Tests.Mappers.Base;
+using StaticData.Taxonomy;
 using static Greenmaster.Core.Tests.Helpers.AssertObjects;
 
 namespace Greenmaster.Core.Tests.Mappers.SpecieMapperTests;
@@ -54,6 +56,28 @@ public class ToModelShould : SpecieMapperTestBase
         
         AssertSpecie(SpecieStrelitzia, resultSpecie);
     }
+
+    [Fact]
+    public async Task ReturnEmptyMutualisticGenera_WhenViewModelHasNoMutualisticGenera()
+    {
+        var specieViewModel = SpecieMapper.ToViewModel(SpecieStrelitzia.Clone());
+        specieViewModel.MutualisticGenera = Array.Empty<PlantGenus>();
+        var resultSpecie = await SpecieMapper.ToModel(specieViewModel);
+        
+        Assert.Empty(resultSpecie.MutualisticGenera);
+    }
+
+    [Fact]
+    public async Task ReturnExpectedMutualisticGenera_WhenViewModelHasMutualisticGenera()
+    {
+        var specieViewModel = SpecieMapper.ToViewModel(SpecieStrelitzia.Clone());
+        var mutualisticGenera = new [] { PlantGenus.Agapanthus };
+        specieViewModel.MutualisticGenera = mutualisticGenera;
+        var resultSpecie = await SpecieMapper.ToModel(specieViewModel);
+        
+        Assert.Equal(mutualisticGenera, resultSpecie.MutualisticGenera);
+    }
+    
     [Fact]
     public async Task SetImageToConvertedFormFile_WhenFormFileImageNotNull()
     {

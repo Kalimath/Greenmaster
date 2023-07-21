@@ -74,7 +74,8 @@ public class ArboretumContext : DbContext, IApplicationDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         DefinePropertyConversions(modelBuilder);
-        
+        SeedData(modelBuilder);
+
         modelBuilder.Entity<PlantType>().HasBaseType(typeof(ObjectType));
         modelBuilder.Entity<ObjectType>().HasDiscriminator<string>("objectType_type")
             .HasValue<PlantType>(nameof(PlantType))
@@ -86,6 +87,20 @@ public class ArboretumContext : DbContext, IApplicationDbContext
             .WithMany(c => c.GardenStyles);
         modelBuilder.Entity<MaterialType>().HasMany(m => m.GardenStyles)
            .WithMany(m => m.Materials);
+    }
+
+    private void SeedData(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Point>().HasData(_examplesService.GetAllPoints());
+        modelBuilder.Entity<Dimensions>().HasData(_examplesService.GetAllDimensions());
+        modelBuilder.Entity<Plant>().HasData(_examplesService.GetAllPlants());
+        modelBuilder.Entity<Structure>().HasData(_examplesService.GetAllStructures());
+        modelBuilder.Entity<PlantType>().HasData(_examplesService.GetAllPlantTypes());
+        modelBuilder.Entity<StructureType>().HasData(_examplesService.GetAllStructureTypes());
+        modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
+        modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
+        modelBuilder.Entity<GardenStyle>().HasData(_examplesService.GetAllGardenStyles());
+        modelBuilder.Entity<MaterialType>().HasData(_examplesService.GetAllMaterialTypes());
     }
 
     private static void DefinePropertyConversions(ModelBuilder modelBuilder)

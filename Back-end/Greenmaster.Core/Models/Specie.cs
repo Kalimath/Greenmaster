@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using StaticData.Geographic;
 using StaticData.Gradation;
@@ -42,13 +44,17 @@ public class Specie : IObjectIdentity
     public double MaxHeight { get; set; }
     public double MaxWidth { get; set; }
     
-    //TODO: Add symbiosis for specie
-   
+    //Symbiosis for specie
+    [AllowNull]
+    public PlantGenus[] MutualisticGenera { get; set; }
+
     #region FlowerInfo
     public Month[] BloomPeriod { get; set; }
     public Color[] FlowerColors { get; set; }
     public bool IsFragrant { get; set; }
-    public bool AttractsPollinators { get; set; }
+    
+    //Affects allergies and attraction of butterflies and bees
+    public bool PollinatingFlowers { get; set; }
     #endregion
     
     #region Media

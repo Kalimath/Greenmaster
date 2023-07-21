@@ -29,5 +29,5 @@ public class GardenStyle
     //TODO: add budgetType,
     //TODO: add Purpose
     
-    //public string ImageBase64 { get; set; } TODO: add groundplan of the domain 
+    //public string ImageBase64 { get; set; } TODO: add visualisation image
 }

@@ -30,7 +30,7 @@ public static class ImageConverter
     public static string ToBase64(Image image)
     {
         //a single pixel (black) "R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="
-        byte[] imageArray = ToByteArray(image);
+        var imageArray = ToByteArray(image);
         return Convert.ToBase64String(imageArray);
         
     }

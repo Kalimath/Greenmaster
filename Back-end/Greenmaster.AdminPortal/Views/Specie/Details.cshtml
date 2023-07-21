@@ -41,7 +41,7 @@
                     @Html.DisplayNameFor(model => model.Cultivar)
                 </dt>
                 <dd class="col-sm-4">
-                    @(Model.Cultivar == null ? Model.Cultivar : "None")
+                    @(string.IsNullOrEmpty(Model.Cultivar)? "None" : Model.Cultivar)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.CommonNames)
@@ -107,6 +107,24 @@
                 <dd class="col-sm-4">
                     @(Model.IsPoisonous ? "Yes" : "No")
                 </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.MutualisticGenera)
+                </dt>
+                <dd class="col-sm-4">
+                    @if (Model.MutualisticGenera.Any())
+                    {
+                        for (var i = 0; i < Model.MutualisticGenera.Count(); i++)
+                        {
+                            <div>@Model.MutualisticGenera[i] </div>
+                        }
+                    }
+                    else
+                    {
+                        <div>Not specified</div>
+                    }
+
+                </dd>
+
             </dl>
             <h4>Blooming</h4>
             <dl class="row" id="specie-flowerinfo">
@@ -157,10 +175,10 @@
                     @(Model.IsFragrant ? "Yes" : "No")
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.AttractsPollinators)
+                    @Html.DisplayNameFor(model => model.PollinatingFlowers)
                 </dt>
                 <dd class="col-sm-4">
-                    @(Model.AttractsPollinators ? "Yes" : "No")
+                    @(Model.PollinatingFlowers ? "Yes" : "No")
                 </dd>
             </dl>
             <h4>Dimensions</h4>
