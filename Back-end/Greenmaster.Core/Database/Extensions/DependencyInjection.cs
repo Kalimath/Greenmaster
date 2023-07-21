@@ -1,5 +1,5 @@
 ﻿using Greenmaster.Core.Configuration;
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
@@ -10,6 +10,7 @@ using Greenmaster.Core.Services.Placeables;
 using Greenmaster.Core.Services.Rendering;
 using Greenmaster.Core.Services.Specie;
 using Greenmaster.Core.Services.Type;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,10 +37,10 @@ public static class DependencyInjection
 
     public static void RegisterFactories(this IServiceCollection services)
     {
-        services.AddSingleton<IModelFactory<Specie, SpecieViewModel>, SpecieFactory>();
-        services.AddSingleton<IModelFactory<Rendering, RenderingViewModel>, RenderingFactory>();
-        services.AddSingleton<IModelFactory<Placeable, PlaceableViewModel>, PlaceableFactory>();
-        services.AddSingleton<IModelFactory<GardenStyle, GardenStyleViewModel>, GardenStyleFactory>();
+        services.AddSingleton<IViewModelMapper<Specie, SpecieViewModel>, SpecieMapper>();
+        services.AddSingleton<IViewModelMapper<Rendering, RenderingViewModel>, RenderingMapper>();
+        services.AddSingleton<IViewModelMapper<Placeable, PlaceableViewModel>, PlaceableMapper>();
+        services.AddSingleton<IViewModelMapper<GardenStyle, GardenStyleViewModel>, GardenStyleMapper>();
     }
 
     public static void RegisterRenderingConfig(this IServiceCollection services, IConfiguration configuration)
@@ -65,5 +66,19 @@ public static class DependencyInjection
         services.RegisterFactories();
         services.RegisterDataLink(configuration);
         services.RegisterRenderingConfig(configuration);
+    }
+    
+    public static async Task<IApplicationBuilder> PrepareDatabase(this IApplicationBuilder app)
+    {
+        using var scopedServices = app.ApplicationServices.CreateScope();
+
+        //Get dependency-injected items
+        var serviceProvider = scopedServices.ServiceProvider;
+        var applicationContext = serviceProvider.GetRequiredService<ArboretumContext>();
+        var exampleService = serviceProvider.GetRequiredService<IExamplesService>();
+
+        var dataInit = new DataInitializer(applicationContext, exampleService);
+        await dataInit.SeedData();
+        return app;
     }
 }

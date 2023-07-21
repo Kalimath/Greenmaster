@@ -1,4 +1,4 @@
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Rendering;
@@ -12,13 +12,13 @@ namespace Greenmaster.AdminPortal.Controllers
     public class RenderingController : Controller
     {
         private readonly IRenderingService _modelService;
-        private readonly IModelFactory<Rendering, RenderingViewModel> _renderingFactory;
+        private readonly IViewModelMapper<Rendering, RenderingViewModel> _renderingMapper;
 
         public RenderingController(IRenderingService renderingService,
-            IModelFactory<Rendering, RenderingViewModel> renderingFactory)
+            IViewModelMapper<Rendering, RenderingViewModel> renderingMapper)
         {
             _modelService = renderingService ?? throw new ArgumentNullException(nameof(renderingService));
-            _renderingFactory = renderingFactory;
+            _renderingMapper = renderingMapper;
         }
 
         // GET: Specie
@@ -30,7 +30,7 @@ namespace Greenmaster.AdminPortal.Controllers
         public async Task<JsonResult> GetRenderings()
         {
             var renderings = (await _modelService.GetAll());
-            var viewModels = renderings.Select(rendering => _renderingFactory.ToViewModel(rendering)).ToList();
+            var viewModels = renderings.Select(rendering => _renderingMapper.ToViewModel(rendering)).ToList();
             return Json(new { data = viewModels });
         }
 
@@ -53,7 +53,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 return NotFound();
             }
 
-            return View(_renderingFactory.ToViewModel(rendering));
+            return View(_renderingMapper.ToViewModel(rendering));
         }
 
         // GET: Rendering/Create
@@ -71,7 +71,7 @@ namespace Greenmaster.AdminPortal.Controllers
             try
             {
                 if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
-                var rendering = await _renderingFactory.Create(renderingViewModel);
+                var rendering = await _renderingMapper.ToModel(renderingViewModel);
                 await _modelService.Add(rendering);
                 return RedirectToAction(nameof(Index));
             }

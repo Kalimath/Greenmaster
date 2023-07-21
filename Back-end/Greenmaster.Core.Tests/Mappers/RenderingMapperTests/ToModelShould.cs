@@ -2,22 +2,22 @@
 using System.Drawing;
 using Greenmaster.Core.Examples;
 using Greenmaster.Core.Models.ViewModels;
-using Greenmaster.Core.Tests.Factories.Base;
 using Greenmaster.Core.Tests.Helpers;
+using Greenmaster.Core.Tests.Mappers.Base;
 using StaticData.Object.Rendering;
 using StaticData.Time.Durations;
 using static Greenmaster.Core.Helpers.FormFileConverter;
 using ImageConverter = Greenmaster.Core.Helpers.ImageConverter;
 
-namespace Greenmaster.Core.Tests.Factories.RenderingFactoryTests;
+namespace Greenmaster.Core.Tests.Mappers.RenderingMapperTests;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-public class CreateRenderingShould : RenderingFactoryTestBase
+public class ToModelShould : RenderingMapperTestBase
 {
     private readonly Image _renderingImage;
     
 
-    public CreateRenderingShould()
+    public ToModelShould()
     {
         _renderingImage = ImageConverter.FromBase64(Base64Examples.ImageSpecie);
     }
@@ -25,28 +25,28 @@ public class CreateRenderingShould : RenderingFactoryTestBase
     [Fact]
     public async Task ThrowNullReferenceException_WhenImageIsNull()
     {
-        await Assert.ThrowsAsync<NullReferenceException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() {ImageBase64 = null!}));
+        await Assert.ThrowsAsync<NullReferenceException>(async () => _ = await RenderingMapper.ToModel(new RenderingViewModel() {ImageBase64 = null!}));
     }
     [Fact]
     public async Task ThrowArgumentException_WhenImageIsEmpty()
     {
-        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() {ImageBase64 = string.Empty}));
+        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingMapper.ToModel(new RenderingViewModel() {ImageBase64 = string.Empty}));
     }
     [Fact]
     public async Task ThrowArgumentException_WhenImageIsWhiteSpace()
     {
-        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() { ImageBase64 = "  "}));
+        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingMapper.ToModel(new RenderingViewModel() { ImageBase64 = "  "}));
     }
     [Fact]
     public async Task ThrowArgumentException_WhenImageIsNotBase64()
     {
-        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel() { ImageBase64 = "eehu#ee"}));
+        await Assert.ThrowsAsync<ArgumentException>(async () => _ = await RenderingMapper.ToModel(new RenderingViewModel() { ImageBase64 = "eehu#ee"}));
     }
     
     [Fact]
     public async Task ThrowArgumentOutOfRangeException_WhenIdInvalid()
     {
-        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => _ = await RenderingFactory.Create(new RenderingViewModel()
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => _ = await RenderingMapper.ToModel(new RenderingViewModel()
         {
             Id = -1,
             ImageBase64 = Base64Examples.ImageRendering
@@ -65,7 +65,7 @@ public class CreateRenderingShould : RenderingFactoryTestBase
             ImageBase64 = Base64Examples.ImageRendering
         };
         
-        var resultRendering = await RenderingFactory.Create(viewModel);
+        var resultRendering = await RenderingMapper.ToModel(viewModel);
         
         AssertObjects.AssertImageSize(ImageConverter.FromBase64(resultRendering.Image), MaxWidthConfig, MaxHeightConfig);
     }
@@ -86,7 +86,7 @@ public class CreateRenderingShould : RenderingFactoryTestBase
             ImageBase64 = Base64Examples.ImageRendering
         };
         
-        var resultRendering = await RenderingFactory.Create(viewModel);
+        var resultRendering = await RenderingMapper.ToModel(viewModel);
 
         var actual = ImageConverter.FromBase64(resultRendering.Image);
         AssertObjects.AssertImageSize(imageRendering, actual);
@@ -104,7 +104,7 @@ public class CreateRenderingShould : RenderingFactoryTestBase
             ImageBase64 = Base64Examples.ImageRendering
         };
         
-        var resultRendering = await RenderingFactory.Create(viewModel);
+        var resultRendering = await RenderingMapper.ToModel(viewModel);
 
         var actual = ImageConverter.FromBase64(resultRendering.Image);
         AssertObjects.AssertImageSize(actual, MaxWidthConfig, MaxHeightConfig);
@@ -122,7 +122,7 @@ public class CreateRenderingShould : RenderingFactoryTestBase
             ImageBase64 = Base64Examples.ImageSpecie
         };
         
-        var resultRendering = await RenderingFactory.Create(viewModel);
+        var resultRendering = await RenderingMapper.ToModel(viewModel);
 
         var actual = ImageConverter.FromBase64(resultRendering.Image);
         AssertObjects.AssertImageSize(actual, MaxWidthConfig, MaxHeightConfig);
@@ -140,7 +140,7 @@ public class CreateRenderingShould : RenderingFactoryTestBase
             ImageBase64 = Base64Examples.ImageSpecie
         };
         
-        var resultRendering = await RenderingFactory.Create(viewModel);
+        var resultRendering = await RenderingMapper.ToModel(viewModel);
         
         Assert.Equal(viewModel.Id, resultRendering.Id);
     }

@@ -68,6 +68,39 @@ public static class SpecieExamples
         Image = Base64Examples.ImageSpecie
     };
     
+    public static readonly Specie Aster = new()
+    {
+        Id = 3,
+        Genus = PlantGenus.Aster,
+        Species = "Maritimus",
+        CommonNames = "Gele zeeaster",
+        Description = "Een licht vorstgevoelige verhoutende vaste plant die bij ons eenjarige gekweekt wordt. " +
+                      "Kan dus overgehouden worden en het jaar nadien terug in de border uitgeplant worden.",
+        PlantTypeId = ObjectTypeExamples.SmallShrub.Id,
+        Shape = Shape.NotSet,
+        Cycle = Lifecycle.Annual,
+        Sunlight = Amount.Many,
+        Water = Amount.Average,
+        Climate = ClimateType.Mediterranean,
+        MinimalTemperature = -2,
+        MaxHeight = 0.2,
+        MaxWidth = 0.2,
+        BloomPeriod = new[]
+        {
+            Month.May.ToString(), 
+            Month.June.ToString(), 
+            Month.July.ToString(), 
+            Month.August.ToString(),
+            Month.September.ToString()
+        },
+        AttractsPollinators = true,
+        IsFragrant = false,
+        IsPoisonous = false,
+        FlowerColors = new[] { Color.Yellow.GetName() },
+        //MutualisticGenera =  new[] { PlantGenus.Papaver },
+        Image = Base64Examples.ImageSpecie
+    };
+    
     public static List<Specie> GetAll()
     {
         return new List<Specie>()

@@ -8,7 +8,7 @@ public class CtorShould : PlaceableControllerTestBase
     public void ThrowArgumentNullException_WhenPlantServiceIsNull()
     {
         // Arrange
-        PlaceableController Act() => new (null!, SpecieService, PlaceableFactory);
+        PlaceableController Act() => new (null!, SpecieService, PlaceableMapper);
         
         // Act & Assert
         Assert.Throws<ArgumentNullException>(Act);
@@ -18,7 +18,7 @@ public class CtorShould : PlaceableControllerTestBase
     public void ThrowArgumentNullException_WhenSpecieServiceIsNull()
     {
         // Arrange
-        PlaceableController Act() => new (PlantService, null!, PlaceableFactory);
+        PlaceableController Act() => new (PlantService, null!, PlaceableMapper);
         
         // Act & Assert
         Assert.Throws<ArgumentNullException>(Act);

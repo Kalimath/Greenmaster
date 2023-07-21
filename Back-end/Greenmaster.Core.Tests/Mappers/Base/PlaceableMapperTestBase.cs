@@ -1,20 +1,18 @@
 ﻿using Greenmaster.Core.Examples;
-using Greenmaster.Core.Factories;
-using Greenmaster.Core.Helpers;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.Measurements;
 using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Example;
-using NSubstitute;
 using Point = Greenmaster.Core.Models.Point;
 
-namespace Greenmaster.Core.Tests.Factories.Base;
+namespace Greenmaster.Core.Tests.Mappers.Base;
 
-public class PlaceableFactoryTestBase : RenderingFactoryTestBase
+public class PlaceableMapperTestBase : RenderingMapperTestBase
 {
-    protected readonly IModelFactory<Placeable, PlaceableViewModel> Factory;
+    protected readonly IViewModelMapper<Placeable, PlaceableViewModel> Mapper;
     
     protected Guid StrelitziaId;
     protected readonly string StrelitziaMatureName;
@@ -30,9 +28,9 @@ public class PlaceableFactoryTestBase : RenderingFactoryTestBase
     protected readonly RenderingViewModel StrelitziaRenderingViewModel;
     protected readonly int StrelitziaPlantTypeId;
 
-    public PlaceableFactoryTestBase()
+    public PlaceableMapperTestBase()
     {
-        Factory = new PlaceableFactory(RenderingFactory);
+        Mapper = new PlaceableMapper(RenderingMapper);
         
         Strelitzia = SpecieExamples.Strelitzia;
         ExamplesService = new ExamplesService();
@@ -62,7 +60,7 @@ public class PlaceableFactoryTestBase : RenderingFactoryTestBase
         };
         StrelitziaPlaceable = PlaceableExamples.MatureStrelitziaPlant;
         StrelitziaPlaceable.DimensionsId = StrelitziaMatureDimensions.Id;
-        StrelitziaRenderingViewModel = RenderingFactory.ToViewModel(StrelitziaRendering);
+        StrelitziaRenderingViewModel = RenderingMapper.ToViewModel(StrelitziaRendering);
     }
 
     protected PlaceableViewModel CloneStrelitziaViewModel()

@@ -1,4 +1,4 @@
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
@@ -22,13 +22,13 @@ namespace Greenmaster.AdminPortal.Controllers
     {
         private readonly ISpecieService _modelService;
         private readonly IObjectTypeService<PlantType> _plantTypeService;
-        private readonly IModelFactory<Specie, SpecieViewModel> _specieFactory;
+        private readonly IViewModelMapper<Specie, SpecieViewModel> _specieMapper;
 
-        public SpecieController(ISpecieService specieService, IObjectTypeService<PlantType> plantTypeService, IModelFactory<Specie, SpecieViewModel> specieFactory)
+        public SpecieController(ISpecieService specieService, IObjectTypeService<PlantType> plantTypeService, IViewModelMapper<Specie, SpecieViewModel> specieMapper)
         {
             _modelService = specieService ?? throw new ArgumentNullException(nameof(specieService));
             _plantTypeService = plantTypeService;
-            _specieFactory = specieFactory;
+            _specieMapper = specieMapper;
         }
 
         // GET: Specie
@@ -41,7 +41,7 @@ namespace Greenmaster.AdminPortal.Controllers
         {
             var species = (await _modelService.GetAll());
             var specieViewModels = new List<SpecieViewModel>();
-            foreach (var specie in species) specieViewModels.Add(_specieFactory.ToViewModel(specie));
+            foreach (var specie in species) specieViewModels.Add(_specieMapper.ToViewModel(specie));
             return Json(new { data = specieViewModels});
         }
 
@@ -64,7 +64,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 return NotFound();
             }
 
-            return View(_specieFactory.ToViewModel(specie));
+            return View(_specieMapper.ToViewModel(specie));
         }
 
         // GET: Specie/Create
@@ -86,7 +86,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 if (!ModelState.IsValid) throw new ArgumentException(nameof(ModelState));
                 var requestedPlantType = (await _plantTypeService.GetById(specieViewModel.PlantTypeId)) ?? throw new ArgumentException($"Could not find a {nameof(PlantType)} with id={specieViewModel.PlantTypeId}");
                 specieViewModel.PlantType = requestedPlantType;
-                var specie = await _specieFactory.Create(specieViewModel);
+                var specie = await _specieMapper.ToModel(specieViewModel);
                 await _modelService.Add(specie);
                 return RedirectToAction(nameof(Index));
             }
@@ -124,7 +124,7 @@ namespace Greenmaster.AdminPortal.Controllers
             }
 
             await DefineViewData();
-            return View(_specieFactory.ToViewModel(specie));
+            return View(_specieMapper.ToViewModel(specie));
         }
         
         // POST: Specie/Edit/5
@@ -139,7 +139,7 @@ namespace Greenmaster.AdminPortal.Controllers
             {
                 try
                 {
-                    var specie = await _specieFactory.Create(specieViewModel);
+                    var specie = await _specieMapper.ToModel(specieViewModel);
                     await _modelService.Update(specie);
                 }
                 catch (DbUpdateConcurrencyException)

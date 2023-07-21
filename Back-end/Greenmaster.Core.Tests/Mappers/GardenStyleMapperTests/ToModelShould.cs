@@ -1,18 +1,16 @@
-﻿using Greenmaster.Core.Factories;
-using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
-using Greenmaster.Core.Tests.Factories.Base;
+﻿using Greenmaster.Core.Models.Extensions;
+using Greenmaster.Core.Tests.Mappers.Base;
 using StaticData.Taxonomy;
 
-namespace Greenmaster.Core.Tests.Factories.GardenStyleFactoryTests;
+namespace Greenmaster.Core.Tests.Mappers.GardenStyleMapperTests;
 
-public class CreateGardenStyleShould : GardenStyleFactoryTestBase
+public class ToModelShould : GardenStyleMapperTestBase
 {
 
     [Fact]
     public async Task ThrowArgumentNullException_WhenGardenStyleViewModelIsNull()
     {
-        await Assert.ThrowsAsync<ArgumentNullException>(() => GardenStyleFactory.Create(null!));
+        await Assert.ThrowsAsync<ArgumentNullException>(() => GardenStyleMapper.ToModel(null!));
     }
 
     [Theory]
@@ -24,7 +22,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
         var gardenStyleViewModel = GardenStyleViewModel.Clone();
         gardenStyleViewModel.Name = name;
 
-        await Assert.ThrowsAsync<ArgumentException>(() => GardenStyleFactory.Create(gardenStyleViewModel));
+        await Assert.ThrowsAsync<ArgumentException>(() => GardenStyleMapper.ToModel(gardenStyleViewModel));
     }
 
     [Theory]
@@ -36,7 +34,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
         var gardenStyleViewModel = GardenStyleViewModel.Clone();
         gardenStyleViewModel.Description = description;
 
-        await Assert.ThrowsAsync<ArgumentException>(() => GardenStyleFactory.Create(gardenStyleViewModel));
+        await Assert.ThrowsAsync<ArgumentException>(() => GardenStyleMapper.ToModel(gardenStyleViewModel));
     }
 
     [Theory]
@@ -47,13 +45,13 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
         var gardenStyleViewModel = GardenStyleViewModel.Clone();
         gardenStyleViewModel.Id = id;
 
-        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => GardenStyleFactory.Create(gardenStyleViewModel));
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => GardenStyleMapper.ToModel(gardenStyleViewModel));
     }
 
     [Fact]
     public void SetId_WhenValid()
     {
-        var gardenStyle = GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyle = GardenStyleMapper.ToModel(GardenStyleViewModel);
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.Id, gardenStyle.Id);
@@ -62,7 +60,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     [Fact]
     public async Task SetPathSize_WhenValid()
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyle = await GardenStyleMapper.ToModel(GardenStyleViewModel);
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.PathSize, gardenStyle.PathSize);
@@ -71,7 +69,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     [Fact]
     public async Task SetMaterials_WhenValid()
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyle = await GardenStyleMapper.ToModel(GardenStyleViewModel);
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.Materials, gardenStyle.Materials);
@@ -80,7 +78,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     [Fact]
     public async Task SetName_WhenValid()
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyle = await GardenStyleMapper.ToModel(GardenStyleViewModel);
         
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.Name, gardenStyle.Name);
@@ -89,9 +87,9 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     [Fact]
     public async Task SetDescription_WhenValid()
     {
-        if (GardenStyleFactory != null)
+        if (GardenStyleMapper != null)
         {
-            var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+            var gardenStyle = await GardenStyleMapper.ToModel(GardenStyleViewModel);
 
             Assert.NotNull(gardenStyle);
             Assert.Equal(GardenStyleViewModel.Description, gardenStyle.Description);
@@ -101,7 +99,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     [Fact]
     public async Task SetColors_WhenPresent()
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyle = await GardenStyleMapper.ToModel(GardenStyleViewModel);
         
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.Colors, gardenStyle.Colors);
@@ -110,7 +108,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     [Fact]
     public async Task SetConcepts_WhenPresent()
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyle = await GardenStyleMapper.ToModel(GardenStyleViewModel);
         
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.Concepts, gardenStyle.Concepts);
@@ -119,7 +117,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     [Fact]
     public async Task SetShapes_WhenPresent()
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyle = await GardenStyleMapper.ToModel(GardenStyleViewModel);
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.Shapes, gardenStyle.Shapes);
@@ -134,7 +132,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
         var gardenStyleVmWithAllSeasonInterest = GardenStyleViewModel.Clone();
         gardenStyleVmWithAllSeasonInterest.AllSeasonInterest = allSeasonInterest;
         
-        var gardenStyle = await GardenStyleFactory.Create(gardenStyleVmWithAllSeasonInterest);
+        var gardenStyle = await GardenStyleMapper.ToModel(gardenStyleVmWithAllSeasonInterest);
         
         Assert.NotNull(gardenStyle);
         Assert.Equal(allSeasonInterest, gardenStyle.AllSeasonInterest);
@@ -148,7 +146,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
         var gardenStyleVmForLargeGardens = GardenStyleViewModel.Clone();
         gardenStyleVmForLargeGardens.RequiresLargeGarden = requiresLargeGarden;
         
-        var gardenStyle = await GardenStyleFactory.Create(gardenStyleVmForLargeGardens);
+        var gardenStyle = await GardenStyleMapper.ToModel(gardenStyleVmForLargeGardens);
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(requiresLargeGarden, gardenStyle.RequiresLargeGarden);
@@ -162,7 +160,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
         var gardenStyleVmDividedIntoRooms = GardenStyleViewModel.Clone();
         gardenStyleVmDividedIntoRooms.DivideIntoRooms = divideIntoRooms;
         
-        var gardenStyle = await GardenStyleFactory.Create(gardenStyleVmDividedIntoRooms);
+        var gardenStyle = await GardenStyleMapper.ToModel(gardenStyleVmDividedIntoRooms);
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(divideIntoRooms, gardenStyle.DivideIntoRooms);
@@ -171,7 +169,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
     [Fact]
     public async Task SetSuitablePlantGenera_WhenValid()
     {
-        var gardenStyle = await GardenStyleFactory.Create(GardenStyleViewModel);
+        var gardenStyle = await GardenStyleMapper.ToModel(GardenStyleViewModel);
 
         Assert.NotNull(gardenStyle);
         Assert.Equal(GardenStyleViewModel.SuitablePlantGenera, gardenStyle.SuitablePlantGenera);
@@ -183,7 +181,7 @@ public class CreateGardenStyleShould : GardenStyleFactoryTestBase
         var viewModel = GardenStyleViewModel.Clone();
         viewModel.SuitablePlantGenera = Array.Empty<PlantGenus>();
         
-        var gardenStyle = await GardenStyleFactory.Create(viewModel);
+        var gardenStyle = await GardenStyleMapper.ToModel(viewModel);
         
         Assert.NotNull(gardenStyle);
         Assert.Empty(gardenStyle.SuitablePlantGenera!);

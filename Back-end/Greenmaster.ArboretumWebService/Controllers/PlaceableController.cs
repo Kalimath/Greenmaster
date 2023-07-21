@@ -1,4 +1,4 @@
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Placeables;
@@ -12,20 +12,20 @@ public class PlaceableController : ControllerBase
 {
     private readonly IPlantService _plantService;
     private readonly IStructureService _structureService;
-    private readonly IModelFactory<Placeable, PlaceableViewModel> _placeableFactory;
+    private readonly IViewModelMapper<Placeable, PlaceableViewModel> _placeableMapper;
 
-    public PlaceableController(IPlantService plantService, IStructureService structureService, IModelFactory<Placeable, PlaceableViewModel> placeableFactory)
+    public PlaceableController(IPlantService plantService, IStructureService structureService, IViewModelMapper<Placeable, PlaceableViewModel> placeableMapper)
     {
         _plantService = plantService;
         _structureService = structureService;
-        _placeableFactory = placeableFactory;
+        _placeableMapper = placeableMapper;
     }
 
     [HttpGet(Name = "GetPlants")]
     public async Task<IEnumerable<PlaceableViewModel>> GetPlants()
     {
         var plants = (await _plantService.GetAll());
-        var viewModels = plants.Select(plant => _placeableFactory.ToViewModel(plant)).ToList();
+        var viewModels = plants.Select(plant => _placeableMapper.ToViewModel(plant)).ToList();
         return viewModels;
     }
 

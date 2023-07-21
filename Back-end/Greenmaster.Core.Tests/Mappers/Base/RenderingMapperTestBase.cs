@@ -1,29 +1,29 @@
 ﻿using Greenmaster.Core.Configuration;
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.ViewModels;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NSubstitute;
+
 // ReSharper disable SettingNotFoundInConfiguration
 
-namespace Greenmaster.Core.Tests.Factories.Base;
+namespace Greenmaster.Core.Tests.Mappers.Base;
 
-public class RenderingFactoryTestBase
+public class RenderingMapperTestBase
 {
-    protected readonly IModelFactory<Rendering, RenderingViewModel> RenderingFactory;
+    protected readonly IViewModelMapper<Rendering, RenderingViewModel> RenderingMapper;
     protected const int MaxHeightConfig = 200;
     protected const int MaxWidthConfig = 100;
     protected static readonly IOptions<RenderingConfig> Configuration = Substitute.For<IOptions<RenderingConfig>>();
     
     
-    protected RenderingFactoryTestBase()
+    protected RenderingMapperTestBase()
     {
-        RenderingFactory = new RenderingFactory(Configuration);
+        RenderingMapper = new RenderingMapper(Configuration);
         DefineConfigReturnValues(MaxHeightConfig, MaxWidthConfig);
     }
 
-    protected RenderingFactoryTestBase(int maxHeight, int maxWidth) : this()
+    protected RenderingMapperTestBase(int maxHeight, int maxWidth) : this()
     {
         //TODO: Fix incorrect substitution
         DefineConfigReturnValues(maxHeight, maxWidth);

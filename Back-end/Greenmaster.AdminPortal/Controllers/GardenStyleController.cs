@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models.Design;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
@@ -19,13 +19,13 @@ namespace Greenmaster.AdminPortal.Controllers;
 
 public class GardenStyleController : Controller
 {
-    private IModelFactory<GardenStyle, GardenStyleViewModel> GardenStyleFactory { get; }
+    private IViewModelMapper<GardenStyle, GardenStyleViewModel> GardenStyleMapper { get; }
     private readonly IGardenStyleService _modelService;
     private readonly IMaterialTypeService _materialTypeService;
 
-    public GardenStyleController(IGardenStyleService service, IMaterialTypeService materialTypeService, IModelFactory<GardenStyle, GardenStyleViewModel> gardenStyleFactory)
+    public GardenStyleController(IGardenStyleService service, IMaterialTypeService materialTypeService, IViewModelMapper<GardenStyle, GardenStyleViewModel> gardenStyleMapper)
     {
-        GardenStyleFactory = gardenStyleFactory ?? throw new ArgumentNullException(nameof(gardenStyleFactory));
+        GardenStyleMapper = gardenStyleMapper ?? throw new ArgumentNullException(nameof(gardenStyleMapper));
         _modelService = service ?? throw new ArgumentNullException(nameof(service));
         _materialTypeService = materialTypeService ?? throw new ArgumentNullException(nameof(materialTypeService));
     }
@@ -52,7 +52,7 @@ public class GardenStyleController : Controller
             
             await GatherMaterials(viewModel);
 
-            var gardenStyle = await GardenStyleFactory.Create(viewModel);
+            var gardenStyle = await GardenStyleMapper.ToModel(viewModel);
             await _modelService.Add(gardenStyle);
             return RedirectToAction(nameof(Index));
         }
@@ -81,7 +81,7 @@ public class GardenStyleController : Controller
         try
         {
             var gardenStyle = (await _modelService.GetById(id)) ?? throw new ArgumentException("No gardenStyle found with id= " + id);
-            viewModel = GardenStyleFactory.ToViewModel(gardenStyle);
+            viewModel = GardenStyleMapper.ToViewModel(gardenStyle);
         }
         catch (Exception ex)
         {
@@ -105,7 +105,7 @@ public class GardenStyleController : Controller
         }
 
         await DefineViewData();
-        return View(GardenStyleFactory.ToViewModel(gardenStyle));
+        return View(GardenStyleMapper.ToViewModel(gardenStyle));
     }
     
     // Put: api/GardenStyle/PutGardenStyle
@@ -121,7 +121,7 @@ public class GardenStyleController : Controller
                 //TODO: fix issue with duplicate key value violates unique constraint "PK..."
                 await GatherMaterials(viewModel);
                 viewModel.Id = id;
-                var gardenStyle = await GardenStyleFactory.Create(viewModel);
+                var gardenStyle = await GardenStyleMapper.ToModel(viewModel);
                 await _modelService.Update(gardenStyle);
                 
                 return RedirectToAction(nameof(Index));

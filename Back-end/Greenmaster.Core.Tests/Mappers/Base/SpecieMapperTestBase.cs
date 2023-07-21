@@ -1,23 +1,22 @@
 ﻿using Greenmaster.Core.Examples;
-using Greenmaster.Core.Factories;
 using Greenmaster.Core.Helpers;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
-using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 
-namespace Greenmaster.Core.Tests.Factories.Base;
+namespace Greenmaster.Core.Tests.Mappers.Base;
 
-public class SpecieFactoryTestBase
+public class SpecieMapperTestBase
 {
-    protected readonly IModelFactory<Specie, SpecieViewModel> SpecieFactory;
+    protected readonly IViewModelMapper<Specie, SpecieViewModel> SpecieMapper;
     protected SpecieViewModel SpecieViewModelStrelitzia;
     protected Specie SpecieStrelitzia;
 
-    public SpecieFactoryTestBase()
+    public SpecieMapperTestBase()
     {
-        SpecieFactory = new SpecieFactory();
+        SpecieMapper = new SpecieMapper();
 
         SpecieViewModelStrelitzia = new SpecieViewModel()
         {

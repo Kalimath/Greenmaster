@@ -27,4 +27,9 @@
       <ProjectReference Include="..\Greenmaster.Core\Greenmaster.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Factories" />
+      <Folder Include="Mappers" />
+    </ItemGroup>
+
 </Project>

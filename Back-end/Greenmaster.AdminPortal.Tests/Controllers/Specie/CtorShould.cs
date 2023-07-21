@@ -1,5 +1,5 @@
 ﻿using Greenmaster.AdminPortal.Controllers;
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Type;
@@ -13,6 +13,6 @@ public class CtorShould
     {
         Assert.Throws<ArgumentNullException>(() => _ = new SpecieController(null!,
             Substitute.For<IObjectTypeService<PlantType>>(),
-            Substitute.For<IModelFactory<Core.Models.Specie, SpecieViewModel>>()));
+            Substitute.For<IViewModelMapper<Core.Models.Specie, SpecieViewModel>>()));
     }
 }

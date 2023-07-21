@@ -1,22 +1,20 @@
 ﻿using Greenmaster.Core.Examples;
-using Greenmaster.Core.Factories;
-using Greenmaster.Core.Models;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models.Design;
 using Greenmaster.Core.Models.ViewModels;
 using StaticData.Measuring;
-using StaticData.Taxonomy;
 
-namespace Greenmaster.Core.Tests.Factories.Base;
+namespace Greenmaster.Core.Tests.Mappers.Base;
 
-public class GardenStyleFactoryTestBase
+public class GardenStyleMapperTestBase
 {
     protected readonly GardenStyleViewModel GardenStyleViewModel;
     protected readonly GardenStyle GardenStyle;
-    protected readonly IModelFactory<GardenStyle, GardenStyleViewModel> GardenStyleFactory;
+    protected readonly IViewModelMapper<GardenStyle, GardenStyleViewModel> GardenStyleMapper;
 
-    public GardenStyleFactoryTestBase()
+    public GardenStyleMapperTestBase()
     {
-        GardenStyleFactory = new GardenStyleFactory();
+        GardenStyleMapper = new GardenStyleMapper();
         GardenStyleViewModel = new GardenStyleViewModel()
         {
             Id = 1,

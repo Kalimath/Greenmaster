@@ -6,11 +6,11 @@ using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 using static Greenmaster.Core.Helpers.StringValidator;
 
-namespace Greenmaster.Core.Factories;
+namespace Greenmaster.Core.Mappers;
 
-public class SpecieFactory : IModelFactory<Specie, SpecieViewModel>
+public class SpecieMapper : IViewModelMapper<Specie, SpecieViewModel>
 {
-    public async Task<Specie> Create(SpecieViewModel specieViewModel)
+    public async Task<Specie> ToModel(SpecieViewModel specieViewModel)
     {
         if (specieViewModel == null)
             throw new ArgumentNullException(nameof(specieViewModel));

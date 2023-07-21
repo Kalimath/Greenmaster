@@ -1,11 +1,11 @@
-﻿using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.ViewModels;
+﻿using Greenmaster.Core.Models.ViewModels;
+using StaticData.Taxonomy;
 
-namespace Greenmaster.Core.Factories;
+namespace Greenmaster.Core.Mappers;
 
-public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewModel>
+public class GardenStyleMapper : IViewModelMapper<GardenStyle, GardenStyleViewModel>
 {
-    public Task<GardenStyle> Create(GardenStyleViewModel gardenStyleViewModel)
+    public Task<GardenStyle> ToModel(GardenStyleViewModel gardenStyleViewModel)
     {
         if (gardenStyleViewModel == null)
         {
@@ -26,7 +26,7 @@ public class GardenStyleFactory : IModelFactory<GardenStyle, GardenStyleViewMode
             DivideIntoRooms = gardenStyleViewModel.DivideIntoRooms,
             PathSize = gardenStyleViewModel.PathSize,
             Materials = gardenStyleViewModel.Materials,
-            SuitablePlantGenera = gardenStyleViewModel.SuitablePlantGenera
+            SuitablePlantGenera = gardenStyleViewModel.SuitablePlantGenera ?? Array.Empty<PlantGenus>()
         });
     }
     

@@ -4,18 +4,18 @@ using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
 
-namespace Greenmaster.Core.Factories;
+namespace Greenmaster.Core.Mappers;
 
-public  class PlaceableFactory : IModelFactory<Placeable, PlaceableViewModel>
+public  class PlaceableMapper : IViewModelMapper<Placeable, PlaceableViewModel>
 {
-    public PlaceableFactory(IModelFactory<Rendering, RenderingViewModel> renderingFactory)
+    public PlaceableMapper(IViewModelMapper<Rendering, RenderingViewModel> renderingMapper)
     {
-        RenderingFactory = renderingFactory;
+        RenderingMapper = renderingMapper;
     }
 
-    private IModelFactory<Rendering,RenderingViewModel> RenderingFactory { get; set; }
+    private IViewModelMapper<Rendering,RenderingViewModel> RenderingMapper { get; set; }
 
-    public async Task<Placeable> Create(PlaceableViewModel viewModel)
+    public async Task<Placeable> ToModel(PlaceableViewModel viewModel)
     {
         ValidateViewModel(viewModel);
 
@@ -23,7 +23,7 @@ public  class PlaceableFactory : IModelFactory<Placeable, PlaceableViewModel>
         Rendering renderingFromViewModel = null!;
         if (viewModel.Rendering != null)
         {
-            renderingFromViewModel = await RenderingFactory.Create(viewModel.Rendering);
+            renderingFromViewModel = await RenderingMapper.ToModel(viewModel.Rendering);
         }
 
         if (viewModel.Specie != null)
@@ -68,7 +68,7 @@ public  class PlaceableFactory : IModelFactory<Placeable, PlaceableViewModel>
     public PlaceableViewModel ToViewModel(Placeable placeable)
     {
         ValidatePlaceable(placeable);
-        var renderingViewModel = RenderingFactory.ToViewModel(placeable.Rendering);
+        var renderingViewModel = RenderingMapper.ToViewModel(placeable.Rendering);
 
         return new PlaceableViewModel
         {

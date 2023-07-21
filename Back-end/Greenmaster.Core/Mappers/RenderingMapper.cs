@@ -3,24 +3,23 @@ using Greenmaster.Core.Configuration;
 using Greenmaster.Core.Helpers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.ViewModels;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 // ReSharper disable MethodNameNotMeaningful
 
-namespace Greenmaster.Core.Factories;
+namespace Greenmaster.Core.Mappers;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-public class RenderingFactory : IModelFactory<Rendering, RenderingViewModel>
+public class RenderingMapper : IViewModelMapper<Rendering, RenderingViewModel>
 {
     private readonly IOptions<RenderingConfig> _configuration;
     
-    public RenderingFactory(IOptions<RenderingConfig> configuration)
+    public RenderingMapper(IOptions<RenderingConfig> configuration)
     {
         _configuration = configuration;
     }
 
-    public async Task<Rendering> Create(RenderingViewModel renderingViewModel)
+    public async Task<Rendering> ToModel(RenderingViewModel renderingViewModel)
     {
         var rendering = new Rendering(renderingViewModel.Type, renderingViewModel.Season);
         

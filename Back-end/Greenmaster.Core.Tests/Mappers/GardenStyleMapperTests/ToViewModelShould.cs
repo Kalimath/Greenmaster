@@ -1,17 +1,15 @@
-﻿using Greenmaster.Core.Factories;
-using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
-using Greenmaster.Core.Tests.Factories.Base;
+﻿using Greenmaster.Core.Models.Extensions;
+using Greenmaster.Core.Tests.Mappers.Base;
 using StaticData.Taxonomy;
 
-namespace Greenmaster.Core.Tests.Factories.GardenStyleFactoryTests;
+namespace Greenmaster.Core.Tests.Mappers.GardenStyleMapperTests;
 
-public class ToViewModelShould : GardenStyleFactoryTestBase
+public class ToViewModelShould : GardenStyleMapperTestBase
 {
     [Fact]
     public void ThrowArgumentNullException_WhenGardenStyleIsNull()
     {
-        Assert.Throws<ArgumentNullException>(() => GardenStyleFactory.ToViewModel(null!));
+        Assert.Throws<ArgumentNullException>(() => GardenStyleMapper.ToViewModel(null!));
     }
     
     
@@ -24,7 +22,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
         var gardenStyle = GardenStyle.Clone();
         gardenStyle.Name = name;
 
-        Assert.Throws<ArgumentException>(() => GardenStyleFactory.ToViewModel(gardenStyle));
+        Assert.Throws<ArgumentException>(() => GardenStyleMapper.ToViewModel(gardenStyle));
     }
 
     [Theory]
@@ -36,7 +34,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
         var gardenStyle = GardenStyle.Clone();
         gardenStyle.Description = description;
 
-        Assert.Throws<ArgumentException>(() => GardenStyleFactory.ToViewModel(gardenStyle));
+        Assert.Throws<ArgumentException>(() => GardenStyleMapper.ToViewModel(gardenStyle));
     }
 
     [Theory]
@@ -48,13 +46,13 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
         var gardenStyle = GardenStyle.Clone();
         gardenStyle.Id = id;
         
-        Assert.Throws<ArgumentOutOfRangeException>(() => GardenStyleFactory.ToViewModel(gardenStyle));
+        Assert.Throws<ArgumentOutOfRangeException>(() => GardenStyleMapper.ToViewModel(gardenStyle));
     }
 
     [Fact]
     public void SetId_WhenValid()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
 
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.Id, viewModel.Id);
@@ -63,7 +61,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     [Fact]
     public void SetPathSize_WhenValid()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
 
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.PathSize, viewModel.PathSize);
@@ -72,7 +70,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     [Fact]
     public void SetMaterials_WhenValid()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
 
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.Materials, viewModel.Materials);
@@ -81,7 +79,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     [Fact]
     public void SetSuitablePlantGenera_WhenValid()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
 
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.SuitablePlantGenera, viewModel.SuitablePlantGenera);
@@ -93,7 +91,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
         var gardenStyle = GardenStyle.Clone();
         gardenStyle.SuitablePlantGenera = Array.Empty<PlantGenus>();
         
-        var viewModel = GardenStyleFactory.ToViewModel(gardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(gardenStyle);
         
         Assert.NotNull(viewModel);
         Assert.Empty(viewModel.SuitablePlantGenera!);
@@ -102,7 +100,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     [Fact]
     public void SetName_WhenValid()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
         
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.Name, viewModel.Name);
@@ -111,7 +109,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     [Fact]
     public void SetDescription_WhenValid()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
 
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.Description, viewModel.Description);
@@ -120,7 +118,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     [Fact]
     public void SetColors_WhenPresent()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
         
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.Colors, viewModel.Colors);
@@ -129,7 +127,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     [Fact]
     public void SetConcepts_WhenPresent()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
         
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.Concepts, viewModel.Concepts);
@@ -138,7 +136,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
     [Fact]
     public void SetShapes_WhenPresent()
     {
-        var viewModel = GardenStyleFactory.ToViewModel(GardenStyle);
+        var viewModel = GardenStyleMapper.ToViewModel(GardenStyle);
 
         Assert.NotNull(viewModel);
         Assert.Equal(GardenStyle.Shapes, viewModel.Shapes);
@@ -152,7 +150,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
         var gardenStyleWithAllSeasonInterest = GardenStyle.Clone(); 
         gardenStyleWithAllSeasonInterest.AllSeasonInterest = allSeasonInterest;
         
-        var viewModel = GardenStyleFactory.ToViewModel(gardenStyleWithAllSeasonInterest);
+        var viewModel = GardenStyleMapper.ToViewModel(gardenStyleWithAllSeasonInterest);
         
         Assert.NotNull(viewModel);
         Assert.Equal(allSeasonInterest, viewModel.AllSeasonInterest);
@@ -166,7 +164,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
         var gardenStyleForLargeGardens = GardenStyle.Clone();
         gardenStyleForLargeGardens.RequiresLargeGarden = requiresLargeGarden;
         
-        var viewModel = GardenStyleFactory.ToViewModel(gardenStyleForLargeGardens);
+        var viewModel = GardenStyleMapper.ToViewModel(gardenStyleForLargeGardens);
 
         Assert.NotNull(viewModel);
         Assert.Equal(requiresLargeGarden, viewModel.RequiresLargeGarden);
@@ -180,7 +178,7 @@ public class ToViewModelShould : GardenStyleFactoryTestBase
         var gardenStyleDividedIntoRooms = GardenStyle.Clone();
         gardenStyleDividedIntoRooms.DivideIntoRooms = divideIntoRooms;
         
-        var viewModel = GardenStyleFactory.ToViewModel(gardenStyleDividedIntoRooms);
+        var viewModel = GardenStyleMapper.ToViewModel(gardenStyleDividedIntoRooms);
 
         Assert.NotNull(viewModel);
         Assert.Equal(divideIntoRooms, viewModel.DivideIntoRooms);

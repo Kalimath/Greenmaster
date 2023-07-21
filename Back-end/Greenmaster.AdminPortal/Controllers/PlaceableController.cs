@@ -1,4 +1,4 @@
-﻿using Greenmaster.Core.Factories;
+﻿using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.Placeables;
 using Greenmaster.Core.Models.ViewModels;
@@ -15,21 +15,21 @@ public class PlaceableController : Controller
 {
     private readonly IPlantService _plantService;
     private readonly ISpecieService _specieService;
-    private readonly IModelFactory<Placeable, PlaceableViewModel> _placeableFactory;
+    private readonly IViewModelMapper<Placeable, PlaceableViewModel> _placeableMapper;
 
     public PlaceableController(IPlantService plantService, ISpecieService specieService,
-        IModelFactory<Placeable, PlaceableViewModel> placeableFactory)
+        IViewModelMapper<Placeable, PlaceableViewModel> placeableMapper)
     {
         _plantService = plantService ?? throw new ArgumentNullException(nameof(plantService));
         _specieService = specieService ?? throw new ArgumentNullException(nameof(specieService));
-        _placeableFactory = placeableFactory ?? throw new ArgumentNullException(nameof(placeableFactory));
+        _placeableMapper = placeableMapper ?? throw new ArgumentNullException(nameof(placeableMapper));
     }
 
     public async Task<IActionResult> Index()
     {
         var plants = (await _plantService.GetAll());
         if(plants == null) plants = new List<Plant>();
-        var viewModels = plants.Select(plant => _placeableFactory.ToViewModel(plant)).ToList();
+        var viewModels = plants.Select(plant => _placeableMapper.ToViewModel(plant)).ToList();
         return View(viewModels);
     }
     
