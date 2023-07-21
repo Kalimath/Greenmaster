@@ -17,11 +17,6 @@ public class AtLeastOneRequiredAttribute : ValidationAttribute
 
         var values = properties.Select(p => p.GetValue(validationContext.ObjectInstance, null));
 
-        if (values.All(v => v == null || (v is string && string.IsNullOrWhiteSpace(v as string))))
-        {
-            return new ValidationResult(ErrorMessage);
-        }
-
-        return ValidationResult.Success;
+        return (values.All(v => v == null || (v is string && string.IsNullOrWhiteSpace(v as string))) ? new ValidationResult(ErrorMessage) : ValidationResult.Success)!;
     }
 }

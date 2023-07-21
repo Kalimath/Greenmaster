@@ -33,6 +33,9 @@ public static class ColorWheel
         Color.Purple
     };
 
+    /// <summary>
+    /// Returns all primary, secondary, tertiary colors.
+    /// </summary>
     public static Color[] Colors()
     {
         var wheelColors = new List<Color>();

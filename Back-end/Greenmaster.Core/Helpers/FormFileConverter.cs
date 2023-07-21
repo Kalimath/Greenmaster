@@ -19,6 +19,18 @@ public static class FormFileConverter
             return Convert.ToBase64String(bytes);
         }
     }
+    
+    /// <summary>
+    /// Converts given IFormFile to a byte array.
+    /// </summary>
+    /// <param name="file">The Image object which will be converted.</param>
+    /// <returns>The converted byte array.</returns>
+    public static async Task<byte[]> ToByteArray(IFormFile file)
+    {
+        using var stream = new MemoryStream();
+        await file.CopyToAsync(stream);
+        return stream.ToArray();
+    }
 
     /// <summary>
     /// Converts given base64-string to an IFormFile object.

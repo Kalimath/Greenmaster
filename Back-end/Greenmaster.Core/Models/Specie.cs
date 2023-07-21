@@ -1,9 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
+using StaticData.Time.Durations;
 
 #pragma warning disable CS8618
 
@@ -15,7 +20,7 @@ public class Specie : IObjectIdentity
     public int Id { get; set; }
 
     #region Naming
-    [Required] public string Genus { get; set; }
+    [Required] public PlantGenus Genus { get; set; }
     [Required] public string Species { get; set; }
     public string? Cultivar { get; set; }
     public string ScientificName => $"{Genus} {Species}" + (string.IsNullOrEmpty(Cultivar) ? "" : $" '{Cultivar}'");
@@ -39,13 +44,17 @@ public class Specie : IObjectIdentity
     public double MaxHeight { get; set; }
     public double MaxWidth { get; set; }
     
-    //TODO: Add symbiosis for specie
-   
+    //Symbiosis for specie
+    [AllowNull]
+    public PlantGenus[] MutualisticGenera { get; set; }
+
     #region FlowerInfo
-    public string[] BloomPeriod { get; set; }
-    public string[]? FlowerColors { get; set; }
+    public Month[] BloomPeriod { get; set; }
+    public Color[] FlowerColors { get; set; }
     public bool IsFragrant { get; set; }
-    public bool AttractsPollinators { get; set; }
+    
+    //Affects allergies and attraction of butterflies and bees
+    public bool PollinatingFlowers { get; set; }
     #endregion
     
     #region Media

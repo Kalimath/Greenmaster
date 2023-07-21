@@ -1,6 +1,7 @@
-﻿using Greenmaster.Core.Factories;
+﻿using System.Drawing;
+using Greenmaster.Core.Extensions;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models.Design;
-using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.GardenStyle;
 using Greenmaster.Core.Services.MaterialType;
@@ -10,18 +11,21 @@ using Microsoft.EntityFrameworkCore;
 using StaticData.Coloring;
 using StaticData.Design;
 using StaticData.Gradation;
-using StaticData.Measuring;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
+using Size = StaticData.Measuring.Size;
 
 namespace Greenmaster.AdminPortal.Controllers;
 
 public class GardenStyleController : Controller
 {
+    private IViewModelMapper<GardenStyle, GardenStyleViewModel> GardenStyleMapper { get; }
     private readonly IGardenStyleService _modelService;
     private readonly IMaterialTypeService _materialTypeService;
 
-    public GardenStyleController(IGardenStyleService service, IMaterialTypeService materialTypeService)
+    public GardenStyleController(IGardenStyleService service, IMaterialTypeService materialTypeService, IViewModelMapper<GardenStyle, GardenStyleViewModel> gardenStyleMapper)
     {
+        GardenStyleMapper = gardenStyleMapper ?? throw new ArgumentNullException(nameof(gardenStyleMapper));
         _modelService = service ?? throw new ArgumentNullException(nameof(service));
         _materialTypeService = materialTypeService ?? throw new ArgumentNullException(nameof(materialTypeService));
     }
@@ -45,7 +49,10 @@ public class GardenStyleController : Controller
         try
         {
             if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
-            var gardenStyle = GardenStyleFactory.Create(viewModel);
+            
+            await GatherMaterials(viewModel);
+
+            var gardenStyle = await GardenStyleMapper.ToModel(viewModel);
             await _modelService.Add(gardenStyle);
             return RedirectToAction(nameof(Index));
         }
@@ -57,13 +64,24 @@ public class GardenStyleController : Controller
         
     }
 
+    private async Task GatherMaterials(GardenStyleViewModel viewModel)
+    {
+        var materials = new List<MaterialType>();
+        foreach (var id in viewModel.MaterialTypeIds)
+        {
+            materials.Add(await _materialTypeService.GetById(id));
+        }
+
+        viewModel.Materials = materials.ToArray();
+    }
+
     public async Task<IActionResult> Details(int id)
     {
         GardenStyleViewModel viewModel;
         try
         {
             var gardenStyle = (await _modelService.GetById(id)) ?? throw new ArgumentException("No gardenStyle found with id= " + id);
-            viewModel = GardenStyleFactory.ToViewModel(gardenStyle);
+            viewModel = GardenStyleMapper.ToViewModel(gardenStyle);
         }
         catch (Exception ex)
         {
@@ -87,21 +105,25 @@ public class GardenStyleController : Controller
         }
 
         await DefineViewData();
-        return View(GardenStyleFactory.ToViewModel(gardenStyle));
+        return View(GardenStyleMapper.ToViewModel(gardenStyle));
     }
     
     // Put: api/GardenStyle/PutGardenStyle
     // To protect from overposting attacks, please enable the specific properties you want to bind to.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, GardenStyleViewModel viewModel)
+    public async Task<IActionResult> Edit(int id, [Bind(include:"Name,Description,Concepts,Shapes,Colors,RequiresLargeGarden,AllSeasonInterest,DivideIntoRooms,PathSize,MaterialTypeIds,SuitablePlantGenera")] GardenStyleViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
             try
             {
-                var gardenStyle = GardenStyleFactory.Create(viewModel);
+                //TODO: fix issue with duplicate key value violates unique constraint "PK..."
+                await GatherMaterials(viewModel);
+                viewModel.Id = id;
+                var gardenStyle = await GardenStyleMapper.ToModel(viewModel);
                 await _modelService.Update(gardenStyle);
+                
                 return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateConcurrencyException ex)
@@ -153,11 +175,12 @@ public class GardenStyleController : Controller
 
     private async Task DefineViewData()
     {
-        ViewData["Colors"] = new SelectList(ColorPallet.Colors().GetNames());
-        ViewData["Amounts"] = new SelectList(Enum.GetNames(typeof(Amount)));
-        ViewData["Concepts"] = new SelectList(Enum.GetNames(typeof(GardenStyleConcept)));
-        ViewData["Shapes"] = new SelectList(Enum.GetNames(typeof(Shape)));
-        ViewData["Sizes"] = new SelectList(Enum.GetNames(typeof(Size)));
-        ViewData["MaterialTypes"] = new SelectList(await _materialTypeService.GetAll());
+        ViewData["Colors"] = new SelectList(ColorPallet.BaseColors().GetNames(),$"---Select {nameof(Color)}s---");
+        ViewData["Amounts"] = new SelectList(Enum.GetNames(typeof(Amount)),$"---Select {nameof(Amount)}---");
+        ViewData["Concepts"] = new SelectList(Enum.GetNames(typeof(GardenStyleConcept)), $"---Select concepts---");
+        ViewData["Shapes"] = new SelectList(Enum.GetNames(typeof(Shape)),$"---Select {nameof(Shape)}s---");
+        ViewData["Sizes"] = new SelectList(Enum.GetNames(typeof(Size)), $"---Select {nameof(Size)}---");
+        ViewData["PlantGenera"] = new SelectList(Enum.GetNames(typeof(PlantGenus)), $"---Select Genera---");
+        ViewData["MaterialTypes"] = new SelectList(await _materialTypeService.GetAll(), nameof(MaterialType.Id), nameof(MaterialType.Name),$"---Select {nameof(MaterialType)}s---");
     }
 }

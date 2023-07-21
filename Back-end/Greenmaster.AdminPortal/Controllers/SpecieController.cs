@@ -1,10 +1,11 @@
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Extensions;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Specie;
 using Greenmaster.Core.Services.Type;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StaticData.Coloring;
@@ -12,6 +13,7 @@ using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 
 namespace Greenmaster.AdminPortal.Controllers
@@ -20,11 +22,13 @@ namespace Greenmaster.AdminPortal.Controllers
     {
         private readonly ISpecieService _modelService;
         private readonly IObjectTypeService<PlantType> _plantTypeService;
+        private readonly IViewModelMapper<Specie, SpecieViewModel> _specieMapper;
 
-        public SpecieController(ISpecieService specieService, IObjectTypeService<PlantType> plantTypeService)
+        public SpecieController(ISpecieService specieService, IObjectTypeService<PlantType> plantTypeService, IViewModelMapper<Specie, SpecieViewModel> specieMapper)
         {
             _modelService = specieService ?? throw new ArgumentNullException(nameof(specieService));
             _plantTypeService = plantTypeService;
+            _specieMapper = specieMapper;
         }
 
         // GET: Specie
@@ -37,7 +41,7 @@ namespace Greenmaster.AdminPortal.Controllers
         {
             var species = (await _modelService.GetAll());
             var specieViewModels = new List<SpecieViewModel>();
-            foreach (var specie in species) specieViewModels.Add(SpecieFactory.ToViewModel(specie));
+            foreach (var specie in species) specieViewModels.Add(_specieMapper.ToViewModel(specie));
             return Json(new { data = specieViewModels});
         }
 
@@ -60,7 +64,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 return NotFound();
             }
 
-            return View(SpecieFactory.ToViewModel(specie));
+            return View(_specieMapper.ToViewModel(specie));
         }
 
         // GET: Specie/Create
@@ -79,15 +83,12 @@ namespace Greenmaster.AdminPortal.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var requestedPlantType = (await _plantTypeService.GetById(specieViewModel.PlantTypeId)) ?? throw new ArgumentException($"Could not find a {nameof(PlantType)} with id={specieViewModel.PlantTypeId}");
-                    specieViewModel.PlantType = requestedPlantType;
-                    var specie = await SpecieFactory.Create(specieViewModel);
-                    await _modelService.Add(specie);
-                    return RedirectToAction(nameof(Index));
-                }
-                throw new ArgumentException(nameof(ModelState));
+                if (!ModelState.IsValid) throw new ArgumentException(nameof(ModelState));
+                var requestedPlantType = (await _plantTypeService.GetById(specieViewModel.PlantTypeId)) ?? throw new ArgumentException($"Could not find a {nameof(PlantType)} with id={specieViewModel.PlantTypeId}");
+                specieViewModel.PlantType = requestedPlantType;
+                var specie = await _specieMapper.ToModel(specieViewModel);
+                await _modelService.Add(specie);
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
@@ -100,7 +101,8 @@ namespace Greenmaster.AdminPortal.Controllers
         private async Task DefineViewData()
         {
             ViewData["LifeCycle"] = new SelectList(Enum.GetNames(typeof(Lifecycle)));
-            ViewData["PlantType"] = new SelectList(await _plantTypeService.GetAll(), dataValueField: nameof(PlantType.Id), dataTextField: nameof(PlantType.Name), "---Select a plant-type---");
+            ViewData["PlantGenera"] = new SelectList(Enum.GetNames(typeof(PlantGenus)));
+            ViewData["PlantType"] = new SelectList(await _plantTypeService.GetAll(), dataValueField: nameof(PlantType.Id), dataTextField: nameof(PlantType.Name));
             ViewData["Month"] = new SelectList(Enum.GetNames(typeof(Month)));
             ViewData["Amount"] = new SelectList(Enum.GetNames(typeof(Amount)));
             ViewData["ClimateType"] = new SelectList(Enum.GetNames(typeof(ClimateType)));
@@ -122,9 +124,9 @@ namespace Greenmaster.AdminPortal.Controllers
             }
 
             await DefineViewData();
-            return View(SpecieFactory.ToViewModel(specie));
+            return View(_specieMapper.ToViewModel(specie));
         }
-
+        
         // POST: Specie/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -132,11 +134,12 @@ namespace Greenmaster.AdminPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, SpecieViewModel specieViewModel)
         {
-            if (ModelState.IsValid)
+            //TODO BUG: fix edit method
+            if (ModelState.IsValid || ModelState["Image"]!.ValidationState == ModelValidationState.Invalid)
             {
                 try
                 {
-                    var specie = await SpecieFactory.Create(specieViewModel);
+                    var specie = await _specieMapper.ToModel(specieViewModel);
                     await _modelService.Update(specie);
                 }
                 catch (DbUpdateConcurrencyException)

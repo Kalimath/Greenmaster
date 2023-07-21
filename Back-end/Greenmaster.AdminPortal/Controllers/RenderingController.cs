@@ -1,4 +1,4 @@
-using Greenmaster.Core.Factories;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
 using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Rendering;
@@ -12,24 +12,26 @@ namespace Greenmaster.AdminPortal.Controllers
     public class RenderingController : Controller
     {
         private readonly IRenderingService _modelService;
+        private readonly IViewModelMapper<Rendering, RenderingViewModel> _renderingMapper;
 
-        public RenderingController(IRenderingService renderingService)
+        public RenderingController(IRenderingService renderingService,
+            IViewModelMapper<Rendering, RenderingViewModel> renderingMapper)
         {
             _modelService = renderingService ?? throw new ArgumentNullException(nameof(renderingService));
+            _renderingMapper = renderingMapper;
         }
-        
+
         // GET: Specie
         public Task<IActionResult> Index()
         {
             return Task.FromResult<IActionResult>(View());
         }
-        
+
         public async Task<JsonResult> GetRenderings()
         {
             var renderings = (await _modelService.GetAll());
-            var viewModels = new List<RenderingViewModel>();
-            foreach (var rendering in renderings) viewModels.Add(RenderingFactory.ToViewModel(rendering));
-            return Json(new { data = viewModels});
+            var viewModels = renderings.Select(rendering => _renderingMapper.ToViewModel(rendering)).ToList();
+            return Json(new { data = viewModels });
         }
 
         // GET: Rendering/Details/5
@@ -51,7 +53,7 @@ namespace Greenmaster.AdminPortal.Controllers
                 return NotFound();
             }
 
-            return View(RenderingFactory.ToViewModel(rendering));
+            return View(_renderingMapper.ToViewModel(rendering));
         }
 
         // GET: Rendering/Create
@@ -69,12 +71,13 @@ namespace Greenmaster.AdminPortal.Controllers
             try
             {
                 if (!ModelState.IsValid) throw new ArgumentException($"Invalid {nameof(ModelState)}");
-                var rendering = await RenderingFactory.Create(renderingViewModel);
+                var rendering = await _renderingMapper.ToModel(renderingViewModel);
                 await _modelService.Add(rendering);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 DefineViewData();
                 return View(renderingViewModel);
             }
@@ -106,26 +109,29 @@ namespace Greenmaster.AdminPortal.Controllers
         // GET: Rendering/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(new RenderingViewModel(){Id= id});
         }
 
         // POST: Rendering/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteConfirmed(int id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (!await _modelService.ExistsWithId(id))
+                    return NotFound();
 
+                await _modelService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch( Exception e )
             {
-                return View();
+                Console.WriteLine(e);
+                return new BadRequestResult();
             }
         }
-        
+
         private void DefineViewData()
         {
             ViewData["Season"] = new SelectList(Enum.GetNames(typeof(Season)));

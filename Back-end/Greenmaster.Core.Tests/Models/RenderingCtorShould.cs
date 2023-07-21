@@ -15,7 +15,7 @@ public class RenderingCtorShould
     [Fact]
     public void ThrowArgumentException_WhenPassedImageEmpty()
     {
-        Assert.Throws<ArgumentException>(() => _ = new Rendering(1, String.Empty, RenderingObjectType.Plant));
+        Assert.Throws<ArgumentException>(() => _ = new Rendering(1, string.Empty, RenderingObjectType.Plant));
     }
     [Fact]
     public void ThrowArgumentException_WhenPassedImageWhitespace()

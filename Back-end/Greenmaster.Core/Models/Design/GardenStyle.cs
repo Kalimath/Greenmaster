@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using StaticData.Measuring;
+using StaticData.Taxonomy;
 
 namespace Greenmaster.Core.Models.Design;
 
@@ -16,10 +17,17 @@ public class GardenStyle
     public string[] Colors { get; set; }
     [DisplayName(displayName: "Large garden only")]
     public bool RequiresLargeGarden { get; set; }
+    public bool AllSeasonInterest { get; set; }
+    public bool DivideIntoRooms { get; set; }
     
     public Size PathSize { get; set; }
     
-    public virtual ICollection<MaterialType> Materials { get; set; } = new HashSet<MaterialType>();
-
-    //TODO: add media 
+    public virtual ICollection<MaterialType>? Materials { get; set; } = new HashSet<MaterialType>();
+    public PlantGenus[] SuitablePlantGenera { get; set; } = Array.Empty<PlantGenus>();
+    
+    //TODO: add climateType
+    //TODO: add budgetType,
+    //TODO: add Purpose
+    
+    //public string ImageBase64 { get; set; } TODO: add visualisation image
 }

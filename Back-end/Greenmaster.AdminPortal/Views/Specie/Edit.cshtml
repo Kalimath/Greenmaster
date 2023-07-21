@@ -11,7 +11,7 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-controller="Specie" asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Genus" class="control-label"></label>
-                <input asp-for="Genus" class="form-control"/>
+                <select asp-for="Genus" class="form-control" asp-items="ViewBag.PlantGenera"></select>
                 <span asp-validation-for="Genus" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -82,6 +82,11 @@
                 <input type="checkbox" asp-for="IsPoisonous" class="form-check-inline"/>
                 <span asp-validation-for="IsPoisonous" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="MutualisticGenera" class="control-label"></label>
+                <select asp-for="MutualisticGenera" class="form-control" asp-items="ViewBag.PlantGenera" multiple></select>
+                <span asp-validation-for="MutualisticGenera" class="text-danger"></span>
+            </div>
             <h5>Blooming</h5>
             <div class="form-group">
                 <label asp-for="BloomPeriod" class="control-label"></label>
@@ -99,19 +104,19 @@
                 <span asp-validation-for="IsFragrant" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AttractsPollinators" class="control-label"></label>
-                <input type="checkbox" asp-for="AttractsPollinators" class="form-check-inline"/>
-                <span asp-validation-for="AttractsPollinators" class="text-danger"></span>
+                <label asp-for="PollinatingFlowers" class="control-label"></label>
+                <input type="checkbox" asp-for="PollinatingFlowers" class="form-check-inline"/>
+                <span asp-validation-for="PollinatingFlowers" class="text-danger"></span>
             </div>
             <h5>Dimensions</h5>
             <div class="form-group">
                 <label asp-for="MaxHeight" class="control-label"></label>
-                <input asp-for="MaxHeight" class="form-control" type="double"/>
+                <input asp-for="MaxHeight" class="form-control" type="number" />
                 <span asp-validation-for="MaxHeight" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MaxWidth" class="control-label"></label>
-                <input asp-for="MaxWidth" class="form-control" type="double"/>
+                <input asp-for="MaxWidth" class="form-control" type="number"/>
                 <span asp-validation-for="MaxWidth" class="text-danger"></span>
             </div>
             <div class="form-group">

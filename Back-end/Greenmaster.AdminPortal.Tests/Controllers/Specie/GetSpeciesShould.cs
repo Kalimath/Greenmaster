@@ -1,6 +1,8 @@
 ﻿using Greenmaster.AdminPortal.Controllers;
 using Greenmaster.Core.Examples;
+using Greenmaster.Core.Mappers;
 using Greenmaster.Core.Models;
+using Greenmaster.Core.Models.ViewModels;
 using Greenmaster.Core.Services.Specie;
 using Greenmaster.Core.Services.Type;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +16,12 @@ public class GetSpeciesShould
     {
         var specieService = Substitute.For<ISpecieService>();
         var plantTypeService = Substitute.For<IObjectTypeService<PlantType>>();
-        var specieController = new SpecieController(specieService, plantTypeService);
+        var specieFactory = Substitute.For<IViewModelMapper<Core.Models.Specie, SpecieViewModel>>();
+        var specieController = new SpecieController(specieService, plantTypeService, specieFactory);
         specieService.GetAll().ReturnsForAnyArgs(SpecieExamples.GetAll());
 
         var result = await specieController.GetSpecies();
+        
         Assert.NotNull(result);
         Assert.IsType<JsonResult>(result);
     }

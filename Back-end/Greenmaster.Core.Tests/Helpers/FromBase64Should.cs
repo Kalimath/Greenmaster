@@ -14,7 +14,7 @@ public class FromBase64Should
     public void ThrowArgumentException_WhenStringEmpty()
     {
         Assert.Throws<ArgumentException>(
-            () => { _ = FromBase64(String.Empty); });
+            () => { _ = FromBase64(string.Empty); });
     }
     [Fact]
     public void ThrowArgumentException_WhenStringNotValidBase64String()

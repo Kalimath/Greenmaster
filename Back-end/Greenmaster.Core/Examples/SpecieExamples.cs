@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using Greenmaster.Core.Models;
-using Greenmaster.Core.Models.Extensions;
 using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 
 namespace Greenmaster.Core.Examples;
@@ -16,7 +16,7 @@ public static class SpecieExamples
     public static readonly Specie Strelitzia = new()
     {
         Id = 1,
-        Genus = "Strelitzia",
+        Genus = PlantGenus.Strelitzia,
         Species = "Reginae",
         Cultivar = "",
         CommonNames = "Bird of paradise,Paradijsvogelbloem",
@@ -32,23 +32,28 @@ public static class SpecieExamples
         MaxWidth = 0.75,
         BloomPeriod = new[]
         {
-            Month.May.ToString(), Month.June.ToString(), Month.July.ToString(), Month.August.ToString(),
-            Month.September.ToString(), Month.October.ToString()
+            Month.May, 
+            Month.June, 
+            Month.July, 
+            Month.August,
+            Month.September, 
+            Month.October
         },
-        AttractsPollinators = true,
+        PollinatingFlowers = true,
         IsFragrant = false,
         IsPoisonous = true,
-        FlowerColors = new[] { Color.Blue.GetName(), Color.Orange.GetName() },
+        MutualisticGenera = Array.Empty<PlantGenus>(),
+        FlowerColors = new[] { Color.Blue, Color.Orange },
         Image = Base64Examples.ImageSpecie
     };
 
     public static readonly Specie Papaver = new()
     {
         Id = 2,
-        Genus = "Papaver",
+        Genus = PlantGenus.Papaver,
         Species = "Orientale",
         Cultivar = "Catherina",
-        CommonNames = "Eastern poppy,Oosterse papaver",
+        CommonNames = "Eastern poppy, Oosterse papaver",
         Description = "Beautiful straight plant",
         PlantTypeId = ObjectTypeExamples.SmallShrub.Id,
         Shape = Shape.Columnar,
@@ -59,11 +64,45 @@ public static class SpecieExamples
         MinimalTemperature = -2,
         MaxHeight = 1,
         MaxWidth = 0.25,
-        BloomPeriod = new[] { Month.May.ToString(), Month.June.ToString() },
-        AttractsPollinators = true,
+        BloomPeriod = new[] { Month.May, Month.June },
+        PollinatingFlowers = true,
         IsFragrant = false,
         IsPoisonous = false,
-        FlowerColors = new[] { Color.Pink.GetName() },
+        MutualisticGenera =  new[] { PlantGenus.Aster},
+        FlowerColors = new[] { Color.Pink },
+        Image = Base64Examples.ImageSpecie
+    };
+    
+    public static readonly Specie Aster = new()
+    {
+        Id = 3,
+        Genus = PlantGenus.Aster,
+        Species = "Maritimus",
+        CommonNames = "Gele zeeaster",
+        Description = "Een licht vorstgevoelige verhoutende vaste plant die bij ons eenjarige gekweekt wordt. " +
+                      "Kan dus overgehouden worden en het jaar nadien terug in de border uitgeplant worden.",
+        PlantTypeId = ObjectTypeExamples.SmallShrub.Id,
+        Shape = Shape.NotSet,
+        Cycle = Lifecycle.Annual,
+        Sunlight = Amount.Many,
+        Water = Amount.Average,
+        Climate = ClimateType.Mediterranean,
+        MinimalTemperature = -2,
+        MaxHeight = 0.2,
+        MaxWidth = 0.2,
+        BloomPeriod = new []
+        {
+            Month.May, 
+            Month.June, 
+            Month.July, 
+            Month.August,
+            Month.September
+        },
+        PollinatingFlowers = true,
+        IsFragrant = false,
+        IsPoisonous = false,
+        MutualisticGenera =  new[] { PlantGenus.Papaver},
+        FlowerColors = new[] { Color.Yellow },
         Image = Base64Examples.ImageSpecie
     };
     
@@ -71,7 +110,9 @@ public static class SpecieExamples
     {
         return new List<Specie>()
         {
-            Strelitzia,Papaver
+            Strelitzia,
+            Papaver, 
+            Aster
         };
     }
 }

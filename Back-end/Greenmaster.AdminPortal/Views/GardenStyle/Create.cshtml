@@ -46,14 +46,30 @@
                 <span asp-validation-for="RequiresLargeGarden" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="AllSeasonInterest" class="control-label"></label>
+                <input type="checkbox" asp-for="AllSeasonInterest" class="form-check-inline"/>
+                <span asp-validation-for="AllSeasonInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DivideIntoRooms" class="control-label"></label>
+                <input type="checkbox" asp-for="DivideIntoRooms" class="form-check-inline"/>
+                <span asp-validation-for="DivideIntoRooms" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
                 <label asp-for="PathSize" class="control-label"></label>
                 <select asp-for="PathSize" class="form-control" asp-items="ViewBag.Sizes"></select>
                 <span asp-validation-for="PathSize" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Materials" class="control-label"></label>
-                <select asp-for="Materials" class="form-control" asp-items="ViewBag.MaterialTypes" multiple></select>
-                <span asp-validation-for="Materials" class="text-danger"></span>
+                <label asp-for="MaterialTypeIds" class="control-label"></label>
+                <select asp-for="MaterialTypeIds" class="form-control" asp-items="ViewBag.MaterialTypes" multiple></select>
+                <span asp-validation-for="MaterialTypeIds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SuitablePlantGenera" class="control-label"></label>
+                <select asp-for="SuitablePlantGenera" class="form-control" asp-items="ViewBag.PlantGenera" multiple></select>
+                <span asp-validation-for="SuitablePlantGenera" class="text-danger"></span>
             </div>
             <br/>
             <div class="form-group">

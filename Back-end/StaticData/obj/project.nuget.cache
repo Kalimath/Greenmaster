@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "h7iig8RIYA1dbZSkRH/7LTVZetEF4O07TuuyBnejHwJ9mNPcfahj7DxbTnJbdDt6OwM2EAEbpp21i3cGmsH+fA==",
+  "dgSpecHash": "M6eOYB7aw4bcFvozfnPHfm/TZ8ZUfhxf/I73MJ4lZVKgoPWWSqXLHC3v+fc/JSaPScd4OoIibj4fZKq89aBXYA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mathi\\RiderProjects\\Greenmaster_ASP\\Back-end\\StaticData\\StaticData.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mathi\\.nuget\\packages\\jetbrains.annotations\\2022.3.1\\jetbrains.annotations.2022.3.1.nupkg.sha512"
+    "C:\\Users\\mathi\\.nuget\\packages\\jetbrains.annotations\\2022.3.1\\jetbrains.annotations.2022.3.1.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.18\\microsoft.netcore.app.ref.6.0.18.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.18\\microsoft.windowsdesktop.app.ref.6.0.18.nupkg.sha512",
+    "C:\\Users\\mathi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.18\\microsoft.aspnetcore.app.ref.6.0.18.nupkg.sha512"
   ],
   "logs": []
 }

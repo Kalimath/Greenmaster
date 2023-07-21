@@ -33,7 +33,7 @@ public static class AssertObjects
         Assert.Equal(expected.MinimalTemperature, actual.MinimalTemperature);
         //FlowerInfo
         Assert.Equal(expected.BloomPeriod, actual.BloomPeriod);
-        Assert.Equal(expected.AttractsPollinators, actual.AttractsPollinators);
+        Assert.Equal(expected.PollinatingFlowers, actual.PollinatingFlowers);
         Assert.Equal(expected.IsFragrant, actual.IsFragrant);
         Assert.Equal(expected.FlowerColors, actual.FlowerColors);
         //Media
@@ -63,7 +63,7 @@ public static class AssertObjects
         Assert.Equal(expected.MinimalTemperature, actual.MinimalTemperature);
         //FlowerInfo
         Assert.Equal(expected.BloomPeriod, actual.BloomPeriod);
-        Assert.Equal(expected.AttractsPollinators, actual.AttractsPollinators);
+        Assert.Equal(expected.PollinatingFlowers, actual.PollinatingFlowers);
         Assert.Equal(expected.IsFragrant, actual.IsFragrant);
         Assert.Equal(expected.FlowerColors, actual.FlowerColors);
         //Media

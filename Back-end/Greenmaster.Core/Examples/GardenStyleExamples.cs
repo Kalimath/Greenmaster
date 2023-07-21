@@ -1,6 +1,9 @@
 ﻿using System.Drawing;
+using Greenmaster.Core.Extensions;
+using StaticData.Coloring;
 using StaticData.Design;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 using Size = StaticData.Measuring.Size;
 
 namespace Greenmaster.Core.Examples;
@@ -16,7 +19,7 @@ public static class GardenStyleExamples
         Concepts = new[]
         {
             GardenStyleConcept.StraightLines.ToString(),
-            GardenStyleConcept.CurvedLines.ToString()
+            GardenStyleConcept.Geometric.ToString()
         },
         Shapes = new[]
         {
@@ -25,21 +28,115 @@ public static class GardenStyleExamples
         },
         Colors = new[]
         {
-            Color.White.ToString(),
-            Color.Green.ToString(),
-            Color.Blue.ToString()
-        },
+            Color.White,
+            Color.Green,
+            Color.Blue
+        }.GetNames().ToArray(),
         RequiresLargeGarden = false,
+        AllSeasonInterest = false,
+        DivideIntoRooms = false,
         PathSize = Size.Small,
-        Materials = Array.Empty<MaterialType>(),
+        Materials = new List<MaterialType>(),
+        SuitablePlantGenera = new []
+        {
+            PlantGenus.Ginkgo
+        },
 
     };
+    
+    public static readonly GardenStyle EnglishCountry = new()
+    {
+        Id = 2,
+        Name = "English country",
+        Description =
+            "Wide paths, deep herbaceous borders, structures, pools, rills, structures, terraces and lavishly planted pots.",
+        Concepts = new[]
+        {
+            GardenStyleConcept.Herbaceous.ToString(),
+            GardenStyleConcept.Topiary.ToString(),
+            GardenStyleConcept.Sculptured.ToString(),
+            GardenStyleConcept.Colorful.ToString()
+        },
+        Shapes = new[]
+        {
+            Shape.NotSet.ToString()
+        },
+        Colors = ColorPallet.BaseColors().GetNames().ToArray(),
+        RequiresLargeGarden = true,
+        AllSeasonInterest = true,
+        DivideIntoRooms = true,
+        PathSize = Size.Large,
+        Materials = new List<MaterialType>(),
+        SuitablePlantGenera = new []
+        {
+            PlantGenus.Iris, PlantGenus.Delphinium, PlantGenus.Rosa
+        }
+
+    };
+    
+    public static readonly GardenStyle Cottage = new()
+    {
+        Id = 3,
+        Name = "Cottage",
+        Description =
+            "Cottage gardens are made up of a mix of colours, as opposed to a strict colour scheme. " +
+            "Cottage gardens are also likely to make use of self-seeding plants such as foxgloves and aquilegias, " +
+            "which pop up spontaneously around the garden or in cracks in paving, adding to the informal look.",
+        Concepts = new[]
+        {
+            GardenStyleConcept.Herbaceous.ToString(),
+            GardenStyleConcept.Cramped.ToString(),
+            GardenStyleConcept.Topiary.ToString(),
+            GardenStyleConcept.Sculptured.ToString(),
+            GardenStyleConcept.NoLawn.ToString(),
+            GardenStyleConcept.Colorful.ToString(),
+            GardenStyleConcept.SelfSeeding.ToString(),
+            GardenStyleConcept.Geometric.ToString()
+        },
+        Shapes = new[]
+        {
+            Shape.NotSet.ToString()
+        },
+        Colors = ColorPallet.Colors().GetNames().ToArray(),
+        RequiresLargeGarden = false,
+        AllSeasonInterest = true,
+        DivideIntoRooms = true,
+        PathSize = Size.Small,
+        Materials = new List<MaterialType>(),
+        SuitablePlantGenera = new []
+        {
+            PlantGenus.Aquilegia, 
+            PlantGenus.Geranium, 
+            PlantGenus.Phlox, 
+            PlantGenus.Delphinium,
+            PlantGenus.Lupinus,
+            PlantGenus.Lonicera,
+            PlantGenus.Campanula,
+            PlantGenus.Lavandula,
+            PlantGenus.Alcea,
+            PlantGenus.Paeonia,
+            PlantGenus.Rosa,
+            PlantGenus.Allium,
+            PlantGenus.Tulipa,
+            PlantGenus.Narcissus,
+            PlantGenus.Clematis,
+            PlantGenus.Alchemilla,
+            PlantGenus.Dianthus,
+            PlantGenus.Digitalis,
+            PlantGenus.Lathyrus,
+            PlantGenus.Aster,
+            PlantGenus.Malva
+        }
+
+    };
+    //TODO: add plantTypes & structureTypes
+    //TODO: add species matching style
     
     public static List<GardenStyle> GetAll()
     {
         return new List<GardenStyle>()
         {
-            ModernAndMinimal
+            ModernAndMinimal, EnglishCountry, Cottage
         };
     }
 }

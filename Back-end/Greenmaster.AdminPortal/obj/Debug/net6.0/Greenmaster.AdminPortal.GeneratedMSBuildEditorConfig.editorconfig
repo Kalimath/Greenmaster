@@ -3,7 +3,7 @@ build_property.TargetFramework = net6.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
-build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = true
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
@@ -76,6 +76,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JqZWN0VHlwZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Placeable/CreatePlant.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhY2VhYmxlXENyZWF0ZVBsYW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Placeable/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhY2VhYmxlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -86,6 +90,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Rendering/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVuZGVyaW5nXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Rendering/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVuZGVyaW5nXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mathi/RiderProjects/Greenmaster_ASP/Back-end/Greenmaster.AdminPortal/Views/Rendering/Index.cshtml]

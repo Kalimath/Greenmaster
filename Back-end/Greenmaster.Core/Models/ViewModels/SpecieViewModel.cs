@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using Greenmaster.Core.Helpers.Attributes;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +8,7 @@ using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
 using StaticData.PlantProperties;
+using StaticData.Taxonomy;
 using StaticData.Time.Durations;
 
 #pragma warning disable CS8618
@@ -29,11 +31,12 @@ public class SpecieViewModel : IViewModelWithImage
     [DisplayName("Scientific name")]
     public string ScientificName => $"{Genus} {Species}" + (string.IsNullOrEmpty(Cultivar) ? "" : $" '{Cultivar}'");
 
-    [DisplayName("Common Names (separated by a comma)")]
+    [DisplayName("Common names")]
     public string CommonNames { get; set; }
 
     #endregion
 
+    [DataType(DataType.MultilineText)]
     public string Description { get; set; }
     public Shape Shape { get; set; }
 
@@ -55,18 +58,18 @@ public class SpecieViewModel : IViewModelWithImage
     #region Requirements
 
     [Required]
-    [DisplayName("Sunlight requirement")]
+    [DisplayName("Sunlight")]
     public Amount Sunlight { get; set; }
 
     [Required]
-    [DisplayName("Water requirement")]
+    [DisplayName("Water")]
     public Amount Water { get; set; }
 
     [Required]
-    [DisplayName("Preferred climate")]
+    [DisplayName("Climate")]
     public ClimateType Climate { get; set; }
     
-    [DisplayName("Minimal temperature")]
+    [DisplayName("Min. temperature")]
     [Range(-40,40)]
     public int MinimalTemperature { get; set; }
     #endregion
@@ -87,7 +90,7 @@ public class SpecieViewModel : IViewModelWithImage
 
     #region FlowerInfo
 
-    [DisplayName(displayName: "Months of blooming")]
+    [DisplayName(displayName: "Blooming period")]
     public Month[] BloomPeriod { get; set; } = { Month.NotSet };
 
     [DisplayName("Flower colors")]
@@ -95,20 +98,24 @@ public class SpecieViewModel : IViewModelWithImage
 
     [DisplayName("Fragrant flowers")] public bool IsFragrant { get; set; }
 
-    [DisplayName("Flowers attract bees and butterflies")]
-    public bool AttractsPollinators { get; set; }
+    [DisplayName("Flowers produce pollen")]
+    public bool PollinatingFlowers { get; set; }
 
     #endregion
+    [DisplayName("Mutualistic genera")]
+    [AllowNull]
+    public PlantGenus[] MutualisticGenera { get; set; }
 
     #region Media
 
     [AtLeastOneRequired(new[] { $"{nameof(Image)}", $"{nameof(ImageBase64)}" },
         ErrorMessage = $"At least one of {nameof(Image)} or {nameof(ImageBase64)} is required.")]
-    public IFormFile Image { get; set; }
+    public IFormFile? Image { get; set; }
     
     [AtLeastOneRequired(new[] { $"{nameof(Image)}", $"{nameof(ImageBase64)}" },
         ErrorMessage = $"At least one of {nameof(Image)} or {nameof(ImageBase64)} is required.")]
     public string? ImageBase64 { get; set; }
+
 
     #endregion
 
