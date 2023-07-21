@@ -36,7 +36,7 @@ public static class GardenStyleExamples
         AllSeasonInterest = false,
         DivideIntoRooms = false,
         PathSize = Size.Small,
-        Materials = Array.Empty<MaterialType>(),
+        Materials = new List<MaterialType>(),
         SuitablePlantGenera = new []
         {
             PlantGenus.Ginkgo
@@ -66,10 +66,66 @@ public static class GardenStyleExamples
         AllSeasonInterest = true,
         DivideIntoRooms = true,
         PathSize = Size.Large,
-        Materials = Array.Empty<MaterialType>(),
+        Materials = new List<MaterialType>(),
         SuitablePlantGenera = new []
         {
             PlantGenus.Iris, PlantGenus.Delphinium, PlantGenus.Rosa
+        }
+
+    };
+    
+    public static readonly GardenStyle Cottage = new()
+    {
+        Id = 3,
+        Name = "Cottage",
+        Description =
+            "Cottage gardens are made up of a mix of colours, as opposed to a strict colour scheme. " +
+            "Cottage gardens are also likely to make use of self-seeding plants such as foxgloves and aquilegias, " +
+            "which pop up spontaneously around the garden or in cracks in paving, adding to the informal look.",
+        Concepts = new[]
+        {
+            GardenStyleConcept.Herbaceous.ToString(),
+            GardenStyleConcept.Cramped.ToString(),
+            GardenStyleConcept.Topiary.ToString(),
+            GardenStyleConcept.Sculptured.ToString(),
+            GardenStyleConcept.NoLawn.ToString(),
+            GardenStyleConcept.Colorful.ToString(),
+            GardenStyleConcept.SelfSeeding.ToString(),
+            GardenStyleConcept.Geometric.ToString()
+        },
+        Shapes = new[]
+        {
+            Shape.NotSet.ToString()
+        },
+        Colors = ColorPallet.Colors().GetNames().ToArray(),
+        RequiresLargeGarden = false,
+        AllSeasonInterest = true,
+        DivideIntoRooms = true,
+        PathSize = Size.Small,
+        Materials = new List<MaterialType>(),
+        SuitablePlantGenera = new []
+        {
+            PlantGenus.Aquilegia, 
+            PlantGenus.Geranium, 
+            PlantGenus.Phlox, 
+            PlantGenus.Delphinium,
+            PlantGenus.Lupinus,
+            PlantGenus.Lonicera,
+            PlantGenus.Campanula,
+            PlantGenus.Lavandula,
+            PlantGenus.Alcea,
+            PlantGenus.Paeonia,
+            PlantGenus.Rosa,
+            PlantGenus.Allium,
+            PlantGenus.Tulipa,
+            PlantGenus.Narcissus,
+            PlantGenus.Clematis,
+            PlantGenus.Alchemilla,
+            PlantGenus.Dianthus,
+            PlantGenus.Digitalis,
+            PlantGenus.Lathyrus,
+            PlantGenus.Aster,
+            PlantGenus.Malva
         }
 
     };
@@ -80,7 +136,7 @@ public static class GardenStyleExamples
     {
         return new List<GardenStyle>()
         {
-            ModernAndMinimal, EnglishCountry
+            ModernAndMinimal, EnglishCountry, Cottage
         };
     }
 }

@@ -15,7 +15,8 @@ public enum GardenStyleConcept
     OptionalLawn,
     NoLawn,
     Cramped,
-    Sculptured
+    Sculptured,
+    SelfSeeding
 }
 
 public enum GardenPurpose

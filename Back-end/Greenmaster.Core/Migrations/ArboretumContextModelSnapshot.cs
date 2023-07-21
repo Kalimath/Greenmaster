@@ -113,6 +113,20 @@ namespace Greenmaster.Core.Migrations
                             RequiresLargeGarden = true,
                             Shapes = new[] { "NotSet" },
                             SuitablePlantGenera = "Iris,Delphinium,Rosa"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AllSeasonInterest = true,
+                            Colors = new[] { "Red", "Yellow", "Blue", "Orange", "Violet", "Green", "White", "LightGray", "Gray", "Black", "Brown" },
+                            Concepts = new[] { "Herbaceous", "Cramped", "Topiary", "Sculptured", "NoLawn", "Colorful", "SelfSeeding", "Geometric" },
+                            Description = "Cottage gardens are made up of a mix of colours, as opposed to a strict colour scheme. Cottage gardens are also likely to make use of self-seeding plants such as foxgloves and aquilegias, which pop up spontaneously around the garden or in cracks in paving, adding to the informal look.",
+                            DivideIntoRooms = true,
+                            Name = "Cottage",
+                            PathSize = 0,
+                            RequiresLargeGarden = false,
+                            Shapes = new[] { "NotSet" },
+                            SuitablePlantGenera = "Aquilegia,Geranium,Phlox,Delphinium,Lupinus,Lonicera,Campanula,Lavandula,Alcea,Paeonia,Rosa,Allium,Tulipa,Narcissus,Clematis,Alchemilla,Dianthus,Digitalis,Lathyrus,Aster,Malva"
                         });
                 });
 

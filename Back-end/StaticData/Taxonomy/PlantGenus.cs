@@ -119,6 +119,7 @@ public enum PlantGenus
     Linum,
     Liriope,
     Lobelia,
+    Lonicera,
     Lupinus,
     Lysimachia,
     Macleaya,
@@ -199,5 +200,6 @@ public enum PlantGenus
     Viola,
     Xerophyta,
     Yucca,
-    Zantedeschia
+    Zantedeschia,
+    Paeonia
 }
