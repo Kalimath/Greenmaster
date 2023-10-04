@@ -1,4 +1,5 @@
-﻿using OpenTK.Windowing.Desktop;
+﻿using OpenTK.Mathematics;
+using OpenTK.Windowing.Desktop;
 
 namespace Greenmaster.TK.Core;
 
@@ -8,14 +9,16 @@ public abstract class Game
     protected int InitialWindowWidth { get; set; }
     protected int InitialWindowHeight { get; set; }
     
-    private GameWindowSettings _gameWindowSettings = GameWindowSettings.Default;
-    private NativeWindowSettings _nativeWindowSettings = NativeWindowSettings.Default;
+    private readonly GameWindowSettings _gameWindowSettings = GameWindowSettings.Default;
+    private readonly NativeWindowSettings _nativeWindowSettings = NativeWindowSettings.Default;
 
     public Game(string windowTitle, int initialWindowWidth, int initialWindowHeight)
     {
         WindowTitle = windowTitle;
         InitialWindowWidth = initialWindowWidth;
         InitialWindowHeight = initialWindowHeight;
+        _nativeWindowSettings.Size = new Vector2i(InitialWindowWidth, InitialWindowHeight);
+        _nativeWindowSettings.Title = WindowTitle;
     }
 
     public void Run()
