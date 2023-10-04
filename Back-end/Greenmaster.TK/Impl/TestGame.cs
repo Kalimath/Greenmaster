@@ -9,9 +9,10 @@ public class TestGame : Game
 {
     private readonly float[] _vertices = new[]
     {
-        -0.5f, -0.5f,  0.0f,    //Bottom left
-         0.5f, -0.5f,  0.0f,    //Bottom right
-         0.0f,  0.5f,  0.0f     //top
+        //positions
+        -0.5f, -0.5f,  0.0f, 1.0f, 0.0f, 0.0f,  //Bottom left red
+         0.5f, -0.5f,  0.0f, 0.0f, 1.0f, 0.0f,  //Bottom right green
+         0.0f,  0.5f,  0.0f, 0.0f, 0.0f, 1.0f   //top blue
     };
     
     public TestGame(string windowTitle, int initialWindowWidth, int initialWindowHeight) : base(windowTitle, initialWindowWidth, initialWindowHeight)
@@ -36,8 +37,12 @@ public class TestGame : Game
         const string vertexShaderSource = @"
             #version 330 core
             layout (location = 0) in vec3 aPosition;
+            layout (location = 1) in vec3 aColor;    
+            out vec4 vertexColor;
+
             void main()
             {
+                vertexColor = vec4(aColor.rgb, 1.0);
                 gl_Position = vec4(aPosition.xyz, 1.0);
             }";
         var vertexShaderId = GL.CreateShader(ShaderType.VertexShader);
@@ -49,10 +54,11 @@ public class TestGame : Game
         var fragmentShader = 
             @"
             #version 330 core
-            layout (location = 0) out vec4 color;
+            out vec4 color;
+            in vec4 vertexColor;
             void main()
             {
-                color = vec4(1.0, 0.0, 0.0, 1.0);
+                color = vertexColor;
             }";
         
         var fragmentShaderId = GL.CreateShader(ShaderType.FragmentShader);
@@ -78,8 +84,11 @@ public class TestGame : Game
 
         _vertexArrayObject = GL.GenVertexArray();
         GL.BindVertexArray(_vertexArrayObject);
-        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
         GL.EnableVertexAttribArray(0);
+
+        GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
+        GL.EnableVertexAttribArray(1);
     }
 
     protected override void Render(GameTime gameTime)
