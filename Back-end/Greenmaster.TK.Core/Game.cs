@@ -1,4 +1,5 @@
-﻿using OpenTK.Mathematics;
+﻿using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Desktop;
 
 namespace Greenmaster.TK.Core;
@@ -38,6 +39,10 @@ public abstract class Game
         {
             Render(gameTime);
             gameWindow.SwapBuffers();
+        };
+        gameWindow.Resize += (resizeEventArgs) =>
+        {
+            GL.Viewport(0, 0, gameWindow.Size.X, gameWindow.Size.Y);
         };
         gameWindow.Run(); 
     }
