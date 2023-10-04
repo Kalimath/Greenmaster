@@ -7,7 +7,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var game = new TestGame("Test Game",80, 60);
+        var game = new TestGame("Test Game",800, 600);
         game.Run();
     }
 }
