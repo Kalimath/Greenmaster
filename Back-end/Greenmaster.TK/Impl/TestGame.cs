@@ -1,4 +1,5 @@
 ﻿using Greenmaster.TK.Core;
+using Greenmaster.TK.Core.Rendering.Shaders;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -7,6 +8,8 @@ namespace Greenmaster.TK.Impl;
 
 public class TestGame : Game
 {
+    private const string ShaderFilePath = @"Resources\Shaders\Default.glsl";
+
     private readonly float[] _vertices = new[]
     {
         //positions
@@ -22,6 +25,8 @@ public class TestGame : Game
     private int _vertexBufferObject;
     private int _vertexArrayObject;
     
+    private Shader _shader;
+    
     private int _shaderHandle;
 
     protected override void Initialize()
@@ -34,49 +39,7 @@ public class TestGame : Game
 
     protected override void LoadContent()
     {
-        const string vertexShaderSource = @"
-            #version 330 core
-            layout (location = 0) in vec3 aPosition;
-            layout (location = 1) in vec3 aColor;    
-            out vec4 vertexColor;
-
-            void main()
-            {
-                vertexColor = vec4(aColor.rgb, 1.0);
-                gl_Position = vec4(aPosition.xyz, 1.0);
-            }";
-        var vertexShaderId = GL.CreateShader(ShaderType.VertexShader);
-        GL.ShaderSource(vertexShaderId, vertexShaderSource);
-        GL.CompileShader(vertexShaderId);
-        GL.GetShader(vertexShaderId, ShaderParameter.CompileStatus, out var vertexShaderCompilationCode);
-        if (vertexShaderCompilationCode != (int)All.True) Console.WriteLine(GL.GetShaderInfoLog(vertexShaderId));
-        
-        var fragmentShader = 
-            @"
-            #version 330 core
-            out vec4 color;
-            in vec4 vertexColor;
-            void main()
-            {
-                color = vertexColor;
-            }";
-        
-        var fragmentShaderId = GL.CreateShader(ShaderType.FragmentShader);
-        GL.ShaderSource(fragmentShaderId, fragmentShader);
-        GL.CompileShader(fragmentShaderId);
-        GL.GetShader(fragmentShaderId, ShaderParameter.CompileStatus, out var fragmentShaderCompilationCode);
-        if (fragmentShaderCompilationCode!= (int)All.True) Console.WriteLine(GL.GetShaderInfoLog(fragmentShaderId));
-
-        _shaderHandle = GL.CreateProgram();
-        GL.AttachShader(_shaderHandle, vertexShaderId);
-        GL.AttachShader(_shaderHandle, fragmentShaderId);
-        GL.LinkProgram(_shaderHandle);
-        
-        GL.DetachShader(_shaderHandle, vertexShaderId);
-        GL.DetachShader(_shaderHandle, fragmentShaderId);
-        
-        GL.DeleteShader(vertexShaderId);
-        GL.DeleteShader(fragmentShaderId);
+        _shader = new Shader(Shader.ParseShader(ShaderFilePath), true);
         
         _vertexBufferObject = GL.GenBuffer();
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
@@ -95,7 +58,7 @@ public class TestGame : Game
     {
         GL.Clear(ClearBufferMask.ColorBufferBit);
         GL.ClearColor(Color4.CornflowerBlue);
-        GL.UseProgram(_shaderHandle);
+        _shader.Use();
         GL.BindVertexArray(_vertexArrayObject);
         GL.DrawArrays(PrimitiveType.Triangles, 0, 3); //count -> amount of numbers for each vertex
     }

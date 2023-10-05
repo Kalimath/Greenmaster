@@ -11,4 +11,10 @@
       <ProjectReference Include="..\Greenmaster.TK.Core\Greenmaster.TK.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Resources\Shaders\Default.glsl">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
