@@ -2,7 +2,6 @@
 using Greenmaster.TK.Core.Rendering.Shaders;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
-using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace Greenmaster.TK.Impl;
 
