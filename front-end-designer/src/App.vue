@@ -173,6 +173,7 @@
       <main class="py-10">
         <div class="px-4 sm:px-6 lg:px-8">
           <!-- Your content -->
+          <EditorPane></EditorPane>
         </div>
       </main>
     </div>
@@ -204,6 +205,7 @@ import {
   XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import EditorPane from "./components/EditorPane.vue";
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },

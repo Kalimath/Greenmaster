@@ -1,5 +1,7 @@
-import { createApp } from 'vue'
-import '../dist/output.css'
+import * as Vue from 'vue'
 import App from './App.vue'
+import HeroIcon from 'vue-heroicons'
 
-createApp(App).mount('#app')
+Vue.createApp(App)
+    .use(HeroIcon)
+    .mount('#app')
