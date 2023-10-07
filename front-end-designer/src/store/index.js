@@ -1,6 +1,11 @@
 import { createStore } from 'vuex'
+import VuexPersistence from 'vuex-persist'
 
-export default createStore({
+const vuexLocal = new VuexPersistence({
+    storage: window.localStorage
+})
+
+const store = createStore({
     state() {
         return{
             user:{
@@ -26,33 +31,36 @@ export default createStore({
     },
     //getters
     getters: {
-        getUser(state){
+        user(state){
             return state.user;
         },
-        getDomain(state){
+        domain(state){
             return state.domain;
         },
-        getAreas(state){
+        areas(state){
             return state.domain.areas;
         },
-        getBackground(state){
+        background(state){
             return state.domain.background;
         },
-        getDesign(state){
+        design(state){
             return state.domain.design;
         },
-        getAddress(state){
+        address(state){
             return state.domain.address;
         },
-        getUsername(state){
+        username(state){
             return state.user.name;
         },
-        getDomainName(state){
+        domainName(state){
             return state.domain.name;
         }
     },
     //async operations
     actions: {
 
-    }
+    },
+    plugins: [vuexLocal.plugin]
 })
+
+export default store;
