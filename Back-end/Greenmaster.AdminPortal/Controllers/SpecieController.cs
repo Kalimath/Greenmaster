@@ -37,12 +37,38 @@ namespace Greenmaster.AdminPortal.Controllers
             return Task.FromResult<IActionResult>(View());
         }
         
+        // GET: Specie/ByGenus/ginkgo
+        [HttpGet]
+        public async Task<IActionResult> ByGenus(string genus)
+        {
+            if (string.IsNullOrEmpty(genus))
+            {
+                return RedirectToAction("Index");
+            }
+
+            var species = await _modelService.GetAllByGenus(Enum.Parse<PlantGenus>(genus));
+
+            if (species == null || species.Count == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            var specieViewModels = ToViewModels(species);
+
+            return View(specieViewModels);
+        }
+
         public async Task<JsonResult> GetSpecies()
         {
             var species = (await _modelService.GetAll());
+            var specieViewModels = ToViewModels(species);
+            return Json(new { data = specieViewModels});
+        }
+
+        private List<SpecieViewModel> ToViewModels(List<Specie> species)
+        {
             var specieViewModels = new List<SpecieViewModel>();
             foreach (var specie in species) specieViewModels.Add(_specieMapper.ToViewModel(specie));
-            return Json(new { data = specieViewModels});
+            return specieViewModels;
         }
 
         // GET: Specie/Details/5

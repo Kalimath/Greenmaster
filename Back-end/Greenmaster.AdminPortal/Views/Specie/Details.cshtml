@@ -115,7 +115,8 @@
                     {
                         for (var i = 0; i < Model.MutualisticGenera.Count(); i++)
                         {
-                            <div>@Model.MutualisticGenera[i] </div>
+                            var genus = Model.MutualisticGenera[i];
+                            <a asp-controller="Specie" asp-action="ByGenus" asp-route-genus="@genus" title="Click to see species of @genus">@genus</a>
                         }
                     }
                     else
