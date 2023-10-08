@@ -240,7 +240,7 @@ public static class SpecieExamples
     
     public static readonly Specie LavenderB = new()
     {
-        Id = 5,
+        Id = 7,
         Genus = PlantGenus.Lavandula,
         Species = "Angustifolia",
         Cultivar = string.Empty,
@@ -275,7 +275,7 @@ public static class SpecieExamples
     
     public static readonly Specie Impatiens = new()
     {
-        Id = 6,
+        Id = 8,
         Genus = PlantGenus.Impatiens,
         Species = "Walleriana",
         Cultivar = string.Empty,
@@ -316,7 +316,7 @@ public static class SpecieExamples
     };
     public static readonly Specie Syringa = new()
     {
-        Id = 7,
+        Id = 9,
         Genus = PlantGenus.Syringa,
         Species = "Vulgaris",
         Cultivar = "Louis Spaeth",
@@ -356,7 +356,7 @@ public static class SpecieExamples
     };
     public static readonly Specie Heliotropium = new()
     {
-        Id = 7,
+        Id = 10,
         Genus = PlantGenus.Heliotropium,
         Species = "Arborescens",
         Cultivar = "",
@@ -397,7 +397,7 @@ public static class SpecieExamples
     
     public static readonly Specie Fuchsia = new()
     {
-        Id = 8,
+        Id = 11,
         Genus = PlantGenus.Fuchsia,
         Species = "Regia",
         Cultivar = "",
@@ -446,7 +446,7 @@ public static class SpecieExamples
     
     public static readonly Specie Forsythia = new()
     {
-        Id = 9,
+        Id = 12,
         Genus = PlantGenus.Forsythia,
         Species = "x Intermedia",
         Cultivar = "GoldRausch",
@@ -481,7 +481,7 @@ public static class SpecieExamples
     };
     public static readonly Specie WisteriaA = new()
     {
-        Id = 10,
+        Id = 13,
         Genus = PlantGenus.Wisteria,
         Species = "Frutescens",
         Cultivar = "Amethyst Falls",
@@ -521,7 +521,7 @@ public static class SpecieExamples
     // ReSharper disable once ComplexConditionExpression
     public static readonly Specie Ginkgo = new()
     {
-        Id = 11,
+        Id = 14,
         Genus = PlantGenus.Ginkgo,
         Species = "Biloba",
         Cultivar = "",
@@ -530,7 +530,7 @@ public static class SpecieExamples
                       "The tree has an angular crown and long, somewhat erratic branches, and is usually deep-rooted and resistant to wind and snow damage. " +
                       "Young trees are often tall and slender, and sparsely branched; the crown becomes broader as the tree ages. " +
                       "A combination of resistance to disease, insect-resistant wood, and the ability to form aerial roots and sprouts makes ginkgos durable, with some specimens claimed to be more than 2,500 years old.",
-        PlantTypeId = ObjectTypeExamples.Climber.Id,
+        PlantTypeId = ObjectTypeExamples.Tree.Id,
         IsPoisonous = true,
         Cycle = Lifecycle.Perennial,
         Shape = Shape.Irregular,
