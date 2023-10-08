@@ -305,5 +305,10 @@ public enum PlantGenus
     Trichoschoenus,
     Tricostularia,
     Trilepis,
-    Zameioscirpus
+    Zameioscirpus,
+    Citrus,
+    Syringa,
+    Heliotropium,
+    Forsythia,
+    Wisteria
 }
