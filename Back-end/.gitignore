@@ -267,10 +267,3 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
-
-/Greenmaster.Core/obj/
-/Greenmaster.ArboretumWebService/obj/
-/Greenmaster.AdminPortal/obj/
-/Greenmaster.AdminPortal.Tests/obj/
-/StaticData/obj/
-!/Greenmaster.AdminPortal/bin/
