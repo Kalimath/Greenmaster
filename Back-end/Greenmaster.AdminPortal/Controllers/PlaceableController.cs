@@ -27,8 +27,7 @@ public class PlaceableController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var plants = (await _plantService.GetAll());
-        if(plants == null) plants = new List<Plant>();
+        var plants = await _plantService.GetAll();
         var viewModels = plants.Select(plant => _placeableMapper.ToViewModel(plant)).ToList();
         return View(viewModels);
     }

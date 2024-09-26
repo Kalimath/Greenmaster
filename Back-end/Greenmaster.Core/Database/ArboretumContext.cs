@@ -76,30 +76,39 @@ public class ArboretumContext : DbContext, IApplicationDbContext
         DefinePropertyConversions(modelBuilder);
         SeedData(modelBuilder);
 
-        modelBuilder.Entity<PlantType>().HasBaseType(typeof(ObjectType));
         modelBuilder.Entity<ObjectType>().HasDiscriminator<string>("objectType_type")
             .HasValue<PlantType>(nameof(PlantType))
             .HasValue<StructureType>(nameof(StructureType));
+        modelBuilder.Entity<PlantType>().HasBaseType(typeof(ObjectType));
         modelBuilder.Entity<StructureType>().HasBaseType(typeof(ObjectType));
+        
+        modelBuilder.Entity<Placeable>().HasDiscriminator<string>("placeable_filler")
+            .HasValue<Plant>(nameof(Plant))
+            .HasValue<Structure>(nameof(Structure));
+        modelBuilder.Entity<Plant>().HasBaseType(typeof(Placeable));
+        modelBuilder.Entity<Plant>().HasOne<Specie>(t => t.Specie)
+            .WithMany(p => p.Plants).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Structure>().HasBaseType(typeof(Placeable));
         
         modelBuilder.Entity<GardenStyle>()
             .HasMany<MaterialType>(s => s.Materials)
             .WithMany(c => c.GardenStyles);
+        
         modelBuilder.Entity<MaterialType>().HasMany(m => m.GardenStyles)
            .WithMany(m => m.Materials);
     }
 
     private void SeedData(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Point>().HasData(_examplesService.GetAllPoints());
-        modelBuilder.Entity<Dimensions>().HasData(_examplesService.GetAllDimensions());
-        modelBuilder.Entity<Plant>().HasData(_examplesService.GetAllPlants());
-        modelBuilder.Entity<Structure>().HasData(_examplesService.GetAllStructures());
+        // modelBuilder.Entity<Point>().HasData(_examplesService.GetAllPoints());
+        // modelBuilder.Entity<Dimensions>().HasData(_examplesService.GetAllDimensions());
+        // modelBuilder.Entity<Plant>().HasData(_examplesService.GetAllPlants());
+        //modelBuilder.Entity<Structure>().HasData(_examplesService.GetAllStructures());
         modelBuilder.Entity<PlantType>().HasData(_examplesService.GetAllPlantTypes());
         modelBuilder.Entity<StructureType>().HasData(_examplesService.GetAllStructureTypes());
-        modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
-        modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
-        modelBuilder.Entity<GardenStyle>().HasData(_examplesService.GetAllGardenStyles());
+        // modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
+        // modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
+        // modelBuilder.Entity<GardenStyle>().HasData(_examplesService.GetAllGardenStyles());
         modelBuilder.Entity<MaterialType>().HasData(_examplesService.GetAllMaterialTypes());
     }
 

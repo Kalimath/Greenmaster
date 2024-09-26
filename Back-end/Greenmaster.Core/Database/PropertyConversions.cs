@@ -44,6 +44,21 @@ public static class PropertyConversions
             .HasConversion(
                 v => string.Join(',', v.Select(x => x.ToString())),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(Enum.Parse<PlantGenus>).ToArray());
+        modelBuilder.Entity<GardenStyle>()
+            .Property(e => e.Colors)
+            .HasConversion(
+                v => string.Join(',', v.Select(x => x.ToString())),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+        modelBuilder.Entity<GardenStyle>()
+            .Property(e => e.Concepts)
+            .HasConversion(
+                v => string.Join(',', v.Select(x => x.ToString())),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+        modelBuilder.Entity<GardenStyle>()
+            .Property(e => e.Shapes)
+            .HasConversion(
+                v => string.Join(',', v.Select(x => x.ToString())),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
     }
 
     public static void SpecieConverters(ModelBuilder modelBuilder)

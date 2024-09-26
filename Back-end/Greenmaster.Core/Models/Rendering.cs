@@ -10,6 +10,8 @@ namespace Greenmaster.Core.Models;
 public class Rendering : IObjectIdentity
 {
     private string _image;
+    
+    //TODO: add name property
 
     [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
     public int Id { get; set; }

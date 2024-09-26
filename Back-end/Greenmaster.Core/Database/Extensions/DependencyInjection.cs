@@ -14,8 +14,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 
 namespace Greenmaster.Core.Database.Extensions;
 
@@ -54,7 +52,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<ArboretumContext>(options =>
         {
-            options.UseNpgsql(configuration.GetConnectionString($"localDb"));
+            options.UseSqlServer(configuration.GetConnectionString($"localDb"));
             options.EnableDetailedErrors();
             options.EnableSensitiveDataLogging();
         });

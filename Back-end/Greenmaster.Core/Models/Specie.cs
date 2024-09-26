@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
+using Greenmaster.Core.Models.Placeables;
 using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
@@ -21,7 +22,7 @@ public class Specie : IObjectIdentity
 
     #region Naming
     [Required] public PlantGenus Genus { get; set; }
-    [Required] public string Species { get; set; }
+    public string Species { get; set; }
     public string? Cultivar { get; set; }
     public string ScientificName => $"{Genus} {Species}" + (string.IsNullOrEmpty(Cultivar) ? "" : $" '{Cultivar}'");
     public string CommonNames { get; set; }
@@ -60,5 +61,9 @@ public class Specie : IObjectIdentity
     #region Media
     public string Image { get; set; }
 
+    #endregion
+    
+    #region EF Relations
+    public virtual Collection<Plant> Plants { get; set; } = new();
     #endregion
 }

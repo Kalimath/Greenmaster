@@ -35,7 +35,7 @@ namespace Greenmaster.AdminPortal.Controllers
         }
 
         // GET: Rendering/Details/5
-        public async Task<IActionResult> Details(int? id)
+        /*public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -54,7 +54,7 @@ namespace Greenmaster.AdminPortal.Controllers
             }
 
             return View(_renderingMapper.ToViewModel(rendering));
-        }
+        }*/
 
         // GET: Rendering/Create
         public IActionResult Create()
@@ -84,13 +84,13 @@ namespace Greenmaster.AdminPortal.Controllers
         }
 
         // GET: Rendering/Edit/5
-        public ActionResult Edit(int id)
+        /*public ActionResult Edit(int id)
         {
             return View();
-        }
+        }*/
 
         // POST: Rendering/Edit/5
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
@@ -104,7 +104,7 @@ namespace Greenmaster.AdminPortal.Controllers
             {
                 return View();
             }
-        }
+        }*/
 
         // GET: Rendering/Delete/5
         public ActionResult Delete(int id)

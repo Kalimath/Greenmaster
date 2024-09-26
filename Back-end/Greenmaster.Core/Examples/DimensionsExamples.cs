@@ -20,7 +20,7 @@ public static class DimensionsExamples
     
     public static List<Dimensions> GetAll()
     {
-        return new List<Dimensions>()
+        return new()
         {
             DimensionsUp, DimensionsFlat
         };
