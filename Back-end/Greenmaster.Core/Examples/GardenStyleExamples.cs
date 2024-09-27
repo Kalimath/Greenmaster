@@ -4,6 +4,7 @@ using StaticData.Coloring;
 using StaticData.Design;
 using StaticData.PlantProperties;
 using StaticData.Taxonomy;
+using Color = StaticData.Coloring.Color;
 using Size = StaticData.Measuring.Size;
 
 namespace Greenmaster.Core.Examples;
@@ -23,7 +24,7 @@ public static class GardenStyleExamples
         },
         Shapes = new[]
         {
-            Shape.Round.ToString(),
+            Shape.Round.ToString(), //TODO: check if it is better to just pass the enum value instead of string
             Shape.Cubic.ToString()
         },
         Colors = new[]
@@ -31,7 +32,7 @@ public static class GardenStyleExamples
             Color.White,
             Color.Green,
             Color.Blue
-        }.GetNames().ToArray(),
+        },
         RequiresLargeGarden = false,
         AllSeasonInterest = false,
         DivideIntoRooms = false,
@@ -61,7 +62,7 @@ public static class GardenStyleExamples
         {
             Shape.NotSet.ToString()
         },
-        Colors = ColorPallet.BaseColors().GetNames().ToArray(),
+        Colors = ColorPallet.BaseColors(),
         RequiresLargeGarden = true,
         AllSeasonInterest = true,
         DivideIntoRooms = true,
@@ -97,7 +98,7 @@ public static class GardenStyleExamples
         {
             Shape.NotSet.ToString()
         },
-        Colors = ColorPallet.Colors().GetNames().ToArray(),
+        Colors = ColorPallet.Colors(), //TODO: change this to a Color type and store in db as hex and write a converter function
         RequiresLargeGarden = false,
         AllSeasonInterest = true,
         DivideIntoRooms = true,

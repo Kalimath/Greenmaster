@@ -1,51 +1,34 @@
-﻿using System.Drawing;
-using System.Reflection;
+﻿using StaticData.Coloring;
 
 namespace Greenmaster.Core.Extensions;
 
 public static class ColorExtensions
 {
-    public static string GetName(this Color color)
-    {
-        var predefined = typeof(Color).GetProperties(BindingFlags.Public | BindingFlags.Static);
-        var match = (from p in predefined where ((Color)p.GetValue(null, null)).ToArgb() == color.ToArgb() select (Color)p.GetValue(null, null));
-        var matches = match.ToList();
-        return matches.Any() ? matches.First().Name : string.Empty;
-    }
-    public static IEnumerable<string> GetNames(this IEnumerable<Color> colors)
-    {
-        var list = colors.ToList();
-        return list.Select(color => color.GetName());
-    }
     
     public static Color ComplementaryColor(this Color color)
     {
-        var complementary = color.ToKnownColor() switch
+        var complementary = color.Name switch
             {
-                KnownColor.Black => Color.White,
-                KnownColor.White => Color.Black,
-                KnownColor.Red => Color.Green,
-                KnownColor.Green => Color.Red,
-                KnownColor.Blue => Color.Orange,
-                KnownColor.Yellow => Color.Purple,
-                KnownColor.Orange => Color.Blue,
-                _ => Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B)
+                ColorName.Black => Color.White,
+                ColorName.White => Color.Black,
+                ColorName.Red => Color.Green,
+                ColorName.Green => Color.Red,
+                ColorName.Blue => Color.Orange,
+                ColorName.Yellow => Color.Purple,
+                ColorName.Orange => Color.Blue,
+                _ => new Color(ColorName.Unspecified, new RgbColor(255 - color.Rgb.Red, 255 - color.Rgb.Green, 255 - color.Rgb.Blue, 255))
             };
 
         return complementary;
     }
 
-    public static Color ToColor(this string colorName)
+    public static Color ToColor(this string hexValue)
     {
-        return Color.FromKnownColor(Enum.Parse<KnownColor>(colorName));
+        return Color.GetAll().FirstOrDefault(color => color.Hex == hexValue) ?? throw new ArgumentOutOfRangeException(nameof(hexValue), hexValue, "Invalid hex color value");
     }
 
-    /// <summary>
-    /// Convert a .NET Color to a hex string.
-    /// </summary>
-    /// <returns>null if invalid</returns>
-    public static string ToHex(this Color color)
+    public static string[] GetNames(this IEnumerable<Color> colors)
     {
-        return "#" + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
+        return colors.Select(color => color.Name.ToString()).ToArray();
     }
 }

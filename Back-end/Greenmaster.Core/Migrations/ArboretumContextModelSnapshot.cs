@@ -84,6 +84,50 @@ namespace Greenmaster.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GardenStyles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AllSeasonInterest = false,
+                            Colors = "0x000000A4,0x0000004F,0x00000025",
+                            Concepts = "StraightLines,Geometric",
+                            Description = "If you love sharp, clean lines, clutter-free spaces and a contemporary feel, then modern and minimal garden design is perfect for you.",
+                            DivideIntoRooms = false,
+                            Name = "Modern and minimal",
+                            PathSize = 0,
+                            RequiresLargeGarden = false,
+                            Shapes = "Round,Cubic",
+                            SuitablePlantGenera = "Ginkgo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AllSeasonInterest = true,
+                            Colors = "0x0000008D,0x000000A6,0x00000025,0x0000007F,0x000000A2,0x0000004F,0x000000A4,0x0000005F,0x0000004E,0x00000023,0x00000027",
+                            Concepts = "Herbaceous,Topiary,Sculptured,Colorful",
+                            Description = "Wide paths, deep herbaceous borders, structures, pools, rills, structures, terraces and lavishly planted pots.",
+                            DivideIntoRooms = true,
+                            Name = "English country",
+                            PathSize = 2,
+                            RequiresLargeGarden = true,
+                            Shapes = "NotSet",
+                            SuitablePlantGenera = "Iris,Delphinium,Rosa"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AllSeasonInterest = true,
+                            Colors = "0x0000008D,0x000000A6,0x00000025,0x0000007F,0x000000A2,0x0000004F,0x000000A7,0x000000A1,0x00000080,0x0000004D,0x00000026,0x0000008C,0x000000A4,0x0000005F,0x0000004E,0x00000023,0x00000027",
+                            Concepts = "Herbaceous,Cramped,Topiary,Sculptured,NoLawn,Colorful,SelfSeeding,Geometric",
+                            Description = "Cottage gardens are made up of a mix of colours, as opposed to a strict colour scheme. Cottage gardens are also likely to make use of self-seeding plants such as foxgloves and aquilegias, which pop up spontaneously around the garden or in cracks in paving, adding to the informal look.",
+                            DivideIntoRooms = true,
+                            Name = "Cottage",
+                            PathSize = 0,
+                            RequiresLargeGarden = false,
+                            Shapes = "NotSet",
+                            SuitablePlantGenera = "Aquilegia,Geranium,Phlox,Delphinium,Lupinus,Lonicera,Campanula,Lavandula,Alcea,Paeonia,Rosa,Allium,Tulipa,Narcissus,Clematis,Alchemilla,Dianthus,Digitalis,Lathyrus,Aster,Malva"
+                        });
                 });
 
             modelBuilder.Entity("Greenmaster.Core.Models.Design.MaterialType", b =>

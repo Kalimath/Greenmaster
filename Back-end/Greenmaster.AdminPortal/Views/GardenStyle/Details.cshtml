@@ -42,7 +42,7 @@
                     @Html.DisplayNameFor(model => model.Colors)
                 </dt>
                 <dd class="col-sm-8">
-                    @(string.Join(", ", Model.Colors))
+                    @(string.Join(", ", Model.Colors.Select(c => c.Name)))
                 </dd>
                 <dt class="col-sm-4">
                     @Html.DisplayNameFor(model => model.Shapes)

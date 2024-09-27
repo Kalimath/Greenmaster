@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using StaticData.Coloring;
 using StaticData.Measuring;
 using StaticData.Taxonomy;
 
@@ -14,10 +15,15 @@ public class GardenStyle
     public string Description { get; set; }
     public string[] Concepts { get; set; }
     public string[] Shapes { get; set; }
-    public string[] Colors { get; set; }
+    public Color[] Colors { get; set; }
+    
     [DisplayName(displayName: "Large garden only")]
     public bool RequiresLargeGarden { get; set; }
+    
+    [DisplayName(displayName: "All seasons interest")]
     public bool AllSeasonInterest { get; set; }
+    
+    [DisplayName(displayName: "Divides garden into rooms")]
     public bool DivideIntoRooms { get; set; }
     
     public Size PathSize { get; set; }

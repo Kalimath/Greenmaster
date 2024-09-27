@@ -91,11 +91,11 @@ public static class ColorWheel
 
     public static Color SecondaryColor(Tuple<Color, Color> primaryColors)
     {
-        var secondaryColor = ToKnownColorTuple(primaryColors) switch
+        var secondaryColor = ToColorNameTuple(primaryColors) switch
         {
-            (KnownColor.Red, KnownColor.Yellow) => Color.Orange,
-            (KnownColor.Red, KnownColor.Blue) => Color.Violet,
-            (KnownColor.Blue, KnownColor.Yellow) => Color.Green,
+            (ColorName.Red, ColorName.Yellow) => Color.Orange,
+            (ColorName.Red, ColorName.Blue) => Color.Violet,
+            (ColorName.Blue, ColorName.Yellow) => Color.Green,
             _ => throw new ArgumentOutOfRangeException(nameof(primaryColors),
                 "Given primary colors should be red/yellow/blue")
         };
@@ -105,16 +105,16 @@ public static class ColorWheel
 
     public static Color TertiaryColor(Tuple<Color, Color> primaryWithSecondary)
     {
-        var knownColors = ToKnownColorTuple(primaryWithSecondary);
+        var knownColors = ToColorNameTuple(primaryWithSecondary);
 
         var tertiaryColor = knownColors switch
         {
-            (KnownColor.Red, KnownColor.Orange) => Color.OrangeRed,
-            (KnownColor.Yellow, KnownColor.Orange) => Color.Goldenrod,
-            (KnownColor.Yellow, KnownColor.Green) => Color.YellowGreen,
-            (KnownColor.Green, KnownColor.Blue) => Color.Turquoise,
-            (KnownColor.Blue, KnownColor.Violet) => Color.BlueViolet,
-            (KnownColor.Red, KnownColor.Violet) => Color.Purple,
+            (ColorName.Red, ColorName.Orange) => Color.OrangeRed,
+            (ColorName.Yellow, ColorName.Orange) => Color.Goldenrod,
+            (ColorName.Yellow, ColorName.Green) => Color.YellowGreen,
+            (ColorName.Green, ColorName.Blue) => Color.Turquoise,
+            (ColorName.Blue, ColorName.Violet) => Color.BlueViolet,
+            (ColorName.Red, ColorName.Violet) => Color.Purple,
             _ => throw new ArgumentOutOfRangeException(nameof(primaryWithSecondary),
                 "Given primary color is not red/yellow/blue color")
         };
@@ -131,14 +131,14 @@ public static class ColorWheel
 
     private static Color[] ColorsAdjacentToTertiary(Color color)
     {
-        Color[] adjacentColors = color.ToKnownColor() switch
+        Color[] adjacentColors = color.Name switch
         {
-            KnownColor.OrangeRed => new[] { Color.Red, Color.Orange },
-            KnownColor.Goldenrod => new[] { Color.Yellow, Color.Orange },
-            KnownColor.BlueViolet => new[] { Color.Blue, Color.Violet },
-            KnownColor.Purple => new[] { Color.Red, Color.Violet },
-            KnownColor.YellowGreen => new[] { Color.Yellow, Color.Green },
-            KnownColor.Turquoise => new[] { Color.Blue, Color.Green },
+            ColorName.OrangeRed => new[] { Color.Red, Color.Orange },
+            ColorName.Goldenrod => new[] { Color.Yellow, Color.Orange },
+            ColorName.BlueViolet => new[] { Color.Blue, Color.Violet },
+            ColorName.Purple => new[] { Color.Red, Color.Violet },
+            ColorName.YellowGreen => new[] { Color.Yellow, Color.Green },
+            ColorName.Turquoise => new[] { Color.Blue, Color.Green },
             _ => throw new ArgumentOutOfRangeException(nameof(color), color,
                 "Can not return tertiary adjacent colors when not a tertiary color")
         };
@@ -147,11 +147,11 @@ public static class ColorWheel
 
     private static Color[] ColorsAdjacentToSecondary(Color color)
     {
-        var adjacentColors = color.ToKnownColor() switch
+        var adjacentColors = color.Name switch
         {
-            KnownColor.Orange => new[] { Color.OrangeRed, Color.Goldenrod },
-            KnownColor.Violet => new[] { Color.BlueViolet, Color.Purple },
-            KnownColor.Green => new[] { Color.YellowGreen, Color.Turquoise },
+            ColorName.Orange => new[] { Color.OrangeRed, Color.Goldenrod },
+            ColorName.Violet => new[] { Color.BlueViolet, Color.Purple },
+            ColorName.Green => new[] { Color.YellowGreen, Color.Turquoise },
             _ => throw new ArgumentOutOfRangeException(nameof(color), color,
                 "Can not return secondary adjacent colors when not a secondary color")
         };
@@ -160,19 +160,19 @@ public static class ColorWheel
 
     private static Color[] ColorsAdjacentToPrimary(Color color)
     {
-        var adjacentColors = color.ToKnownColor() switch
+        var adjacentColors = color.Name switch
         {
-            KnownColor.Blue => new[] { Color.Turquoise, Color.BlueViolet },
-            KnownColor.Red => new[] { Color.OrangeRed, Color.Purple },
-            KnownColor.Yellow => new[] { Color.YellowGreen, Color.Goldenrod },
+            ColorName.Blue => new[] { Color.Turquoise, Color.BlueViolet },
+            ColorName.Red => new[] { Color.OrangeRed, Color.Purple },
+            ColorName.Yellow => new[] { Color.YellowGreen, Color.Goldenrod },
             _ => throw new ArgumentOutOfRangeException(nameof(color), color,
                 "Can not return primary adjacent colors when not a primary color")
         };
         return adjacentColors;
     }
 
-    private static Tuple<KnownColor, KnownColor> ToKnownColorTuple(Tuple<Color, Color> colorPair)
+    private static Tuple<ColorName, ColorName> ToColorNameTuple(Tuple<Color, Color> colorPair)
     {
-        return new Tuple<KnownColor, KnownColor>(colorPair.Item1.ToKnownColor(), colorPair.Item2.ToKnownColor());
+        return new Tuple<ColorName, ColorName>(colorPair.Item1.Name, colorPair.Item2.Name);
     }
 }

@@ -47,8 +47,8 @@ public static class PropertyConversions
         modelBuilder.Entity<GardenStyle>()
             .Property(e => e.Colors)
             .HasConversion(
-                v => string.Join(',', v.Select(x => x.ToString())),
-                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+                v => string.Join(',', v.Select(x => x.Hex)),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(hex => hex.ToColor()).ToArray());
         modelBuilder.Entity<GardenStyle>()
             .Property(e => e.Concepts)
             .HasConversion(
@@ -81,8 +81,8 @@ public static class PropertyConversions
         modelBuilder.Entity<Specie>()
             .Property(e => e.FlowerColors)
             .HasConversion(
-                v => string.Join(',', v.Select(color => color.GetName())),
-                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(Color.FromName).ToArray());
+                v => string.Join(',', v.Select(color => color.Hex)),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(hex => hex.ToColor()).ToArray());
         modelBuilder.Entity<Specie>()
             .Property(e => e.Cycle)
             .HasConversion(

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Greenmaster.Core.Migrations
 {
     [DbContext(typeof(ArboretumContext))]
-    [Migration("20240926190626_Initial")]
+    [Migration("20240927101445_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,6 +86,50 @@ namespace Greenmaster.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GardenStyles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AllSeasonInterest = false,
+                            Colors = "0x000000A4,0x0000004F,0x00000025",
+                            Concepts = "StraightLines,Geometric",
+                            Description = "If you love sharp, clean lines, clutter-free spaces and a contemporary feel, then modern and minimal garden design is perfect for you.",
+                            DivideIntoRooms = false,
+                            Name = "Modern and minimal",
+                            PathSize = 0,
+                            RequiresLargeGarden = false,
+                            Shapes = "Round,Cubic",
+                            SuitablePlantGenera = "Ginkgo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AllSeasonInterest = true,
+                            Colors = "0x0000008D,0x000000A6,0x00000025,0x0000007F,0x000000A2,0x0000004F,0x000000A4,0x0000005F,0x0000004E,0x00000023,0x00000027",
+                            Concepts = "Herbaceous,Topiary,Sculptured,Colorful",
+                            Description = "Wide paths, deep herbaceous borders, structures, pools, rills, structures, terraces and lavishly planted pots.",
+                            DivideIntoRooms = true,
+                            Name = "English country",
+                            PathSize = 2,
+                            RequiresLargeGarden = true,
+                            Shapes = "NotSet",
+                            SuitablePlantGenera = "Iris,Delphinium,Rosa"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AllSeasonInterest = true,
+                            Colors = "0x0000008D,0x000000A6,0x00000025,0x0000007F,0x000000A2,0x0000004F,0x000000A7,0x000000A1,0x00000080,0x0000004D,0x00000026,0x0000008C,0x000000A4,0x0000005F,0x0000004E,0x00000023,0x00000027",
+                            Concepts = "Herbaceous,Cramped,Topiary,Sculptured,NoLawn,Colorful,SelfSeeding,Geometric",
+                            Description = "Cottage gardens are made up of a mix of colours, as opposed to a strict colour scheme. Cottage gardens are also likely to make use of self-seeding plants such as foxgloves and aquilegias, which pop up spontaneously around the garden or in cracks in paving, adding to the informal look.",
+                            DivideIntoRooms = true,
+                            Name = "Cottage",
+                            PathSize = 0,
+                            RequiresLargeGarden = false,
+                            Shapes = "NotSet",
+                            SuitablePlantGenera = "Aquilegia,Geranium,Phlox,Delphinium,Lupinus,Lonicera,Campanula,Lavandula,Alcea,Paeonia,Rosa,Allium,Tulipa,Narcissus,Clematis,Alchemilla,Dianthus,Digitalis,Lathyrus,Aster,Malva"
+                        });
                 });
 
             modelBuilder.Entity("Greenmaster.Core.Models.Design.MaterialType", b =>
@@ -107,6 +151,38 @@ namespace Greenmaster.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MaterialTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Wood",
+                            Name = "Wood"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Stone",
+                            Name = "Stone"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Brick",
+                            Name = "Brick"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Corten steel, is a group of steel alloys which were developed to eliminate the need for painting, and form a stable rust-like appearance.",
+                            Name = "Corten steel"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "A gabion is a cage, cylinder or box filled with rocks, concrete, or sometimes sand and soil.",
+                            Name = "Gabion"
+                        });
                 });
 
             modelBuilder.Entity("Greenmaster.Core.Models.Measurements.Dimensions", b =>
@@ -373,6 +449,96 @@ namespace Greenmaster.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("PlantType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Hedges are rows of closely planted shrubs, and come in all shapes, styles and sizes.",
+                            Name = "Hedge",
+                            AllowAsUndergrowth = false,
+                            Canopy = "Closed"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Trees have a permanent woody structure – usually a single trunk and a network of branches. Some grow quite large, but there are plenty of smaller options too. Most offer an array of attractive features, including decorative foliage, flowers, fruits and bark. Some keep their leaves all year, while others are leafless over winter.",
+                            Name = "Tree",
+                            AllowAsUndergrowth = false,
+                            Canopy = "Closed"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "These plants clothe walls and supports in foliage and flowers. Climbers cling on using tendrils, twining stems, stem roots or sticky pads, while wall shrubs need to be tied to supports. Plants can be large and vigorous or neat and compact, some are evergreen retaining their foliage all year, while others are deciduous and lose their leaves over winter. ",
+                            Name = "Climber",
+                            AllowAsUndergrowth = true,
+                            Canopy = "Partial"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Small shrubs have a permanent structure of woody stems. They come in all shapes, some holding onto their leaves all year, others losing them in autumn. As well as flowers in every possible hue, many shrubs have attractive foliage and fruits.",
+                            Name = "Small shrub (<2 metres)",
+                            AllowAsUndergrowth = true,
+                            Canopy = "Partial"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Large shrubs have a permanent structure of woody stems. They come in all shapes, some holding onto their leaves all year, others losing them in autumn. As well as flowers in every possible hue, many shrubs have attractive foliage, fruits and bark.",
+                            Name = "Large shrub (2-8 metres)",
+                            AllowAsUndergrowth = true,
+                            Canopy = "Partial"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Versatile, hardy and spectacular, bringing movement, texture and drama to gardens of all styles, nearly all year round.",
+                            Name = "Grass",
+                            AllowAsUndergrowth = true,
+                            Canopy = "NotSet"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Ferns can be large or small, often with elegantly arching, feathery foliage. The plants usually have a shuttlecock shape, with new growth unfurling from the centre. Deciduous types die down in winter, while evergreen and semi-evergreen have a year-round presence.",
+                            Name = "Fern",
+                            AllowAsUndergrowth = true,
+                            Canopy = "Closed"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Aquatic and bog plants tend to be big and bold, lush and leafy, with brightly coloured flowers. Some aquatics spread out across the pond’s surface, while others grow vertically out of the water.",
+                            Name = "Aquatic",
+                            AllowAsUndergrowth = true,
+                            Canopy = "Partial"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "It includes a wide range of flower shapes, colours and sizes as this is a large and diverse group.",
+                            Name = "Bulb",
+                            AllowAsUndergrowth = true,
+                            Canopy = "Partial"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "They come in a huge range of shapes, colours and forms, some covered in spines, others smooth or furry, some gently rounded, others angular and sculptural.",
+                            Name = "Succulent",
+                            AllowAsUndergrowth = false,
+                            Canopy = "NotSet"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "They come in a huge range of shapes, colours and forms, some covered in spines, others smooth or furry, some gently rounded, others angular and sculptural.",
+                            Name = "Cactus",
+                            AllowAsUndergrowth = false,
+                            Canopy = "Open"
+                        });
                 });
 
             modelBuilder.Entity("Greenmaster.Core.Models.StructureType", b =>
@@ -380,6 +546,44 @@ namespace Greenmaster.Core.Migrations
                     b.HasBaseType("Greenmaster.Core.Models.ObjectType");
 
                     b.HasDiscriminator().HasValue("StructureType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 100,
+                            Description = "/",
+                            Name = "Swimming pool"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Description = "/",
+                            Name = "Pond"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Description = "/",
+                            Name = "Garage"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Description = "/",
+                            Name = "Swing"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Description = "/",
+                            Name = "Animal pen"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Description = "/",
+                            Name = "Shed"
+                        });
                 });
 
             modelBuilder.Entity("GardenStyleMaterialType", b =>
@@ -446,7 +650,7 @@ namespace Greenmaster.Core.Migrations
                     b.HasOne("Greenmaster.Core.Models.Specie", "Specie")
                         .WithMany("Plants")
                         .HasForeignKey("SpecieId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Specie");

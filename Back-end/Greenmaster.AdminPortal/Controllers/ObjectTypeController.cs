@@ -80,6 +80,7 @@ public class ObjectTypeController : Controller
         ObjectType objectType;
         try
         {
+            //TODO: add functionality to view a list of objects of this type f.e. link to table with all trees
             objectType = (await _objectTypeService.GetById(id)) ?? throw new ArgumentException("No ObjectType found with id= " + id);
         }
         catch (Exception ex)

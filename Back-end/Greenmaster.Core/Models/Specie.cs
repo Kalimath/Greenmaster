@@ -2,8 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
 using Greenmaster.Core.Models.Placeables;
+using StaticData.Coloring;
 using StaticData.Geographic;
 using StaticData.Gradation;
 using StaticData.Object.Organic;
@@ -40,7 +40,7 @@ public class Specie : IObjectIdentity
     public ClimateType Climate { get; set; }
     public int MinimalTemperature { get; set; }
     #endregion
-
+    //TODO: determine if sections can be extracted to separate classes
     //MaxDimensions
     public double MaxHeight { get; set; }
     public double MaxWidth { get; set; }

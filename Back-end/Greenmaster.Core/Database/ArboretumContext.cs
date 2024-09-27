@@ -108,7 +108,7 @@ public class ArboretumContext : DbContext, IApplicationDbContext
         modelBuilder.Entity<StructureType>().HasData(_examplesService.GetAllStructureTypes());
         // modelBuilder.Entity<Specie>().HasData(_examplesService.GetAllSpecies());
         // modelBuilder.Entity<Rendering>().HasData(_examplesService.GetAllRenderings());
-        // modelBuilder.Entity<GardenStyle>().HasData(_examplesService.GetAllGardenStyles());
+        modelBuilder.Entity<GardenStyle>().HasData(_examplesService.GetAllGardenStyles());
         modelBuilder.Entity<MaterialType>().HasData(_examplesService.GetAllMaterialTypes());
     }
 

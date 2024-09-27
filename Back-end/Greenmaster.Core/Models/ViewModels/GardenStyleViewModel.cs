@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using StaticData.Coloring;
 using StaticData.Measuring;
 using StaticData.Taxonomy;
 
@@ -14,7 +15,7 @@ public class GardenStyleViewModel
     public string Description { get; set; }
     public string[] Concepts { get; set; }
     public string[] Shapes { get; set; }
-    public string[] Colors { get; set; }
+    public Color[] Colors { get; set; }
     
     
     [DisplayName(displayName: "Large garden only")]
